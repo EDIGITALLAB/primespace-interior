@@ -1,0 +1,57 @@
+/* Global CSS custom styling variables and body setups */
+
+:root {
+  --color-purple: #7b3182;
+  --color-purple-dark: #612267;
+  --color-yellow: #f9b514;
+  --font-headings: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --primary-purple: #96053E;
+  --primary-purple-rgb: 150, 5, 62;
+  --primary-navy: #000000;
+  --bg-light-blue: #f2f6f9;
+  --white: #ffffff;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: #111111;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-headings);
+}
+
+/* Animations */
+.animate-slide-up {
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up-delay-1 {
+  opacity: 0;
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
+}
+
+.animate-slide-up-delay-2 {
+  opacity: 0;
+  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

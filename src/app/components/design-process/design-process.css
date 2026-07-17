@@ -1,0 +1,133 @@
+/* Design Process Component Stylesheet */
+
+.design-process-section {
+  background-color: #ffffff !important;
+  font-family: var(--font-body);
+  padding: 30px 0; /* Reduced vertical padding */
+}
+
+/* Timeline Layout Columns */
+.timeline-row {
+  position: relative;
+}
+
+.timeline-col {
+  position: relative;
+  z-index: 2;
+}
+
+/* Timeline Step Card */
+.step-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  position: relative;
+  height: 100%;
+  min-height: 290px;
+  z-index: 5;
+}
+
+/* Intercard Connection Lines (Desktop only) */
+.connection-line-right {
+  position: absolute;
+  top: 92px; /* Centered with the icon wrapper */
+  left: 70%; /* Bridges the gap from current card */
+  width: 60%; /* Extends to overlap the next card's left margin */
+  height: 2px;
+  background: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.08) 0px, rgba(0, 0, 0, 0.08) 5px, transparent 5px, transparent 10px);
+  z-index: -1;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Step Number Badge */
+.step-number-badge {
+  font-family: var(--font-headings);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: rgba(0, 0, 0, 0.1);
+  letter-spacing: 1px;
+  transition: all 0.4s ease;
+}
+
+/* Step Icon Wrapper */
+.step-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: rgba(var(--primary-purple-rgb), 0.05);
+  color: var(--primary-purple);
+  font-size: 1.35rem;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 15px rgba(var(--primary-purple-rgb), 0.04);
+}
+
+/* Typography styles */
+.step-title {
+  font-family: var(--font-headings);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--primary-navy);
+  transition: color 0.4s ease;
+}
+
+.step-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #666666;
+  transition: color 0.4s ease;
+}
+
+/* Card Hover / Active State Animations */
+.step-card:hover,
+.step-card.active {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.07);
+  border-color: rgba(var(--primary-purple-rgb), 0.18);
+}
+
+.step-card:hover .step-number-badge,
+.step-card.active .step-number-badge {
+  color: var(--primary-purple);
+  transform: scale(1.12);
+}
+
+.step-card:hover .step-icon-wrapper,
+.step-card.active .step-icon-wrapper {
+  background-color: var(--primary-purple);
+  color: #ffffff;
+  transform: scale(1.08) rotate(360deg);
+  box-shadow: 0 8px 25px rgba(var(--primary-purple-rgb), 0.3);
+}
+
+.step-card:hover .step-title,
+.step-card.active .step-title {
+  color: var(--primary-purple);
+}
+
+.step-card:hover .step-desc,
+.step-card.active .step-desc {
+  color: #222222;
+}
+
+/* Illuminate connector line on hover */
+.step-card:hover .connection-line-right,
+.step-card.active .connection-line-right {
+  background: var(--primary-purple);
+  box-shadow: 0 0 10px rgba(var(--primary-purple-rgb), 0.5);
+  height: 2px;
+}
+
+/* Responsive configurations */
+@media (max-width: 991.98px) {
+  .step-card {
+    min-height: auto;
+  }
+}
+
+.cards-container {
+  max-width: 1800px;
+  margin: 0 auto;
+}

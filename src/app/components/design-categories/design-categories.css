@@ -1,0 +1,298 @@
+/* Design Categories Component CSS with Slider */
+
+.design-categories-section {
+  background-color: #ffffff;
+  position: relative;
+  padding: 60px 0; /* Vertical breathing room for heading + content */
+}
+
+.section-subtitle {
+  font-family: var(--font-headings);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--primary-purple) !important;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-headings);
+  font-size: clamp(24px, 3.8vw, 36px);
+  font-weight: 900;
+  color: #111111;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  flex-grow: 1;
+  height: 1.5px;
+}
+
+.section-title::before {
+  background: linear-gradient(to left, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
+}
+
+.section-title::after {
+  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
+}
+
+/* Slider Track and Viewport Configuration */
+.slider-viewport {
+  overflow: hidden;
+  width: 100%;
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 200%;
+  /* Holds 2 slides */
+}
+
+.slider-slide {
+  width: 50%;
+  /* Each slide is 100% of the viewport */
+  flex-shrink: 0;
+}
+
+/* Slide Navigation Floating Buttons */
+.slide-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 15;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111111;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-nav-btn:hover {
+  background-color: var(--primary-purple, #96053E);
+  color: #ffffff;
+  border-color: var(--primary-purple, #96053E);
+  box-shadow: 0 6px 20px rgba(150, 5, 62, 0.25);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.prev-btn {
+  left: 20px;
+  /* Float on the left edge inside cards-container */
+}
+
+.next-btn {
+  right: 20px;
+  /* Float on the right edge inside cards-container */
+}
+
+.slide-nav-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Categories Grid */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 380px 380px;
+  gap: 10px; /* Further reduced gap */
+}
+
+/* Minimalist Frame & Canvas Layout (Museum Style) */
+.category-card {
+  position: relative;
+  overflow: hidden;
+  background-color: #ffffff;
+  padding: 16px;
+  padding-bottom: 72px; /* Bottom space representing a museum style placard border */
+  border: 1px solid rgba(0, 0, 0, 0.08); /* Crisp outer picture frame */
+  border-radius: 4px; /* Slight rounding for a refined modern border edge */
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+/* Slide 1 Grid layout mappings (Unique tall-left layout) */
+.kitchen-card {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+}
+
+.dining-card {
+  grid-column: 2 / 4;
+  grid-row: 1 / 2;
+}
+
+.bedroom-card {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.living-card {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+}
+
+/* Slide 2 Grid layout mappings (Alternate interlocked layout) */
+.wardrobe-card {
+  grid-column: 1 / 3;
+  grid-row: 1 / 2;
+}
+
+.bathroom-card {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+}
+
+.kids-card {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.balcony-card {
+  grid-column: 2 / 4;
+  grid-row: 2 / 3;
+}
+
+.category-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px; /* Fine-tuned inner photo rounding */
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-card:hover .category-img {
+  transform: scale(1.04); /* Focus zoom inside the static picture frame */
+}
+
+.category-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent; /* Raw and clean photo presentation */
+  transition: all 0.4s ease;
+}
+
+.category-tag {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: row !important; /* Title left, action right */
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.category-title {
+  font-family: var(--font-headings);
+  font-size: 18px !important; /* Increased to 18px */
+  font-weight: 800;
+  color: var(--primary-navy);
+  letter-spacing: 2px;
+  margin: 0;
+  line-height: 1.2;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+}
+
+.category-card:hover .category-title {
+  color: var(--primary-purple, #96053E) !important;
+}
+
+.category-sub {
+  font-family: var(--font-body);
+  font-size: 13.5px; /* Increased to 13.5px */
+  font-weight: 700;
+  color: var(--primary-purple, #96053E);
+  letter-spacing: 1px;
+  height: auto !important;
+  opacity: 0.7;
+  overflow: visible !important;
+  margin-top: 0 !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-block;
+}
+
+.category-card:hover .category-sub {
+  opacity: 1 !important;
+  transform: translateX(4px);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 991px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 8px;
+  }
+
+  .kitchen-card,
+  .dining-card,
+  .bedroom-card,
+  .living-card,
+  .wardrobe-card,
+  .bathroom-card,
+  .kids-card,
+  .balcony-card {
+    grid-column: unset !important;
+    grid-row: unset !important;
+    height: 250px;
+  }
+
+  /* Hide slide buttons on mobile and stack everything naturally if needed */
+  .slide-nav-btn {
+    display: none;
+  }
+
+  .slider-track {
+    width: 100%;
+    flex-direction: column;
+    transform: none !important;
+  }
+
+  .slider-slide {
+    width: 100%;
+  }
+
+  .grid-layout-b {
+    margin-top: 12px;
+    /* Margin between the two stacked grids on mobile */
+  }
+}
+
+.cards-container {
+  max-width: 1800px;
+  margin: 0 auto;
+}

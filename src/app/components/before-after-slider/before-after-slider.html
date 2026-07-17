@@ -1,0 +1,38 @@
+<section class="before-after-section py-5 bg-white position-relative">
+  <!-- Section Title -->
+  <div class="w-100 py-3">
+    <div class="text-center mb-5 position-relative">
+      <span class="section-subtitle text-uppercase mb-2">Transforming Spaces</span>
+      <h2 class="section-title fw-medium text-uppercase m-0">Before & After</h2>
+    </div>
+  </div>
+
+  <div class="container-fluid px-5 cards-container">
+    <div class="slider-wrapper position-relative overflow-hidden">
+      
+      <!-- Before Image (Base Layer) -->
+      <div class="image-container before-image-container">
+        <img src="/before_living_room.png" alt="Before Interior Renovation" class="slider-img">
+        <div class="label-badge before-badge">Before Renovation</div>
+      </div>
+
+      <!-- After Image (Layered & Clipped) -->
+      <div class="image-container after-image-container" [style.clip-path]="'inset(0 0 0 ' + sliderPosition() + '%)'">
+        <img src="/after_living_room.png" alt="After Luxury Interior Design" class="slider-img">
+        <div class="label-badge after-badge">After Design</div>
+      </div>
+
+      <!-- Drag Handle Line & Circles -->
+      <div class="slider-handle" [style.left.%]="sliderPosition()">
+        <div class="slider-line"></div>
+        <div class="slider-button d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-left-right"></i>
+        </div>
+      </div>
+
+      <!-- Invisible Range Input covering the slider area for native, butter-smooth touch/mouse dragging -->
+      <input type="range" min="0" max="100" [value]="sliderPosition()" (input)="onSliderInput($event)" class="slider-range" aria-label="Before and after split slider controller">
+
+    </div>
+  </div>
+</section>

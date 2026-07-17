@@ -1,0 +1,745 @@
+/* Hero Section Stylesheet */
+
+.hero-section {
+  height: 90vh;
+  min-height: 650px;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+/* Smooth Auto-Scrolling Slideshow Background */
+.hero-slider-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  overflow: hidden;
+}
+
+.hero-slider-bg .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0;
+  transition: opacity 1s ease-in-out !important;
+  /* Smooth 1s fade-in transition */
+  z-index: 1;
+}
+
+.hero-slider-bg .slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+
+
+/* Dynamic Slide Caption Wrap and Transitions */
+.slide-caption-wrap {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.slide-caption-wrap.active {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+/* Watermark Background Title text layered above/below */
+.bg-title-text {
+  font-family: var(--font-headings);
+  font-size: clamp(2.4rem, 6.5vw, 5.4rem);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  color: rgba(255, 255, 255, 0.18);
+  /* Translucent background text */
+}
+
+/* Foreground Highlighted Title */
+.main-title-text {
+  font-family: var(--font-headings);
+  font-size: clamp(1.8rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: 0px;
+  color: #ffffff !important;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  display: block;
+}
+
+
+
+/* Mobile responsive padding */
+@media (max-width: 768px) {
+  .hero-content-container {
+    padding-top: 110px;
+  }
+}
+
+.slide-1 {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.65) 100%), url('/bonado_hero_bg.png?v=3');
+}
+
+.slide-2 {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%), url('/hero_living_room.png?v=3');
+}
+
+.slide-3 {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.1) 100%), url('/eleganza_bedroom.png?v=3');
+}
+
+/* Slideshow navigation dot indicators */
+.slideshow-indicators {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  gap: 16px !important;
+  /* Increased space between dots */
+}
+
+.indicator-dot {
+  width: 7px;
+  /* Made dots smaller */
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--white);
+  opacity: 0.4;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator-dot:hover {
+  opacity: 0.8;
+}
+
+.indicator-dot.active {
+  background-color: var(--white);
+  opacity: 1;
+  transform: scale(1.1);
+  width: 8px;
+  height: 8px;
+}
+
+/* Slide 1 Styling (Unique Centered Presentation layout inside TV mockup) */
+.slide-1-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto !important;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 992px) {
+  .slide-1-container {
+    margin-top: -120px !important;
+    /* Offset header space vertically to center inside the TV screen */
+    transform: none !important;
+  }
+}
+
+.slide-1-badge {
+  font-family: var(--font-headings);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--primary-purple);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.4);
+  padding: 6px 18px;
+  border-radius: 30px;
+  background: rgba(var(--primary-purple-rgb), 0.05);
+  backdrop-filter: blur(5px);
+  display: inline-block;
+}
+
+.slide-1-title {
+  font-family: var(--font-headings);
+  font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin-bottom: 0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.slide-1-title .text-accent {
+  color: var(--primary-purple) !important;
+}
+
+.slide-1-divider-horizontal {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0.1), rgba(var(--primary-purple-rgb), 0.8) 50%, rgba(var(--primary-purple-rgb), 0.1));
+  box-shadow: 0 0 8px rgba(var(--primary-purple-rgb), 0.3);
+}
+
+.slide-1-desc {
+  font-family: var(--font-body);
+  font-size: clamp(1.0rem, 1.25vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 680px;
+  letter-spacing: 0.2px;
+}
+
+/* Our Services Crossed Border Button */
+.bonado-btn {
+  color: var(--primary-purple);
+  font-family: var(--font-headings);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-decoration: none;
+  padding: 14px 34px;
+  position: relative;
+  display: inline-block;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: transparent;
+  margin-top: 5px;
+  border: none;
+  outline: none;
+}
+
+/* Crossed Corner Border Parts */
+.bonado-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -8px;
+  right: -8px;
+  border-top: 1.5px solid var(--primary-purple);
+  border-bottom: 1.5px solid var(--primary-purple);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.bonado-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -8px;
+  bottom: -8px;
+  border-left: 1.5px solid var(--primary-purple);
+  border-right: 1.5px solid var(--primary-purple);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effects */
+.bonado-btn:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.bonado-btn:hover::before {
+  left: 0;
+  right: 0;
+  border-color: #ffffff;
+}
+
+.bonado-btn:hover::after {
+  top: 0;
+  bottom: 0;
+  border-color: #ffffff;
+}
+
+/* Slide 2 Styling (Bonado Split/Minimalist design) */
+.slide-2-container {
+  width: 90%;
+  max-width: 900px;
+  margin-left: 10% !important;
+  /* Shifted to the right to clear plant leaves on mobile */
+  text-align: left;
+}
+
+@media (min-width: 992px) {
+  .slide-2-container {
+    margin-left: 21% !important;
+    /* Shifted further to the right to clear background objects and balance layout */
+    transform: translateY(-40px);
+    /* Optical centering adjustment */
+  }
+}
+
+.slide-2-accent-bar {
+  width: 3px;
+  background: linear-gradient(to bottom,
+      rgba(var(--primary-purple-rgb), 0.1),
+      rgba(var(--primary-purple-rgb), 0.8) 20%,
+      rgba(var(--primary-purple-rgb), 0.8) 80%,
+      rgba(var(--primary-purple-rgb), 0.1));
+  box-shadow: 0 0 10px rgba(var(--primary-purple-rgb), 0.2);
+}
+
+@media (max-width: 768px) {
+  .slide-2-accent-bar {
+    width: 3px;
+  }
+}
+
+.slide-2-subtitle {
+  font-family: var(--font-headings);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: 19px;
+  margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+  .slide-2-subtitle {
+    margin-left: 27px;
+  }
+}
+
+.slide-2-title {
+  font-family: var(--font-headings);
+  font-size: clamp(2.2rem, 4.5vw, 4.2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.slide-2-title .text-accent-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--primary-purple) !important;
+  text-transform: none;
+}
+
+.slide-2-desc {
+  font-family: var(--font-body);
+  font-size: clamp(1.0rem, 1.25vw, 1.2rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 650px;
+  letter-spacing: 0.2px;
+}
+
+/* Slide 1 Staggered Entry Animations (Unique Centered Presentation - Concept 1: Centrifugal Blur-Fade) */
+.slide-1-wrap .slide-1-badge {
+  transform: translateY(-40px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+}
+
+.slide-1-wrap .slide-1-title {
+  transform: translateY(20px);
+  letter-spacing: -3px;
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, letter-spacing 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, opacity 1.8s ease 0.2s;
+}
+
+.slide-1-wrap .slide-1-divider-horizontal {
+  transform: scaleX(0);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, opacity 1.8s ease 0.4s;
+}
+
+.slide-1-wrap .slide-1-desc {
+  filter: blur(8px);
+  opacity: 0;
+  transition: filter 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, opacity 1.8s ease 0.6s;
+}
+
+.slide-1-wrap .bonado-btn {
+  transform: scale(0.85);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s, opacity 1.8s ease 0.8s;
+}
+
+/* Slide 1 - Active States */
+.slide-1-wrap.active .slide-1-badge {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-1-wrap.active .slide-1-title {
+  transform: translateY(0);
+  letter-spacing: -1px;
+  opacity: 1;
+}
+
+.slide-1-wrap.active .slide-1-divider-horizontal {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.slide-1-wrap.active .slide-1-desc {
+  filter: blur(0);
+  opacity: 1;
+}
+
+.slide-1-wrap.active .bonado-btn {
+  transform: scale(1);
+  opacity: 1;
+}
+
+
+/* Slide 2 Staggered Entry Animations (Cascading Left Reveal - Concept 2: Pure Left Reveal Cascade) */
+.slide-2-wrap .slide-2-subtitle {
+  transform: translateX(-40px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+}
+
+.slide-2-wrap .slide-2-accent-bar {
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, opacity 1.8s ease 0.1s;
+}
+
+.slide-2-wrap .slide-2-title {
+  transform: translateX(-50px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.25s, opacity 1.8s ease 0.25s;
+}
+
+.slide-2-wrap .slide-2-desc {
+  transform: translateX(-60px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, opacity 1.8s ease 0.45s;
+}
+
+.slide-2-wrap .bonado-btn {
+  transform: translateX(-70px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.65s, opacity 1.8s ease 0.65s;
+}
+
+/* Slide 2 - Active States */
+.slide-2-wrap.active .slide-2-subtitle {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-2-wrap.active .slide-2-accent-bar {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-2-wrap.active .slide-2-title {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-2-wrap.active .slide-2-desc {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-2-wrap.active .bonado-btn {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* Slide 3 Styling (Premium Editorial Lookbook design) */
+.slide-3-container {
+  width: 90%;
+  max-width: 850px;
+  margin-left: 5% !important;
+  text-align: left;
+}
+
+@media (min-width: 992px) {
+  .slide-3-container {
+    margin-left: 17% !important;
+    /* Left alignment visual offset to balance bedroom furniture layout */
+    transform: translateY(-30px);
+    /* Optical vertical alignment */
+  }
+}
+
+.slide-3-brand {
+  font-family: var(--font-headings);
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--primary-purple);
+  line-height: 1;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.slide-3-line {
+  width: 50px;
+  height: 1.5px;
+  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0.8), rgba(var(--primary-purple-rgb), 0.1));
+}
+
+.slide-3-tagline {
+  font-family: var(--font-headings);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.slide-3-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.0rem, 3.8vw, 3.6rem);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  color: #ffffff;
+  margin-bottom: 0;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.slide-3-title .text-accent {
+  color: var(--primary-purple) !important;
+}
+
+.slide-3-desc {
+  font-family: var(--font-body);
+  font-size: clamp(0.95rem, 1.15vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 650px;
+  letter-spacing: 0.2px;
+}
+
+.slide-3-link {
+  color: #ffffff;
+  font-family: var(--font-headings);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  text-decoration: none;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--primary-purple);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slide-3-arrow {
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effects */
+.slide-3-link:hover {
+  color: var(--primary-purple);
+  border-bottom-color: #ffffff;
+}
+
+.slide-3-link:hover .slide-3-arrow {
+  transform: translateX(8px);
+  color: var(--primary-purple);
+}
+
+/* Slide 3 Staggered Entry Animations (Diagonal Lift & Slide - Concept 3: Diagonal Rotate Lift) */
+.slide-3-wrap .slide-3-header {
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.8s ease;
+}
+
+.slide-3-wrap .slide-3-title {
+  transform: translateY(30px) rotate(2deg);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, opacity 1.8s ease 0.2s;
+}
+
+.slide-3-wrap .slide-3-desc {
+  transform: translateX(40px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s, opacity 1.8s ease 0.4s;
+}
+
+.slide-3-wrap .slide-3-link {
+  transform: translateY(40px);
+  opacity: 0;
+  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s, opacity 1.8s ease 0.6s;
+}
+
+/* Slide 3 - Active States */
+.slide-3-wrap.active .slide-3-header {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.slide-3-wrap.active .slide-3-title {
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+.slide-3-wrap.active .slide-3-desc {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.slide-3-wrap.active .slide-3-link {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Floating Theme Switcher Panel styling */
+.theme-switcher-widget {
+  position: fixed;
+  right: -240px;
+  top: 30%;
+  width: 240px;
+  background: rgba(18, 18, 18, 0.85);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+  overflow: visible;
+}
+
+.theme-switcher-widget.open {
+  right: 0;
+}
+
+.theme-toggle-btn {
+  position: absolute;
+  left: -48px;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  background: var(--primary-purple);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-right: none;
+  border-radius: 12px 0 0 12px;
+  color: #ffffff;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.theme-toggle-btn:hover {
+  filter: brightness(1.1);
+}
+
+.theme-toggle-btn i {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-switcher-widget.open .theme-toggle-btn i {
+  transform: rotate(90deg);
+}
+
+.theme-panel-body {
+  padding: 20px;
+}
+
+.theme-panel-title {
+  font-family: var(--font-headings);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding-bottom: 8px;
+}
+
+.theme-color-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.theme-color-circle:hover {
+  transform: scale(1.15);
+  border-color: #ffffff;
+}
+
+.theme-color-circle.active {
+  border-color: #ffffff;
+  transform: scale(1.1);
+  box-shadow: 0 0 12px var(--primary-purple);
+}
+
+.theme-color-circle i {
+  font-size: 0.65rem;
+}
+
+/* Custom Color Picker input styles */
+.custom-color-picker-wrap {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+.custom-color-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.2px;
+}
+
+.custom-color-input-container {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.custom-color-input-container:hover {
+  transform: scale(1.1);
+  border-color: #ffffff;
+}
+
+.custom-color-input {
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 48px;
+  height: 48px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}

@@ -1,0 +1,292 @@
+<header class="main-header w-100 position-fixed" [class.scrolled]="isScrolled">
+
+  <!-- Main Navbar Floating Pill -->
+  <div class="navbar-pill-wrapper">
+    <nav class="navbar navbar-expand-lg navbar-dark p-0 w-100 main-nav-row" style="height: 70px;">
+      <div class="container-fluid px-3 h-100 d-flex align-items-center justify-content-between">
+
+        <!-- Left: Brand Logo -->
+        <a class="navbar-brand m-0 d-flex align-items-center" href="#">
+          <img src="/nevlogo.png" alt="Prime Space Interior" class="navbar-logo-img">
+        </a>
+
+        <!-- Center: Collapsible Menu -->
+        <div class="collapse navbar-collapse h-100 d-lg-flex align-items-center justify-content-center"
+          id="mainNavbarSupportedContent">
+
+          <!-- Main Navigation Links Centered horizontally -->
+          <ul class="navbar-nav mx-auto mb-0 align-items-lg-center"
+            style="font-weight: 600; font-size: 13px; font-family: var(--font-headings); letter-spacing: 0.5px;">
+            
+            <li class="nav-item px-lg-1.5"><a class="nav-link active" href="#"><span class="nav-link-text">HOME</span></a></li>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">COMPANY</span></a></li>
+
+            <li class="nav-item dropdown px-lg-1.5">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="whatWeDoDropdown"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="nav-link-text">WHAT WE DO</span>
+                <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="whatWeDoDropdown">
+                <div class="dropdown-grid">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-kitchen-set"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">KITCHEN</span>
+                      <span class="dropdown-desc">Smart modular kitchens</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-bed"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">BEDROOM</span>
+                      <span class="dropdown-desc">Cosy bespoke sanctuaries</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-chair"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">DINING ROOM</span>
+                      <span class="dropdown-desc">Refined dining designs</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-couch"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">LIVING ROOM</span>
+                      <span class="dropdown-desc">Luxury social layouts</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-palette"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">DECORATIVE UNITS</span>
+                      <span class="dropdown-desc">Elegant shelves & displays</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-child"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">KIDS ROOM</span>
+                      <span class="dropdown-desc">Vibrant & playful spaces</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item dropdown px-lg-1.5">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="productsDropdown"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="nav-link-text">PRODUCTS</span>
+                <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="productsDropdown">
+                <div class="dropdown-grid">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-kitchen-set"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">KITCHEN UNITS</span>
+                      <span class="dropdown-desc">Bespoke modular fittings</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-bed"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">BEDROOM SETS</span>
+                      <span class="dropdown-desc">Premium wardrobes & frames</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-chair"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">DINING TABLES</span>
+                      <span class="dropdown-desc">Luxury marble & wood tables</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-couch"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">LIVING SEATING</span>
+                      <span class="dropdown-desc">Premium sofas & recliners</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-palette"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">WALL DECOR</span>
+                      <span class="dropdown-desc">Modern artwork & custom panels</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-child"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">KIDS FURNITURE</span>
+                      <span class="dropdown-desc">Safe & modular playbeds</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">OFFERS</span></a></li>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">GALLERY</span></a></li>
+
+            <li class="nav-item dropdown px-lg-1.5">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="locationsDropdown"
+                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="nav-link-text">LOCATIONS</span>
+                <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations" aria-labelledby="locationsDropdown">
+                <div class="dropdown-grid-locations">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">BENGALURU</span>
+                      <span class="dropdown-desc">Silicon Valley Hub</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">KERALA</span>
+                      <span class="dropdown-desc">God's Own Country Studio</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">CHENNAI</span>
+                      <span class="dropdown-desc">Gateway to South Office</span>
+                    </div>
+                  </a>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="dropdown-meta">
+                      <span class="dropdown-title">MUMBAI</span>
+                      <span class="dropdown-desc">City of Dreams Experience Centre</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a></li>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">CONTACT</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Right: Action Icons (Desktop & Mobile Toggler grouped) -->
+        <div class="d-flex align-items-center flex-shrink-0">
+          <!-- Hamburger Menu icon at the end (Desktop only, grouped in layout) -->
+          <div class="d-none d-lg-flex align-items-center justify-content-center me-2 h-100">
+            <a class="nav-link menu-icon-link p-0 d-flex align-items-center justify-content-center" (click)="toggleSideMenu()"
+              style="cursor: pointer;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="55" height="26" viewBox="0 0 70 28" fill="none"
+                class="unique-menu-icon" [class.open]="isSideMenuOpen" style="vertical-align: middle;">
+                <rect class="menu-bar bar-top" x="0" y="4" width="40" height="2.5" rx="1.25" fill="currentColor" />
+                <rect class="menu-bar bar-middle" x="0" y="12.75" width="60" height="2.5" rx="1.25"
+                  fill="currentColor" />
+                <rect class="menu-bar bar-bottom" x="0" y="21.5" width="48" height="2.5" rx="1.25"
+                  fill="currentColor" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Toggler for Mobile (Grouped on right side next to desktop hamburger context) -->
+          <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNavbarSupportedContent" aria-controls="mainNavbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation" (click)="toggleMobileMenu()">
+            <div class="hamburger-mobile-icon" [class.open]="isMobileMenuOpen">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </div>
+
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- Offcanvas Sidebar Drawer (Desktop & Mobile) -->
+<div class="offcanvas-drawer" [class.open]="isSideMenuOpen">
+  <div class="drawer-header d-flex justify-content-between align-items-center">
+    <div class="drawer-logo">
+      <img src="/nevlogo.png" alt="Prime Space Interior" class="drawer-logo-img">
+    </div>
+    <button class="drawer-close-btn d-flex align-items-center justify-content-center" (click)="toggleSideMenu()" aria-label="Close sidebar">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  
+  <div class="drawer-content d-flex flex-column justify-content-between">
+    <div class="drawer-top-section">
+      <div class="drawer-about mb-5">
+        <h4 class="drawer-section-title">ABOUT PRIME SPACE</h4>
+        <p class="drawer-about-text">
+          Bespoke luxury interior design consultancy firm creating sensitivity, quality, and credibility in top hotels, offices, and homes around the world.
+        </p>
+      </div>
+
+      <div class="drawer-contact mb-5">
+        <h4 class="drawer-section-title">GET IN TOUCH</h4>
+        <ul class="drawer-contact-list list-unstyled">
+          <li class="d-flex align-items-start mb-3">
+            <i class="fa-solid fa-location-dot mt-1 me-3 accent-color"></i>
+            <span>123, Luxury Design Avenue, Indiranagar, Bengaluru, India</span>
+          </li>
+          <li class="d-flex align-items-center mb-3">
+            <i class="fa-solid fa-phone me-3 accent-color"></i>
+            <a href="tel:+1800123456" class="text-decoration-none text-white transition-all">+1 800 123 456</a>
+          </li>
+          <li class="d-flex align-items-center mb-3">
+            <i class="fa-solid fa-envelope me-3 accent-color"></i>
+            <a href="mailto:info@primespaceinterior.com" class="text-decoration-none text-white transition-all">info@primespaceinterior.com</a>
+          </li>
+          <li class="d-flex align-items-center">
+            <i class="fa-solid fa-clock me-3 accent-color"></i>
+            <span>Mon - Sat: 9:00 AM - 7:00 PM</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="drawer-bottom-section">
+      <!-- Quick Info CTA -->
+      <div class="drawer-cta mb-4">
+        <a href="#" class="btn btn-accent w-100 py-3 text-uppercase fw-bold letter-spacing-1">Book Consultation</a>
+      </div>
+      
+      <!-- Social Media Links -->
+      <div class="drawer-socials">
+        <h5 class="drawer-socials-title text-center mb-3 text-uppercase">Follow Our Designs</h5>
+        <div class="d-flex justify-content-center gap-3">
+          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="Pinterest">
+            <i class="fa-brands fa-pinterest-p"></i>
+          </a>
+          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Subtle back lighting -->
+  <div class="drawer-glow-bg"></div>
+</div>
+
+<!-- Drawer Overlay backdrop -->
+<div class="drawer-overlay" [class.show]="isSideMenuOpen" (click)="toggleSideMenu()"></div>

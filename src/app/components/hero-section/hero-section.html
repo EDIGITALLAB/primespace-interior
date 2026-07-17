@@ -1,0 +1,128 @@
+<main
+  class="hero-section position-relative overflow-hidden w-100 d-flex flex-column justify-content-between">
+
+  <!-- Smooth Auto-Scrolling Slideshow Background -->
+  <div class="hero-slider-bg">
+    <div class="slide slide-1" [class.active]="currentSlideIndex === 0"></div>
+    <div class="slide slide-2" [class.active]="currentSlideIndex === 1"></div>
+    <div class="slide slide-3" [class.active]="currentSlideIndex === 2"></div>
+  </div>
+
+  <!-- Empty spacer to push content below navbar -->
+  <div class="spacer" style="height: 120px;"></div>
+
+  <!-- Dynamic Center Headings (Cross-fading with images) -->
+  <div class="row align-items-center justify-content-center my-auto px-4 px-md-5 position-relative flex-grow-1 w-100"
+    style="z-index: 5; margin-left: 0; margin-right: 0;">
+    <div
+      class="col-12 text-white hero-text-block position-relative h-100 d-flex align-items-center justify-content-center">
+      <!-- Slide 1 Caption (Unique Centered Presentation Layout) -->
+      <div class="slide-caption-wrap slide-1-wrap text-center w-100" [class.active]="currentSlideIndex === 0">
+        <div class="slide-1-container text-white d-flex flex-column align-items-center justify-content-center">
+          <!-- Elegant Badge -->
+          <div class="slide-1-badge text-uppercase mb-3">A Trendy Luxury</div>
+          <!-- Centered Title -->
+          <h1 class="slide-1-title mb-4">
+            A Natural Aptitude<br>Towards The <span class="text-accent">Arts</span>
+          </h1>
+          <!-- Thin centered divider line -->
+          <div class="slide-1-divider-horizontal mb-4"></div>
+          <!-- Centered Description -->
+          <p class="slide-1-desc mb-4 mb-md-5 mx-auto">
+            Interior design consultancy firm that brings sensitivity to the design top restaurants, hotels, offices & homes around the world. We stand for quality, safety and credibility.
+          </p>
+          <!-- Centered Button -->
+          <a href="#" class="bonado-btn">Our Services!</a>
+        </div>
+      </div>
+
+      <!-- Slide 2 Caption (Bonado Design - Enhanced) -->
+      <div class="slide-caption-wrap slide-2-wrap text-start w-100" [class.active]="currentSlideIndex === 1">
+        <div class="slide-2-container text-white">
+          <!-- Spaced Subtitle aligned with the title text -->
+          <div class="slide-2-subtitle text-uppercase mb-2">Space Planning &bull; Luxury Interiors</div>
+          <div class="slide-2-title-wrap d-flex align-items-stretch mb-4">
+            <div class="slide-2-accent-bar me-3 me-md-4"></div>
+            <h1 class="slide-2-title">
+              The Interior <span class="text-accent-serif">Design</span><br>Is Over The Top!
+            </h1>
+          </div>
+          <p class="slide-2-desc mb-4 mb-md-5">
+            Interior design consultancy firm that brings sensitivity to the design top restaurants, hotels, offices & homes around the world. We stand for quality, safety and credibility.
+          </p>
+          <a href="#" class="bonado-btn">Read More</a>
+        </div>
+      </div>
+
+      <!-- Slide 3 Caption (Premium Editorial Layout) -->
+      <div class="slide-caption-wrap slide-3-wrap text-start w-100" [class.active]="currentSlideIndex === 2">
+        <div class="slide-3-container text-white">
+          <!-- Tagline with brand block -->
+          <div class="slide-3-header d-flex align-items-center mb-3">
+            <span class="slide-3-brand">D'LIFE&reg;</span>
+            <div class="slide-3-line mx-3"></div>
+            <span class="slide-3-tagline text-uppercase">The Bedroom Masterpiece</span>
+          </div>
+          <!-- Large luxury heading -->
+          <h1 class="slide-3-title mb-4">
+            Dream Bedrooms<br>Crafted With <span class="text-accent">Excellence</span>
+          </h1>
+          <!-- Editorial description paragraph -->
+          <p class="slide-3-desc mb-4 mb-md-5">
+            Step into a sanctuary of custom comfort, tailored textures, and soft architectural lighting. Every bedroom design is a curated masterpiece of relaxation.
+          </p>
+          <!-- Underlined action link -->
+          <a href="#" class="slide-3-link">
+            Explore Collection <span class="slide-3-arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Slideshow Indicator Dots -->
+  <div class="slideshow-indicators d-flex justify-content-center align-items-center gap-2 mb-4">
+    <button class="indicator-dot" [class.active]="currentSlideIndex === 0" (click)="setSlide(0)"
+      aria-label="Slide 1"></button>
+    <button class="indicator-dot" [class.active]="currentSlideIndex === 1" (click)="setSlide(1)"
+      aria-label="Slide 2"></button>
+    <button class="indicator-dot" [class.active]="currentSlideIndex === 2" (click)="setSlide(2)"
+      aria-label="Slide 3"></button>
+  </div>
+  <!-- Floating Theme Color Switcher Panel -->
+  <div class="theme-switcher-widget d-flex align-items-center" [class.open]="isThemePanelOpen" style="z-index: 10000;">
+    <button class="theme-toggle-btn" (click)="toggleThemePanel()" aria-label="Toggle Theme Color Panel">
+      <i class="fas" [class.fa-palette]="!isThemePanelOpen" [class.fa-times]="isThemePanelOpen"></i>
+    </button>
+    <div class="theme-panel-body">
+      <div class="theme-panel-title">SELECT ACCENT COLOR</div>
+      <div class="theme-colors-grid d-flex flex-wrap gap-2 mb-3">
+        @for (color of themeColors; track color.hex) {
+          <button 
+            class="theme-color-circle" 
+            [style.backgroundColor]="color.hex" 
+            [class.active]="currentThemeColor === color.hex"
+            (click)="changeThemeColor(color.hex)"
+            [title]="color.name">
+            @if (currentThemeColor === color.hex) {
+              <i class="fas fa-check text-white"></i>
+            }
+          </button>
+        }
+      </div>
+      <!-- Custom Color Picker -->
+      <div class="custom-color-picker-wrap d-flex align-items-center justify-content-between">
+        <span class="custom-color-label">Custom Accent:</span>
+        <div class="custom-color-input-container">
+          <input 
+            type="color" 
+            [value]="currentThemeColor" 
+            (input)="onCustomColorChange($event)"
+            class="custom-color-input"
+            id="themeCustomColorPicker" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
