@@ -1,0 +1,314 @@
+/* About Section Stylesheet */
+
+.about-section {
+  background-color: #ffffff !important;
+  font-family: var(--font-body);
+  padding: 90px 0;
+}
+
+/* Subtle wine purple mesh glow in the background */
+.about-mesh-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(150, 5, 62, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(60px);
+  top: -100px;
+  left: -150px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Editorial Outline Text Watermark */
+.about-watermark-text {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-headings);
+  font-size: 11vw; /* Reduced slightly to fit PRIME SPACE elegantly in one line */
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(150, 5, 62, 0.15); /* Thicker stroke and 15% opacity for bold, clear visibility */
+  pointer-events: none;
+  z-index: 1;
+  letter-spacing: 0.1em; /* Reduced spacing to align brand name */
+  line-height: 1;
+  user-select: none;
+  white-space: nowrap; /* Prevent word wrapping */
+}
+
+/* Premium Furniture Image Watermark */
+.about-furniture-watermark {
+  position: absolute;
+  top: 50%;
+  left: 40%; /* Shifted left towards the image stack to sit in the gutter and prevent text overlap */
+  transform: translate(-50%, -50%);
+  width: 440px;
+  height: auto;
+  max-width: 80vw;
+  pointer-events: none;
+  z-index: 1;
+  user-select: none;
+  opacity: 0.13; /* Softened opacity to ensure black body text on the right has perfect readability */
+  mix-blend-mode: multiply; /* Make white background completely transparent */
+  animation: watermark-float 8s ease-in-out infinite; /* Smooth floating visual */
+}
+
+.about-furniture-watermark .watermark-img {
+  width: 100%;
+  height: auto;
+  filter: contrast(1.05); /* Slight contrast adjustments */
+}
+
+@keyframes watermark-float {
+  0% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-14px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translateY(0);
+  }
+}
+
+/* Layered Image Stack container */
+.layered-image-container {
+  height: 520px;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+.geometric-shape {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 250px;
+  height: 250px;
+  border: 10px solid rgba(150, 5, 62, 0.04);
+  pointer-events: none;
+  z-index: 1;
+  transition: transform 0.8s ease;
+}
+
+.layered-image-container:hover .geometric-shape {
+  transform: rotate(15deg) scale(1.05);
+}
+
+/* Image Frames (Picture Museum Card Style) */
+.img-frame {
+  position: absolute;
+  overflow: hidden;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0; /* Square matching map/slider */
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Primary Frame (Large Back Layer) */
+.primary-frame {
+  top: 30px;
+  left: 30px;
+  width: 70%;
+  height: 380px;
+  z-index: 2;
+}
+
+/* Secondary Frame (Small Front Layer Overlapping) */
+.secondary-frame {
+  bottom: 30px;
+  right: 30px;
+  width: 52%;
+  height: 240px;
+  z-index: 4;
+}
+
+/* Interactive Shifting Hover Animation on Image Stack */
+.layered-image-container:hover .primary-frame {
+  transform: translate(-10px, -10px);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+}
+
+.layered-image-container:hover .secondary-frame {
+  transform: translate(15px, 15px);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.15);
+}
+
+.layered-image-container:hover .about-img {
+  transform: scale(1.04);
+}
+
+/* Floating Experience glass-like badge */
+.experience-card {
+  position: absolute;
+  bottom: 120px;
+  left: 0px;
+  background: rgba(255, 255, 255, 0.92); /* Premium light glassmorphism */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 4px solid var(--primary-purple) !important; /* Elegant brand accent line */
+  padding: 18px 24px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  color: #111111;
+  z-index: 5;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.layered-image-container:hover .experience-card {
+  transform: translateY(-8px);
+  border-color: var(--primary-purple);
+  box-shadow: 0 20px 45px rgba(150, 5, 62, 0.25);
+}
+
+.experience-num {
+  font-family: var(--font-headings);
+  font-size: 28px; /* Slightly reduced for letter text */
+  font-weight: 900;
+  letter-spacing: -0.5px;
+  color: var(--primary-purple);
+  line-height: 1;
+}
+
+.experience-text {
+  font-family: var(--font-headings);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+/* Content Area styling */
+.about-badge-pill {
+  background-color: rgba(150, 5, 62, 0.05);
+  border: 1px solid rgba(150, 5, 62, 0.12);
+  border-radius: 20px;
+  padding: 5px 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pill-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--primary-purple);
+}
+
+.about-badge {
+  font-family: var(--font-headings);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--primary-purple);
+}
+
+.about-headline {
+  font-family: var(--font-headings);
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+  color: #111111;
+  line-height: 1.25;
+}
+
+.text-highlight {
+  color: var(--primary-purple);
+  background: linear-gradient(135deg, var(--primary-purple) 0%, #d4145a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-desc {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #444444;
+  font-weight: 500;
+}
+
+.about-sub-desc {
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+
+/* Stats panel styling */
+.stats-grid {
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  padding-top: 28px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 20px 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.01);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+}
+
+.stat-card:hover {
+  transform: translateY(-6px);
+  background: #ffffff;
+  border-color: rgba(150, 5, 62, 0.15);
+  box-shadow: 0 15px 30px rgba(150, 5, 62, 0.06);
+}
+
+.stat-number {
+  font-family: var(--font-headings);
+  font-size: clamp(22px, 3vw, 28px);
+  font-weight: 900;
+  color: var(--primary-purple);
+  display: block;
+  margin-bottom: 6px;
+  letter-spacing: -0.5px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stat-card:hover .stat-number {
+  transform: scale(1.06);
+}
+
+.stat-label {
+  font-family: var(--font-headings);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #555555;
+  display: block;
+}
+
+.cards-container {
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* Mobile responsive layout overrides */
+@media (max-width: 991.98px) {
+  .layered-image-container {
+    height: 420px;
+    max-width: 440px;
+  }
+  .primary-frame {
+    height: 300px;
+  }
+  .secondary-frame {
+    height: 180px;
+  }
+  .experience-card {
+    bottom: 90px;
+    padding: 12px 18px;
+  }
+  .experience-num {
+    font-size: 24px;
+  }
+}

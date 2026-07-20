@@ -203,66 +203,53 @@
 
 /* Our Services Crossed Border Button */
 .bonado-btn {
-  color: var(--primary-purple);
+  color: var(--primary-purple) !important;
   font-family: var(--font-headings);
   font-size: 0.85rem;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 3px;
   text-decoration: none;
-  padding: 14px 34px;
+  padding: 16px 36px;
   position: relative;
   display: inline-block;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: color 0.4s cubic-bezier(0.19, 1, 0.22, 1), border-color 0.4s, box-shadow 0.4s, transform 0.4s;
   background-color: transparent;
   margin-top: 5px;
-  border: none;
+  border: 1px solid var(--primary-purple);
   outline: none;
+  z-index: 1;
+  overflow: hidden;
 }
 
-/* Crossed Corner Border Parts */
+/* Liquid Slide-Fill Animation */
 .bonado-btn::before {
   content: '';
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: -8px;
-  right: -8px;
-  border-top: 1.5px solid var(--primary-purple);
-  border-bottom: 1.5px solid var(--primary-purple);
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: var(--primary-purple);
+  transition: width 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: -1;
 }
 
+/* Disable old crossed blueprint borders */
 .bonado-btn::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: -8px;
-  bottom: -8px;
-  border-left: 1.5px solid var(--primary-purple);
-  border-right: 1.5px solid var(--primary-purple);
-  pointer-events: none;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: none !important;
 }
 
 /* Hover effects */
 .bonado-btn:hover {
-  color: #ffffff;
-  transform: scale(1.05);
+  color: #ffffff !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(150, 5, 62, 0.35);
+  border-color: var(--primary-purple);
 }
 
 .bonado-btn:hover::before {
-  left: 0;
-  right: 0;
-  border-color: #ffffff;
-}
-
-.bonado-btn:hover::after {
-  top: 0;
-  bottom: 0;
-  border-color: #ffffff;
+  width: 100%;
 }
 
 /* Slide 2 Styling (Bonado Split/Minimalist design) */
@@ -477,14 +464,12 @@
   }
 }
 
-.slide-3-brand {
-  font-family: var(--font-headings);
-  font-size: 0.95rem;
-  font-weight: 800;
-  color: var(--primary-purple);
-  line-height: 1;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.slide-3-brand-logo {
+  height: 24px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(1);
+  /* Ensure it displays clearly on dark background */
 }
 
 .slide-3-line {
@@ -684,7 +669,7 @@
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .theme-color-circle:hover {
@@ -724,7 +709,7 @@
   border: 2px solid rgba(255, 255, 255, 0.2);
   position: relative;
   cursor: pointer;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .custom-color-input-container:hover {

@@ -1,0 +1,192 @@
+/* Testimonials Section Stylesheet */
+
+.testimonials-section {
+  background-color: #ffffff !important;
+  font-family: var(--font-body);
+  padding: 90px 0;
+  overflow: hidden;
+}
+
+.section-subtitle {
+  font-family: var(--font-headings);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--primary-purple) !important;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-headings);
+  font-size: clamp(24px, 3.8vw, 36px);
+  font-weight: 900;
+  color: #111111;
+  letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  width: 100%;
+}
+
+.section-title::before,
+.section-title::after {
+  content: '';
+  flex-grow: 1;
+  height: 1.5px;
+}
+
+.section-title::before {
+  background: linear-gradient(to left, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
+}
+
+.section-title::after {
+  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
+}
+
+/* Watermark Background Quote */
+.quote-watermark {
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  font-size: 7.5rem;
+  color: rgba(var(--primary-purple-rgb), 0.05);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Testimonial Card plinth */
+.testimonial-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  position: relative;
+  z-index: 2;
+  min-height: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 0 !important; /* Square matching map/slider */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.testimonial-card:hover {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+.stars-wrapper {
+  color: var(--color-yellow, #f9b514);
+  font-size: 14px;
+}
+
+.review-text {
+  font-family: var(--font-body);
+  font-size: clamp(15.5px, 2.2vw, 19.5px);
+  line-height: 1.75;
+  color: #333333;
+  font-weight: 500;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.card-divider {
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary-purple);
+}
+
+.client-name {
+  font-family: var(--font-headings);
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #111111;
+  letter-spacing: 1px;
+}
+
+.client-location {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: #777777;
+  font-weight: 600;
+}
+
+.client-service {
+  font-family: var(--font-headings);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--primary-purple);
+  background-color: rgba(var(--primary-purple-rgb), 0.06);
+  padding: 5px 14px;
+  display: inline-block;
+}
+
+/* Nav Buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  color: #111111;
+  font-size: 12px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 10;
+}
+
+.nav-btn:hover {
+  background-color: var(--primary-purple);
+  color: #ffffff;
+  border-color: var(--primary-purple);
+  box-shadow: 0 6px 18px rgba(150, 5, 62, 0.22);
+}
+
+.prev-btn {
+  left: -23px;
+}
+
+.next-btn {
+  right: -23px;
+}
+
+/* Indicator Dots */
+.dot-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.15);
+  margin: 0 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dot-indicator:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.dot-indicator.active {
+  background-color: var(--primary-purple);
+  width: 20px;
+  border-radius: 4px;
+}
+
+.cards-container {
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+  .testimonials-section {
+    padding: 60px 0;
+  }
+  .nav-btn {
+    display: none;
+  }
+}

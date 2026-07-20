@@ -1,6 +1,6 @@
-<section class="package-offers-section pb-5 bg-white text-dark">
+<section class="package-offers-section py-6 bg-white text-dark">
 
-  <!-- Full Screen Title -->
+  <!-- Section Title -->
   <div class="w-100 py-3">
     <div class="text-center mb-5 position-relative">
       <span class="section-subtitle text-uppercase mb-2">Bespoke Pricing Plans</span>
@@ -9,82 +9,155 @@
   </div>
 
   <!-- Cards Grid -->
-  <div class="container-fluid px-5 cards-container">
-    <div class="row g-4 justify-content-center">
+  <div class="container-fluid px-4 px-md-5 cards-container">
+    <div class="row g-4 justify-content-center align-items-stretch">
 
       <!-- Card 1: Everything Essential -->
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="offer-card position-relative overflow-hidden">
-          <img src="/essential_kitchen.png" class="offer-img" alt="Essential Kitchen Woodwork">
-          <!-- Subtle top/bottom shadow overlay -->
-          <div class="offer-image-overlay"></div>
-
-          <!-- Floating Glass Panel -->
-          <div class="offer-glass-panel d-flex flex-column">
-            <span class="glass-badge mb-1">2BHK Package</span>
-            <h3 class="glass-title mb-2">Everything Essential</h3>
-            <p class="glass-desc mb-3">Essential woodwork and kitchen fittings designed for standard layouts.</p>
-
-            <div class="glass-footer d-flex align-items-center justify-content-between pt-3">
-              <div class="glass-pricing">
-                <span class="glass-price-old text-decoration-line-through">₹8.85 Lac</span>
-                <span class="glass-price-new ms-2">₹6.37 Lac*</span>
-              </div>
-              <a href="#" class="glass-action-link text-uppercase">
-                Get Quote <i class="fas fa-arrow-right ms-2"></i>
-              </a>
-            </div>
+      <div class="col-12 col-md-6 col-lg-4 d-flex">
+        <div class="package-card d-flex flex-column w-100 position-relative">
+          
+          <!-- Image Top Frame -->
+          <div class="card-image-wrapper position-relative overflow-hidden">
+            <img src="/essential_kitchen.png" class="card-img" alt="Essential Kitchen Woodwork">
+            <span class="card-category-badge text-uppercase">2BHK Package</span>
           </div>
+
+          <!-- Card Content Body -->
+          <div class="card-body-wrapper d-flex flex-column flex-grow-1 p-4">
+            <h3 class="package-name mb-3">Everything Essential</h3>
+            
+            <!-- Pricing box -->
+            <div class="price-box mb-4">
+              <span class="price-old text-decoration-line-through me-2">₹8.85 Lac</span>
+              <span class="price-new">₹6.37 Lac*</span>
+            </div>
+
+            <!-- Inclusions list -->
+            <ul class="inclusions-list list-unstyled mb-5 flex-grow-1 p-0 m-0">
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Modular kitchen cabinet setup</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">2 Bedroom wardrobe units</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Sleek TV console installation</span>
+              </li>
+              <li class="d-flex align-items-center">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Soft-close hinge hardware</span>
+              </li>
+            </ul>
+
+            <!-- Solid CTA Button -->
+            <button class="btn btn-quote-action outline-btn text-uppercase w-100 py-3">
+              Get Quote <i class="fa-solid fa-arrow-right ms-2 arrow-icon"></i>
+            </button>
+          </div>
+
         </div>
       </div>
 
-      <!-- Card 2: Eleganza -->
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="offer-card position-relative overflow-hidden">
-          <img src="/eleganza_bedroom.png" class="offer-img" alt="Eleganza Bedroom Woodwork">
-          <div class="offer-image-overlay"></div>
-
-          <!-- Floating Glass Panel -->
-          <div class="offer-glass-panel d-flex flex-column">
-            <span class="glass-badge mb-1">3BHK Package</span>
-            <h3 class="glass-title mb-2">Eleganza</h3>
-            <p class="glass-desc mb-3">Detailed luxury bedroom woodwork and premium textured accents.</p>
-
-            <div class="glass-footer d-flex align-items-center justify-content-between pt-3">
-              <div class="glass-pricing">
-                <span class="glass-price-old text-decoration-line-through">₹15.84 Lac</span>
-                <span class="glass-price-new ms-2">₹11.41 Lac*</span>
-              </div>
-              <a href="#" class="glass-action-link text-uppercase">
-                Get Quote <i class="fas fa-arrow-right ms-2"></i>
-              </a>
-            </div>
+      <!-- Card 2: Eleganza (FEATURED / RECOMMENDED CARD) -->
+      <div class="col-12 col-md-6 col-lg-4 d-flex">
+        <div class="package-card featured-card d-flex flex-column w-100 position-relative">
+          <!-- Floating Highlight Ribbon -->
+          <div class="featured-ribbon text-uppercase">Recommended</div>
+          
+          <!-- Image Top Frame -->
+          <div class="card-image-wrapper position-relative overflow-hidden">
+            <img src="/eleganza_bedroom.png" class="card-img" alt="Eleganza Bedroom Woodwork">
+            <span class="card-category-badge featured-badge text-uppercase">3BHK Package</span>
           </div>
+
+          <!-- Card Content Body -->
+          <div class="card-body-wrapper d-flex flex-column flex-grow-1 p-4">
+            <h3 class="package-name mb-3">Eleganza</h3>
+            
+            <!-- Pricing box -->
+            <div class="price-box mb-4">
+              <span class="price-old text-decoration-line-through me-2">₹15.84 Lac</span>
+              <span class="price-new featured-price-new">₹11.41 Lac*</span>
+            </div>
+
+            <!-- Inclusions list -->
+            <ul class="inclusions-list list-unstyled mb-5 flex-grow-1 p-0 m-0">
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon featured-check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Premium modular kitchen & chimney</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon featured-check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">3 Floor-to-ceiling wardrobes</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon featured-check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Custom living room TV wall unit</span>
+              </li>
+              <li class="d-flex align-items-center">
+                <span class="check-icon featured-check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">German-engineered Hettich fittings</span>
+              </li>
+            </ul>
+
+            <!-- Solid CTA Button (Filled by default for featured card) -->
+            <button class="btn btn-quote-action solid-btn text-uppercase w-100 py-3">
+              Get Quote <i class="fa-solid fa-arrow-right ms-2 arrow-icon"></i>
+            </button>
+          </div>
+
         </div>
       </div>
 
       <!-- Card 3: Eleganza Plus -->
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="offer-card position-relative overflow-hidden">
-          <img src="/eleganza_plus_kitchen.png" class="offer-img" alt="Eleganza Plus Kitchen Woodwork">
-          <div class="offer-image-overlay"></div>
-
-          <!-- Floating Glass Panel -->
-          <div class="offer-glass-panel d-flex flex-column">
-            <span class="glass-badge mb-1">3BHK Premium</span>
-            <h3 class="glass-title mb-2">Eleganza Plus</h3>
-            <p class="glass-desc mb-3">Complete luxury interior design and complete home beautification.</p>
-
-            <div class="glass-footer d-flex align-items-center justify-content-between pt-3">
-              <div class="glass-pricing">
-                <span class="glass-price-old text-decoration-line-through">₹24.03 Lac</span>
-                <span class="glass-price-new ms-2">₹16.82 Lac*</span>
-              </div>
-              <a href="#" class="glass-action-link text-uppercase">
-                Get Quote <i class="fas fa-arrow-right ms-2"></i>
-              </a>
-            </div>
+      <div class="col-12 col-md-6 col-lg-4 d-flex">
+        <div class="package-card d-flex flex-column w-100 position-relative">
+          
+          <!-- Image Top Frame -->
+          <div class="card-image-wrapper position-relative overflow-hidden">
+            <img src="/eleganza_plus_kitchen.png" class="card-img" alt="Eleganza Plus Kitchen Woodwork">
+            <span class="card-category-badge text-uppercase">3BHK Premium</span>
           </div>
+
+          <!-- Card Content Body -->
+          <div class="card-body-wrapper d-flex flex-column flex-grow-1 p-4">
+            <h3 class="package-name mb-3">Eleganza Plus</h3>
+            
+            <!-- Pricing box -->
+            <div class="price-box mb-4">
+              <span class="price-old text-decoration-line-through me-2">₹24.03 Lac</span>
+              <span class="price-new">₹16.82 Lac*</span>
+            </div>
+
+            <!-- Inclusions list -->
+            <ul class="inclusions-list list-unstyled mb-5 flex-grow-1 p-0 m-0">
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Full modular kitchen & false ceilings</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Luxury walk-in wardrobe spaces</span>
+              </li>
+              <li class="d-flex align-items-center mb-3">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Designer wall paneling & light works</span>
+              </li>
+              <li class="d-flex align-items-center">
+                <span class="check-icon me-2"><i class="fa-solid fa-check"></i></span>
+                <span class="inclusion-text">Premium materials & 10 yr warranty</span>
+              </li>
+            </ul>
+
+            <!-- Solid CTA Button -->
+            <button class="btn btn-quote-action outline-btn text-uppercase w-100 py-3">
+              Get Quote <i class="fa-solid fa-arrow-right ms-2 arrow-icon"></i>
+            </button>
+          </div>
+
         </div>
       </div>
 

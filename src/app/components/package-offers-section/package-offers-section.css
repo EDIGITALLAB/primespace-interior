@@ -1,4 +1,4 @@
-/* Package Offers Section Stylesheet */
+/* Package Offers Section Stylesheet - Professional Pricing Plinths Style */
 
 .package-offers-section {
   background-color: #ffffff !important;
@@ -43,141 +43,198 @@
   background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
 }
 
-/* Glassmorphic Offer Card container */
-.offer-card {
-  height: 450px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  background-color: #fafafa;
-  cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.05) !important;
+/* Base Package Card plinth */
+.package-card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0 !important; /* Sharp corners matching maps/sliders */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
 }
 
-.offer-img {
+.package-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.09);
+  border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* Featured / Recommended Card Highlight */
+.featured-card {
+  border: 2px solid var(--primary-purple) !important;
+  box-shadow: 0 20px 45px rgba(var(--primary-purple-rgb), 0.08);
+}
+
+.featured-card:hover {
+  box-shadow: 0 30px 65px rgba(var(--primary-purple-rgb), 0.18);
+  border-color: var(--primary-purple) !important;
+}
+
+/* Floating ribbon indicator */
+.featured-ribbon {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 15px;
+  right: 15px;
+  background-color: var(--color-yellow, #f9b514); /* Brand Gold accent ribbon */
+  color: #000000;
+  font-family: var(--font-headings);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Top Frame */
+.card-image-wrapper {
+  height: 230px;
+  width: 100%;
+  border-radius: 0;
+  z-index: 1;
+}
+
+.card-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
-  border-radius: 16px;
+  border-radius: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Subtle image shadow overlay so the top looks polished */
-.offer-image-overlay {
+.package-card:hover .card-img {
+  transform: scale(1.05);
+}
+
+/* Image Floating badges */
+.card-category-badge {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.3) 100%);
-  z-index: 2;
-  border-radius: 16px;
-}
-
-/* Floating Glass Panel - White Theme */
-.offer-glass-panel {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  z-index: 3;
-  background: #ffffff; /* Solid White background */
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  padding: 20px;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-}
-
-.glass-badge {
+  bottom: 15px;
+  left: 15px;
+  background: rgba(15, 23, 42, 0.82);
+  color: #ffffff;
   font-family: var(--font-headings);
-  font-size: 0.65rem;
+  font-size: 9px;
   font-weight: 800;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #555555;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.glass-title {
+.featured-badge {
+  background-color: var(--primary-purple);
+}
+
+/* Typography elements */
+.package-name {
   font-family: var(--font-headings);
-  font-size: 1.25rem;
+  font-size: 20px;
   font-weight: 800;
-  letter-spacing: -0.2px;
   color: #111111;
-}
-
-.glass-desc {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: #333333;
+  letter-spacing: -0.3px;
   margin: 0;
 }
 
-.glass-footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
+/* Pricing typography */
+.price-box {
+  display: flex;
+  align-items: baseline;
 }
 
-.glass-price-old {
+.price-old {
   font-family: var(--font-headings);
-  font-size: 0.8rem;
-  color: #777777;
+  font-size: 13.5px;
+  color: #888888;
   font-weight: 500;
 }
 
-.glass-price-new {
+.price-new {
   font-family: var(--font-headings);
-  font-size: 1.05rem;
+  font-size: 22px;
   font-weight: 900;
-  color: var(--primary-purple);
-  letter-spacing: -0.1px;
+  color: #111111;
+  letter-spacing: -0.2px;
 }
 
-.glass-action-link {
-  font-family: var(--font-headings);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1px;
+.featured-price-new {
   color: var(--primary-purple);
-  text-decoration: none;
+}
+
+/* Inclusions list check-marks */
+.inclusions-list li {
+  font-size: 13.5px;
+  color: #555555;
+  font-weight: 500;
+}
+
+.inclusion-text {
+  line-height: 1.4;
+}
+
+.check-icon {
   display: flex;
   align-items: center;
-  transition: opacity 0.3s ease;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+  color: #555555;
+  font-size: 9px;
+  flex-shrink: 0;
 }
 
-.glass-action-link i {
+.featured-check-icon {
+  background-color: rgba(var(--primary-purple-rgb), 0.08);
+  color: var(--primary-purple);
+}
+
+/* Interactive CTA Action Buttons */
+.btn-quote-action {
+  font-family: var(--font-headings);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  border-radius: 0 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.outline-btn {
+  border: 1px solid #111111;
+  background-color: transparent;
+  color: #111111;
+}
+
+.outline-btn:hover {
+  background-color: var(--primary-purple);
+  border-color: var(--primary-purple);
+  color: #ffffff !important;
+}
+
+.solid-btn {
+  border: 1px solid var(--primary-purple);
+  background-color: var(--primary-purple);
+  color: #ffffff;
+}
+
+.solid-btn:hover {
+  background-color: transparent;
+  border-color: #111111;
+  color: #111111 !important;
+}
+
+/* Arrow slide transition */
+.arrow-icon {
   transition: transform 0.3s ease;
 }
 
-/* Hover Actions */
-.offer-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
-}
-
-.offer-card:hover .offer-img {
-  transform: scale(1.06);
-}
-
-.offer-card:hover .offer-glass-panel {
-  transform: translateY(-5px);
-  background: #ffffff; /* Keep solid white on hover */
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-  border-bottom: 2px solid var(--primary-purple);
-}
-
-.offer-card:hover .glass-action-link i {
+.btn-quote-action:hover .arrow-icon {
   transform: translateX(4px);
-}
-
-.glass-action-link:hover {
-  opacity: 0.8;
 }
 
 .cards-container {
@@ -185,23 +242,21 @@
   margin: 0 auto;
 }
 
-@media (max-width: 768px) {
-  .offer-card {
-    height: 420px;
+/* Media responsive card limits */
+@media (max-width: 991.98px) {
+  .package-offers-section {
+    padding: 60px 0;
+  }
+  
+  .card-image-wrapper {
+    height: 200px;
   }
 
-  .offer-glass-panel {
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    padding: 15px;
+  .package-name {
+    font-size: 18px;
   }
 
-  .glass-title {
-    font-size: 1.15rem;
-  }
-
-  .glass-desc {
-    font-size: 0.75rem;
+  .price-new {
+    font-size: 20px;
   }
 }

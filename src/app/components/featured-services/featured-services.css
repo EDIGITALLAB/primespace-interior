@@ -1,0 +1,376 @@
+/* =============================================
+   Featured Services Section — Light Theme
+   Brand: Prime Space | Wine-Purple #96053E
+   ============================================= */
+
+.featured-services-section {
+  background-color: #f8f7f5; /* Warm off-white — soft luxury feel */
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ---- Editorial Watermark Text ---- */
+.fs-watermark-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-headings);
+  font-size: 13vw;
+  font-weight: 900;
+  letter-spacing: 8px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(150, 5, 62, 0.05);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  line-height: 1;
+}
+
+/* ---- Radial Purple Glow Orb ---- */
+.fs-glow-orb {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(150, 5, 62, 0.06) 0%, transparent 70%);
+  filter: blur(80px);
+  top: -150px;
+  right: -100px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ---- Section Header ---- */
+.fs-subtitle {
+  font-family: var(--font-headings);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--primary-purple);
+}
+
+.fs-title {
+  font-family: var(--font-headings);
+  font-size: clamp(26px, 4vw, 42px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #111111;
+  line-height: 1.1;
+}
+
+.fs-title-accent {
+  color: var(--primary-purple);
+}
+
+/* ---- Header Badge ---- */
+.fs-header-badge {
+  background: rgba(150, 5, 62, 0.04);
+  border: 1px solid rgba(150, 5, 62, 0.1);
+  border-radius: 14px;
+  padding: 14px 18px;
+  max-width: 380px;
+}
+
+.fs-badge-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(150, 5, 62, 0.1);
+  border: 1px solid rgba(150, 5, 62, 0.2);
+  color: var(--primary-purple);
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.fs-badge-text {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #666666;
+  line-height: 1.55;
+}
+
+/* =============================================
+   Service Cards
+   ============================================= */
+.fs-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 20px;
+  padding: 32px 28px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+}
+
+.fs-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(150, 5, 62, 0.05) 0%, transparent 65%);
+  opacity: 0;
+  transition: opacity 0.45s ease;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+.fs-card:hover {
+  border-color: rgba(150, 5, 62, 0.25);
+  background: #ffffff;
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(150, 5, 62, 0.1);
+}
+
+.fs-card:hover::before {
+  opacity: 1;
+}
+
+/* Make all card content sit above pseudo-element */
+.fs-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Card Top: Number + Icon ---- */
+.fs-card-number {
+  font-family: var(--font-headings);
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.fs-card-icon-wrap {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(150, 5, 62, 0.08);
+  border: 1px solid rgba(150, 5, 62, 0.15);
+  color: var(--primary-purple);
+  font-size: 18px;
+  transition: all 0.4s ease;
+}
+
+.fs-card:hover .fs-card-icon-wrap {
+  background: var(--primary-purple);
+  border-color: var(--primary-purple);
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(150, 5, 62, 0.3);
+}
+
+/* ---- Horizontal Rule ---- */
+.fs-card-rule {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(150, 5, 62, 0.3) 0%, rgba(0, 0, 0, 0.04) 100%);
+  border: none;
+}
+
+/* ---- Subtitle + Title ---- */
+.fs-card-subtitle {
+  font-family: var(--font-headings);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--primary-purple);
+}
+
+.fs-card-title {
+  font-family: var(--font-headings);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #111111;
+  letter-spacing: 0.5px;
+}
+
+/* ---- Description ---- */
+.fs-card-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #666666;
+}
+
+/* ---- Tags ---- */
+.fs-tag {
+  font-family: var(--font-headings);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888888;
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 30px;
+  padding: 5px 12px;
+  transition: all 0.3s ease;
+}
+
+.fs-card:hover .fs-tag {
+  color: var(--primary-purple);
+  border-color: rgba(150, 5, 62, 0.25);
+  background: rgba(150, 5, 62, 0.06);
+}
+
+/* ---- CTA Row ---- */
+.fs-card-cta {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.fs-card:hover .fs-card-cta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fs-cta-text {
+  font-family: var(--font-headings);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary-purple);
+}
+
+.fs-cta-arrow {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-purple);
+  color: #ffffff;
+  font-size: 11px;
+  transition: transform 0.35s ease;
+}
+
+.fs-card:hover .fs-cta-arrow {
+  transform: rotate(-45deg) scale(1.1);
+}
+
+/* ---- Bottom purple accent bar (slides in on hover) ---- */
+.fs-card-accent-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--primary-purple), rgba(150, 5, 62, 0.2));
+  border-radius: 0 0 20px 20px;
+  transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.fs-card:hover .fs-card-accent-bar {
+  width: 100%;
+}
+
+/* =============================================
+   Bottom CTA Strip
+   ============================================= */
+.fs-bottom-cta {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  border-radius: 20px;
+  padding: 36px 40px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.fs-bottom-cta::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 5px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-purple), rgba(150, 5, 62, 0.2));
+  border-radius: 20px 0 0 20px;
+}
+
+.fs-cta-label {
+  font-family: var(--font-headings);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 3.5px;
+  color: var(--primary-purple);
+}
+
+.fs-cta-heading {
+  font-family: var(--font-headings);
+  font-size: clamp(16px, 2.2vw, 24px);
+  font-weight: 900;
+  color: #111111;
+}
+
+.fs-consult-btn {
+  text-decoration: none;
+  background: var(--primary-purple);
+  color: #ffffff;
+  font-family: var(--font-headings);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 14px 14px 14px 28px;
+  border-radius: 40px;
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(150, 5, 62, 0.3);
+}
+
+.fs-consult-btn:hover {
+  background: #7a043f;
+  transform: translateY(-3px);
+  box-shadow: 0 14px 34px rgba(150, 5, 62, 0.45);
+  color: #ffffff;
+}
+
+.fs-consult-arrow {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  font-size: 13px;
+  transition: transform 0.4s ease;
+}
+
+.fs-consult-btn:hover .fs-consult-arrow {
+  transform: rotate(-45deg) scale(1.1);
+}
+
+/* =============================================
+   Responsive
+   ============================================= */
+@media (max-width: 991px) {
+  .featured-services-section {
+    padding: 70px 0;
+  }
+  .fs-header-badge {
+    max-width: 100%;
+  }
+  .fs-bottom-cta {
+    padding: 28px 24px;
+    text-align: center;
+  }
+  .fs-bottom-cta::before {
+    width: 100%;
+    height: 4px;
+    top: 0;
+    left: 0;
+    border-radius: 20px 20px 0 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .fs-watermark-text {
+    font-size: 20vw;
+  }
+  .fs-card {
+    padding: 24px 20px;
+  }
+}

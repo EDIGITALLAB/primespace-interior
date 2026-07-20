@@ -1,5 +1,4 @@
-<main
-  class="hero-section position-relative overflow-hidden w-100 d-flex flex-column justify-content-between">
+<main class="hero-section position-relative overflow-hidden w-100 d-flex flex-column justify-content-between">
 
   <!-- Smooth Auto-Scrolling Slideshow Background -->
   <div class="hero-slider-bg">
@@ -20,19 +19,20 @@
       <div class="slide-caption-wrap slide-1-wrap text-center w-100" [class.active]="currentSlideIndex === 0">
         <div class="slide-1-container text-white d-flex flex-column align-items-center justify-content-center">
           <!-- Elegant Badge -->
-          <div class="slide-1-badge text-uppercase mb-3">A Trendy Luxury</div>
+          <div class="slide-1-badge text-uppercase mb-3">Bespoke Craftsmanship</div>
           <!-- Centered Title -->
           <h1 class="slide-1-title mb-4">
-            A Natural Aptitude<br>Towards The <span class="text-accent">Arts</span>
+            Bespoke Interiors<br>Designed For Modern <span class="text-accent">Spaces</span>
           </h1>
           <!-- Thin centered divider line -->
           <div class="slide-1-divider-horizontal mb-4"></div>
           <!-- Centered Description -->
           <p class="slide-1-desc mb-4 mb-md-5 mx-auto">
-            Interior design consultancy firm that brings sensitivity to the design top restaurants, hotels, offices & homes around the world. We stand for quality, safety and credibility.
+            Prime Space blends modular German engineering with luxury design to deliver custom kitchens, bespoke living
+            areas, and premium wardrobes with a 10-year structural warranty.
           </p>
           <!-- Centered Button -->
-          <a href="#" class="bonado-btn">Our Services!</a>
+          <a href="#" class="bonado-btn">Explore Prime Space</a>
         </div>
       </div>
 
@@ -40,17 +40,18 @@
       <div class="slide-caption-wrap slide-2-wrap text-start w-100" [class.active]="currentSlideIndex === 1">
         <div class="slide-2-container text-white">
           <!-- Spaced Subtitle aligned with the title text -->
-          <div class="slide-2-subtitle text-uppercase mb-2">Space Planning &bull; Luxury Interiors</div>
+          <div class="slide-2-subtitle text-uppercase mb-2">Innovative Concepts &bull; Tailored Realities</div>
           <div class="slide-2-title-wrap d-flex align-items-stretch mb-4">
             <div class="slide-2-accent-bar me-3 me-md-4"></div>
             <h1 class="slide-2-title">
-              The Interior <span class="text-accent-serif">Design</span><br>Is Over The Top!
+              Visualizing Dreams<br>Into Photoreal <span class="text-accent-serif">Living</span>
             </h1>
           </div>
           <p class="slide-2-desc mb-4 mb-md-5">
-            Interior design consultancy firm that brings sensitivity to the design top restaurants, hotels, offices & homes around the world. We stand for quality, safety and credibility.
+            Experience our 100% photorealistic 3D design process that lets you walkthrough every corner of your future
+            custom home before execution, ensuring absolute precision.
           </p>
-          <a href="#" class="bonado-btn">Read More</a>
+          <a href="#" class="bonado-btn">Discover Designs</a>
         </div>
       </div>
 
@@ -59,7 +60,7 @@
         <div class="slide-3-container text-white">
           <!-- Tagline with brand block -->
           <div class="slide-3-header d-flex align-items-center mb-3">
-            <span class="slide-3-brand">D'LIFE&reg;</span>
+            <img src="/nevlogo.png" alt="Prime Space" class="slide-3-brand-logo">
             <div class="slide-3-line mx-3"></div>
             <span class="slide-3-tagline text-uppercase">The Bedroom Masterpiece</span>
           </div>
@@ -69,7 +70,8 @@
           </h1>
           <!-- Editorial description paragraph -->
           <p class="slide-3-desc mb-4 mb-md-5">
-            Step into a sanctuary of custom comfort, tailored textures, and soft architectural lighting. Every bedroom design is a curated masterpiece of relaxation.
+            Step into a sanctuary of custom comfort, tailored textures, and soft architectural lighting. Every bedroom
+            design is a curated masterpiece of relaxation.
           </p>
           <!-- Underlined action link -->
           <a href="#" class="slide-3-link">
@@ -98,28 +100,20 @@
       <div class="theme-panel-title">SELECT ACCENT COLOR</div>
       <div class="theme-colors-grid d-flex flex-wrap gap-2 mb-3">
         @for (color of themeColors; track color.hex) {
-          <button 
-            class="theme-color-circle" 
-            [style.backgroundColor]="color.hex" 
-            [class.active]="currentThemeColor === color.hex"
-            (click)="changeThemeColor(color.hex)"
-            [title]="color.name">
-            @if (currentThemeColor === color.hex) {
-              <i class="fas fa-check text-white"></i>
-            }
-          </button>
+        <button class="theme-color-circle" [style.backgroundColor]="color.hex"
+          [class.active]="currentThemeColor === color.hex" (click)="changeThemeColor(color.hex)" [title]="color.name">
+          @if (currentThemeColor === color.hex) {
+          <i class="fas fa-check text-white"></i>
+          }
+        </button>
         }
       </div>
       <!-- Custom Color Picker -->
       <div class="custom-color-picker-wrap d-flex align-items-center justify-content-between">
         <span class="custom-color-label">Custom Accent:</span>
         <div class="custom-color-input-container">
-          <input 
-            type="color" 
-            [value]="currentThemeColor" 
-            (input)="onCustomColorChange($event)"
-            class="custom-color-input"
-            id="themeCustomColorPicker" />
+          <input type="color" [value]="currentThemeColor" (input)="onCustomColorChange($event)"
+            class="custom-color-input" id="themeCustomColorPicker" />
         </div>
       </div>
     </div>

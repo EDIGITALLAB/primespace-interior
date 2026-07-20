@@ -1,0 +1,97 @@
+<section class="featured-services-section position-relative overflow-hidden">
+
+  <!-- Editorial background watermark text -->
+  <div class="fs-watermark-text" aria-hidden="true">SERVICES</div>
+
+  <!-- Radial purple glow -->
+  <div class="fs-glow-orb" aria-hidden="true"></div>
+
+  <div class="container-fluid px-4 px-md-5 position-relative" style="z-index: 2;">
+
+    <!-- Section Header -->
+    <div class="row align-items-end mb-5">
+      <div class="col-lg-7">
+        <span class="fs-subtitle d-block text-uppercase mb-2">What We Offer</span>
+        <h2 class="fs-title text-uppercase m-0">
+          Our Featured <span class="fs-title-accent">Services</span>
+        </h2>
+      </div>
+      <div class="col-lg-5 mt-3 mt-lg-0 d-flex align-items-center justify-content-lg-end">
+        <div class="fs-header-badge d-flex align-items-center gap-3">
+          <div class="fs-badge-icon d-flex align-items-center justify-content-center flex-shrink-0">
+            <i class="fa-solid fa-star-of-life"></i>
+          </div>
+          <p class="fs-badge-text m-0">
+            Every service is precision-crafted to match your vision — from first sketch to final reveal.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <div class="row g-4 fs-cards-grid">
+      @for (service of services; track service.id) {
+        <div class="col-md-6 col-xl-4">
+          <div class="fs-card h-100">
+            <!-- Card top: number + icon -->
+            <div class="fs-card-top d-flex align-items-start justify-content-between mb-4">
+              <span class="fs-card-number">{{ service.id }}</span>
+              <div class="fs-card-icon-wrap d-flex align-items-center justify-content-center">
+                <i [class]="service.icon"></i>
+              </div>
+            </div>
+
+            <!-- Horizontal rule -->
+            <div class="fs-card-rule mb-4"></div>
+
+            <!-- Service title + subtitle -->
+            <div class="mb-3">
+              <p class="fs-card-subtitle text-uppercase m-0 mb-1">{{ service.subtitle }}</p>
+              <h3 class="fs-card-title m-0">{{ service.title }}</h3>
+            </div>
+
+            <!-- Description -->
+            <p class="fs-card-desc mb-4">{{ service.description }}</p>
+
+            <!-- Tags -->
+            <div class="fs-card-tags d-flex flex-wrap gap-2 mt-auto">
+              @for (tag of service.tags; track tag) {
+                <span class="fs-tag">{{ tag }}</span>
+              }
+            </div>
+
+            <!-- Hover CTA arrow -->
+            <div class="fs-card-cta d-flex align-items-center gap-2 mt-4">
+              <span class="fs-cta-text">Learn More</span>
+              <div class="fs-cta-arrow d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+
+            <!-- Decorative bottom accent line -->
+            <div class="fs-card-accent-bar"></div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Bottom CTA strip -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="fs-bottom-cta d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+          <div>
+            <p class="fs-cta-label text-uppercase m-0 mb-1">Ready to begin your journey?</p>
+            <h4 class="fs-cta-heading m-0">Let's design your dream space together.</h4>
+          </div>
+          <a href="#" class="fs-consult-btn d-inline-flex align-items-center gap-3 flex-shrink-0">
+            <span>Book a Free Consultation</span>
+            <span class="fs-consult-arrow d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

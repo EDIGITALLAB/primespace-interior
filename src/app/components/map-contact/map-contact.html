@@ -1,0 +1,110 @@
+<section class="map-contact-section w-100 position-relative">
+  <div class="container-fluid p-0">
+    <div class="row g-0 flex-column-reverse flex-lg-row">
+      
+      <!-- Left Column: Google Map -->
+      <div class="col-lg-6 map-container-column position-relative">
+        <div class="map-wrapper w-100 h-100">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3887.925085300078!2d77.63842607604473!3d12.97662498733904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x350bf8a0aef8a04b%3A0xe5ec73b18d22bb7a!2sIndiranagar%2C%20Bengaluru%2C%20Karnataka%20560038!5e0!3m2!1sen!2sin!4v1716300000000!5m2!1sen!2sin" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            class="google-map-iframe">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Right Column: Contact Details -->
+      <div class="col-lg-6 contact-details-column d-flex align-items-center position-relative">
+        <!-- Floating Sketch Art Background -->
+        <div class="sketch-background" style="background-image: url('/contact_sketch.png');"></div>
+        
+        <div class="contact-info-wrapper w-100">
+          <h2 class="contact-title text-white">Contact us</h2>
+          <p class="contact-subtitle text-white-50">
+            Have a project in mind? Fill out the form below and our design expert will reach out to you within 24 hours.
+          </p>
+
+          <form class="contact-form-element" (submit)="onSubmitMessage($event, nameInput.value, emailInput.value, phoneInput.value, serviceSelect.value, messageInput.value)">
+            
+            <!-- Name Input -->
+            <div class="form-group mb-3">
+              <label for="fullName" class="form-label text-white">Full Name</label>
+              <input 
+                type="text" 
+                id="fullName" 
+                placeholder="Enter your name" 
+                class="form-control contact-form-input" 
+                required 
+                #nameInput>
+            </div>
+
+            <div class="row">
+              <!-- Email Input -->
+              <div class="col-md-6 form-group mb-3">
+                <label for="emailAddr" class="form-label text-white">Email Address</label>
+                <input 
+                  type="email" 
+                  id="emailAddr" 
+                  placeholder="Enter your email" 
+                  class="form-control contact-form-input" 
+                  required 
+                  #emailInput>
+              </div>
+
+              <!-- Phone Input -->
+              <div class="col-md-6 form-group mb-3">
+                <label for="phoneNum" class="form-label text-white">Phone Number</label>
+                <input 
+                  type="tel" 
+                  id="phoneNum" 
+                  placeholder="Enter your phone number" 
+                  class="form-control contact-form-input" 
+                  required 
+                  #phoneInput>
+              </div>
+            </div>
+
+            <!-- Service Selection -->
+            <div class="form-group mb-3">
+              <label for="serviceType" class="form-label text-white">What service are you looking for?</label>
+              <select id="serviceType" class="form-select contact-form-input" required #serviceSelect>
+                <option value="" disabled selected>Select a Service</option>
+                <option value="Modular Kitchen">Modular Kitchen</option>
+                <option value="Bespoke Bedroom">Bespoke Bedroom Design</option>
+                <option value="Luxury Living Area">Luxury Living Area</option>
+                <option value="Refined Dining Room">Refined Dining Room</option>
+                <option value="Kids Bedroom">Kids Bedroom</option>
+                <option value="Bespoke Decorative Unit">Bespoke Decorative Unit</option>
+                <option value="Full Home Interior">Full Home Interior</option>
+              </select>
+            </div>
+
+            <!-- Message Input -->
+            <div class="form-group mb-4">
+              <label for="messageText" class="form-label text-white">Tell us about your project</label>
+              <textarea 
+                id="messageText" 
+                rows="4" 
+                placeholder="Describe your design needs, budget, or timeline..." 
+                class="form-control contact-form-input textarea-input" 
+                required 
+                #messageInput></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-submit-container mt-4">
+              <button type="submit" class="btn btn-submit-message text-uppercase fw-bold w-100 py-3">Send Message</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

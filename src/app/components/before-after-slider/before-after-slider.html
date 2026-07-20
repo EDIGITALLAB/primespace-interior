@@ -1,37 +1,110 @@
-<section class="before-after-section py-5 bg-white position-relative">
+<section class="before-after-section py-6 bg-light-gradient position-relative overflow-hidden">
+  <!-- Subtle luxury background glow -->
+  <div class="glow-bg-circle"></div>
+
   <!-- Section Title -->
-  <div class="w-100 py-3">
+  <div class="w-100 py-3 position-relative" style="z-index: 2;">
     <div class="text-center mb-5 position-relative">
       <span class="section-subtitle text-uppercase mb-2">Transforming Spaces</span>
       <h2 class="section-title fw-medium text-uppercase m-0">Before & After</h2>
     </div>
   </div>
 
-  <div class="container-fluid px-5 cards-container">
-    <div class="slider-wrapper position-relative overflow-hidden">
+  <div class="container-fluid px-4 px-md-5 cards-container position-relative" style="z-index: 2;">
+    <div class="row align-items-center gy-5 gy-lg-0">
       
-      <!-- Before Image (Base Layer) -->
-      <div class="image-container before-image-container">
-        <img src="/before_living_room.png" alt="Before Interior Renovation" class="slider-img">
-        <div class="label-badge before-badge">Before Renovation</div>
-      </div>
+      <!-- Left Column: Slider Frame -->
+      <div class="col-lg-7">
+        <div class="slider-frame-wrapper">
+          <!-- Floating interactive guide tooltip -->
+          <div class="drag-tooltip">
+            <span class="pulse-dot"></span>
+            Drag to compare
+          </div>
+          
+          <div class="slider-wrapper position-relative overflow-hidden">
+            
+            <!-- Before Image (Base Layer) -->
+            <div class="image-container before-image-container">
+              <img src="/before_living_room.png" alt="Before Interior Renovation" class="slider-img">
+              <div class="label-badge before-badge">Before Renovation</div>
+            </div>
 
-      <!-- After Image (Layered & Clipped) -->
-      <div class="image-container after-image-container" [style.clip-path]="'inset(0 0 0 ' + sliderPosition() + '%)'">
-        <img src="/after_living_room.png" alt="After Luxury Interior Design" class="slider-img">
-        <div class="label-badge after-badge">After Design</div>
-      </div>
+            <!-- After Image (Layered & Clipped) -->
+            <div class="image-container after-image-container" [style.clip-path]="'inset(0 0 0 ' + sliderPosition() + '%)'">
+              <img src="/after_living_room.png" alt="After Luxury Interior Design" class="slider-img">
+              <div class="label-badge after-badge">After Design</div>
+            </div>
 
-      <!-- Drag Handle Line & Circles -->
-      <div class="slider-handle" [style.left.%]="sliderPosition()">
-        <div class="slider-line"></div>
-        <div class="slider-button d-flex align-items-center justify-content-center">
-          <i class="fa-solid fa-left-right"></i>
+            <!-- Drag Handle Line & Circles -->
+            <div class="slider-handle" [style.left.%]="sliderPosition()">
+              <div class="slider-line"></div>
+              <div class="slider-button d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-left-right"></i>
+                <span class="pulse-ring"></span>
+              </div>
+            </div>
+
+            <!-- Invisible Range Input covering the slider area for native, butter-smooth touch/mouse dragging -->
+            <input type="range" min="0" max="100" [value]="sliderPosition()" (input)="onSliderInput($event)" class="slider-range" aria-label="Before and after split slider controller">
+
+          </div>
         </div>
       </div>
 
-      <!-- Invisible Range Input covering the slider area for native, butter-smooth touch/mouse dragging -->
-      <input type="range" min="0" max="100" [value]="sliderPosition()" (input)="onSliderInput($event)" class="slider-range" aria-label="Before and after split slider controller">
+      <!-- Right Column: Interactive Content cards -->
+      <div class="col-lg-5 ps-lg-5">
+        <div class="slider-content-wrapper">
+          <div class="content-header-pill mb-3">
+            <span class="pill-dot"></span>
+            <span class="content-badge text-uppercase">The Design Journey</span>
+          </div>
+
+          <h3 class="content-headline mb-4">
+            From Raw Concrete<br>
+            to <span class="text-highlight">Luxury Sanctuary</span>
+          </h3>
+          
+          <p class="content-desc mb-4">
+            Observe the dramatic change from a barren concrete shell into a warmly textured, premium residential retreat. Slide to experience how lighting and curated layout details redefine comfort.
+          </p>
+
+          <!-- Key highlights list structured as cards -->
+          <div class="highlights-list">
+            
+            <div class="highlight-card mb-3 d-flex align-items-start">
+              <div class="highlight-icon-box d-flex align-items-center justify-content-center me-3">
+                <i class="fa-solid fa-cubes"></i>
+              </div>
+              <div class="highlight-text-wrapper">
+                <h5 class="highlight-title">Premium Oak Wall Paneling</h5>
+                <p class="highlight-desc">Warm oak paneling covering raw walls, featuring recessed warm-gold LED channels.</p>
+              </div>
+            </div>
+
+            <div class="highlight-card mb-3 d-flex align-items-start">
+              <div class="highlight-icon-box d-flex align-items-center justify-content-center me-3">
+                <i class="fa-solid fa-couch"></i>
+              </div>
+              <div class="highlight-text-wrapper">
+                <h5 class="highlight-title">Curated Contemporary Furniture</h5>
+                <p class="highlight-desc">Premium low-profile contemporary sofa and elegant marble-wood dining elements.</p>
+              </div>
+            </div>
+
+            <div class="highlight-card d-flex align-items-start">
+              <div class="highlight-icon-box d-flex align-items-center justify-content-center me-3">
+                <i class="fa-solid fa-fire-flame-curved"></i>
+              </div>
+              <div class="highlight-text-wrapper">
+                <h5 class="highlight-title">Modern Embedded Fireplace</h5>
+                <p class="highlight-desc">Clean-burning glass ethanol fireplace that establishes a refined lifestyle focal point.</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>

@@ -1,11 +1,57 @@
-/* Design Categories Component CSS with Slider */
+/* Design Categories Component CSS - Interactive Showcase Style (Light Theme with Luxury Glow) */
 
 .design-categories-section {
-  background-color: #ffffff;
+  background-color: #ffffff !important;
   position: relative;
-  padding: 60px 0; /* Vertical breathing room for heading + content */
+  padding: 90px 0;
+  overflow: hidden;
 }
 
+/* Subtle luxury background glowing circle */
+.categories-glow-effect {
+  display: none;
+}
+
+/* Furniture Watermark Background */
+.categories-furniture-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Sits above the section base, below content (z-index:2) */
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.categories-furniture-img {
+  position: absolute;
+  left: -30px;
+  bottom: -20px;
+  width: 55%;
+  max-width: 780px;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.55;
+  filter: blur(0.5px) grayscale(20%) brightness(1.05);
+  transition: opacity 0.5s ease;
+}
+
+/* Soft white gradient veil — just enough to blend with white page */
+.categories-furniture-blur-veil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    -120deg,
+    rgba(255, 255, 255, 0.97) 0%,   /* Strong white on right where interactive area is */
+    rgba(255, 255, 255, 0.85) 35%,  /* Transition zone */
+    rgba(255, 255, 255, 0.45) 65%,  /* Image starts showing through */
+    rgba(255, 255, 255, 0.15) 100%  /* Bottom-left: image is clearly visible */
+  );
+}
+
+
+
+/* Header typography styling */
 .section-subtitle {
   font-family: var(--font-headings);
   font-size: 0.85rem;
@@ -19,280 +65,373 @@
   font-family: var(--font-headings);
   font-size: clamp(24px, 3.8vw, 36px);
   font-weight: 900;
-  color: #111111;
+  color: #111111 !important; /* Clean Dark Slate on light background */
   letter-spacing: 1.5px;
+  display: block;
+}
+
+.section-lead-text {
+  font-family: var(--font-body);
+  font-size: 13.5px; /* Refined size to fit card cleanly */
+  color: #555555 !important;
+  line-height: 1.6;
+}
+
+/* Curved Category Info glass badge card */
+.category-info-card {
+  background: rgba(150, 5, 62, 0.04); /* Light brand purple glass overlay */
+  border: 1px solid rgba(150, 5, 62, 0.08);
+  border-radius: 12px;
+  padding: 16px 20px;
+  max-width: 480px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.01);
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 25px;
-  width: 100%;
+  align-items: flex-start;
+  transition: all 0.3s ease;
 }
 
-.section-title::before,
-.section-title::after {
-  content: '';
-  flex-grow: 1;
-  height: 1.5px;
+.category-info-card:hover {
+  background: rgba(150, 5, 62, 0.06);
+  border-color: rgba(150, 5, 62, 0.15);
+  box-shadow: 0 6px 18px rgba(150, 5, 62, 0.04);
 }
 
-.section-title::before {
-  background: linear-gradient(to left, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
-}
-
-.section-title::after {
-  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
-}
-
-/* Slider Track and Viewport Configuration */
-.slider-viewport {
-  overflow: hidden;
-  width: 100%;
-}
-
-.slider-track {
-  display: flex;
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  width: 200%;
-  /* Holds 2 slides */
-}
-
-.slider-slide {
-  width: 50%;
-  /* Each slide is 100% of the viewport */
+.info-sparkle-svg {
+  color: var(--primary-purple);
   flex-shrink: 0;
 }
 
-/* Slide Navigation Floating Buttons */
-.slide-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 15;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+/* Sidebar navigation list */
+.category-sidebar-list {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #111111;
+  flex-direction: column;
+  border-left: 1px solid rgba(0, 0, 0, 0.08); /* Light grey divider border */
+}
+
+.sidebar-item {
+  padding: 20px 28px; /* Added padding for a more luxury breathing space */
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.slide-nav-btn:hover {
-  background-color: var(--primary-purple, #96053E);
-  color: #ffffff;
-  border-color: var(--primary-purple, #96053E);
-  box-shadow: 0 6px 20px rgba(150, 5, 62, 0.25);
-  transform: translateY(-50%) scale(1.08);
-}
-
-.prev-btn {
-  left: 20px;
-  /* Float on the left edge inside cards-container */
-}
-
-.next-btn {
-  right: 20px;
-  /* Float on the right edge inside cards-container */
-}
-
-.slide-nav-btn.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-/* Categories Grid */
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: 380px 380px;
-  gap: 10px; /* Further reduced gap */
-}
-
-/* Minimalist Frame & Canvas Layout (Museum Style) */
-.category-card {
   position: relative;
-  overflow: hidden;
-  background-color: #ffffff;
-  padding: 16px;
-  padding-bottom: 72px; /* Bottom space representing a museum style placard border */
-  border: 1px solid rgba(0, 0, 0, 0.08); /* Crisp outer picture frame */
-  border-radius: 4px; /* Slight rounding for a refined modern border edge */
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.03);
-  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.category-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
-  border-color: rgba(0, 0, 0, 0.15);
-}
-
-/* Slide 1 Grid layout mappings (Unique tall-left layout) */
-.kitchen-card {
-  grid-column: 1 / 2;
-  grid-row: 1 / 3;
-}
-
-.dining-card {
-  grid-column: 2 / 4;
-  grid-row: 1 / 2;
-}
-
-.bedroom-card {
-  grid-column: 2 / 3;
-  grid-row: 2 / 3;
-}
-
-.living-card {
-  grid-column: 3 / 4;
-  grid-row: 2 / 3;
-}
-
-/* Slide 2 Grid layout mappings (Alternate interlocked layout) */
-.wardrobe-card {
-  grid-column: 1 / 3;
-  grid-row: 1 / 2;
-}
-
-.bathroom-card {
-  grid-column: 3 / 4;
-  grid-row: 1 / 2;
-}
-
-.kids-card {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
-}
-
-.balcony-card {
-  grid-column: 2 / 4;
-  grid-row: 2 / 3;
-}
-
-.category-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 2px; /* Fine-tuned inner photo rounding */
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.category-card:hover .category-img {
-  transform: scale(1.04); /* Focus zoom inside the static picture frame */
-}
-
-.category-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: transparent; /* Raw and clean photo presentation */
-  transition: all 0.4s ease;
-}
-
-.category-tag {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-  padding: 0 !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
-  flex-direction: row !important; /* Title left, action right */
   align-items: center;
-  justify-content: space-between;
-  max-width: 100%;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03); /* Soft horizontal item dividers */
 }
 
-.category-title {
+.sidebar-item:last-child {
+  border-bottom: none;
+}
+
+.item-number {
   font-family: var(--font-headings);
-  font-size: 18px !important; /* Increased to 18px */
+  font-size: 13px;
   font-weight: 800;
-  color: var(--primary-navy);
-  letter-spacing: 2px;
-  margin: 0;
-  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.25); /* Subtle dark grey number */
   transition: color 0.3s ease;
-  text-transform: uppercase;
+  width: 24px;
 }
 
-.category-card:hover .category-title {
-  color: var(--primary-purple, #96053E) !important;
-}
-
-.category-sub {
-  font-family: var(--font-body);
-  font-size: 13.5px; /* Increased to 13.5px */
+.item-name {
+  font-family: var(--font-headings);
+  font-size: 14.5px;
   font-weight: 700;
-  color: var(--primary-purple, #96053E);
-  letter-spacing: 1px;
-  height: auto !important;
-  opacity: 0.7;
-  overflow: visible !important;
-  margin-top: 0 !important;
+  color: rgba(0, 0, 0, 0.5); /* Readable charcoal grey item name */
+  letter-spacing: 1.5px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-block;
 }
 
-.category-card:hover .category-sub {
-  opacity: 1 !important;
-  transform: translateX(4px);
+.active-indicator-bar {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background-color: var(--primary-purple);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Mobile Responsiveness */
-@media (max-width: 991px) {
-  .categories-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-    gap: 8px;
-  }
+/* Sidebar item hover & active states */
+.sidebar-item:hover .item-name {
+  color: var(--primary-purple);
+  padding-left: 8px; /* Elegant push right on hover */
+}
 
-  .kitchen-card,
-  .dining-card,
-  .bedroom-card,
-  .living-card,
-  .wardrobe-card,
-  .bathroom-card,
-  .kids-card,
-  .balcony-card {
-    grid-column: unset !important;
-    grid-row: unset !important;
-    height: 250px;
-  }
+.sidebar-item:hover .item-number {
+  color: var(--primary-purple);
+}
 
-  /* Hide slide buttons on mobile and stack everything naturally if needed */
-  .slide-nav-btn {
-    display: none;
-  }
+.sidebar-item.active {
+  background-color: rgba(150, 5, 62, 0.04) !important; /* Soft brand-purple active background highlight */
+}
 
-  .slider-track {
-    width: 100%;
-    flex-direction: column;
-    transform: none !important;
-  }
+.sidebar-item.active .item-name {
+  color: var(--primary-purple);
+  font-weight: 800;
+  padding-left: 4px;
+}
 
-  .slider-slide {
-    width: 100%;
-  }
+.sidebar-item.active .item-number {
+  color: var(--primary-purple);
+}
 
-  .grid-layout-b {
-    margin-top: 12px;
-    /* Margin between the two stacked grids on mobile */
+.sidebar-item.active .active-indicator-bar {
+  width: 4px; /* Stronger indicator line */
+}
+
+/* Large Dynamic Preview Card styling */
+.showcase-preview-card {
+  height: 540px;
+  background-color: #161616;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+  border-radius: 0px; /* Removed curves as requested */
+  overflow: hidden;
+  z-index: 5;
+}
+
+.preview-images-container {
+  overflow: hidden;
+}
+
+.preview-img-layer {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 1;
+}
+
+.preview-img-layer.active {
+  opacity: 1;
+  z-index: 2;
+  transform: scale(1);
+  animation: subtle-zoom-out 8s forwards linear;
+}
+
+@keyframes subtle-zoom-out {
+  from {
+    transform: scale(1.05);
   }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Floating Details Panel Container (Applies shadow to clipped shapes) */
+.details-panel-container {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: auto;
+  width: 530px; /* Compact width to make the card look like a light floating banner */
+  max-width: calc(100% - 48px);
+  z-index: 5;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.08)); /* Shadow wraps around the clipped arrow point! */
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.details-panel-container:hover {
+  transform: translateX(8px); /* Subtle shift in the arrow direction on hover */
+}
+
+/* Glassmorphic Details Panel overlay (Clipped into a right-pointing arrow shape) */
+.preview-details-panel {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.94) !important; /* Premium light glassmorphism */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  /* Perfect right-pointing chevron/arrow polygon clip-path */
+  clip-path: polygon(0% 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%);
+  padding: 18px 48px 18px 24px; /* Right-padding ensures text stays safe from the arrow tip */
+  transition: background 0.4s ease;
+}
+
+.preview-details-panel:hover {
+  background: #ffffff !important; /* Brighter background on hover */
+}
+
+.details-content-wrapper {
+  max-width: 100%;
+}
+
+.details-badge {
+  font-family: var(--font-headings);
+  font-size: 9.5px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--primary-purple);
+  display: block;
+}
+
+.details-title {
+  font-family: var(--font-headings);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #111111 !important;
+}
+
+.details-desc {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.5;
+  color: #555555 !important;
+}
+
+/* Category Open/Change Entrance animation */
+.animate-entry {
+  animation: containerSlideRight 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards; /* Slower and ultra-smooth expo ease */
+}
+
+.animate-entry .preview-details-panel {
+  animation: detailsWipeOpen 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards; /* Slower wipe transition */
+}
+
+@keyframes containerSlideRight {
+  0% {
+    opacity: 0;
+    transform: translateX(-40px); /* Slide in from left */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0); /* Settles at normal position */
+  }
+}
+
+@keyframes detailsWipeOpen {
+  0% {
+    /* Fully collapsed vertical line on the left side */
+    clip-path: polygon(0% 0%, 0% 0%, 0% 50%, 0% 100%, 0% 100%);
+  }
+  100% {
+    /* Wipes open left-to-right into the chevron arrow shape */
+    clip-path: polygon(0% 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%);
+  }
+}
+
+.btn-explore-collection .arrow-icon {
+  transition: transform 0.3s ease;
+}
+
+.btn-explore-collection:hover .arrow-icon {
+  transform: translateX(5px);
 }
 
 .cards-container {
   max-width: 1800px;
   margin: 0 auto;
+}
+
+/* Mobile responsive layout */
+@media (max-width: 991.98px) {
+  .design-categories-section {
+    padding: 60px 0;
+  }
+
+  .section-lead-text {
+    max-width: 100%;
+    margin-top: 10px;
+  }
+
+  .interactive-showcase-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Transform vertical list into horizontal tabs */
+  .category-sidebar-list {
+    flex-direction: row !important;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-left: none;
+    padding-bottom: 8px;
+    gap: 8px;
+  }
+
+  /* Hide scrollbar but keep scroll behavior */
+  .category-sidebar-list::-webkit-scrollbar {
+    display: none;
+  }
+  .category-sidebar-list {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .sidebar-item {
+    padding: 8px 18px;
+    border: 1px solid rgba(0, 0, 0, 0.08); /* Border color on light page */
+    border-radius: 20px;
+    margin: 0;
+  }
+
+  .item-number {
+    display: none;
+  }
+
+  .item-name {
+    font-size: 12.5px;
+    color: rgba(0, 0, 0, 0.55);
+  }
+
+  .active-indicator-bar {
+    display: none;
+  }
+
+  .sidebar-item:hover .item-name {
+    padding-left: 0;
+  }
+
+  .sidebar-item.active {
+    background-color: var(--primary-purple);
+    border-color: var(--primary-purple);
+  }
+
+  .sidebar-item.active .item-name {
+    color: #ffffff !important;
+  }
+
+  /* Adjust preview cards to natural heights instead of overlap */
+  .showcase-preview-card {
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+  }
+
+  .preview-images-container {
+    position: relative !important;
+    height: 280px !important;
+    width: 100% !important;
+  }
+
+  .details-panel-container {
+    position: relative !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .preview-details-panel {
+    width: 100% !important;
+    max-width: 100% !important;
+    clip-path: none !important; /* Remove the arrow clip-path on mobile */
+    padding: 24px 20px !important;
+    background: #ffffff !important;
+    border: none !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+
+  .details-title {
+    font-size: 18px;
+  }
+
+  .details-desc {
+    font-size: 13px;
+  }
 }

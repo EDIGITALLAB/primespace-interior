@@ -1,0 +1,102 @@
+<footer class="main-footer w-100 position-relative">
+  <!-- Top glow border line -->
+  <div class="footer-border-glow"></div>
+
+  <div class="container-fluid px-4 px-md-5 py-5 py-md-6">
+    <div class="row gy-5 gy-lg-0">
+      
+      <!-- Column 1: Brand Profile -->
+      <div class="col-lg-3 col-md-6 brand-column">
+        <a class="footer-brand d-inline-block mb-3" href="#">
+          <img src="/nevlogo.png" alt="Prime Space Interior" class="footer-logo-img">
+        </a>
+        <p class="footer-brand-text mb-4">
+          Crafting premium, bespoke luxury interiors that harmonize aesthetics with functionality. We redefine spaces in Bangalore & Bhubaneswar.
+        </p>
+        <div class="footer-social-links d-flex gap-3">
+          <a href="#" class="social-link-icon d-flex align-items-center justify-content-center" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <a href="#" class="social-link-icon d-flex align-items-center justify-content-center" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="#" class="social-link-icon d-flex align-items-center justify-content-center" aria-label="Pinterest">
+            <i class="fa-brands fa-pinterest-p"></i>
+          </a>
+          <a href="#" class="social-link-icon d-flex align-items-center justify-content-center" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Our Services -->
+      <div class="col-lg-3 col-md-6">
+        <h4 class="footer-title text-white">Our Services</h4>
+        <ul class="footer-links-list list-unstyled m-0 p-0">
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Modular Kitchens</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Bespoke Bedroom Design</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Luxury Living Areas</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Refined Dining Rooms</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Kids Bedrooms</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Bespoke Decorative Units</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Quick Navigation -->
+      <div class="col-lg-3 col-md-6">
+        <h4 class="footer-title text-white">Company</h4>
+        <ul class="footer-links-list list-unstyled m-0 p-0">
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Home</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Company Info</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Interactive Process</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Package Offers</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Design Gallery</a></li>
+          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Newsletter & Info -->
+      <div class="col-lg-3 col-md-6">
+        <h4 class="footer-title text-white">Newsletter</h4>
+        <p class="newsletter-text text-white-50 mb-3">
+          Subscribe to receive our latest interior styling tips, collections, and exclusive package updates.
+        </p>
+        
+        <!-- Newsletter Box -->
+        <form class="newsletter-form position-relative mb-4" (submit)="onSubscribe($event, emailInput.value)">
+          <input 
+            type="email" 
+            placeholder="Your email address..." 
+            class="form-control newsletter-input" 
+            required 
+            #emailInput>
+          <button type="submit" class="btn newsletter-submit-btn d-flex align-items-center justify-content-center" aria-label="Subscribe">
+            <i class="fa-solid fa-arrow-right-long"></i>
+          </button>
+        </form>
+
+        <!-- Dynamic location badges -->
+        <div class="footer-locations">
+          <span class="location-badge me-2"><i class="fa-solid fa-location-dot me-1.5"></i>BENGALURU</span>
+          <span class="location-badge"><i class="fa-solid fa-location-dot me-1.5"></i>BHUBANESWAR</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Divider line -->
+    <div class="footer-divider my-5"></div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <div class="copyright text-white-50">
+        &copy; {{ currentYear }} <span class="text-white fw-bold">Prime Space Interior</span>. All rights reserved.
+      </div>
+      <div class="footer-legal-links d-flex gap-4">
+        <a href="#" class="legal-link">Privacy Policy</a>
+        <a href="#" class="legal-link">Terms & Conditions</a>
+        <a href="#" class="legal-link">FAQ</a>
+      </div>
+    </div>
+  </div>
+</footer>
