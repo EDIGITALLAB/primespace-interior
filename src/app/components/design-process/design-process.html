@@ -1,81 +1,74 @@
 <section class="design-process-section py-0 bg-white position-relative">
-  <!-- Section Title -->
-  <div class="w-100 py-2">
-    <div class="text-center mb-4 position-relative">
+  <div class="container-fluid cards-container">
+    <!-- Section Title -->
+    <div class="text-center mb-5 position-relative">
       <span class="section-subtitle text-uppercase mb-2">Your Journey to Luxury</span>
-      <h2 class="section-title fw-medium text-uppercase m-0">How We Work</h2>
+      <h2 class="section-title text-uppercase m-0">How We Work</h2>
     </div>
-  </div>
-
-  <div class="container-fluid px-5 cards-container">
     <div class="row g-4 timeline-row justify-content-center">
-      
+
       <!-- Step 1: Consultation -->
       <div class="col-12 col-md-6 col-lg-3 timeline-col">
-        <div class="step-card d-flex flex-column align-items-center text-center p-4"
-             [class.active]="activeStep() === 1"
-             (mouseenter)="setActiveStep(1)"
-             (mouseleave)="setActiveStep(null)">
+        <div class="step-card d-flex flex-column align-items-center text-center p-4" [class.active]="activeStep() === 1"
+          (mouseenter)="setActiveStep(1)" (mouseleave)="setActiveStep(null)">
           <!-- Glowing Connection Line -->
           <div class="connection-line-right d-none d-lg-block"></div>
-          
+
           <div class="step-number-badge mb-3">01</div>
           <div class="step-icon-wrapper mb-3 d-flex align-items-center justify-content-center">
             <i class="fa-solid fa-comments"></i>
           </div>
           <h3 class="step-title mb-2">1-on-1 Consultation</h3>
-          <p class="step-desc mb-0">We sit down with you to map out your vision, preferences, budget, and design aspirations.</p>
+          <p class="step-desc mb-0">We sit down with you to map out your vision, preferences, budget, and design
+            aspirations.</p>
         </div>
       </div>
 
       <!-- Step 2: 3D Visualization -->
       <div class="col-12 col-md-6 col-lg-3 timeline-col">
-        <div class="step-card d-flex flex-column align-items-center text-center p-4"
-             [class.active]="activeStep() === 2"
-             (mouseenter)="setActiveStep(2)"
-             (mouseleave)="setActiveStep(null)">
+        <div class="step-card d-flex flex-column align-items-center text-center p-4" [class.active]="activeStep() === 2"
+          (mouseenter)="setActiveStep(2)" (mouseleave)="setActiveStep(null)">
           <!-- Glowing Connection Line -->
           <div class="connection-line-right d-none d-lg-block"></div>
-          
+
           <div class="step-number-badge mb-3">02</div>
           <div class="step-icon-wrapper mb-3 d-flex align-items-center justify-content-center">
             <i class="fa-solid fa-pen-ruler"></i>
           </div>
           <h3 class="step-title mb-2">3D Space Planning</h3>
-          <p class="step-desc mb-0">We translate your brief into custom floorplans and high-fidelity 3D visual walkthroughs.</p>
+          <p class="step-desc mb-0">We translate your brief into custom floorplans and high-fidelity 3D visual
+            walkthroughs.</p>
         </div>
       </div>
 
       <!-- Step 3: Material Selection -->
       <div class="col-12 col-md-6 col-lg-3 timeline-col">
-        <div class="step-card d-flex flex-column align-items-center text-center p-4"
-             [class.active]="activeStep() === 3"
-             (mouseenter)="setActiveStep(3)"
-             (mouseleave)="setActiveStep(null)">
+        <div class="step-card d-flex flex-column align-items-center text-center p-4" [class.active]="activeStep() === 3"
+          (mouseenter)="setActiveStep(3)" (mouseleave)="setActiveStep(null)">
           <!-- Glowing Connection Line -->
           <div class="connection-line-right d-none d-lg-block"></div>
-          
+
           <div class="step-number-badge mb-3">03</div>
           <div class="step-icon-wrapper mb-3 d-flex align-items-center justify-content-center">
             <i class="fa-solid fa-palette"></i>
           </div>
           <h3 class="step-title mb-2">Bespoke Curation</h3>
-          <p class="step-desc mb-0">Choose premium finishes, stones, lighting, and textiles from our curated global partners.</p>
+          <p class="step-desc mb-0">Choose premium finishes, stones, lighting, and textiles from our curated global
+            partners.</p>
         </div>
       </div>
 
       <!-- Step 4: Installation -->
       <div class="col-12 col-md-6 col-lg-3 timeline-col">
-        <div class="step-card d-flex flex-column align-items-center text-center p-4"
-             [class.active]="activeStep() === 4"
-             (mouseenter)="setActiveStep(4)"
-             (mouseleave)="setActiveStep(null)">
+        <div class="step-card d-flex flex-column align-items-center text-center p-4" [class.active]="activeStep() === 4"
+          (mouseenter)="setActiveStep(4)" (mouseleave)="setActiveStep(null)">
           <div class="step-number-badge mb-3">04</div>
           <div class="step-icon-wrapper mb-3 d-flex align-items-center justify-content-center">
             <i class="fa-solid fa-screwdriver-wrench"></i>
           </div>
           <h3 class="step-title mb-2">Flawless Execution</h3>
-          <p class="step-desc mb-0">Our master craftsmen bring the designs to life on-site with zero hassle and a 10-year warranty.</p>
+          <p class="step-desc mb-0">Our master craftsmen bring the designs to life on-site with zero hassle and a
+            10-year warranty.</p>
         </div>
       </div>
 

@@ -1,55 +1,61 @@
 /* Design Categories Component CSS - Interactive Showcase Style (Light Theme with Luxury Glow) */
 
 .design-categories-section {
-  background-color: #ffffff !important;
+  background-color: #ffffff;
   position: relative;
   padding: 90px 0;
   overflow: hidden;
 }
 
-/* Subtle luxury background glowing circle */
+/* Full-screen SVG furniture watermark */
+.design-categories-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/furniture-watermark.svg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.14;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Subtle luxury background glow */
 .categories-glow-effect {
   display: none;
 }
 
-/* Furniture Watermark Background */
+/* Old furniture watermark styles (kept for backward compat) */
 .categories-furniture-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1; /* Sits above the section base, below content (z-index:2) */
-  pointer-events: none;
-  overflow: hidden;
+  display: none;
 }
 
 .categories-furniture-img {
-  position: absolute;
-  left: -30px;
-  bottom: -20px;
-  width: 55%;
-  max-width: 780px;
-  height: auto;
-  object-fit: contain;
-  opacity: 0.55;
-  filter: blur(0.5px) grayscale(20%) brightness(1.05);
-  transition: opacity 0.5s ease;
+  display: none;
 }
 
-/* Soft white gradient veil — just enough to blend with white page */
 .categories-furniture-blur-veil {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    -120deg,
-    rgba(255, 255, 255, 0.97) 0%,   /* Strong white on right where interactive area is */
-    rgba(255, 255, 255, 0.85) 35%,  /* Transition zone */
-    rgba(255, 255, 255, 0.45) 65%,  /* Image starts showing through */
-    rgba(255, 255, 255, 0.15) 100%  /* Bottom-left: image is clearly visible */
-  );
+  display: none;
 }
 
+/* Right-side furniture watermark decorative element */
+.furniture-watermark-right {
+  display: none;
+}
 
+.furniture-watermark-img {
+  display: none;
+}
+
+/* Inner content width constraint — background stays full-width */
+.cards-container {
+  max-width: 1500px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 
 /* Header typography styling */
 .section-subtitle {
@@ -65,21 +71,24 @@
   font-family: var(--font-headings);
   font-size: clamp(24px, 3.8vw, 36px);
   font-weight: 900;
-  color: #111111 !important; /* Clean Dark Slate on light background */
+  color: #111111 !important;
+  /* Clean Dark Slate on light background */
   letter-spacing: 1.5px;
   display: block;
 }
 
 .section-lead-text {
   font-family: var(--font-body);
-  font-size: 13.5px; /* Refined size to fit card cleanly */
+  font-size: 13.5px;
+  /* Refined size to fit card cleanly */
   color: #555555 !important;
   line-height: 1.6;
 }
 
 /* Curved Category Info glass badge card */
 .category-info-card {
-  background: rgba(150, 5, 62, 0.04); /* Light brand purple glass overlay */
+  background: rgba(150, 5, 62, 0.04);
+  /* Light brand purple glass overlay */
   border: 1px solid rgba(150, 5, 62, 0.08);
   border-radius: 12px;
   padding: 16px 20px;
@@ -105,17 +114,20 @@
 .category-sidebar-list {
   display: flex;
   flex-direction: column;
-  border-left: 1px solid rgba(0, 0, 0, 0.08); /* Light grey divider border */
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  /* Light grey divider border */
 }
 
 .sidebar-item {
-  padding: 20px 28px; /* Added padding for a more luxury breathing space */
+  padding: 20px 28px;
+  /* Added padding for a more luxury breathing space */
   cursor: pointer;
   position: relative;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03); /* Soft horizontal item dividers */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
+  /* Soft horizontal item dividers */
 }
 
 .sidebar-item:last-child {
@@ -126,7 +138,8 @@
   font-family: var(--font-headings);
   font-size: 13px;
   font-weight: 800;
-  color: rgba(0, 0, 0, 0.25); /* Subtle dark grey number */
+  color: rgba(0, 0, 0, 0.25);
+  /* Subtle dark grey number */
   transition: color 0.3s ease;
   width: 24px;
 }
@@ -135,7 +148,8 @@
   font-family: var(--font-headings);
   font-size: 14.5px;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.5); /* Readable charcoal grey item name */
+  color: rgba(0, 0, 0, 0.5);
+  /* Readable charcoal grey item name */
   letter-spacing: 1.5px;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -153,7 +167,8 @@
 /* Sidebar item hover & active states */
 .sidebar-item:hover .item-name {
   color: var(--primary-purple);
-  padding-left: 8px; /* Elegant push right on hover */
+  padding-left: 8px;
+  /* Elegant push right on hover */
 }
 
 .sidebar-item:hover .item-number {
@@ -161,7 +176,8 @@
 }
 
 .sidebar-item.active {
-  background-color: rgba(150, 5, 62, 0.04) !important; /* Soft brand-purple active background highlight */
+  background-color: rgba(150, 5, 62, 0.04) !important;
+  /* Soft brand-purple active background highlight */
 }
 
 .sidebar-item.active .item-name {
@@ -175,16 +191,24 @@
 }
 
 .sidebar-item.active .active-indicator-bar {
-  width: 4px; /* Stronger indicator line */
+  width: 4px;
+  /* Stronger indicator line */
 }
 
 /* Large Dynamic Preview Card styling */
+.preview-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .showcase-preview-card {
-  height: 540px;
+  flex: 1;
+  height: 100%;
   background-color: #161616;
   border: 1px solid rgba(0, 0, 0, 0.06);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
-  border-radius: 0px; /* Removed curves as requested */
+  border-radius: 0px;
+  /* Removed curves as requested */
   overflow: hidden;
   z-index: 5;
 }
@@ -211,6 +235,7 @@
   from {
     transform: scale(1.05);
   }
+
   to {
     transform: scale(1);
   }
@@ -222,31 +247,37 @@
   bottom: 24px;
   left: 24px;
   right: auto;
-  width: 530px; /* Compact width to make the card look like a light floating banner */
+  width: 530px;
+  /* Compact width to make the card look like a light floating banner */
   max-width: calc(100% - 48px);
   z-index: 5;
-  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.08)); /* Shadow wraps around the clipped arrow point! */
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.08));
+  /* Shadow wraps around the clipped arrow point! */
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .details-panel-container:hover {
-  transform: translateX(8px); /* Subtle shift in the arrow direction on hover */
+  transform: translateX(8px);
+  /* Subtle shift in the arrow direction on hover */
 }
 
 /* Glassmorphic Details Panel overlay (Clipped into a right-pointing arrow shape) */
 .preview-details-panel {
   width: 100%;
-  background: rgba(255, 255, 255, 0.94) !important; /* Premium light glassmorphism */
+  background: rgba(255, 255, 255, 0.94) !important;
+  /* Premium light glassmorphism */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   /* Perfect right-pointing chevron/arrow polygon clip-path */
   clip-path: polygon(0% 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%);
-  padding: 18px 48px 18px 24px; /* Right-padding ensures text stays safe from the arrow tip */
+  padding: 18px 48px 18px 24px;
+  /* Right-padding ensures text stays safe from the arrow tip */
   transition: background 0.4s ease;
 }
 
 .preview-details-panel:hover {
-  background: #ffffff !important; /* Brighter background on hover */
+  background: #ffffff !important;
+  /* Brighter background on hover */
 }
 
 .details-content-wrapper {
@@ -279,21 +310,26 @@
 
 /* Category Open/Change Entrance animation */
 .animate-entry {
-  animation: containerSlideRight 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards; /* Slower and ultra-smooth expo ease */
+  animation: containerSlideRight 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  /* Slower and ultra-smooth expo ease */
 }
 
 .animate-entry .preview-details-panel {
-  animation: detailsWipeOpen 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards; /* Slower wipe transition */
+  animation: detailsWipeOpen 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  /* Slower wipe transition */
 }
 
 @keyframes containerSlideRight {
   0% {
     opacity: 0;
-    transform: translateX(-40px); /* Slide in from left */
+    transform: translateX(-40px);
+    /* Slide in from left */
   }
+
   100% {
     opacity: 1;
-    transform: translateX(0); /* Settles at normal position */
+    transform: translateX(0);
+    /* Settles at normal position */
   }
 }
 
@@ -302,6 +338,7 @@
     /* Fully collapsed vertical line on the left side */
     clip-path: polygon(0% 0%, 0% 0%, 0% 50%, 0% 100%, 0% 100%);
   }
+
   100% {
     /* Wipes open left-to-right into the chevron arrow shape */
     clip-path: polygon(0% 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%);
@@ -352,6 +389,7 @@
   .category-sidebar-list::-webkit-scrollbar {
     display: none;
   }
+
   .category-sidebar-list {
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -359,7 +397,8 @@
 
   .sidebar-item {
     padding: 8px 18px;
-    border: 1px solid rgba(0, 0, 0, 0.08); /* Border color on light page */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    /* Border color on light page */
     border-radius: 20px;
     margin: 0;
   }
@@ -418,7 +457,8 @@
   .preview-details-panel {
     width: 100% !important;
     max-width: 100% !important;
-    clip-path: none !important; /* Remove the arrow clip-path on mobile */
+    clip-path: none !important;
+    /* Remove the arrow clip-path on mobile */
     padding: 24px 20px !important;
     background: #ffffff !important;
     border: none !important;

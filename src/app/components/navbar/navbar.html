@@ -8,7 +8,7 @@
         <!-- Left: Brand Logo -->
         <a class="navbar-brand m-0 d-flex align-items-center" href="#">
           <img src="/nevlogo.png" alt="Prime Space Interior" class="navbar-logo-img">
-          <span class="navbar-brand-text">Prime Space</span>
+          <span class="navbar-brand-text">PrimeSpace <span class="interior-text">Interior</span></span>
         </a>
 
         <!-- Center: Collapsible Menu -->
@@ -18,12 +18,13 @@
           <!-- Main Navigation Links Centered horizontally -->
           <ul class="navbar-nav mx-auto mb-0 align-items-lg-center"
             style="font-weight: 600; font-size: 13px; font-family: var(--font-headings); letter-spacing: 0.5px;">
-            
-            <li class="nav-item px-lg-1.5"><a class="nav-link active" href="#"><span class="nav-link-text">HOME</span></a></li>
+
+            <li class="nav-item px-lg-1.5"><a class="nav-link active" href="#"><span
+                  class="nav-link-text">HOME</span></a></li>
 
             <li class="nav-item dropdown px-lg-1.5">
-              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="servicesDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="servicesDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="nav-link-text">SERVICES</span>
                 <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
               </a>
@@ -69,8 +70,8 @@
             </li>
 
             <li class="nav-item dropdown px-lg-1.5">
-              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="productsDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="productsDropdown" role="button"
+                data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="nav-link-text">PRODUCTS</span>
                 <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
               </a>
@@ -128,7 +129,8 @@
                 <span class="nav-link-text">LOCATIONS</span>
                 <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations" aria-labelledby="locationsDropdown">
+              <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations"
+                aria-labelledby="locationsDropdown">
                 <div class="dropdown-grid-locations">
                   <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
@@ -148,8 +150,10 @@
               </div>
             </li>
 
-            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a></li>
-            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">CONTACT</span></a></li>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a>
+            </li>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">CONTACT</span></a>
+            </li>
           </ul>
         </div>
 
@@ -157,8 +161,8 @@
         <div class="d-flex align-items-center flex-shrink-0">
           <!-- Hamburger Menu icon at the end (Desktop only, grouped in layout) -->
           <div class="d-none d-lg-flex align-items-center justify-content-center me-2 h-100">
-            <a class="nav-link menu-icon-link p-0 d-flex align-items-center justify-content-center" (click)="toggleSideMenu()"
-              style="cursor: pointer;">
+            <a class="nav-link menu-icon-link p-0 d-flex align-items-center justify-content-center"
+              (click)="toggleSideMenu()" style="cursor: pointer;">
               <svg xmlns="http://www.w3.org/2000/svg" width="55" height="26" viewBox="0 0 70 28" fill="none"
                 class="unique-menu-icon" [class.open]="isSideMenuOpen" style="vertical-align: middle;">
                 <rect class="menu-bar bar-top" x="0" y="4" width="40" height="2.5" rx="1.25" fill="currentColor" />
@@ -193,17 +197,19 @@
     <div class="drawer-logo">
       <img src="/nevlogo.png" alt="Prime Space Interior" class="drawer-logo-img">
     </div>
-    <button class="drawer-close-btn d-flex align-items-center justify-content-center" (click)="toggleSideMenu()" aria-label="Close sidebar">
+    <button class="drawer-close-btn d-flex align-items-center justify-content-center" (click)="toggleSideMenu()"
+      aria-label="Close sidebar">
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
-  
+
   <div class="drawer-content d-flex flex-column justify-content-between">
     <div class="drawer-top-section">
       <div class="drawer-about mb-5">
         <h4 class="drawer-section-title">ABOUT PRIME SPACE</h4>
         <p class="drawer-about-text">
-          Bespoke luxury interior design consultancy firm creating sensitivity, quality, and credibility in top hotels, offices, and homes around the world.
+          Bespoke luxury interior design consultancy firm creating sensitivity, quality, and credibility in top hotels,
+          offices, and homes around the world.
         </p>
       </div>
 
@@ -220,7 +226,8 @@
           </li>
           <li class="d-flex align-items-center mb-3">
             <i class="fa-solid fa-envelope me-3 accent-color"></i>
-            <a href="mailto:info@primespaceinterior.com" class="text-decoration-none text-white transition-all">info@primespaceinterior.com</a>
+            <a href="mailto:info@primespaceinterior.com"
+              class="text-decoration-none text-white transition-all">info@primespaceinterior.com</a>
           </li>
           <li class="d-flex align-items-center">
             <i class="fa-solid fa-clock me-3 accent-color"></i>
@@ -235,7 +242,7 @@
       <div class="drawer-cta mb-4">
         <a href="#" class="btn btn-accent w-100 py-3 text-uppercase fw-bold letter-spacing-1">Book Consultation</a>
       </div>
-      
+
       <!-- Social Media Links -->
       <div class="drawer-socials">
         <h5 class="drawer-socials-title text-center mb-3 text-uppercase">Follow Our Designs</h5>
@@ -259,7 +266,7 @@
       </div>
     </div>
   </div>
-  
+
   <!-- Subtle back lighting -->
   <div class="drawer-glow-bg"></div>
 </div>

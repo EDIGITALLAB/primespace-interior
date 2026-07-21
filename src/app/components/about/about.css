@@ -3,7 +3,7 @@
 .about-section {
   background-color: #ffffff !important;
   font-family: var(--font-body);
-  padding: 90px 0;
+  padding: 90px 0 30px 0 !important;
 }
 
 /* Subtle wine purple mesh glow in the background */
@@ -78,7 +78,7 @@
   height: 520px;
   width: 100%;
   max-width: 580px;
-  margin: 0 auto;
+  margin: 0;
 }
 
 .geometric-shape {
@@ -288,8 +288,10 @@
 }
 
 .cards-container {
-  max-width: 1800px;
+  max-width: 1500px;
   margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }
 
 /* Mobile responsive layout overrides */

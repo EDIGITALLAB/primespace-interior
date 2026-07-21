@@ -3,7 +3,26 @@
 .design-process-section {
   background-color: #ffffff !important;
   font-family: var(--font-body);
-  padding: 30px 0; /* Reduced vertical padding */
+  padding: 40px 0 !important;
+}
+
+/* Header typography styling */
+.section-subtitle {
+  font-family: var(--font-headings);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--primary-purple) !important;
+  display: block;
+}
+
+.section-title {
+  font-family: var(--font-headings);
+  font-size: clamp(24px, 3.8vw, 36px);
+  font-weight: 900;
+  color: #111111 !important;
+  letter-spacing: 1.5px;
+  display: block;
 }
 
 /* Timeline Layout Columns */
@@ -33,9 +52,12 @@
 /* Intercard Connection Lines (Desktop only) */
 .connection-line-right {
   position: absolute;
-  top: 92px; /* Centered with the icon wrapper */
-  left: 70%; /* Bridges the gap from current card */
-  width: 60%; /* Extends to overlap the next card's left margin */
+  top: 92px;
+  /* Centered with the icon wrapper */
+  left: 70%;
+  /* Bridges the gap from current card */
+  width: 60%;
+  /* Extends to overlap the next card's left margin */
   height: 2px;
   background: repeating-linear-gradient(to right, rgba(0, 0, 0, 0.08) 0px, rgba(0, 0, 0, 0.08) 5px, transparent 5px, transparent 10px);
   z-index: -1;
@@ -128,6 +150,8 @@
 }
 
 .cards-container {
-  max-width: 1800px;
+  max-width: 1800px !important;
   margin: 0 auto;
+  padding-left: 24px;
+  padding-right: 24px;
 }

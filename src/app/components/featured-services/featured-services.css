@@ -10,6 +10,12 @@
   overflow: hidden;
 }
 
+.featured-services-section .container-fluid {
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ---- Editorial Watermark Text ---- */
 .fs-watermark-text {
   position: absolute;
