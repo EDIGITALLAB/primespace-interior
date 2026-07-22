@@ -1,60 +1,43 @@
-<section class="testimonials-section py-6 bg-white position-relative">
+<section class="testimonials-section py-5 py-md-6 bg-white position-relative">
   <div class="container cards-container">
-    
+
     <!-- Section Title -->
     <div class="w-100 py-3">
-      <div class="text-center mb-5 position-relative">
+      <div class="text-center mb-4 mb-md-5 position-relative">
         <span class="section-subtitle text-uppercase mb-2">Client Stories</span>
         <h2 class="section-title fw-medium text-uppercase m-0">Voices of Satisfaction</h2>
       </div>
     </div>
 
-    <!-- Testimonials Slider Container -->
-    <div class="row justify-content-center">
-      <div class="col-lg-8 position-relative">
-        
-        <!-- Large Quote Icon -->
-        <div class="quote-watermark"><i class="fa-solid fa-quote-right"></i></div>
+    <!-- 3 Testimonial Cards Grid -->
+    <div class="row g-4 justify-content-center">
+      <div class="col-lg-4 col-md-6" *ngFor="let item of list">
 
-        <!-- Slider Card -->
-        <div class="testimonial-card p-4 p-md-5 text-center">
-          
+        <div class="testimonial-card p-4 p-xl-4 text-center h-100 d-flex flex-column position-relative">
+
+          <!-- Quote Icon Watermark -->
+          <div class="quote-watermark"><i class="fa-solid fa-quote-right"></i></div>
+
           <!-- Rating Stars -->
-          <div class="stars-wrapper mb-4">
+          <div class="stars-wrapper mb-3">
             <i class="fa-solid fa-star me-1" *ngFor="let s of [1,2,3,4,5]"></i>
           </div>
 
           <!-- Review Text -->
-          <p class="review-text mb-4">
-            "{{ list[activeIndex()].review }}"
+          <p class="review-text mb-4 flex-grow-1">
+            "{{ item.review }}"
           </p>
 
-          <!-- Divider line -->
-          <div class="card-divider mx-auto mb-4"></div>
+          <div class="card-footer-info mt-auto">
+            <!-- Divider line -->
+            <div class="card-divider mx-auto mb-3"></div>
 
-          <!-- Client details -->
-          <h4 class="client-name mb-1 text-uppercase">{{ list[activeIndex()].name }}</h4>
-          <span class="client-location d-block mb-3">{{ list[activeIndex()].location }}</span>
-          <span class="client-service text-uppercase font-size-sm">{{ list[activeIndex()].service }}</span>
+            <!-- Client details -->
+            <h5 class="client-name mb-1 text-uppercase">{{ item.name }}</h5>
+            <span class="client-location d-block mb-3">{{ item.location }}</span>
+            <span class="client-service text-uppercase font-size-sm">{{ item.service }}</span>
+          </div>
 
-        </div>
-
-        <!-- Left/Right Nav Buttons -->
-        <button class="nav-btn prev-btn d-flex align-items-center justify-content-center" (click)="prevIndex()" aria-label="Previous Review">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
-        <button class="nav-btn next-btn d-flex align-items-center justify-content-center" (click)="nextIndex()" aria-label="Next Review">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
-
-        <!-- Dots Indicators -->
-        <div class="dots-indicators d-flex justify-content-center mt-4">
-          <span 
-            *ngFor="let item of list; let i = index" 
-            class="dot-indicator" 
-            [class.active]="activeIndex() === i"
-            (click)="setIndex(i)">
-          </span>
         </div>
 
       </div>

@@ -1,89 +1,166 @@
-<section class="featured-services-section position-relative overflow-hidden">
+<section class="featured-services-section position-relative overflow-hidden py-5">
 
-  <!-- Editorial background watermark text -->
   <div class="fs-watermark-text" aria-hidden="true">SERVICES</div>
-
-  <!-- Radial purple glow -->
   <div class="fs-glow-orb" aria-hidden="true"></div>
 
   <div class="container-fluid px-4 px-md-5 position-relative" style="z-index: 2;">
+    <div class="row g-3 g-lg-4 align-items-stretch justify-content-center">
 
-    <!-- Section Header -->
-    <div class="row align-items-end mb-5">
-      <div class="col-lg-7">
-        <span class="fs-subtitle d-block text-uppercase mb-2">What We Offer</span>
-        <h2 class="fs-title text-uppercase m-0">
-          Our Featured <span class="fs-title-accent">Services</span>
-        </h2>
-      </div>
-      <div class="col-lg-5 mt-3 mt-lg-0 d-flex align-items-center justify-content-lg-end">
-        <div class="fs-header-badge d-flex align-items-center gap-3">
-          <div class="fs-badge-icon d-flex align-items-center justify-content-center flex-shrink-0">
-            <i class="fa-solid fa-star-of-life"></i>
+      <!-- LEFT SIDE: Full-Height Real Original MP4 Video Player -->
+      <div class="col-lg-auto d-flex flex-column">
+        <div
+          class="fs-video-player-box position-relative overflow-hidden rounded-4 shadow-2xl border w-100 flex-grow-1">
+
+          <!-- Real Local HTML5 Video Element -->
+          <video #videoRef [src]="videoUrl" poster="/hero_living_room.png"
+            class="w-100 h-100 object-fit-cover fs-video-element" (timeupdate)="onTimeUpdate()" (ended)="onVideoEnded()"
+            loop muted playsinline>
+          </video>
+
+          <!-- Dark Gradient Overlay (Clickable to toggle play/pause) -->
+          <div class="fs-video-overlay position-absolute inset-0" (click)="togglePlay()"></div>
+
+          <!-- Top Header Bar -->
+          <div
+            class="fs-video-top-bar position-absolute top-0 start-0 end-0 p-3.5 d-flex align-items-center justify-content-between z-3 pointer-events-none">
+            <span class="fs-video-badge font-size-xs fw-extrabold text-white text-uppercase">
+              <i class="fa-solid fa-circle text-danger me-1.5 animate-pulse"></i> ORIGINAL MP4 VIDEO
+            </span>
+            <span class="fs-video-quality font-size-micro fw-black text-white text-uppercase bg-purple-pill">
+              <i class="fa-solid fa-play me-1"></i> HD SHOWREEL
+            </span>
           </div>
-          <p class="fs-badge-text m-0">
-            Every service is precision-crafted to match your vision — from first sketch to final reveal.
-          </p>
-        </div>
-      </div>
-    </div>
 
-    <!-- Services Grid -->
-    <div class="row g-4 fs-cards-grid">
-      @for (service of services; track service.id) {
-        <div class="col-md-6 col-xl-4">
-          <div class="fs-card h-100">
-            <!-- Card top: number + icon -->
-            <div class="fs-card-top d-flex align-items-start justify-content-between mb-4">
-              <span class="fs-card-number">{{ service.id }}</span>
-              <div class="fs-card-icon-wrap d-flex align-items-center justify-content-center">
-                <i [class]="service.icon"></i>
-              </div>
-            </div>
-
-            <!-- Horizontal rule -->
-            <div class="fs-card-rule mb-4"></div>
-
-            <!-- Service title + subtitle -->
-            <div class="mb-3">
-              <p class="fs-card-subtitle text-uppercase m-0 mb-1">{{ service.subtitle }}</p>
-              <h3 class="fs-card-title m-0">{{ service.title }}</h3>
-            </div>
-
-            <!-- Description -->
-            <p class="fs-card-desc mb-4">{{ service.description }}</p>
-
-            <!-- Tags -->
-            <div class="fs-card-tags d-flex flex-wrap gap-2 mt-auto">
-              @for (tag of service.tags; track tag) {
-                <span class="fs-tag">{{ tag }}</span>
+          <!-- Center Play / Pause Pulse Button -->
+          <div class="fs-video-center-btn position-absolute top-50 start-50 translate-middle z-3">
+            <button type="button"
+              class="btn fs-play-btn-circle d-flex align-items-center justify-content-center text-white shadow-2xl border-0"
+              (click)="togglePlay()">
+              @if (isPlaying()) {
+              <i class="fa-solid fa-pause font-size-md"></i>
+              } @else {
+              <i class="fa-solid fa-play font-size-md ms-1"></i>
               }
+            </button>
+          </div>
+
+          <!-- Active Playing Status Spinner Tag -->
+          @if (isPlaying()) {
+          <div
+            class="fs-playing-tag position-absolute font-size-xs fw-bold text-white z-3 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-circle-play text-purple font-size-sm animate-pulse"></i>
+            <span>PLAYING ORIGINAL INTERIOR VIDEO...</span>
+          </div>
+          }
+
+          <!-- Bottom Video Controls Bar -->
+          <div class="fs-video-controls-bar position-absolute bottom-0 start-0 end-0 p-3.5 z-3">
+            <!-- Progress Track -->
+            <div class="fs-video-progress-track position-relative mb-2 rounded-pill overflow-hidden">
+              <div class="fs-video-progress-fill" [style.width.%]="progressPercent()"></div>
             </div>
 
-            <!-- Hover CTA arrow -->
-            <div class="fs-card-cta d-flex align-items-center gap-2 mt-4">
-              <span class="fs-cta-text">Learn More</span>
-              <div class="fs-cta-arrow d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-arrow-right"></i>
+            <!-- Controls Row -->
+            <div class="d-flex align-items-center justify-content-between text-white font-size-xs">
+              <div class="d-flex align-items-center gap-3">
+                <button type="button" class="btn text-white p-0 font-size-xs border-0" (click)="togglePlay()">
+                  <i [class]="isPlaying() ? 'fa-solid fa-pause' : 'fa-solid fa-play'"></i>
+                </button>
+                <button type="button" class="btn text-white p-0 font-size-xs border-0" (click)="toggleMute()">
+                  <i [class]="isMuted() ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high'"></i>
+                </button>
+                <span class="font-size-micro fw-bold text-white-75">
+                  {{ currentTimeStr() }} / {{ durationStr() }}
+                </span>
+              </div>
+
+              <div class="d-flex align-items-center gap-2">
+                <span class="fs-control-chip font-size-micro fw-extrabold text-uppercase">1080P FULL HD</span>
+                <i class="fa-solid fa-expand text-white font-size-xs ms-1"></i>
               </div>
             </div>
-
-            <!-- Decorative bottom accent line -->
-            <div class="fs-card-accent-bar"></div>
           </div>
+
         </div>
-      }
+      </div>
+
+      <!-- RIGHT SIDE: Header + 6 Core Cards Grid (3 per row) -->
+      <div class="col-lg-auto flex-grow-1" style="max-width: 1080px;">
+
+        <!-- Header -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="fs-subtitle-badge">
+              <i class="fa-solid fa-gem text-purple me-1.5"></i> EXPERTISE & SERVICES
+            </span>
+            <span class="fs-service-count-chip">6 CORE SERVICES</span>
+          </div>
+          <h2 class="fs-title text-uppercase m-0">
+            Our Featured <span class="fs-title-accent">Services</span>
+          </h2>
+        </div>
+
+        <!-- 6 Cards Grid (3 Cards Per Row: 2 Rows x 3 Cols) -->
+        <div class="row g-3">
+          @for (s of services; track s.id) {
+          <div class="col-sm-6 col-md-4">
+            <div
+              class="fs-studio-card bg-white p-3.5 p-xl-4 rounded-4 h-100 d-flex flex-column justify-content-between position-relative overflow-hidden shadow-sm border">
+
+              <!-- Watermark Number -->
+              <span class="fs-card-bg-num" aria-hidden="true">{{ s.num }}</span>
+
+              <div>
+                <!-- Top Row: Icon Circle + Subtitle Pill -->
+                <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+                  <div class="fs-card-icon-badge d-flex align-items-center justify-content-center">
+                    <i [class]="s.icon"></i>
+                  </div>
+                  <span class="fs-card-sub-pill font-size-xs fw-extrabold text-uppercase">
+                    <i class="fa-solid fa-circle-dot me-1.5 text-purple"></i> {{ s.subtitle }}
+                  </span>
+                </div>
+
+                <!-- Title -->
+                <h4 class="fs-card-title fw-black mb-2 position-relative z-1">{{ s.title }}</h4>
+
+                <!-- Description -->
+                <p class="fs-card-desc font-size-xs text-muted mb-3 position-relative z-1">{{ s.description }}</p>
+              </div>
+
+              <!-- Footer Row: CTA -->
+              <div
+                class="fs-card-footer pt-2.5 border-top border-secondary-subtle d-flex align-items-center justify-content-between position-relative z-1">
+                <span class="fs-cta-link font-size-xs fw-extrabold text-uppercase text-purple">
+                  EXPLORE SERVICE <i class="fa-solid fa-arrow-up-right-from-square ms-1 font-size-xs opacity-75"></i>
+                </span>
+                <div class="fs-cta-arrow-btn d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-arrow-right"></i>
+                </div>
+              </div>
+
+              <!-- Hover Accent Sheen Bar -->
+              <div class="fs-card-sheen-edge"></div>
+            </div>
+          </div>
+          }
+        </div>
+
+      </div>
+
     </div>
 
-    <!-- Bottom CTA strip -->
+    <!-- Bottom CTA Banner -->
     <div class="row mt-5">
       <div class="col-12">
         <div class="fs-bottom-cta d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
           <div>
-            <p class="fs-cta-label text-uppercase m-0 mb-1">Ready to begin your journey?</p>
+            <p class="fs-cta-label text-uppercase m-0 mb-1">
+              <i class="fa-solid fa-compass-drafting me-1.5"></i> READY TO BEGIN YOUR JOURNEY?
+            </p>
             <h4 class="fs-cta-heading m-0">Let's design your dream space together.</h4>
           </div>
-          <a href="#" class="fs-consult-btn d-inline-flex align-items-center gap-3 flex-shrink-0">
+          <a href="#map-contact-section" class="fs-consult-btn d-inline-flex align-items-center gap-3 flex-shrink-0">
             <span>Book a Free Consultation</span>
             <span class="fs-consult-arrow d-flex align-items-center justify-content-center">
               <i class="fa-solid fa-arrow-right"></i>

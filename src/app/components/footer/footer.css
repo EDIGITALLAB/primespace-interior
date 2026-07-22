@@ -1,20 +1,68 @@
 .main-footer {
-  background-color: #0d0d0d; /* Premium deep dark background */
+  background-color: #0d0d0d;
+  /* Premium deep dark background */
   font-family: var(--font-body);
   border-top: 1px solid rgba(255, 255, 255, 0.04);
   z-index: 10;
   overflow: hidden;
+  position: relative;
+}
+
+.main-footer .container-fluid {
+  position: relative;
+  z-index: 2;
 }
 
 /* Linear glow divider line at the top */
 .footer-border-glow {
   height: 2px;
   width: 100%;
-  background: linear-gradient(to right, rgba(150, 5, 62, 0) 0%, var(--primary-purple) 50%, rgba(150, 5, 62, 0) 100%);
+  background: linear-gradient(to right, rgba(150, 5, 62, 0) 0%, var(--primary-purple) 30%, rgba(255, 255, 255, 0.85) 50%, var(--primary-purple) 70%, rgba(150, 5, 62, 0) 100%);
   position: absolute;
   top: 0;
   left: 0;
-  opacity: 0.8;
+  opacity: 0.9;
+  z-index: 3;
+}
+
+/* Single Full-Width Luxury Living Room Interior Watermark (Subtle Whisper Opacity) */
+.footer-single-home-watermark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: rgba(255, 255, 255, 0.045);
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.75) 20%, rgba(0, 0, 0, 0.15) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.75) 20%, rgba(0, 0, 0, 0.15) 100%);
+  transition: color 0.4s ease;
+}
+
+.main-footer:hover .footer-single-home-watermark {
+  color: rgba(255, 255, 255, 0.08);
+}
+
+/* Architectural Building Skyline Blueprint Watermark Overlay */
+.footer-building-watermark {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  color: rgba(255, 255, 255, 0.05);
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 30%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 30%, transparent 100%);
+  transition: color 0.4s ease;
+}
+
+.main-footer:hover .footer-building-watermark {
+  color: rgba(255, 255, 255, 0.08);
 }
 
 .footer-logo-img {
@@ -232,6 +280,7 @@
     padding-bottom: 40px !important;
   }
 }
+
 .font-size-xs {
   font-size: 10px !important;
 }
