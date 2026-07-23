@@ -87,9 +87,9 @@
 
 /* Curved Category Info glass badge card */
 .category-info-card {
-  background: rgba(150, 5, 62, 0.04);
+  background: rgba(var(--primary-purple-rgb), 0.04);
   /* Light brand purple glass overlay */
-  border: 1px solid rgba(150, 5, 62, 0.08);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.08);
   border-radius: 12px;
   padding: 16px 20px;
   max-width: 480px;
@@ -100,9 +100,9 @@
 }
 
 .category-info-card:hover {
-  background: rgba(150, 5, 62, 0.06);
-  border-color: rgba(150, 5, 62, 0.15);
-  box-shadow: 0 6px 18px rgba(150, 5, 62, 0.04);
+  background: rgba(var(--primary-purple-rgb), 0.06);
+  border-color: rgba(var(--primary-purple-rgb), 0.15);
+  box-shadow: 0 6px 18px rgba(var(--primary-purple-rgb), 0.04);
 }
 
 .info-sparkle-svg {
@@ -176,7 +176,7 @@
 }
 
 .sidebar-item.active {
-  background-color: rgba(150, 5, 62, 0.04) !important;
+  background-color: rgba(var(--primary-purple-rgb), 0.04) !important;
   /* Soft brand-purple active background highlight */
 }
 

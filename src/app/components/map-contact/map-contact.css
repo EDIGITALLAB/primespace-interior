@@ -59,7 +59,7 @@
 .studio-tab-btn.active {
   background: var(--primary-purple);
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(150, 5, 62, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--primary-purple-rgb), 0.3);
 }
 
 /* Clean Natural Map View */
@@ -87,20 +87,30 @@
 /* Floating Experience Center White Glass Card */
 .map-info-card {
   position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
-  max-width: 400px;
+  bottom: 14px;
+  left: 80px;
+  right: auto;
+  width: calc(100% - 100px);
+  max-width: 420px;
   z-index: 2;
-  background: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  padding: 18px 20px;
+  border-radius: 14px;
+  padding: 18px 22px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
   color: #1a1a1a;
   transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .map-info-card {
+    left: 16px;
+    bottom: 12px;
+    width: calc(100% - 32px);
+    max-width: 100%;
+  }
 }
 
 .card-header-badge {
@@ -178,8 +188,8 @@
 
 /* Studio Gallery Preview Button */
 .btn-gallery-preview {
-  background: rgba(150, 5, 62, 0.08);
-  border: 1px solid rgba(150, 5, 62, 0.2);
+  background: rgba(var(--primary-purple-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.2);
   color: var(--primary-purple);
   border-radius: 18px;
   font-size: 11px;
@@ -192,7 +202,7 @@
   background: var(--primary-purple);
   color: #ffffff !important;
   border-color: var(--primary-purple);
-  box-shadow: 0 4px 12px rgba(150, 5, 62, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--primary-purple-rgb), 0.3);
 }
 
 .btn-gallery-preview:hover i {
@@ -213,14 +223,15 @@
 }
 
 .btn-directions-sm:hover {
-  background: #73032f;
+  background: var(--primary-purple);
+  filter: brightness(0.85);
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(150, 5, 62, 0.3);
+  box-shadow: 0 4px 12px rgba(var(--primary-purple-rgb), 0.3);
 }
 
 /* Right Column: Brand Purple/Magenta Luxury Column */
 .contact-details-column {
-  background: linear-gradient(135deg, var(--primary-purple) 0%, #4a031e 100%);
+  background: var(--primary-purple);
   padding: 35px 24px;
   min-height: 480px;
   overflow: hidden;
@@ -439,21 +450,22 @@ select.contact-form-input option {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 14, 0.85);
+  background: rgba(10, 10, 14, 0.75);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  z-index: 9999;
+  z-index: 99999999 !important;
   padding: 20px;
   animation: fadeIn 0.3s ease;
 }
 
 .gallery-modal-content {
-  background: linear-gradient(145deg, #1e0510 0%, #3e0219 50%, #150209 100%);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 16px;
+  background: #ffffff;
+  border: 1.5px solid rgba(var(--primary-purple-rgb), 0.2);
+  border-radius: 20px;
   width: 100%;
-  max-width: 680px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  max-width: 720px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  color: #111111;
 }
 
 .btn-close-modal {
@@ -463,9 +475,9 @@ select.contact-form-input option {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+  background: rgba(var(--primary-purple-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
+  color: var(--primary-purple);
   font-size: 16px;
   transition: all 0.25s ease;
   z-index: 10;
@@ -482,32 +494,36 @@ select.contact-form-input option {
   align-items: center;
   font-family: var(--font-headings);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: 1px;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.12);
-  padding: 4px 10px;
+  color: var(--primary-purple);
+  background: rgba(var(--primary-purple-rgb), 0.08);
+  padding: 5px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
 }
 
 .modal-title {
   font-family: var(--font-headings);
   font-size: 1.25rem;
-  font-weight: 700;
+  font-weight: 800;
+  color: #111111;
 }
 
 .modal-subtitle {
   font-size: 12.5px;
+  color: #555555;
 }
 
 .main-photo-stage {
-  max-height: 380px;
+  max-height: 400px;
   background: #000000;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 .gallery-main-img {
-  max-height: 380px;
+  max-height: 400px;
   object-fit: cover;
   display: block;
 }
@@ -516,20 +532,22 @@ select.contact-form-input option {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--primary-purple);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
   font-size: 14px;
   transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .btn-photo-nav:hover {
   background: var(--primary-purple);
+  filter: brightness(1.15);
   color: #ffffff;
-  border-color: var(--primary-purple);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .nav-prev {
@@ -544,7 +562,9 @@ select.contact-form-input option {
   width: 68px;
   height: 48px;
   cursor: pointer;
-  opacity: 0.5;
+  opacity: 0.6;
+  border-radius: 8px;
+  overflow: hidden;
   border: 2px solid transparent;
   transition: all 0.25s ease;
 }
@@ -558,11 +578,111 @@ select.contact-form-input option {
 .thumb-item:hover,
 .thumb-item.active {
   opacity: 1;
-  border-color: #ffffff;
+  border-color: var(--primary-purple) !important;
   transform: scale(1.05);
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* Global Consultation Booking Popup Modal Styling */
+.consultation-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(10, 10, 14, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 99999999 !important;
+  padding: 20px;
+  animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.consultation-modal-card {
+  background: #ffffff;
+  border: 1.5px solid rgba(var(--primary-purple-rgb), 0.2);
+  width: 100%;
+  max-width: 620px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+  color: #111111;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.btn-close-consultation {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(var(--primary-purple-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
+  color: var(--primary-purple);
+  font-size: 16px;
+  transition: all 0.25s ease;
+  z-index: 10;
+}
+
+.btn-close-consultation:hover {
+  background: var(--primary-purple);
+  color: #ffffff;
+  transform: rotate(90deg);
+}
+
+.consultation-badge {
+  font-family: var(--font-headings);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--primary-purple);
+  background: rgba(var(--primary-purple-rgb), 0.08);
+  padding: 5px 14px;
+  border-radius: 20px;
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
+}
+
+.consultation-title {
+  font-family: var(--font-headings);
+  font-size: clamp(22px, 3vw, 28px);
+  color: #111111;
+  letter-spacing: -0.5px;
+}
+
+.modal-input {
+  background: rgba(0, 0, 0, 0.02) !important;
+  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border-radius: 10px !important;
+  color: #111111 !important;
+  font-size: 13.5px !important;
+  padding: 12px 14px 12px 42px !important;
+  transition: all 0.3s ease !important;
+}
+
+.modal-input:focus {
+  background: #ffffff !important;
+  border-color: var(--primary-purple) !important;
+  box-shadow: 0 0 0 3px rgba(var(--primary-purple-rgb), 0.15) !important;
+}
+
+.btn-modal-submit {
+  background: var(--primary-purple) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 30px !important;
+  font-family: var(--font-headings);
+  font-size: 13px !important;
+  letter-spacing: 1.5px;
+  box-shadow: 0 8px 25px rgba(var(--primary-purple-rgb), 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-modal-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(var(--primary-purple-rgb), 0.5);
+  filter: brightness(1.08);
 }

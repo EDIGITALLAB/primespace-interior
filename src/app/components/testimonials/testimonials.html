@@ -32,10 +32,15 @@
             <!-- Divider line -->
             <div class="card-divider mx-auto mb-3"></div>
 
+            <!-- Client Profile Avatar Image -->
+            <div class="client-avatar-wrap mx-auto mb-3">
+              <img [src]="item.avatar" [alt]="item.name" class="client-avatar-img w-100 h-100 object-fit-cover rounded-circle shadow-sm">
+            </div>
+
             <!-- Client details -->
             <h5 class="client-name mb-1 text-uppercase">{{ item.name }}</h5>
-            <span class="client-location d-block mb-3">{{ item.location }}</span>
-            <span class="client-service text-uppercase font-size-sm">{{ item.service }}</span>
+            <span class="client-location d-block mb-2">{{ item.location }}</span>
+            <span class="client-service text-uppercase font-size-micro">{{ item.service }}</span>
           </div>
 
         </div>

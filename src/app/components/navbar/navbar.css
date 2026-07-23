@@ -71,7 +71,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1050;
+  z-index: 9999999 !important;
   padding: 20px 0; /* Floats the pill navbar nicely from the top */
   pointer-events: none; /* Allows click-throughs in empty padding areas */
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
@@ -436,7 +436,7 @@
   -webkit-backdrop-filter: blur(30px);
   border-left: 1px solid rgba(0, 0, 0, 0.08); /* Soft dark border line */
   box-shadow: -15px 0 45px rgba(0, 0, 0, 0.15); /* Softer shadow */
-  z-index: 2005;
+  z-index: 99999999 !important;
   transform: translateX(100%);
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 45px 35px;
@@ -579,13 +579,13 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
-  z-index: 2002;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99999998 !important;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  transition: all 0.4s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 }
 
 .drawer-overlay.show {

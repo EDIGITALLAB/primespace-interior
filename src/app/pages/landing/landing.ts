@@ -8,10 +8,11 @@ import { MapContact } from '../../components/map-contact/map-contact';
 import { About } from '../../components/about/about';
 import { ScrollingFeatures } from '../../components/scrolling-features/scrolling-features';
 import { FeaturedServices } from '../../components/featured-services/featured-services';
+import { WhyChooseUs } from '../../components/why-choose-us/why-choose-us';
 
 @Component({
   selector: 'app-landing',
-  imports: [Testimonials, HeroSection, DesignCategories, DesignProcess, BeforeAfterSlider, MapContact, About, ScrollingFeatures, FeaturedServices],
+  imports: [Testimonials, HeroSection, DesignCategories, DesignProcess, BeforeAfterSlider, MapContact, About, ScrollingFeatures, FeaturedServices, WhyChooseUs],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })

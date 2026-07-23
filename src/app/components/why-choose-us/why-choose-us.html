@@ -1,0 +1,228 @@
+<section class="why-choose-us-section py-4 bg-white position-relative overflow-hidden">
+
+  <!-- Subtle luxury background graphics -->
+  <div class="why-mesh-glow"></div>
+
+  <!-- Full Background Architectural & Interior CAD Blueprint SVG Pattern Overlay -->
+  <!-- Full Background Endless Tiling Architectural & Interior Blueprint SVG Pattern Overlay -->
+  <div class="why-full-bg-svg-wrap">
+    <svg class="why-full-bg-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="whyFullArchitecturalTile" width="180" height="180" patternUnits="userSpaceOnUse">
+          <!-- Background Axis Grid Lines -->
+          <g stroke="currentColor" stroke-width="0.5" opacity="0.35" stroke-dasharray="3 3">
+            <line x1="0" y1="90" x2="180" y2="90" />
+            <line x1="90" y1="0" x2="90" y2="180" />
+          </g>
+
+          <!-- Center Blueprint Compass Dial -->
+          <g stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.5" transform="translate(90, 90)">
+            <circle cx="0" cy="0" r="24" stroke-dasharray="2 2" />
+            <circle cx="0" cy="0" r="12" />
+            <circle cx="0" cy="0" r="2" fill="currentColor" />
+          </g>
+
+          <!-- Item 1: Modern Armchair / Living Chair (Top Left) -->
+          <g stroke="currentColor" stroke-width="0.8" fill="none">
+            <path d="M22 38 V26 A10 10 0 0 1 42 26 V38" />
+            <path d="M16 52 H48 V65 A5 5 0 0 1 43 70 H21 A5 5 0 0 1 16 65 Z" />
+            <path d="M20 70 V77 M44 70 V77" />
+          </g>
+
+          <!-- Item 2: Floor Lamp & Shade (Top Right) -->
+          <g stroke="currentColor" stroke-width="0.8" fill="none">
+            <path d="M125 25 L133 12 H147 L155 25 Z" />
+            <path d="M140 25 V68" />
+            <path d="M128 68 H152" />
+          </g>
+
+          <!-- Item 3: Dining Table & Chairs Blueprint (Bottom Left) -->
+          <g stroke="currentColor" stroke-width="0.8" fill="none">
+            <rect x="20" y="125" width="40" height="25" rx="3" />
+            <rect x="32" y="116" width="16" height="6" rx="1" />
+            <rect x="32" y="153" width="16" height="6" rx="1" />
+          </g>
+
+          <!-- Item 4: Modular Cabinet & Furniture (Bottom Right) -->
+          <g stroke="currentColor" stroke-width="0.8" fill="none">
+            <rect x="115" y="120" width="38" height="38" rx="3" />
+            <line x1="115" y1="139" x2="153" y2="139" />
+            <circle cx="127" cy="130" r="1.5" fill="currentColor" />
+            <circle cx="141" cy="130" r="1.5" fill="currentColor" />
+          </g>
+        </pattern>
+      </defs>
+
+      <!-- Tile across 100% full background width and height -->
+      <rect width="100%" height="100%" fill="url(#whyFullArchitecturalTile)" />
+    </svg>
+  </div>
+
+  <div class="container-fluid bento-container position-relative z-2">
+
+    <!-- Header Block -->
+    <div class="text-center mb-5 max-w-750 mx-auto">
+      <div class="d-inline-flex align-items-center gap-2 mb-2">
+        <span class="why-bento-badge">
+          <i class="fa-solid fa-crown me-1.5"></i> THE PRIME ADVANTAGE
+        </span>
+        <span class="why-count-chip">8 PILLARS OF EXCELLENCE</span>
+      </div>
+      <h2 class="why-main-title text-uppercase m-0 mb-3">
+        Why Choose <span class="why-title-accent">Prime Space Interior</span>
+      </h2>
+      <p class="why-lead-text text-muted m-0">
+        8 Architectural Benchmarks of Quality, Engineering Precision, and Unmatched Transparency that elevate your space
+        into a luxury masterpiece.
+      </p>
+    </div>
+
+    <!-- Architectural Bento Grid Layout -->
+    <div class="row g-4 align-items-center">
+
+      <!-- LEFT BENTO COLUMN (3 Pillars: 01, 03, 05) -->
+      <div class="col-lg-4 d-flex flex-column gap-4">
+
+        <!-- Pillar 01 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[0].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[0].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[0].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[0].description }}</p>
+        </div>
+
+        <!-- Pillar 03 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[2].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[2].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[2].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[2].description }}</p>
+        </div>
+
+        <!-- Pillar 05 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[4].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[4].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[4].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[4].description }}</p>
+        </div>
+
+      </div>
+
+      <!-- CENTER BENTO FEATURE HUB (Pillar 07, Center Brand Core Hub, Pillar 08) -->
+      <div class="col-lg-4 d-flex flex-column gap-4">
+
+        <!-- Pillar 07 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[6].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[6].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[6].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[6].description }}</p>
+        </div>
+
+        <!-- Center Brand Emblem Plinth -->
+        <div
+          class="bento-center-hub p-4 p-md-5 rounded-4 text-center position-relative overflow-hidden shadow-lg border">
+          <div class="hub-ambient-glow"></div>
+
+          <div class="hub-emblem-icon mx-auto mb-3 d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-award"></i>
+          </div>
+
+          <span class="hub-crown-pill mb-2 d-inline-block text-uppercase">
+            <i class="fa-solid fa-sparkles me-1 text-purple"></i> UNMATCHED STANDARDS
+          </span>
+
+          <h3 class="hub-title fw-black text-uppercase mb-2">PRIME SPACE</h3>
+          <p class="hub-subtitle font-size-xs text-muted mb-4">Engineering Precision & Bespoke Interiors</p>
+
+          <div class="row g-2 justify-content-center border-top pt-3 hub-stats-row">
+            <div class="col-4 border-end">
+              <span class="hub-stat-num d-block fw-black">10 Yrs</span>
+              <span class="hub-stat-lbl font-size-micro text-muted text-uppercase">Warranty</span>
+            </div>
+            <div class="col-4 border-end">
+              <span class="hub-stat-num d-block fw-black">45 Days</span>
+              <span class="hub-stat-lbl font-size-micro text-muted text-uppercase">Delivery</span>
+            </div>
+            <div class="col-4">
+              <span class="hub-stat-num d-block fw-black">100%</span>
+              <span class="hub-stat-lbl font-size-micro text-muted text-uppercase">Bespoke</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pillar 08 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[7].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[7].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[7].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[7].description }}</p>
+        </div>
+      </div>
+
+      <!-- RIGHT BENTO COLUMN (3 Pillars: 02, 04, 06) -->
+      <div class="col-lg-4 d-flex flex-column gap-4">
+
+        <!-- Pillar 02 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[1].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[1].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[1].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[1].description }}</p>
+        </div>
+
+        <!-- Pillar 04 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[3].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[3].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[3].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[3].description }}</p>
+        </div>
+
+        <!-- Pillar 06 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[5].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[5].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[5].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[5].description }}</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>

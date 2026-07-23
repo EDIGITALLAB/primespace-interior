@@ -30,39 +30,39 @@
               </a>
               <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="servicesDropdown">
                 <div class="dropdown-grid">
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-compass-drafting"></i></div>
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-house-chimney-window"></i></div>
                     <div class="dropdown-meta">
-                      <span class="dropdown-title">ARCHITECTURE</span>
-                      <span class="dropdown-desc">German architectural planning</span>
+                      <span class="dropdown-title">RESIDENTIAL INTERIORS</span>
+                      <span class="dropdown-desc">Complete home & luxury space planning</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-city"></i></div>
                     <div class="dropdown-meta">
-                      <span class="dropdown-title">INTERIOR WORK</span>
-                      <span class="dropdown-desc">Execution & premium build</span>
+                      <span class="dropdown-title">COMMERCIAL INTERIORS</span>
+                      <span class="dropdown-desc">Offices, retail showrooms & cafes</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-cube"></i></div>
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-cubes-stacked"></i></div>
                     <div class="dropdown-meta">
-                      <span class="dropdown-title">2D/3D LAYOUT</span>
-                      <span class="dropdown-desc">Photorealistic layout drafts</span>
+                      <span class="dropdown-title">CIVIL WORKS</span>
+                      <span class="dropdown-desc">Masonry, tiling & electrical layouting</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-couch"></i></div>
                     <div class="dropdown-meta">
-                      <span class="dropdown-title">INTERIOR DESIGN</span>
-                      <span class="dropdown-desc">Bespoke luxury home layouts</span>
+                      <span class="dropdown-title">WOOD WORKS</span>
+                      <span class="dropdown-desc">German modular & custom furniture</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-palette"></i></div>
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
+                    <div class="dropdown-icon-box"><i class="fa-solid fa-paint-roller"></i></div>
                     <div class="dropdown-meta">
-                      <span class="dropdown-title">DECORATION ART</span>
-                      <span class="dropdown-desc">Curated wall art & decors</span>
+                      <span class="dropdown-title">RENOVATION</span>
+                      <span class="dropdown-desc">Home, villa & office remodeling</span>
                     </div>
                   </a>
                 </div>
@@ -152,7 +152,7 @@
 
             <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a>
             </li>
-            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">CONTACT</span></a>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#" (click)="openConsultationModal($event)"><span class="nav-link-text">CONTACT</span></a>
             </li>
           </ul>
         </div>
@@ -240,7 +240,7 @@
     <div class="drawer-bottom-section">
       <!-- Quick Info CTA -->
       <div class="drawer-cta mb-4">
-        <a href="#" class="btn btn-accent w-100 py-3 text-uppercase fw-bold letter-spacing-1">Book Consultation</a>
+        <a href="#" class="btn btn-accent w-100 py-3 text-uppercase fw-bold letter-spacing-1" (click)="openConsultationModal($event)">Book Consultation</a>
       </div>
 
       <!-- Social Media Links -->

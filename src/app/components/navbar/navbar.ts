@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,6 +11,8 @@ export class Navbar {
   isScrolled = false;
   isSideMenuOpen = false;
   isMobileMenuOpen = false;
+
+  constructor(public consultationModalService: ConsultationModalService) {}
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -29,6 +32,14 @@ export class Navbar {
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  openConsultationModal(event: Event) {
+    event.preventDefault();
+    if (this.isSideMenuOpen) {
+      this.toggleSideMenu();
+    }
+    this.consultationModalService.open();
   }
 }
 

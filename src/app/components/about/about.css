@@ -3,7 +3,7 @@
 .about-section {
   background-color: #ffffff !important;
   font-family: var(--font-body);
-  padding: 90px 0 30px 0 !important;
+  padding: 40px 0 30px 0 !important;
 }
 
 /* Subtle wine purple mesh glow in the background */
@@ -11,7 +11,7 @@
   position: absolute;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(150, 5, 62, 0.03) 0%, rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgba(var(--primary-purple-rgb), 0.03) 0%, rgba(255, 255, 255, 0) 70%);
   filter: blur(60px);
   top: -100px;
   left: -150px;
@@ -29,7 +29,7 @@
   font-size: 11vw; /* Reduced slightly to fit PRIME SPACE elegantly in one line */
   font-weight: 900;
   color: transparent;
-  -webkit-text-stroke: 2px rgba(150, 5, 62, 0.15); /* Thicker stroke and 15% opacity for bold, clear visibility */
+  -webkit-text-stroke: 2px rgba(var(--primary-purple-rgb), 0.15); /* Thicker stroke and 15% opacity for bold, clear visibility */
   pointer-events: none;
   z-index: 1;
   letter-spacing: 0.1em; /* Reduced spacing to align brand name */
@@ -87,7 +87,7 @@
   left: 20px;
   width: 250px;
   height: 250px;
-  border: 10px solid rgba(150, 5, 62, 0.04);
+  border: 10px solid rgba(var(--primary-purple-rgb), 0.04);
   pointer-events: none;
   z-index: 1;
   transition: transform 0.8s ease;
@@ -167,7 +167,7 @@
 .layered-image-container:hover .experience-card {
   transform: translateY(-8px);
   border-color: var(--primary-purple);
-  box-shadow: 0 20px 45px rgba(150, 5, 62, 0.25);
+  box-shadow: 0 20px 45px rgba(var(--primary-purple-rgb), 0.25);
 }
 
 .experience-num {
@@ -188,8 +188,8 @@
 
 /* Content Area styling */
 .about-badge-pill {
-  background-color: rgba(150, 5, 62, 0.05);
-  border: 1px solid rgba(150, 5, 62, 0.12);
+  background-color: rgba(var(--primary-purple-rgb), 0.05);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.12);
   border-radius: 20px;
   padding: 5px 14px;
   display: inline-flex;
@@ -222,10 +222,11 @@
 }
 
 .text-highlight {
-  color: var(--primary-purple);
-  background: linear-gradient(135deg, var(--primary-purple) 0%, #d4145a 100%);
+  background: linear-gradient(to right, var(--primary-purple) 0%, color-mix(in srgb, var(--primary-purple) 45%, #ff007a) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: var(--primary-purple);
 }
 
 .about-desc {
@@ -259,8 +260,8 @@
 .stat-card:hover {
   transform: translateY(-6px);
   background: #ffffff;
-  border-color: rgba(150, 5, 62, 0.15);
-  box-shadow: 0 15px 30px rgba(150, 5, 62, 0.06);
+  border-color: rgba(var(--primary-purple-rgb), 0.15);
+  box-shadow: 0 15px 30px rgba(var(--primary-purple-rgb), 0.06);
 }
 
 .stat-number {

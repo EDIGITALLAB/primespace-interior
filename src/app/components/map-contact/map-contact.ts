@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 export interface StudioLocation {
   id: string;
@@ -80,7 +81,10 @@ export class MapContact implements OnInit {
     }
   ];
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(
+    private sanitizer: DomSanitizer,
+    public consultationModalService: ConsultationModalService
+  ) {}
 
   ngOnInit() {
     this.locations.forEach(loc => {
@@ -118,12 +122,13 @@ export class MapContact implements OnInit {
     this.activePhotoIndex = (this.activePhotoIndex - 1 + this.galleryPhotos.length) % this.galleryPhotos.length;
   }
 
-  onSubmitMessage(event: Event, name: string, email: string, phone: string, service: string, message: string) {
+  onModalFormSubmit(event: Event, name: string, email: string, phone: string, service: string, message: string) {
     event.preventDefault();
     if (name && email && phone && service && message) {
-      alert(`Thank you, ${name}! Your inquiry for "${service}" at our ${this.activeLocation.city} studio has been received. Our expert will reach out to you at ${email} or call ${phone} soon.`);
+      alert(`Thank you, ${name}! Your consultation request for "${service}" has been received. Our lead architect will reach out to you within 24 hours.`);
       const form = event.target as HTMLFormElement;
       form.reset();
+      this.consultationModalService.close();
     }
   }
 }
