@@ -144,7 +144,7 @@
       
       <!-- Column 1: Brand Profile -->
       <div class="col-lg-3 col-md-6 brand-column">
-        <a class="footer-brand d-inline-block mb-3" href="#">
+        <a class="footer-brand d-inline-block mb-3" routerLink="/">
           <img src="/nevlogo.png" alt="Prime Space Interior" class="footer-logo-img">
         </a>
         <p class="footer-brand-text mb-4">
@@ -170,12 +170,11 @@
       <div class="col-lg-3 col-md-6">
         <h4 class="footer-title text-white">Our Services</h4>
         <ul class="footer-links-list list-unstyled m-0 p-0">
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Modular Kitchens</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Bespoke Bedroom Design</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Luxury Living Areas</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Refined Dining Rooms</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Kids Bedrooms</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Bespoke Decorative Units</a></li>
+          <li><a [routerLink]="['/services', 'residential-interiors']" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Residential Interiors</a></li>
+          <li><a [routerLink]="['/services', 'commercial-interiors']" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Commercial Interiors</a></li>
+          <li><a [routerLink]="['/services', 'civil-works']" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Civil Works</a></li>
+          <li><a [routerLink]="['/services', 'wood-works']" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Wood Works</a></li>
+          <li><a [routerLink]="['/services', 'renovation']" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Renovation Services</a></li>
         </ul>
       </div>
 
@@ -183,12 +182,12 @@
       <div class="col-lg-3 col-md-6">
         <h4 class="footer-title text-white">Company</h4>
         <ul class="footer-links-list list-unstyled m-0 p-0">
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Home</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Company Info</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Interactive Process</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Package Offers</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Design Gallery</a></li>
-          <li><a href="#" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Contact Us</a></li>
+          <li><a routerLink="/" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Home</a></li>
+          <li><a routerLink="/" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Company Info</a></li>
+          <li><a routerLink="/" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Interactive Process</a></li>
+          <li><a routerLink="/" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Package Offers</a></li>
+          <li><a routerLink="/" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Design Gallery</a></li>
+          <li><a routerLink="/" class="footer-link"><i class="fa-solid fa-chevron-right me-2 font-size-xs"></i>Contact Us</a></li>
         </ul>
       </div>
 

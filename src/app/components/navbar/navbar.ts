@@ -1,9 +1,11 @@
 import { Component, HostListener } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
@@ -34,6 +36,10 @@ export class Navbar {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
   }
 
+  closeMobileMenu() {
+    this.isMobileMenuOpen = false;
+  }
+
   openConsultationModal(event: Event) {
     event.preventDefault();
     if (this.isSideMenuOpen) {
@@ -42,4 +48,3 @@ export class Navbar {
     this.consultationModalService.open();
   }
 }
-
