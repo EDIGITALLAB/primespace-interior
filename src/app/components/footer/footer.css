@@ -2,7 +2,7 @@
   background-color: #0d0d0d;
   /* Premium deep dark background */
   font-family: var(--font-body);
-  border-top: none !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
   z-index: 10;
   overflow: hidden;
   position: relative;
@@ -11,12 +11,18 @@
 .main-footer .container-fluid {
   position: relative;
   z-index: 2;
-  padding-top: 115px !important;
 }
 
 /* Linear glow divider line at the top */
 .footer-border-glow {
-  display: none !important;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0) 0%, var(--primary-purple) 30%, rgba(255, 255, 255, 0.85) 50%, var(--primary-purple) 70%, rgba(var(--primary-purple-rgb), 0) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.9;
+  z-index: 3;
 }
 
 /* Single Full-Width Luxury Living Room Interior Watermark (Subtle Whisper Opacity) */

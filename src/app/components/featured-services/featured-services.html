@@ -27,9 +27,7 @@
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-4 align-items-stretch fs-cards-row">
       @for (s of servicesList; track s.id) {
       <div class="col">
-        <div 
-          class="fs-exact-card bg-white rounded-4 h-100 px-4 pt-5 pb-0 d-flex flex-column justify-content-between position-relative shadow-sm border cursor-pointer"
-          [routerLink]="['/services', s.slug]">
+        <div class="fs-exact-card bg-white rounded-4 h-100 px-4 pt-5 pb-0 d-flex flex-column justify-content-between position-relative shadow-sm border cursor-pointer" (click)="openConsultationModal($event)">
           
           <!-- Top Notch Outer White Shell + Inner Tint Circle -->
           <div class="fs-notch-outer-shell d-flex align-items-center justify-content-center">
@@ -58,8 +56,8 @@
           <!-- Bottom Explore Link & Full-Width Bottom Accent Bar -->
           <div class="fs-card-footer-wrapper">
             <div class="text-center pt-2 mb-3">
-              <a [routerLink]="['/services', s.slug]" class="fs-exact-explore-link font-size-xs fw-bold text-uppercase text-decoration-none d-inline-flex align-items-center gap-1.5">
-                <span>Explore Details</span>
+              <a href="#" class="fs-exact-explore-link font-size-xs fw-bold text-uppercase text-decoration-none d-inline-flex align-items-center gap-1.5" (click)="openConsultationModal($event)">
+                <span>Explore More</span>
                 <i class="fa-solid fa-arrow-right font-size-xs"></i>
               </a>
             </div>

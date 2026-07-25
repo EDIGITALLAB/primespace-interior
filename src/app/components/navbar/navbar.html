@@ -8,17 +8,18 @@
         <!-- Left: Brand Logo -->
         <a class="navbar-brand m-0 d-flex align-items-center" href="#">
           <img src="/BrandLogo.svg" alt="Prime Space Interior" class="navbar-logo-img">
+
         </a>
 
         <!-- Center: Collapsible Menu -->
         <div class="collapse navbar-collapse h-100 d-lg-flex align-items-center justify-content-center"
-          id="mainNavbarSupportedContent" [class.show]="isMobileMenuOpen">
+          id="mainNavbarSupportedContent">
 
           <!-- Main Navigation Links Centered horizontally -->
           <ul class="navbar-nav mx-auto mb-0 align-items-lg-center"
             style="font-weight: 600; font-size: 13px; font-family: var(--font-headings); letter-spacing: 0.5px;">
 
-            <li class="nav-item px-lg-1.5"><a class="nav-link active" routerLink="/" (click)="closeMobileMenu()"><span
+            <li class="nav-item px-lg-1.5"><a class="nav-link active" href="#"><span
                   class="nav-link-text">HOME</span></a></li>
 
             <li class="nav-item dropdown px-lg-1.5">
@@ -29,40 +30,35 @@
               </a>
               <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="servicesDropdown">
                 <div class="dropdown-grid">
-                  <a class="dropdown-item d-flex align-items-center cursor-pointer"
-                    [routerLink]="['/services', 'residential-interiors']" (click)="closeMobileMenu()">
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-house-chimney-window"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">RESIDENTIAL INTERIORS</span>
                       <span class="dropdown-desc">Complete home & luxury space planning</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center cursor-pointer"
-                    [routerLink]="['/services', 'commercial-interiors']" (click)="closeMobileMenu()">
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-city"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">COMMERCIAL INTERIORS</span>
                       <span class="dropdown-desc">Offices, retail showrooms & cafes</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center cursor-pointer"
-                    [routerLink]="['/services', 'civil-works']" (click)="closeMobileMenu()">
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-cubes-stacked"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">CIVIL WORKS</span>
                       <span class="dropdown-desc">Masonry, tiling & electrical layouting</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center cursor-pointer"
-                    [routerLink]="['/services', 'wood-works']" (click)="closeMobileMenu()">
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-couch"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">WOOD WORKS</span>
                       <span class="dropdown-desc">German modular & custom furniture</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center cursor-pointer"
-                    [routerLink]="['/services', 'renovation']" (click)="closeMobileMenu()">
+                  <a class="dropdown-item d-flex align-items-center" href="#featured-services-section">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-paint-roller"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">RENOVATION</span>
@@ -81,42 +77,42 @@
               </a>
               <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="productsDropdown">
                 <div class="dropdown-grid">
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-kitchen-set"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">KITCHEN UNITS</span>
                       <span class="dropdown-desc">Bespoke modular fittings</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-bed"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BEDROOM SETS</span>
                       <span class="dropdown-desc">Premium wardrobes & frames</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-chair"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">DINING TABLES</span>
                       <span class="dropdown-desc">Luxury marble & wood tables</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-couch"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">LIVING SEATING</span>
                       <span class="dropdown-desc">Premium sofas & recliners</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-palette"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">WALL DECOR</span>
                       <span class="dropdown-desc">Modern artwork & custom panels</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-child"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">KIDS FURNITURE</span>
@@ -136,14 +132,14 @@
               <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations"
                 aria-labelledby="locationsDropdown">
                 <div class="dropdown-grid-locations">
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BENGALURU</span>
                       <span class="dropdown-desc">Silicon Valley Hub</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/">
+                  <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BHUBANESWAR</span>
@@ -154,8 +150,7 @@
               </div>
             </li>
 
-            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/"><span
-                  class="nav-link-text">BLOGS</span></a>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a>
             </li>
             <li class="nav-item px-lg-1.5"><a class="nav-link" href="#" (click)="openConsultationModal($event)"><span
                   class="nav-link-text">CONTACT</span></a>
