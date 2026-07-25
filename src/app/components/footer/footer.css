@@ -275,9 +275,16 @@
 
 /* Responsive padding adjustments */
 @media (min-width: 768px) {
-  .py-5 {
-    padding-top: 80px !important;
+  .main-footer .container-fluid {
+    padding-top: 110px !important;
     padding-bottom: 40px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .main-footer .container-fluid {
+    padding-top: 95px !important;
+    padding-bottom: 30px !important;
   }
 }
 

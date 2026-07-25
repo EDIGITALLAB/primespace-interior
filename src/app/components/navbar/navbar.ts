@@ -1,9 +1,10 @@
 import { Component, HostListener } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })

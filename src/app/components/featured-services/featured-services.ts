@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 export interface ServiceCardData {
   id: string;
+  slug: string;
   num: string;
   title: string;
   icon: string;
@@ -13,7 +15,7 @@ export interface ServiceCardData {
 @Component({
   selector: 'app-featured-services',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './featured-services.html',
   styleUrl: './featured-services.css',
 })
@@ -23,6 +25,7 @@ export class FeaturedServices {
   readonly servicesList: ServiceCardData[] = [
     {
       id: '01',
+      slug: 'residential-interiors',
       num: '01',
       title: 'Residential Interiors',
       icon: 'fa-solid fa-house-chimney-window',
@@ -40,6 +43,7 @@ export class FeaturedServices {
     },
     {
       id: '02',
+      slug: 'commercial-interiors',
       num: '02',
       title: 'Commercial Interiors',
       icon: 'fa-solid fa-city',
@@ -55,6 +59,7 @@ export class FeaturedServices {
     },
     {
       id: '03',
+      slug: 'civil-works',
       num: '03',
       title: 'Civil Works',
       icon: 'fa-solid fa-cubes-stacked',
@@ -68,6 +73,7 @@ export class FeaturedServices {
     },
     {
       id: '04',
+      slug: 'wood-works',
       num: '04',
       title: 'Wood Works',
       icon: 'fa-solid fa-couch',
@@ -83,6 +89,7 @@ export class FeaturedServices {
     },
     {
       id: '05',
+      slug: 'renovation',
       num: '05',
       title: 'Renovation',
       icon: 'fa-solid fa-paint-roller',
