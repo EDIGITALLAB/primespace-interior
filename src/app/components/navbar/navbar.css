@@ -120,17 +120,19 @@
 
 /* Brand Logo Image */
 .navbar-logo-img {
-  height: 42px;
-  max-height: 42px;
+  height: 52px;
+  max-height: 52px;
   width: auto;
   object-fit: contain;
   display: block;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.05));
+  transform: translateZ(0);
 }
 
 .main-header.scrolled .navbar-logo-img {
-  height: 38px;
-  max-height: 38px;
+  height: 44px;
+  max-height: 44px;
 }
 
 /* Brand Name Text - Hidden initially, reveals smoothly on scroll */
@@ -360,7 +362,8 @@
     font-size: 12.5px !important;
   }
   .navbar-logo-img {
-    height: 32px !important;
+    height: 42px !important;
+    max-height: 42px !important;
   }
   .unique-menu-icon {
     width: 45px !important;
@@ -660,8 +663,8 @@
   }
 
   .navbar-logo-img {
-    height: 34px !important;
-    max-height: 34px !important;
+    height: 42px !important;
+    max-height: 42px !important;
   }
 
   .navbar-collapse {
