@@ -1,14 +1,11 @@
 /* Global CSS custom styling variables and body setups */
 
 :root {
-  --color-purple: #7b3182;
-  --color-purple-dark: #612267;
-  --color-yellow: #f9b514;
+
   --font-headings: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
   --primary-purple: #96053E;
   --primary-purple-rgb: 150, 5, 62;
-  --primary-navy: #000000;
   --bg-light-blue: #f2f6f9;
   --white: #ffffff;
 }

@@ -91,7 +91,7 @@
   font-family: var(--font-headings);
   font-size: 1.15rem;
   font-weight: 800;
-  color: var(--primary-navy);
+  color: #111111;
   transition: color 0.4s ease;
 }
 

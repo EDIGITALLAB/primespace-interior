@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 export interface Category {
   id: string;
@@ -12,7 +13,7 @@ export interface Category {
 @Component({
   selector: 'app-design-categories',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './design-categories.html',
   styleUrl: './design-categories.css',
 })

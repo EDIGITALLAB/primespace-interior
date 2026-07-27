@@ -135,7 +135,7 @@
 .after-badge {
   right: 24px;
   background-color: rgba(255, 255, 255, 0.85); /* Sleek Glass White */
-  color: var(--primary-navy);
+  color: #111111;
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
 
