@@ -6,6 +6,7 @@ import { ConsultationModal } from './components/consultation-modal/consultation-
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [RouterOutlet, Navbar, Footer, ConsultationModal],
   templateUrl: './app.html',
   styleUrl: './app.css'

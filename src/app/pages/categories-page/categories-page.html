@@ -1,0 +1,389 @@
+<div class="categories-page-wrapper bg-white position-relative">
+
+  <!-- HERO HEADER SECTION -->
+  <section class="categories-hero-section position-relative py-5 py-lg-6 overflow-hidden">
+    <div class="hero-bg-watermark"></div>
+    <div class="hero-glow-effect"></div>
+
+    <div class="container position-relative z-2">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-10 col-xl-8">
+          <span class="hero-badge text-uppercase mb-3 d-inline-block">
+            <i class="fa-solid fa-sparkles me-2"></i>Curated Spaces & Interior Designs
+          </span>
+          <h1 class="hero-title text-uppercase mb-3">Explore Design Categories</h1>
+          <p class="hero-subtitle mb-4">
+            Discover bespoke modular kitchens, serene bedroom sanctuaries, and luxury living setups engineered with
+            German hardware and 10-year warranty.
+          </p>
+
+          <!-- Interactive Search Bar -->
+          <div class="search-box-wrapper mx-auto mb-4">
+            <div class="input-group search-input-group shadow-sm rounded-pill bg-white overflow-hidden p-1 border">
+              <span class="input-group-text bg-transparent border-0 ps-3">
+                <i class="fa-solid fa-magnifying-glass text-purple"></i>
+              </span>
+              <input type="text" class="form-control border-0 shadow-none px-2"
+                placeholder="Search category (e.g. Modular Kitchen, Wardrobes, Balcony)..." [ngModel]="searchQuery()"
+                (ngModelChange)="searchQuery.set($event)" />
+              <button *ngIf="searchQuery()" class="btn btn-clear-search border-0 bg-transparent pe-3"
+                (click)="searchQuery.set('')" type="button">
+                <i class="fa-solid fa-xmark text-muted"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Quick Filter Pills -->
+          <div class="filter-pills-container d-flex flex-wrap justify-content-center gap-2">
+            <button *ngFor="let opt of filterOptions"
+              class="filter-pill-btn rounded-pill border-0 px-3.5 py-2 text-uppercase"
+              [class.active]="activeFilter() === opt.value" (click)="setFilter(opt.value)">
+              {{ opt.label }}
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES GRID SECTION WITH SORT & BUDGET FILTERS -->
+  <section class="categories-grid-section py-5 position-relative">
+    <div class="container">
+
+      <!-- Controls & Ticker Bar -->
+      <div
+        class="controls-bar d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 border-bottom pb-3">
+        <div class="d-flex align-items-center gap-2">
+          <span class="grid-counter-badge rounded-pill px-3 py-1.5 text-uppercase fw-bold">
+            Showing {{ filteredCategories().length }} {{ filteredCategories().length === 1 ? 'Space' : 'Spaces' }}
+          </span>
+          <span *ngIf="searchQuery()" class="text-muted small">for "{{ searchQuery() }}"</span>
+        </div>
+
+        <!-- Budget & Sort Selectors -->
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <!-- Budget Selector -->
+          <select class="form-select form-select-sm rounded-pill border shadow-none text-dark fw-bold w-auto"
+            [ngModel]="budgetFilter()" (ngModelChange)="budgetFilter.set($event)">
+            <option value="all">All Budgets</option>
+            <option value="under1l">Under ₹1 Lakh</option>
+            <option value="1l-1.5l">₹1L - ₹1.5 Lakhs</option>
+            <option value="above1.5l">Above ₹1.5 Lakhs</option>
+          </select>
+
+          <!-- Sort Selector -->
+          <select class="form-select form-select-sm rounded-pill border shadow-none text-dark fw-bold w-auto"
+            [ngModel]="sortBy()" (ngModelChange)="sortBy.set($event)">
+            <option value="recommended">Sort: Recommended</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="turnaround">Fastest Delivery</option>
+            <option value="rating">Highest Rated ⭐</option>
+          </select>
+
+          <!-- Reset Button -->
+          <button
+            *ngIf="activeFilter() !== 'all' || searchQuery() || budgetFilter() !== 'all' || sortBy() !== 'recommended'"
+            class="btn btn-sm btn-link text-purple text-decoration-none p-0 fw-bold ms-1"
+            (click)="setFilter('all'); searchQuery.set(''); budgetFilter.set('all'); sortBy.set('recommended')">
+            Reset <i class="fa-solid fa-rotate-left ms-1"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- No Results State -->
+      <div *ngIf="filteredCategories().length === 0"
+        class="no-results-box text-center py-5 my-4 bg-light rounded-4 border">
+        <i class="fa-solid fa-compass-drafting fa-3x text-purple mb-3"></i>
+        <h4 class="fw-bold text-dark mb-2">No Room Categories Found</h4>
+        <p class="text-muted mb-3">We couldn't find any category matching your selected filters.</p>
+        <button class="btn btn-purple rounded-pill px-4"
+          (click)="setFilter('all'); searchQuery.set(''); budgetFilter.set('all'); sortBy.set('recommended')">
+          Reset All Filters
+        </button>
+      </div>
+
+      <!-- Categories Cards Grid -->
+      <div class="row g-4 align-items-stretch">
+        <div *ngFor="let cat of filteredCategories()" class="col-lg-4 col-md-6 d-flex">
+          <div
+            class="category-card bg-white rounded-4 overflow-hidden border shadow-sm w-100 d-flex flex-column transition-all position-relative">
+
+            <!-- Card Image Box with Gallery Navigation -->
+            <div class="card-img-wrapper position-relative overflow-hidden cursor-pointer"
+              (click)="openQuickView(cat, $event)">
+              <img [src]="getActiveImage(cat)" [alt]="cat.name" class="card-img-top w-100 object-fit-cover">
+
+              <div class="img-gradient-overlay"></div>
+
+              <!-- Top Left Number Pill -->
+              <span
+                class="card-num-badge position-absolute top-0 start-0 m-3 rounded-circle d-flex align-items-center justify-content-center fw-bold">
+                {{ cat.num }}
+              </span>
+
+              <!-- Top Right Price Badge -->
+              <span class="card-price-badge position-absolute top-0 end-0 m-3 rounded-pill px-3 py-1 fw-bold">
+                Starts at {{ cat.startingPrice }}
+              </span>
+
+              <!-- Quick View Button Overlay -->
+              <button
+                class="btn-quick-view position-absolute top-50 start-50 translate-middle rounded-pill px-3 py-1.5 fw-bold shadow-lg"
+                (click)="openQuickView(cat, $event)">
+                <i class="fa-solid fa-expand me-1"></i> Quick View
+              </button>
+
+              <!-- Image Gallery Indicator Dots -->
+              <div *ngIf="cat.images.length > 1"
+                class="gallery-dots-bar position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-1.5 z-3"
+                (click)="$event.stopPropagation()">
+                <span *ngFor="let img of cat.images; let imgIdx = index" class="thumb-dot rounded-circle"
+                  [class.active]="(activeCardImageMap()[cat.id] || 0) === imgIdx"
+                  (click)="setImageIndex(cat.id, imgIdx, $event)">
+                </span>
+              </div>
+
+              <!-- Bottom Turnaround Badge -->
+              <span class="card-time-badge position-absolute bottom-0 start-0 m-3 rounded-pill px-2.5 py-1">
+                <i class="fa-regular fa-clock me-1"></i> {{ cat.turnaround }} Delivery
+              </span>
+            </div>
+
+            <!-- Card Content Body -->
+            <div class="card-body p-4 d-flex flex-column flex-grow-1">
+              <div class="mb-2">
+                <div class="d-flex align-items-center justify-content-between mb-1">
+                  <h3 class="card-title text-uppercase m-0 fw-extrabold cursor-pointer"
+                    (click)="openQuickView(cat, $event)">{{ cat.name }}</h3>
+                </div>
+
+                <span class="card-tagline text-purple fw-bold d-block mb-2">{{ cat.tagline }}</span>
+                <p class="card-desc text-muted mb-3 line-clamp-2">{{ cat.desc }}</p>
+              </div>
+
+              <!-- Feature Bullet Points -->
+              <div class="card-features-list mt-auto pt-3 border-top mb-4">
+                <span class="features-header text-uppercase text-muted fw-bold d-block mb-2">Key Highlights:</span>
+                <ul class="list-unstyled mb-0 row g-2">
+                  <li *ngFor="let f of cat.features" class="col-12 d-flex align-items-center small text-dark">
+                    <i class="fa-solid fa-circle-check text-purple me-2"></i>
+                    <span>{{ f }}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Card Action Buttons -->
+              <div class="card-actions pt-2 mt-auto d-flex gap-2">
+                <button (click)="openQuickView(cat, $event)"
+                  class="btn btn-card-details rounded-pill py-2 px-3 fw-bold flex-grow-1">
+                  <span>DETAILS</span>
+                </button>
+                <button (click)="openConsultation($event)"
+                  class="btn btn-card-consult rounded-pill py-2 px-3.5 d-flex align-items-center justify-content-center fw-bold flex-grow-1">
+                  <span>BOOK 3D</span>
+                  <i class="fa-solid fa-arrow-right ms-1.5 btn-arrow"></i>
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+
+  <!-- MATERIAL & HARDWARE QUALITY EXPLORER -->
+  <section class="materials-explorer-section bg-light border-top border-bottom position-relative">
+    <div class="container">
+
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+          <span class="section-subtitle text-uppercase text-purple mb-2 fw-bold d-block">Craftsmanship Standards</span>
+          <h2 class="section-title text-dark text-uppercase m-0 fw-black">Premium Material & Hardware Guarantee</h2>
+          <p class="text-muted mt-2">Every PrimeSpace interior is crafted using 100% moisture-resistant HDMR core,
+            German soft-close fittings, and scratch-proof acrylic finishes.</p>
+        </div>
+      </div>
+
+      <!-- Material Tabs -->
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-10">
+          <div
+            class="material-tabs-nav d-flex flex-wrap justify-content-center gap-2 p-2 bg-white rounded-pill shadow-sm border">
+            <button *ngFor="let m of materials"
+              class="material-tab-btn rounded-pill border-0 px-4 py-2.5 d-flex align-items-center fw-bold transition-all"
+              [class.active]="activeMaterialTab() === m.id" (click)="setMaterialTab(m.id)">
+              <i [class]="m.icon + ' me-2'"></i>
+              <span>{{ m.title.split('&')[0] }}</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Material Detail Panel -->
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div *ngFor="let m of materials" [class.d-none]="activeMaterialTab() !== m.id"
+            class="material-detail-card bg-white rounded-4 p-4 p-md-5 shadow-sm border animate-fade-in">
+            <div class="row align-items-stretch gy-4">
+              <div class="col-md-7">
+                <span class="badge bg-purple-light text-purple text-uppercase rounded-pill px-3 py-1 mb-2 fw-bold">{{
+                  m.subtitle }}</span>
+                <h3 class="fw-extrabold text-dark mb-3">{{ m.title }}</h3>
+                <p class="text-muted mb-4 line-height-relaxed">{{ m.desc }}</p>
+
+                <div class="row g-3">
+                  <div *ngFor="let h of m.highlights" class="col-sm-6">
+                    <div class="material-highlight-item d-flex align-items-center p-2.5 rounded-3 bg-light border">
+                      <div
+                        class="icon-circle me-3 bg-purple text-white rounded-circle d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-check"></i>
+                      </div>
+                      <span class="fw-bold small text-dark">{{ h }}</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              <div class="col-md-5 text-center d-flex flex-column">
+                <div class="material-guarantee-badge h-100 p-4 p-lg-5 rounded-4 text-white shadow-lg d-flex flex-column justify-content-center align-items-center">
+                  <i class="fa-solid fa-shield-halved fa-3x text-white mb-3"></i>
+                  <h4 class="fw-bold mb-2 text-uppercase text-white">10-YEAR WARRANTY</h4>
+                  <p class="small text-white opacity-90 mb-0">On all factory-made modular cabinets, hardware, and structural
+                    hinges.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- BEFORE AFTER TRANSFORMATION SHOWCASE -->
+  <section class="transformation-section bg-white">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+          <span class="section-subtitle text-uppercase text-purple mb-2 fw-bold d-block">Real Transformations</span>
+          <h2 class="section-title text-dark text-uppercase m-0 fw-black">See The PrimeSpace Difference</h2>
+        </div>
+      </div>
+
+      <app-before-after-slider></app-before-after-slider>
+    </div>
+  </section>
+
+  <!-- CONSULTATION CTA BANNER -->
+  <section class="categories-cta-banner py-5 bg-purple-dark text-white position-relative overflow-hidden">
+    <div class="cta-glow-effect"></div>
+    <div class="container position-relative z-2">
+      <div class="row align-items-center justify-content-between gy-4">
+        <div class="col-lg-8">
+          <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-2 fw-bold">Free Design Service</span>
+          <h2 class="text-white text-uppercase fw-black mb-2">Ready To Transform Your Home Space?</h2>
+          <p class="text-white-80 mb-0">Get a 3D floor plan layout, material samples, and an exact cost quote from our senior interior architects.</p>
+        </div>
+        <div class="col-lg-4 text-lg-end">
+          <button (click)="openConsultation($event)"
+            class="btn btn-light-cta rounded-pill px-4 py-3 fw-bold text-uppercase shadow-lg">
+            <span>BOOK FREE 3D CONSULTATION</span>
+            <i class="fa-solid fa-arrow-right ms-2"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY QUICK VIEW MODAL OVERLAY -->
+  <div *ngIf="selectedCategoryModal()"
+    class="quick-view-modal-backdrop position-fixed inset-0 z-1050 d-flex align-items-center justify-content-center p-3 animate-fade-in"
+    (click)="closeQuickView()">
+    <div
+      class="quick-view-modal-card bg-white rounded-4 overflow-hidden shadow-2xl border max-w-900 w-100 z-1060 animate-scale-up"
+      (click)="$event.stopPropagation()">
+
+      <!-- Modal Header -->
+      <div
+        class="modal-header-custom p-4 bg-purple-dark text-white d-flex align-items-center justify-content-between position-relative">
+        <div>
+          <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-1 fw-bold">Space Specifications</span>
+          <h3 class="text-white text-uppercase m-0 fw-black">{{ selectedCategoryModal()?.name }}</h3>
+        </div>
+        <button class="btn btn-close-modal text-white border-0 bg-transparent" (click)="closeQuickView()">
+          <i class="fa-solid fa-xmark fa-2x"></i>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body-custom p-4 p-md-5 overflow-y-auto max-vh-75">
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <!-- Modal Large Image -->
+            <div class="modal-img-box rounded-4 overflow-hidden shadow-sm border mb-3">
+              <img [src]="getActiveImage(selectedCategoryModal()!)" [alt]="selectedCategoryModal()?.name"
+                class="w-100 h-100 object-fit-cover">
+            </div>
+
+            <!-- Modal Image Gallery Thumbnails -->
+            <div *ngIf="selectedCategoryModal()!.images.length > 1" class="d-flex gap-2">
+              <img *ngFor="let img of selectedCategoryModal()!.images; let idx = index" [src]="img"
+                class="modal-thumb-img rounded-3 border cursor-pointer"
+                [class.active]="(activeCardImageMap()[selectedCategoryModal()!.id] || 0) === idx"
+                (click)="setImageIndex(selectedCategoryModal()!.id, idx, $event)">
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <span class="text-purple fw-bold d-block mb-1 text-uppercase small">{{ selectedCategoryModal()?.tagline
+              }}</span>
+            <p class="text-muted mb-4">{{ selectedCategoryModal()?.desc }}</p>
+
+            <!-- Price & Delivery Badges -->
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              <div class="p-2.5 rounded-3 bg-purple-light border border-purple-20 flex-grow-1">
+                <span class="text-uppercase small text-muted fw-bold d-block">Starting Price</span>
+                <span class="fw-extrabold text-purple h5 m-0">{{ selectedCategoryModal()?.startingPrice }}</span>
+              </div>
+              <div class="p-2.5 rounded-3 bg-light border flex-grow-1">
+                <span class="text-uppercase small text-muted fw-bold d-block">Delivery Time</span>
+                <span class="fw-extrabold text-dark h5 m-0">{{ selectedCategoryModal()?.turnaround }}</span>
+              </div>
+            </div>
+
+            <!-- Detailed Scope of Work List -->
+            <div class="mb-4">
+              <h6 class="fw-bold text-dark text-uppercase mb-2">Included Scope of Work:</h6>
+              <ul class="list-unstyled mb-0 row g-2">
+                <li *ngFor="let scope of selectedCategoryModal()?.scopeOfWork"
+                  class="col-12 d-flex align-items-center small text-dark">
+                  <i class="fa-solid fa-circle-check text-purple me-2"></i>
+                  <span>{{ scope }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="d-flex gap-2 pt-2 border-top">
+              <button (click)="openConsultation($event)"
+                class="btn btn-purple rounded-pill py-2.5 px-4 fw-bold text-uppercase flex-grow-1 shadow">
+                <span>BOOK 3D DESIGN FOR THIS ROOM</span>
+                <i class="fa-solid fa-arrow-right ms-2"></i>
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

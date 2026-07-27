@@ -162,13 +162,24 @@
   margin-left: 10px !important; /* Space next to logo icon */
 }
 
-/* Nav Link Color Shifts (scrolled dark vs transparent light) */
+/* Nav Link Color Shifts & Styling */
+.main-header .nav-link {
+  color: #111111 !important;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.main-header .nav-link:hover,
+.main-header .nav-link.active {
+  color: var(--primary-purple, #96053E) !important;
+}
+
 .main-header.scrolled .nav-link {
-  color: var(--primary-navy) !important;
+  color: #111111 !important;
 }
 
 .main-header.scrolled .chevron-icon {
-  color: var(--primary-navy) !important;
+  color: #111111 !important;
 }
 
 .main-header.scrolled .navbar-toggler-icon {
@@ -185,13 +196,14 @@
 }
 
 .chevron-icon {
-  color: var(--primary-navy) !important;
+  color: #111111 !important;
   opacity: 0.8;
   font-size: 9px !important;
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .dropdown:hover .chevron-icon {
+  color: var(--primary-purple, #96053E) !important;
   transform: rotate(180deg);
 }
 
@@ -291,7 +303,7 @@
   font-family: var(--font-headings);
   font-size: 13px !important;
   font-weight: 700 !important;
-  color: var(--primary-navy) !important;
+  color: #111111 !important;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
@@ -320,7 +332,7 @@
     letter-spacing: 0.5px !important;
     position: relative;
     padding: 24px 15px !important; /* Increased spacing between links */
-    color: var(--primary-navy) !important;
+    color: #111111 !important;
     opacity: 0.9 !important;
     transition: opacity 0.2s ease, color 0.3s ease;
   }
@@ -371,7 +383,7 @@
 }
 
 .menu-icon-link {
-  color: var(--primary-navy) !important;
+  color: #111111 !important;
   opacity: 1 !important;
   transition: opacity 0.2s ease !important;
 }
@@ -385,7 +397,7 @@
 }
 
 .main-header.scrolled .menu-icon-link {
-  color: var(--primary-navy) !important;
+  color: #111111 !important;
 }
 
 /* Unique SVG Hamburger Menu Icon Animations */
@@ -470,7 +482,7 @@
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: transparent;
-  color: var(--primary-navy); /* Dark close icon */
+  color: #111111; /* Dark close icon */
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
@@ -529,8 +541,8 @@
 }
 
 .btn-accent:hover {
-  background-color: var(--primary-navy) !important;
-  border-color: var(--primary-navy) !important;
+  background-color: #111111 !important;
+  border-color: #111111 !important;
   color: var(--white) !important;
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(var(--primary-purple-rgb), 0.3);
@@ -610,13 +622,13 @@
   display: block;
   height: 2px;
   width: 100%;
-  background-color: var(--primary-navy);
+  background-color: #111111;
   border-radius: 1px;
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .main-header.scrolled .hamburger-mobile-icon span {
-  background-color: var(--primary-navy);
+  background-color: #111111;
 }
 
 .hamburger-mobile-icon.open span:nth-child(1) {

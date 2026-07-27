@@ -24,10 +24,19 @@
 
             <span class="item-number me-3">{{ cat.num }}</span>
             <span class="item-name text-uppercase">{{ cat.name }}</span>
+            <i class="fa-solid fa-arrow-right sidebar-arrow ms-auto"></i>
             <span class="active-indicator-bar"></span>
 
           </div>
 
+        </div>
+
+        <!-- Small See All Button below list -->
+        <div class="sidebar-footer-action mt-4 pt-2">
+          <a class="btn-see-all-sidebar text-uppercase d-inline-flex align-items-center" routerLink="/categories">
+            <span>SEE ALL</span>
+            <i class="fa-solid fa-arrow-right ms-2 btn-icon"></i>
+          </a>
         </div>
       </div>
 
@@ -35,11 +44,20 @@
       <div class="col-lg-8 preview-column">
         <div class="showcase-preview-card position-relative overflow-hidden">
 
+          <!-- Top-Right Category Glass Counter Badge -->
+          <div class="preview-counter-badge position-absolute top-0 end-0 m-3 z-3">
+            <span class="current-num">{{ categories[activeIndex()].num }}</span>
+            <span class="separator"> / </span>
+            <span class="total-num">0{{ categories.length }}</span>
+          </div>
+
           <!-- Image layers for smooth cross-fading transition -->
           <div class="preview-images-container w-100 h-100 position-absolute top-0 start-0">
             <img *ngFor="let cat of categories; let i = index" [src]="cat.image" [alt]="cat.name"
-              class="preview-img-layer w-100 h-100 position-absolute start-0 top-0"
-              [class.active]="activeIndex() === i">
+              class="preview-img-layer w-100 h-100 position-absolute start-0 top-0" [class.active]="activeIndex() === i"
+              [ngClass]="'anim-style-' + i">
+            <div class="image-gradient-overlay top-gradient"></div>
+            <div class="image-gradient-overlay bottom-gradient"></div>
           </div>
 
           <!-- Bottom Glass Card Panel (Floating inside image container) -->
@@ -52,9 +70,15 @@
                 <h3 class="details-title text-uppercase mb-2">
                   {{ cat.name }} Inspiration
                 </h3>
-                <p class="details-desc text-muted mb-0">
+                <p class="details-desc text-muted mb-2">
                   {{ cat.desc }}
                 </p>
+                <div class="details-cta-wrapper pt-1">
+                  <button class="btn-explore-cat d-inline-flex align-items-center">
+                    <span>EXPLORE COLLECTION</span>
+                    <i class="fa-solid fa-arrow-right ms-2 btn-arrow"></i>
+                  </button>
+                </div>
               </div>
             </div>
 

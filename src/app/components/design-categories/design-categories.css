@@ -171,6 +171,20 @@
   /* Elegant push right on hover */
 }
 
+.sidebar-arrow {
+  font-size: 11px;
+  color: var(--primary-purple);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.sidebar-item:hover .sidebar-arrow,
+.sidebar-item.active .sidebar-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .sidebar-item:hover .item-number {
   color: var(--primary-purple);
 }
@@ -204,13 +218,64 @@
 .showcase-preview-card {
   flex: 1;
   height: 100%;
-  background-color: #161616;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  border: 2px solid var(--primary-purple);
+  box-shadow: 0 25px 60px rgba(150, 5, 62, 0.12);
   border-radius: 0px;
   /* Removed curves as requested */
   overflow: hidden;
   z-index: 5;
+}
+
+/* Glass Counter Badge - White Theme Base */
+.preview-counter-badge {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-family: var(--font-headings);
+  font-size: 11.5px;
+  letter-spacing: 1px;
+  color: #111111;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.preview-counter-badge .current-num {
+  color: var(--primary-purple);
+  font-weight: 800;
+  font-size: 13.5px;
+}
+
+.preview-counter-badge .separator {
+  color: rgba(0, 0, 0, 0.3);
+  margin: 0 3px;
+  font-weight: 500;
+}
+
+.preview-counter-badge .total-num {
+  color: rgba(0, 0, 0, 0.6);
+  font-weight: 700;
+}
+
+/* Cinematic Gradient Overlays */
+.image-gradient-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.top-gradient {
+  display: none;
+}
+
+.bottom-gradient {
+  bottom: 0;
+  height: 120px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
 }
 
 .preview-images-container {
@@ -227,17 +292,156 @@
 .preview-img-layer.active {
   opacity: 1;
   z-index: 2;
-  transform: scale(1);
-  animation: subtle-zoom-out 8s forwards linear;
 }
 
-@keyframes subtle-zoom-out {
-  from {
-    transform: scale(1.05);
+/* --- Category 0: Kitchen (Zoom Out & Soft Glow) --- */
+.preview-img-layer.active.anim-style-0 {
+  animation: animKitchenZoom 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes animKitchenZoom {
+  0% {
+    opacity: 0;
+    transform: scale(1.22);
+    filter: brightness(1.15);
   }
 
-  to {
+  100% {
+    opacity: 1;
     transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* --- Category 1: Living Room (Horizontal Pan Slide Right-to-Left) --- */
+.preview-img-layer.active.anim-style-1 {
+  animation: animLivingSlide 0.85s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes animLivingSlide {
+  0% {
+    opacity: 0;
+    transform: translateX(70px) scale(1.08);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* --- Category 2: Bedroom (Dreamy Soft Blur & Upward Float) --- */
+.preview-img-layer.active.anim-style-2 {
+  animation: animBedroomBlur 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes animBedroomBlur {
+  0% {
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(24px) scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    filter: blur(0px);
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Category 3: Dining Room (Diagonal Clip-Path Reveal) --- */
+.preview-img-layer.active.anim-style-3 {
+  animation: animDiningDiagonal 0.85s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes animDiningDiagonal {
+  0% {
+    opacity: 0;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: scale(1);
+  }
+}
+
+/* --- Category 4: Wardrobes (Curtain Slide Down) --- */
+.preview-img-layer.active.anim-style-4 {
+  animation: animWardrobeCurtain 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes animWardrobeCurtain {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px) scale(1.05);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* --- Category 5: Kids Room (Playful Elastic Scale Pop) --- */
+.preview-img-layer.active.anim-style-5 {
+  animation: animKidsPop 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes animKidsPop {
+  0% {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  65% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* --- Category 6: Bathroom (Radial Circle Iris Expansion) --- */
+.preview-img-layer.active.anim-style-6 {
+  animation: animBathroomCircle 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes animBathroomCircle {
+  0% {
+    opacity: 0;
+    clip-path: circle(0% at 50% 50%);
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 1;
+    clip-path: circle(150% at 50% 50%);
+    transform: scale(1);
+  }
+}
+
+/* --- Category 7: Balcony (3D Perspective Tilt Reveal) --- */
+.preview-img-layer.active.anim-style-7 {
+  animation: animBalconyTilt 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes animBalconyTilt {
+  0% {
+    opacity: 0;
+    transform: perspective(800px) rotateY(-12deg) scale(1.1);
+    filter: contrast(1.15);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(800px) rotateY(0deg) scale(1);
+    filter: contrast(1);
   }
 }
 
@@ -308,15 +512,71 @@
   color: #555555 !important;
 }
 
+/* Explore CTA button inside floating badge */
+.btn-explore-cat {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: var(--font-headings);
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--primary-purple);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-explore-cat .btn-arrow {
+  font-size: 10px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-explore-cat:hover {
+  color: var(--primary-purple);
+}
+
+.btn-explore-cat:hover .btn-arrow {
+  transform: translateX(6px);
+}
+
 /* Category Open/Change Entrance animation */
 .animate-entry {
-  animation: containerSlideRight 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: containerSlideRight 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   /* Slower and ultra-smooth expo ease */
 }
 
 .animate-entry .preview-details-panel {
-  animation: detailsWipeOpen 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+  animation: detailsWipeOpen 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   /* Slower wipe transition */
+}
+
+/* Staggered Content Reveal inside glass panel */
+.animate-entry .details-badge {
+  animation: textFadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+.animate-entry .details-title {
+  animation: textFadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+}
+
+.animate-entry .details-desc {
+  animation: textFadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.animate-entry .details-cta-wrapper {
+  animation: textFadeSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+@keyframes textFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes containerSlideRight {
