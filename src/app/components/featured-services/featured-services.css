@@ -253,6 +253,55 @@
   letter-spacing: 1px;
   box-shadow: 0 8px 24px rgba(var(--primary-purple-rgb), 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Automatic Dual-Beam Luxury Mirror Light Sheen Animation */
+.btn-fs-banner-cta::after {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -150%;
+  width: 55%;
+  height: 140%;
+  background: linear-gradient(105deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.08) 25%,
+      rgba(255, 255, 255, 0.75) 45%,
+      rgba(255, 255, 255, 0.95) 50%,
+      rgba(255, 255, 255, 0.2) 56%,
+      rgba(255, 255, 255, 0.75) 65%,
+      rgba(255, 255, 255, 0) 100%);
+  transform: skewX(-22deg);
+  animation: mirror-luxury-sweep 4.8s infinite cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.45));
+}
+
+@keyframes mirror-luxury-sweep {
+  0% {
+    left: -150%;
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  42% {
+    left: 170%;
+    opacity: 1;
+  }
+
+  43% {
+    opacity: 0;
+  }
+
+  100% {
+    left: 170%;
+    opacity: 0;
+  }
 }
 
 .btn-fs-banner-cta:hover {
