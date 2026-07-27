@@ -121,14 +121,4 @@ export class MapContact implements OnInit {
   prevPhoto() {
     this.activePhotoIndex = (this.activePhotoIndex - 1 + this.galleryPhotos.length) % this.galleryPhotos.length;
   }
-
-  onModalFormSubmit(event: Event, name: string, email: string, phone: string, service: string, message: string) {
-    event.preventDefault();
-    if (name && email && phone && service && message) {
-      alert(`Thank you, ${name}! Your consultation request for "${service}" has been received. Our lead architect will reach out to you within 24 hours.`);
-      const form = event.target as HTMLFormElement;
-      form.reset();
-      this.consultationModalService.close();
-    }
-  }
 }

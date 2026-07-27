@@ -294,7 +294,8 @@ export class ServicesDataService {
         { stepNumber: '01', title: 'Factory Production Drawing', description: 'Converting approved 3D designs into sub-millimeter CAD files.', icon: 'fa-solid fa-file-cad' },
         { stepNumber: '02', title: 'Precision CNC Cutting', description: 'Automated computer-guided cutting and PUR edge banding.', icon: 'fa-solid fa-scissors' },
         { stepNumber: '03', title: 'Multi-Coat Polish & Paint', description: 'Dust-controlled spray booth painting for high-gloss PU or staining.', icon: 'fa-solid fa-paint-roller' },
-        { stepNumber: '04', title: 'Modular Assembly On-Site', description: 'Clean, knock-down modular assembly on site with zero dust.', icon: 'fa-solid fa-cubes' }
+        { stepNumber: '04', title: 'Modular Assembly On-Site', description: 'Clean, knock-down modular assembly on site with zero dust.', icon: 'fa-solid fa-cubes' },
+        { stepNumber: '05', title: 'Final Quality Audit', description: 'Rigorous 50-point hardware alignment and surface polish inspection.', icon: 'fa-solid fa-square-check' }
       ],
       faqs: [
         {
@@ -343,13 +344,21 @@ export class ServicesDataService {
           icon: 'fa-solid fa-shower',
           image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop',
           highlights: ['Concealed Diverters', 'Glass Partition', 'Anti-Skid Tiles']
+        },
+        {
+          name: 'Commercial & Villa Facelift',
+          description: 'Exterior balcony upgrades, elevation painting, false ceiling overhauls, and premium flooring.',
+          icon: 'fa-solid fa-building-flag',
+          image: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop',
+          highlights: ['Exterior Elevation', 'Glass Railings', 'False Ceiling Overhaul']
         }
       ],
       process: [
         { stepNumber: '01', title: 'Old Property Assessment', description: 'Evaluating pipe leaks, electrical load, and structural walls.', icon: 'fa-solid fa-clipboard-list' },
         { stepNumber: '02', title: 'Remodeling Blueprint', description: 'Formulating a budget plan to salvage usable structures.', icon: 'fa-solid fa-pen-ruler' },
         { stepNumber: '03', title: 'Selective Strip-out', description: 'Careful removal of old cabinets, tiles, and fixtures.', icon: 'fa-solid fa-truck-ramp-box' },
-        { stepNumber: '04', title: 'Modern Fit-out & Handover', description: 'Installing new finishes, fixtures, and deep cleaning.', icon: 'fa-solid fa-sparkles' }
+        { stepNumber: '04', title: 'Modern Fit-out Execution', description: 'Installing new finishes, fixtures, and electrical wiring.', icon: 'fa-solid fa-sparkles' },
+        { stepNumber: '05', title: 'Turnkey Handover', description: 'Post-renovation deep cleaning, final walkthrough, and warranty signoff.', icon: 'fa-solid fa-key' }
       ],
       faqs: [
         {
