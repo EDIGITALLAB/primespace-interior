@@ -41,11 +41,12 @@
               <span>Book Consultation</span>
               <i class="fa-solid fa-arrow-right"></i>
             </button>
-            <a href="#sub-services-section"
-              class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold text-uppercase d-inline-flex align-items-center gap-2">
+            <button type="button"
+              (click)="scrollToSection('sub-services-section', $event)"
+              class="btn btn-outline-light rounded-pill px-4 py-3 fw-bold text-uppercase d-inline-flex align-items-center gap-2 cursor-pointer">
               <span>Explore Solutions</span>
               <i class="fa-solid fa-chevron-down font-size-xs"></i>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -67,8 +68,7 @@
   <!-- CATEGORY QUICK SWITCHER BAR -->
   <div class="sd-category-bar bg-white shadow-sm sticky-top border-bottom z-3">
     <div class="container">
-      <div class="d-flex align-items-center sd-category-wrapper py-3 overflow-auto no-scrollbar">
-        <span class="font-size-xs fw-extrabold text-muted text-uppercase me-3 flex-shrink-0">Categories:</span>
+      <div class="d-flex align-items-center sd-category-wrapper py-2.5 px-2 overflow-auto no-scrollbar">
         @for (s of allServices; track s.slug) {
         <a [routerLink]="['/services', s.slug]"
           class="btn btn-sm rounded-pill sd-category-pill fw-bold text-nowrap transition-all"
@@ -165,7 +165,7 @@
             class="sd-sub-card bg-white rounded-4 border shadow-sm overflow-hidden h-100 d-flex flex-column justify-content-between transition-all">
             <!-- Card Image -->
             <div class="sd-sub-card-img-wrapper position-relative overflow-hidden">
-              <img [src]="item.image" [alt]="item.name" class="w-100 h-100 object-cover">
+              <img [src]="item.image" [alt]="item.name" class="w-100 h-100 object-fit-cover">
               <div
                 class="sd-sub-card-icon-badge position-absolute bottom-0 start-0 m-3 bg-white rounded-circle shadow d-flex align-items-center justify-content-center">
                 <i [class]="item.icon + ' text-purple font-size-md'"></i>
@@ -253,17 +253,17 @@
           </h2>
         </div>
         <button type="button"
-          class="btn btn-outline-purple rounded-pill px-3.5 py-2 font-size-xs fw-bold text-uppercase mt-2 mt-md-0"
-          (click)="openConsultationModal($event)">
+          class="btn btn-outline-purple rounded-pill px-3.5 py-2 font-size-xs fw-bold text-uppercase mt-2 mt-md-0 cursor-pointer"
+          (click)="openGalleryModal(0, $event)">
           View Full Portfolio
         </button>
       </div>
 
       <div class="row row-cols-1 row-cols-md-3 g-4">
-        @for (g of serviceData.gallery; track g.title) {
+        @for (g of serviceData.gallery; track g.title; let idx = $index) {
         <div class="col">
-          <div class="sd-gallery-card position-relative rounded-4 overflow-hidden shadow-sm">
-            <img [src]="g.url" [alt]="g.title" class="w-100 h-100 object-cover">
+          <div class="sd-gallery-card position-relative rounded-4 overflow-hidden shadow-sm cursor-pointer" (click)="openGalleryModal(idx, $event)">
+            <img [src]="g.url" [alt]="g.title" class="w-100 h-100 object-fit-cover">
             <div class="sd-gallery-overlay p-4 d-flex flex-column justify-content-end text-white">
               <h4 class="fw-bold m-0 font-size-md text-white">{{ g.title }}</h4>
               <span class="font-size-xs text-white-70 d-flex align-items-center gap-1">
@@ -346,4 +346,53 @@
 
   </div>
 </div>
+
+<!-- Interactive Full-Screen Portfolio Gallery Lightbox Modal -->
+@if (isGalleryModalOpen && serviceData && serviceData.gallery && serviceData.gallery.length > 0) {
+<div class="sd-gallery-modal-overlay d-flex align-items-center justify-content-center" (click)="closeGalleryModal()">
+  <div class="sd-gallery-modal-content position-relative overflow-hidden rounded-4 shadow-2xl" (click)="$event.stopPropagation()">
+    
+    <!-- Floating Close Button -->
+    <button type="button" class="sd-gallery-btn-close d-flex align-items-center justify-content-center" (click)="closeGalleryModal()" aria-label="Close modal">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <!-- Main Active Image Container -->
+    <div class="sd-gallery-image-wrapper position-relative overflow-hidden bg-dark">
+      <img [src]="serviceData.gallery![activeGalleryIndex].url" [alt]="serviceData.gallery![activeGalleryIndex].title" class="sd-gallery-active-img w-100 h-100 object-fit-contain">
+      
+      <!-- Prev & Next Navigation Controls -->
+      <button type="button" class="sd-gallery-nav-btn prev-btn d-flex align-items-center justify-content-center" (click)="prevGalleryPhoto($event)" aria-label="Previous photo">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button type="button" class="sd-gallery-nav-btn next-btn d-flex align-items-center justify-content-center" (click)="nextGalleryPhoto($event)" aria-label="Next photo">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+
+    <!-- Modal Footer / Info Bar -->
+    <div class="sd-gallery-modal-footer p-4 bg-white d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 border-top">
+      <div>
+        <div class="d-flex align-items-center gap-2 mb-1">
+          <span class="badge bg-purple-tint text-purple font-size-micro fw-bold text-uppercase px-2.5 py-1 rounded-pill">
+            {{ serviceData.title }} Portfolio • {{ activeGalleryIndex + 1 }} / {{ serviceData.gallery!.length }}
+          </span>
+        </div>
+        <h4 class="fw-black text-dark m-0 font-size-md">
+          {{ serviceData.gallery![activeGalleryIndex].title }}
+        </h4>
+        <p class="font-size-xs text-muted m-0 d-flex align-items-center gap-1 mt-0.5">
+          <i class="fa-solid fa-location-dot text-purple"></i> {{ serviceData.gallery![activeGalleryIndex].subtitle }}
+        </p>
+      </div>
+
+      <button type="button" class="btn btn-accent rounded-pill px-4 py-2.5 font-size-xs fw-bold text-uppercase shadow-sm d-inline-flex align-items-center gap-2" (click)="openConsultationFromGallery($event)">
+        <span>Book Similar Design</span>
+        <i class="fa-solid fa-arrow-right font-size-micro"></i>
+      </button>
+    </div>
+
+  </div>
+</div>
+}
 }

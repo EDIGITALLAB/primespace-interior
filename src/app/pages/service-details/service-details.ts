@@ -46,4 +46,54 @@ export class ServiceDetails implements OnInit, OnDestroy {
     event.preventDefault();
     this.consultationModalService.open();
   }
+
+  isGalleryModalOpen: boolean = false;
+  activeGalleryIndex: number = 0;
+
+  openGalleryModal(index: number = 0, event?: Event): void {
+    if (event) event.preventDefault();
+    this.activeGalleryIndex = index;
+    this.isGalleryModalOpen = true;
+  }
+
+  closeGalleryModal(): void {
+    this.isGalleryModalOpen = false;
+  }
+
+  nextGalleryPhoto(event?: Event): void {
+    if (event) event.stopPropagation();
+    if (this.serviceData?.gallery && this.serviceData.gallery.length > 0) {
+      this.activeGalleryIndex = (this.activeGalleryIndex + 1) % this.serviceData.gallery.length;
+    }
+  }
+
+  prevGalleryPhoto(event?: Event): void {
+    if (event) event.stopPropagation();
+    if (this.serviceData?.gallery && this.serviceData.gallery.length > 0) {
+      this.activeGalleryIndex = (this.activeGalleryIndex - 1 + this.serviceData.gallery.length) % this.serviceData.gallery.length;
+    }
+  }
+
+  openConsultationFromGallery(event: Event): void {
+    event.preventDefault();
+    this.closeGalleryModal();
+    this.consultationModalService.open();
+  }
+
+  scrollToSection(sectionId: string, event: Event): void {
+    event.preventDefault();
+    if (typeof document !== 'undefined' && typeof window !== 'undefined') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const headerOffset = 165; // Extra breathing room for navbar + category bar
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
 }
