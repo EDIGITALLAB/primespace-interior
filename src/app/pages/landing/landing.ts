@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Testimonials } from '../../components/testimonials/testimonials';
 import { HeroSection } from '../../components/hero-section/hero-section';
 import { DesignCategories } from '../../components/design-categories/design-categories';
-import { DesignProcess } from '../../components/design-process/design-process';
 import { BeforeAfterSlider } from '../../components/before-after-slider/before-after-slider';
 import { MapContact } from '../../components/map-contact/map-contact';
 import { About } from '../../components/about/about';
@@ -12,7 +11,7 @@ import { WhyChooseUs } from '../../components/why-choose-us/why-choose-us';
 
 @Component({
   selector: 'app-landing',
-  imports: [Testimonials, HeroSection, DesignCategories, DesignProcess, BeforeAfterSlider, MapContact, About, ScrollingFeatures, FeaturedServices, WhyChooseUs],
+  imports: [Testimonials, HeroSection, DesignCategories, BeforeAfterSlider, MapContact, About, ScrollingFeatures, FeaturedServices, WhyChooseUs],
   templateUrl: './landing.html',
   styleUrl: './landing.css',
 })
