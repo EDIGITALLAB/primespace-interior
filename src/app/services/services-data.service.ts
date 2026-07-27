@@ -209,7 +209,7 @@ export class ServicesDataService {
           name: 'Demolition & Wall Alterations',
           description: 'Controlled wall demolition, steel beam reinforcements, and brickwork partitions.',
           icon: 'fa-solid fa-hammer',
-          image: 'https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=800&auto=format&fit=crop',
+          image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop',
           highlights: ['Laser Leveling', 'Beam Reinforcement', 'Dust Control']
         },
         {
@@ -233,6 +233,11 @@ export class ServicesDataService {
         { stepNumber: '03', title: 'Concealed Piping & Wiring', description: 'Laying heavy-duty conduit lines, plumbing points, and electrical box fixings.', icon: 'fa-solid fa-bolt' },
         { stepNumber: '04', title: 'Plastering & Tiling', description: 'Applying POP finish, precision tile alignment, and water leak test approvals.', icon: 'fa-solid fa-trowel' },
         { stepNumber: '05', title: 'Civil Audit Signoff', description: 'Laser flatness measurement and site clearance handover.', icon: 'fa-solid fa-clipboard-check' }
+      ],
+      gallery: [
+        { url: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=80&w=800&auto=format&fit=crop', title: 'Italian Marble Tiling Project', subtitle: 'Indiranagar, Bengaluru' },
+        { url: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?q=80&w=800&auto=format&fit=crop', title: 'Structural Wall Reinforcement', subtitle: 'Janpath, Bhubaneswar' },
+        { url: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop', title: 'Multi-Layer Terrace Waterproofing', subtitle: 'Whitefield' }
       ],
       faqs: [
         {
@@ -297,6 +302,11 @@ export class ServicesDataService {
         { stepNumber: '04', title: 'Modular Assembly On-Site', description: 'Clean, knock-down modular assembly on site with zero dust.', icon: 'fa-solid fa-cubes' },
         { stepNumber: '05', title: 'Final Quality Audit', description: 'Rigorous 50-point hardware alignment and surface polish inspection.', icon: 'fa-solid fa-square-check' }
       ],
+      gallery: [
+        { url: 'https://images.unsplash.com/photo-1558882224-dda166733046?q=80&w=800&auto=format&fit=crop', title: 'Luxury Tinted Glass Walk-In Wardrobe', subtitle: 'Koramangala' },
+        { url: 'https://images.unsplash.com/photo-1532372576444-dda954194ad0?q=80&w=800&auto=format&fit=crop', title: 'Solid Burma Teak Dining Set', subtitle: 'Saheed Nagar' },
+        { url: 'https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?q=80&w=800&auto=format&fit=crop', title: 'Acoustic Charcoal Louver Feature Wall', subtitle: 'Indiranagar' }
+      ],
       faqs: [
         {
           question: 'What type of plywood do you use for wet areas like kitchens?',
@@ -359,6 +369,11 @@ export class ServicesDataService {
         { stepNumber: '03', title: 'Selective Strip-out', description: 'Careful removal of old cabinets, tiles, and fixtures.', icon: 'fa-solid fa-truck-ramp-box' },
         { stepNumber: '04', title: 'Modern Fit-out Execution', description: 'Installing new finishes, fixtures, and electrical wiring.', icon: 'fa-solid fa-sparkles' },
         { stepNumber: '05', title: 'Turnkey Handover', description: 'Post-renovation deep cleaning, final walkthrough, and warranty signoff.', icon: 'fa-solid fa-key' }
+      ],
+      gallery: [
+        { url: 'https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=800&auto=format&fit=crop', title: '15-Year Old Bungalow Modernization', subtitle: 'Jayanagar' },
+        { url: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop', title: 'Luxury Spa Master Bathroom Remodel', subtitle: 'Patia, Bhubaneswar' },
+        { url: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=800&auto=format&fit=crop', title: 'Commercial Villa Facelift & Elevation', subtitle: 'HSR Layout' }
       ],
       faqs: [
         {
