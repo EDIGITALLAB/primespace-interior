@@ -40,18 +40,17 @@
 .proj-hero-section {
   position: relative;
   overflow: hidden;
+  background-color: #fafbfc !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.proj-hero-section::before {
-  content: '';
+.hero-bg-watermark {
   position: absolute;
   inset: 0;
   background-image: url('/furniture-watermark.svg');
   background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  opacity: 0.15;
-  z-index: 0;
+  background-position: center;
+  opacity: 0.08;
   pointer-events: none;
 }
 
