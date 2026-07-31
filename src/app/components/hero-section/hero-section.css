@@ -179,7 +179,12 @@
 }
 
 .slide-1-title .text-accent {
-  color: var(--primary-purple) !important;
+  background: linear-gradient(to right, var(--primary-purple, #96053E) 0%, color-mix(in srgb, var(--primary-purple, #96053E) 45%, #ff007a) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--primary-purple, #96053E) !important;
+  display: inline-block;
 }
 
 .slide-1-divider-horizontal {
@@ -314,8 +319,13 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-weight: 400;
-  color: var(--primary-purple) !important;
+  background: linear-gradient(to right, var(--primary-purple, #96053E) 0%, color-mix(in srgb, var(--primary-purple, #96053E) 45%, #ff007a) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--primary-purple, #96053E) !important;
   text-transform: none;
+  display: inline-block;
 }
 
 .slide-2-desc {
@@ -463,11 +473,9 @@
 }
 
 .slide-3-brand-logo {
-  height: 24px;
+  height: 32px;
   width: auto;
   object-fit: contain;
-  filter: brightness(1);
-  /* Ensure it displays clearly on dark background */
 }
 
 .slide-3-line {
@@ -496,7 +504,12 @@
 }
 
 .slide-3-title .text-accent {
-  color: var(--primary-purple) !important;
+  background: linear-gradient(to right, var(--primary-purple, #96053E) 0%, color-mix(in srgb, var(--primary-purple, #96053E) 45%, #ff007a) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--primary-purple, #96053E) !important;
+  display: inline-block;
 }
 
 .slide-3-desc {

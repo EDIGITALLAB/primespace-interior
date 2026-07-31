@@ -25,24 +25,24 @@
   z-index: 3;
 }
 
-/* Single Full-Width Luxury Living Room Interior Watermark (Subtle Whisper Opacity) */
+/* Full Luxury Home Living Room Interior Furniture Vector Background (Subtle Whisper Opacity) */
 .footer-single-home-watermark {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  color: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.038);
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.75) 20%, rgba(0, 0, 0, 0.15) 100%);
-  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.75) 20%, rgba(0, 0, 0, 0.15) 100%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.08) 100%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.08) 100%);
   transition: color 0.4s ease;
 }
 
 .main-footer:hover .footer-single-home-watermark {
-  color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.075);
 }
 
 /* Architectural Building Skyline Blueprint Watermark Overlay */
@@ -66,7 +66,8 @@
 }
 
 .footer-logo-img {
-  height: 38px;
+  height: 48px;
+  max-height: 48px;
   width: auto;
   object-fit: contain;
   display: block;

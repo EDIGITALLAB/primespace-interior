@@ -401,6 +401,68 @@
   border-color: var(--primary-purple, #96053E) !important;
 }
 
+/* Full Width Crimson CTA Banner matching Image 2 UI */
+.sd-fullwidth-cta-banner {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-purple, #96053E) 0%, #7d0032 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.05);
+}
+
+.sd-cta-badge {
+  background-color: #ffffff !important;
+  color: var(--primary-purple, #96053E) !important;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border-radius: 50px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+  display: inline-flex;
+  align-items: center;
+}
+
+.sd-cta-full-title {
+  color: #ffffff !important;
+  font-family: var(--font-headings, sans-serif);
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: 0.3px;
+}
+
+.btn-sd-cta-white {
+  background-color: #ffffff !important;
+  color: var(--primary-purple, #96053E) !important;
+  border: none !important;
+  font-family: var(--font-headings, sans-serif);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  padding: 14px 28px !important;
+  border-radius: 50px !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-sd-cta-white:hover {
+  background-color: #ffffff !important;
+  color: var(--primary-purple, #96053E) !important;
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+}
+
+.btn-sd-cta-white i {
+  transition: transform 0.3s ease;
+}
+
+.btn-sd-cta-white:hover i {
+  transform: translateX(4px);
+}
+
 /* Banner CTA Overlapping Footer Styling */
 .fs-cta-banner {
   position: relative;
