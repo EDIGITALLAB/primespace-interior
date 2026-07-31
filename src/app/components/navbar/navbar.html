@@ -27,58 +27,12 @@
             <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/categories" routerLinkActive="active"><span
                   class="nav-link-text">CATEGORIES</span></a></li>
 
-            <li class="nav-item dropdown px-lg-1.5">
-              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="servicesDropdown" role="button"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <span class="nav-link-text">SERVICES</span>
-                <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
-              </a>
-              <div class="dropdown-menu dropdown-menu-custom" aria-labelledby="servicesDropdown">
-                <div class="dropdown-grid">
-                  <a class="dropdown-item d-flex align-items-center"
-                    routerLink="/service-details/residential-interiors">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-house-chimney-window"></i></div>
-                    <div class="dropdown-meta">
-                      <span class="dropdown-title">RESIDENTIAL INTERIORS</span>
-                      <span class="dropdown-desc">Complete home & luxury space planning</span>
-                    </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/service-details/commercial-interiors">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-city"></i></div>
-                    <div class="dropdown-meta">
-                      <span class="dropdown-title">COMMERCIAL INTERIORS</span>
-                      <span class="dropdown-desc">Offices, retail showrooms & cafes</span>
-                    </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/service-details/civil-works">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-cubes-stacked"></i></div>
-                    <div class="dropdown-meta">
-                      <span class="dropdown-title">CIVIL WORKS</span>
-                      <span class="dropdown-desc">Masonry, tiling & electrical layouting</span>
-                    </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/service-details/wood-works">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-couch"></i></div>
-                    <div class="dropdown-meta">
-                      <span class="dropdown-title">WOOD WORKS</span>
-                      <span class="dropdown-desc">German modular & custom furniture</span>
-                    </div>
-                  </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/service-details/renovation">
-                    <div class="dropdown-icon-box"><i class="fa-solid fa-paint-roller"></i></div>
-                    <div class="dropdown-meta">
-                      <span class="dropdown-title">RENOVATION</span>
-                      <span class="dropdown-desc">Home, villa & office remodeling</span>
-                    </div>
-                  </a>
-                </div>
-              </div>
-            </li>
+
 
 
 
             <li class="nav-item dropdown px-lg-1.5">
-              <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="locationsDropdown"
+              <a class="nav-link dropdown-toggle d-flex align-items-center" routerLink="/locations" routerLinkActive="active" id="locationsDropdown"
                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <span class="nav-link-text">LOCATIONS</span>
                 <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
@@ -86,14 +40,14 @@
               <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations"
                 aria-labelledby="locationsDropdown">
                 <div class="dropdown-grid-locations">
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bengaluru">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BENGALURU</span>
                       <span class="dropdown-desc">Silicon Valley Hub</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" href="#">
+                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bhubaneswar">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BHUBANESWAR</span>
@@ -106,7 +60,7 @@
 
             <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a>
             </li>
-            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#" (click)="openConsultationModal($event)"><span
+            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/contact" routerLinkActive="active"><span
                   class="nav-link-text">CONTACT</span></a>
             </li>
           </ul>
