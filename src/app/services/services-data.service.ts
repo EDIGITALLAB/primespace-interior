@@ -389,7 +389,9 @@ export class ServicesDataService {
   };
 
   getAllServices(): ServiceDetailData[] {
-    return Object.values(this.services);
+    return Object.values(this.services).filter(
+      (s) => s.slug !== 'commercial-interiors' && s.slug !== 'renovation'
+    );
   }
 
   getServiceBySlug(slug: string): ServiceDetailData {

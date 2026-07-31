@@ -13,10 +13,10 @@
 }
 
 .fs-exact-container {
-  max-width: 1800px;
+  max-width: 1320px;
   margin: 0 auto;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 /* Header */
@@ -71,125 +71,157 @@
   max-width: 450px;
 }
 
-/* Cards Row Spacing for Floating Top Icon Notch */
+/* Cards Row Spacing */
 .fs-cards-row {
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
-/* 5 Vertical White Cards */
+/* 3 Modern Luxury Service Cards */
 .fs-exact-card {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  border-radius: 16px;
-  margin-top: 40px;
-  padding-top: 55px !important;
+  border-radius: 20px !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fs-exact-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08) !important;
-  border-color: rgba(var(--primary-purple-rgb), 0.25) !important;
+  box-shadow: 0 22px 50px rgba(var(--primary-purple-rgb), 0.14) !important;
+  border-color: rgba(var(--primary-purple-rgb), 0.3) !important;
 }
 
-/* Outer White Shell forming the arched top notch bump */
-.fs-notch-outer-shell {
+/* Card Header Image Banner */
+.fs-card-img-banner {
+  height: 160px;
+  width: 100%;
+}
+
+.fs-banner-img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.fs-exact-card:hover .fs-banner-img {
+  transform: scale(1.08);
+}
+
+.fs-banner-overlay {
   position: absolute;
-  top: -46px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 92px;
-  height: 92px;
-  border-radius: 50%;
-  background: #ffffff; /* White background matching card body */
-  border: 1px solid rgba(0, 0, 0, 0.08); /* Matches card border */
-  border-bottom: none; /* Merges seamlessly into the card top */
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.03);
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.6) 100%);
+  pointer-events: none;
+}
+
+.fs-num-watermark {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-family: var(--font-headings);
+  font-size: 36px;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.fs-badge-pill {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(var(--primary-purple-rgb), 0.88);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 3;
+}
+
+/* Icon Floating Notch Circle */
+.fs-notch-wrapper {
+  position: relative;
+  margin-top: -36px;
+  margin-bottom: 8px;
   z-index: 5;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.fs-exact-card:hover .fs-notch-outer-shell {
-  border-color: rgba(var(--primary-purple-rgb), 0.25);
-  box-shadow: 0 -6px 15px rgba(var(--primary-purple-rgb), 0.15);
-}
-
-/* Inner Tinted Circle Icon Badge */
 .fs-exact-icon-circle {
-  width: 76px;
-  height: 76px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: rgba(var(--primary-purple-rgb), 0.09); /* Soft tint matching theme */
+  background: #ffffff;
+  border: 3px solid #faf9f6;
   color: var(--primary-purple);
-  font-size: 28px;
+  font-size: 26px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fs-exact-card:hover .fs-exact-icon-circle {
   background: var(--primary-purple);
   color: #ffffff;
-  transform: scale(1.06);
-  box-shadow: 0 8px 20px rgba(var(--primary-purple-rgb), 0.35);
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 10px 25px rgba(var(--primary-purple-rgb), 0.4);
 }
 
-/* Card Category Title */
+/* Card Content Body */
 .fs-exact-card-title {
   font-family: var(--font-headings);
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--primary-purple);
-  letter-spacing: -0.2px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #111111;
+  letter-spacing: -0.3px;
   line-height: 1.3;
 }
 
-/* Bullet List */
-.fs-exact-bullet-list {
-  padding-left: 4px;
+.fs-card-tagline {
+  font-family: var(--font-body);
+  line-height: 1.5;
+  font-weight: 500;
 }
 
-.fs-exact-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: var(--primary-purple);
-  flex-shrink: 0;
-  margin-top: 5px;
-  box-shadow: 0 0 6px rgba(var(--primary-purple-rgb), 0.4);
+/* Pill Grid for List Items */
+.fs-items-pill-grid {
+  padding: 0 4px;
+}
+
+.fs-item-pill {
+  background: #f8f6f7;
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.1);
+  transition: all 0.25s ease;
 }
 
 .fs-exact-item-text {
   font-family: var(--font-body);
-  font-size: 13.8px;
-  font-weight: 500;
+  font-size: 12.5px;
+  font-weight: 600;
   color: #333333;
-  line-height: 1.55;
-  letter-spacing: 0.2px;
-  transition: color 0.25s ease;
+  letter-spacing: 0.1px;
 }
 
-.fs-exact-card:hover .fs-exact-item-text {
-  color: #111111;
-  font-weight: 600;
+.fs-exact-card:hover .fs-item-pill {
+  background: rgba(var(--primary-purple-rgb), 0.08);
+  border-color: rgba(var(--primary-purple-rgb), 0.22);
 }
 
 /* Bottom Card Footer & Full-Width Accent Bar */
 .fs-card-footer-wrapper {
   position: relative;
   overflow: hidden;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  margin-left: -1.5rem !important; /* Spans 100% full card width edge to edge */
-  margin-right: -1.5rem !important;
-  margin-bottom: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   margin-top: auto;
-  width: calc(100% + 3rem) !important;
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .fs-exact-explore-link {
   color: var(--primary-purple) !important;
   font-family: var(--font-headings);
   font-size: 12.5px;
-  letter-spacing: 0.8px;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
 }
 
@@ -198,10 +230,10 @@
 }
 
 .fs-exact-card:hover .fs-exact-explore-link i {
-  transform: translateX(4px);
+  transform: translateX(5px);
 }
 
-/* 100% Solid Theme Accent Bar (Spans full card width with matching curved corners) */
+/* 100% Solid Theme Accent Bar */
 .fs-exact-bottom-bar {
   position: absolute;
   bottom: 0;
@@ -209,16 +241,14 @@
   right: 0;
   height: 4px;
   background-color: var(--primary-purple);
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
   transition: height 0.3s ease, background-color 0.3s ease;
   z-index: 2;
 }
 
 .fs-exact-card:hover .fs-exact-bottom-bar {
   height: 6px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
 }
 
 /* ===================================================
@@ -229,7 +259,7 @@
   border: none !important;
   border-radius: 20px !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
-  margin-top: 65px !important; /* Increased top gap for spacious separation */
+  margin-top: 24px !important;
   transition: all 0.35s ease;
 }
 
