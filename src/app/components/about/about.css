@@ -1,76 +1,49 @@
 /* About Section Stylesheet */
 
 .about-section {
-  background-color: #ffffff !important;
+  position: relative;
+  background-color: #fbfbfe !important;
+  background-image: 
+    linear-gradient(90deg, rgba(var(--primary-purple-rgb), 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(var(--primary-purple-rgb), 0.035) 1px, transparent 1px) !important;
+  background-size: 50px 50px !important;
   font-family: var(--font-body);
-  padding: 40px 0 30px 0 !important;
+  padding: 65px 0 60px 0 !important;
 }
 
-/* Subtle wine purple mesh glow in the background */
+/* Dual Luxury Ambient Mesh Glows */
 .about-mesh-glow {
   position: absolute;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(var(--primary-purple-rgb), 0.03) 0%, rgba(255, 255, 255, 0) 70%);
-  filter: blur(60px);
-  top: -100px;
-  left: -150px;
+  top: 50%;
+  left: 25%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(var(--primary-purple-rgb), 0.07) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(90px);
   pointer-events: none;
   z-index: 1;
 }
 
-/* Editorial Outline Text Watermark */
-.about-watermark-text {
+.about-mesh-glow-secondary {
   position: absolute;
-  top: 48%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-headings);
-  font-size: 11vw; /* Reduced slightly to fit PRIME SPACE elegantly in one line */
-  font-weight: 900;
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(var(--primary-purple-rgb), 0.15); /* Thicker stroke and 15% opacity for bold, clear visibility */
+  top: 20%;
+  right: 10%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(249, 181, 20, 0.06) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(85px);
   pointer-events: none;
   z-index: 1;
-  letter-spacing: 0.1em; /* Reduced spacing to align brand name */
-  line-height: 1;
-  user-select: none;
-  white-space: nowrap; /* Prevent word wrapping */
+}
+
+.about-watermark-text {
+  display: none !important;
 }
 
 /* Premium Furniture Image Watermark */
 .about-furniture-watermark {
-  position: absolute;
-  top: 50%;
-  left: 40%; /* Shifted left towards the image stack to sit in the gutter and prevent text overlap */
-  transform: translate(-50%, -50%);
-  width: 440px;
-  height: auto;
-  max-width: 80vw;
-  pointer-events: none;
-  z-index: 1;
-  user-select: none;
-  opacity: 0.13; /* Softened opacity to ensure black body text on the right has perfect readability */
-  mix-blend-mode: multiply; /* Make white background completely transparent */
-  animation: watermark-float 8s ease-in-out infinite; /* Smooth floating visual */
-}
-
-.about-furniture-watermark .watermark-img {
-  width: 100%;
-  height: auto;
-  filter: contrast(1.05); /* Slight contrast adjustments */
-}
-
-@keyframes watermark-float {
-  0% {
-    transform: translate(-50%, -50%) translateY(0);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-14px);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateY(0);
-  }
+  display: none !important;
 }
 
 /* Layered Image Stack container */
@@ -103,7 +76,7 @@
   overflow: hidden;
   background-color: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 0; /* Square matching map/slider */
+  border-radius: 0 !important;
   transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -248,20 +221,20 @@
 }
 
 .stat-card {
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  border-radius: 12px;
-  padding: 20px 10px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.01);
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-top: 3.5px solid var(--primary-purple) !important;
+  border-radius: 14px;
+  padding: 22px 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
 }
 
 .stat-card:hover {
-  transform: translateY(-6px);
-  background: #ffffff;
-  border-color: rgba(var(--primary-purple-rgb), 0.15);
-  box-shadow: 0 15px 30px rgba(var(--primary-purple-rgb), 0.06);
+  transform: translateY(-8px);
+  border-top-color: #ff007a !important;
+  box-shadow: 0 20px 45px rgba(var(--primary-purple-rgb), 0.15) !important;
 }
 
 .stat-number {

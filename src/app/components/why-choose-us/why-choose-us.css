@@ -1,20 +1,20 @@
 /* Architectural Bento Grid Stylesheet */
 
 .why-choose-us-section {
-  background-color: #ffffff;
-  padding: 40px 0 45px 0;
+  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+  padding: 50px 0 55px 0;
 }
 
 /* Background Luxury Glow */
 .why-mesh-glow {
   position: absolute;
-  top: -120px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(var(--primary-purple-rgb), 0.04) 0%, rgba(255, 255, 255, 0) 70%);
-  filter: blur(80px);
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(var(--primary-purple-rgb), 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+  filter: blur(100px);
   pointer-events: none;
   z-index: 1;
 }
@@ -33,8 +33,8 @@
 .why-full-bg-svg {
   width: 100%;
   height: 100%;
-  color: black;
-  opacity: 0.10;
+  color: var(--primary-purple);
+  opacity: 0.025;
   transition: color 0.4s ease, opacity 0.4s ease;
 }
 
