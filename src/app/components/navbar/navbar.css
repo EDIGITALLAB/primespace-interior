@@ -137,29 +137,45 @@
 
 /* Brand Name Text - Hidden initially, reveals smoothly on scroll */
 .navbar-brand-text {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 0;
   opacity: 0;
   overflow: hidden;
   white-space: nowrap;
   font-family: var(--font-headings);
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  color: var(--primary-purple); /* Elegant brand wine-purple text color */
   transition: max-width 0.5s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease, margin-left 0.4s ease;
   margin-left: 0 !important;
+  line-height: 1.15;
 }
 
-.navbar-brand-text .interior-text {
-  color: #000000 !important;
+.navbar-brand-text .brand-title {
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary-purple, #A60A38);
+}
+
+.navbar-brand-text .brand-title .space-text {
+  color: #111111 !important;
+  font-weight: 800;
+}
+
+.navbar-brand-text .brand-subtitle {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 4.8px;
+  text-transform: uppercase;
+  color: #555555;
+  margin-top: 1px;
 }
 
 .main-header.scrolled .navbar-brand-text {
-  max-width: 200px; /* Slides open from left to right */
+  max-width: 220px; /* Slides open smoothly from left to right */
   opacity: 1;
-  margin-left: 10px !important; /* Space next to logo icon */
+  margin-left: 12px !important; /* Comfortable spacing next to SVG logo icon */
 }
 
 /* Nav Link Color Shifts & Styling */

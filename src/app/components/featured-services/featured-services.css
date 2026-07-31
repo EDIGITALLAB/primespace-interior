@@ -44,7 +44,12 @@
 }
 
 .fs-exact-title .text-purple {
-  color: var(--primary-purple);
+  background: linear-gradient(to right, var(--primary-purple, #96053E) 0%, color-mix(in srgb, var(--primary-purple, #96053E) 45%, #ff007a) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--primary-purple, #96053E) !important;
+  display: inline-block;
 }
 
 .fs-exact-subtitle {
@@ -169,8 +174,15 @@
 
 /* Bottom Card Footer & Full-Width Accent Bar */
 .fs-card-footer-wrapper {
-  margin-left: 0;
-  margin-right: 0;
+  position: relative;
+  overflow: hidden;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  margin-left: -1.5rem !important; /* Spans 100% full card width edge to edge */
+  margin-right: -1.5rem !important;
+  margin-bottom: 0;
+  margin-top: auto;
+  width: calc(100% + 3rem) !important;
 }
 
 .fs-exact-explore-link {
@@ -189,7 +201,7 @@
   transform: translateX(4px);
 }
 
-/* 100% Solid Theme Accent Bar (Fits 100% inside card walls) */
+/* 100% Solid Theme Accent Bar (Spans full card width with matching curved corners) */
 .fs-exact-bottom-bar {
   position: absolute;
   bottom: 0;
@@ -214,7 +226,7 @@
    =================================================== */
 .fs-cta-banner {
   background: #ffffff;
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.15) !important;
+  border: none !important;
   border-radius: 20px !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04) !important;
   margin-top: 65px !important; /* Increased top gap for spacious separation */
@@ -222,7 +234,7 @@
 }
 
 .fs-cta-banner:hover {
-  border-color: rgba(var(--primary-purple-rgb), 0.3) !important;
+  border: none !important;
   box-shadow: 0 15px 40px rgba(var(--primary-purple-rgb), 0.08) !important;
 }
 
@@ -241,7 +253,12 @@
 }
 
 .fs-cta-title .text-purple {
-  color: var(--primary-purple);
+  background: linear-gradient(to right, var(--primary-purple, #96053E) 0%, color-mix(in srgb, var(--primary-purple, #96053E) 45%, #ff007a) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--primary-purple, #96053E) !important;
+  display: inline-block;
 }
 
 .btn-fs-banner-cta {
