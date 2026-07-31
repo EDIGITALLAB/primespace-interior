@@ -1,0 +1,163 @@
+/* Contact Page Styling */
+
+.contact-page-wrapper {
+  overflow-x: hidden;
+  background-color: #ffffff !important;
+  color: #111111;
+  min-height: 100vh;
+}
+
+.contact-hero-section {
+  background-color: #fafbfc !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-top: 140px !important;
+}
+
+.hero-bg-watermark {
+  position: absolute;
+  inset: 0;
+  background-image: url('/furniture-watermark.svg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.hero-glow-effect {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(var(--primary-purple-rgb), 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-badge {
+  font-family: var(--font-headings);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  color: var(--primary-purple);
+  background: rgba(var(--primary-purple-rgb), 0.06);
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.15);
+  padding: 6px 18px;
+  border-radius: 30px;
+}
+
+.hero-title {
+  font-family: var(--font-headings);
+  font-size: clamp(28px, 4.5vw, 48px);
+  font-weight: 900;
+  color: #111111;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: #555555;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* INFO CARDS STACK */
+.info-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(var(--primary-purple-rgb), 0.25) !important;
+}
+
+.info-icon-box {
+  width: 46px;
+  height: 46px;
+  font-size: 18px;
+  flex-shrink: 0;
+  background-color: var(--primary-purple) !important;
+  box-shadow: 0 6px 16px rgba(var(--primary-purple-rgb), 0.3);
+}
+
+.bg-purple-dark {
+  background-color: var(--primary-purple, #96053E) !important;
+}
+
+.bg-purple {
+  background-color: var(--primary-purple, #96053E) !important;
+}
+
+.text-purple {
+  color: var(--primary-purple, #96053E) !important;
+}
+
+.btn-purple {
+  background-color: var(--primary-purple, #96053E);
+  color: #ffffff;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-purple:hover {
+  background-color: #111111 !important;
+  color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
+  transform: translateY(-2px);
+}
+
+/* CONTACT FORM CARD */
+.contact-form-card {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.06) !important;
+}
+
+.contact-form-card .form-control:focus,
+.contact-form-card .form-select:focus {
+  border-color: var(--primary-purple) !important;
+  box-shadow: 0 0 0 3px rgba(var(--primary-purple-rgb), 0.12) !important;
+}
+
+.success-icon-circle {
+  width: 72px;
+  height: 72px;
+}
+
+.max-w-500 {
+  max-width: 500px;
+}
+
+/* FAQ ACCORDION STYLING */
+.faq-item-card {
+  transition: all 0.3s ease;
+}
+
+.faq-item-card.active {
+  border-color: rgba(var(--primary-purple-rgb), 0.3) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
+}
+
+.faq-chevron {
+  transition: transform 0.3s ease;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

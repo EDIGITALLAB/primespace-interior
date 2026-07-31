@@ -1,0 +1,193 @@
+<div class="locations-page-wrapper bg-white position-relative">
+
+  <!-- HERO HEADER SECTION -->
+  <section class="locations-hero-section position-relative py-5 py-lg-6 overflow-hidden">
+    <div class="hero-bg-watermark"></div>
+    <div class="hero-glow-effect"></div>
+
+    <div class="container position-relative z-2">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-10 col-xl-8">
+          <span class="hero-badge text-uppercase mb-3 d-inline-block">
+            <i class="fa-solid fa-map-location-dot me-2"></i>Experience Centers & Studios
+          </span>
+          <h1 class="hero-title text-uppercase mb-3">Our Design Studios</h1>
+          <p class="hero-subtitle mb-4">
+            Step inside our physical experience centers. Touch raw HDMR samples, test German soft-close fittings, and consult 1-on-1 with our principal interior architects.
+          </p>
+
+          <!-- Studio Location Switcher Pills -->
+          <div class="location-switcher-pills d-flex flex-wrap justify-content-center gap-3">
+            <button *ngFor="let loc of locationsList" type="button"
+              class="switcher-pill-btn rounded-pill border-0 px-4 py-3 text-uppercase fw-extrabold d-flex align-items-center gap-2"
+              [class.active]="activeLocationId() === loc.id" (click)="selectLocation(loc.id)">
+              <i class="fa-solid fa-location-dot text-purple"></i>
+              <span>{{ loc.city }} Studio</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIVE MAP & STUDIO DETAIL SECTION -->
+  <section class="locations-main-section py-5 position-relative">
+    <div class="container">
+      
+      <!-- Studio Header Bar -->
+      <div class="studio-header-bar p-4 rounded-4 bg-purple-dark text-white mb-5 shadow-lg d-flex flex-column flex-lg-row align-items-lg-center justify-content-between gap-3">
+        <div>
+          <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-2 fw-bold">{{ activeLocation.tagline }}</span>
+          <h2 class="text-white text-uppercase fw-black m-0">{{ activeLocation.name }}</h2>
+          <p class="text-white-80 m-0 mt-1"><i class="fa-solid fa-location-dot me-2"></i>{{ activeLocation.address }}</p>
+        </div>
+
+        <div class="d-flex flex-wrap align-items-center gap-2">
+          <a [href]="activeLocation.directionsUrl" target="_blank" rel="noopener noreferrer"
+            class="btn btn-light rounded-pill px-4 py-2.5 fw-bold text-purple text-uppercase shadow">
+            <i class="fa-solid fa-diamond-turn-right me-1.5"></i> Get Directions
+          </a>
+          <button (click)="consultationModalService.open()" class="btn btn-outline-light rounded-pill px-4 py-2.5 fw-bold text-uppercase">
+            <i class="fa-regular fa-calendar-check me-1.5"></i> Book Appointment
+          </button>
+        </div>
+      </div>
+
+      <div class="row g-4 gy-5 align-items-stretch">
+
+        <!-- Left Column: Live Google Map iFrame Display -->
+        <div class="col-lg-7">
+          <div class="live-map-card rounded-4 overflow-hidden border shadow-sm h-100 position-relative">
+            
+            <div class="map-badge-overlay position-absolute top-0 start-0 m-3 z-3 bg-white rounded-pill px-3 py-1.5 shadow border d-flex align-items-center gap-2">
+              <span class="pulse-dot bg-success rounded-circle"></span>
+              <span class="fw-bold small text-dark">LIVE GOOGLE MAP VIEW</span>
+            </div>
+
+            <iframe [src]="activeLocation.safeMapUrl" width="100%" height="100%" style="min-height: 460px; border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Studio Contact & Experience Highlights -->
+        <div class="col-lg-5 d-flex flex-column justify-content-between">
+          
+          <!-- Key Specs Cards -->
+          <div class="d-flex flex-column gap-3 mb-4">
+            
+            <div class="spec-card p-3 p-md-3.5 rounded-4 border bg-white shadow-sm d-flex align-items-center gap-3">
+              <div class="spec-icon-box bg-purple text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="fa-solid fa-clock"></i>
+              </div>
+              <div class="overflow-hidden flex-grow-1">
+                <span class="text-uppercase small text-purple fw-bold d-block mb-1">Studio Working Hours</span>
+                <span class="fw-extrabold text-dark d-block text-truncate">{{ activeLocation.hours }}</span>
+              </div>
+            </div>
+
+            <div class="spec-card p-3 p-md-3.5 rounded-4 border bg-white shadow-sm d-flex align-items-center gap-3">
+              <div class="spec-icon-box bg-purple text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="overflow-hidden flex-grow-1">
+                <span class="text-uppercase small text-purple fw-bold d-block mb-1">Direct Helpline</span>
+                <span class="fw-extrabold text-dark d-block">{{ activeLocation.phone }}</span>
+              </div>
+            </div>
+
+            <div class="spec-card p-3 p-md-3.5 rounded-4 border bg-white shadow-sm d-flex align-items-center gap-3">
+              <div class="spec-icon-box bg-purple text-white rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="overflow-hidden flex-grow-1">
+                <span class="text-uppercase small text-purple fw-bold d-block mb-1">Email Consultancy</span>
+                <span class="fw-extrabold text-dark d-block text-break">{{ activeLocation.email }}</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Studio Experience Highlights -->
+          <div class="highlights-box p-4 rounded-4 bg-light border">
+            <h6 class="fw-bold text-dark text-uppercase mb-3">Studio Features & Testing Bays:</h6>
+            <ul class="list-unstyled mb-0 d-flex flex-column gap-2.5">
+              <li *ngFor="let h of activeLocation.highlights" class="d-flex align-items-center gap-3 py-1">
+                <i class="fa-solid fa-circle-check text-purple flex-shrink-0 font-size-md"></i>
+                <span class="fw-bold small text-dark">{{ h }}</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDIO PHOTO GALLERY SHOWCASE -->
+  <section class="studio-gallery-section py-5 bg-light border-top border-bottom">
+    <div class="container">
+      
+      <div class="d-flex flex-wrap align-items-end justify-content-between mb-4">
+        <div>
+          <span class="section-subtitle text-uppercase text-purple mb-1 fw-bold d-block">Virtual Tour</span>
+          <h2 class="fw-black text-dark text-uppercase m-0">{{ activeLocation.city }} Studio Photos</h2>
+        </div>
+        <button class="btn btn-purple rounded-pill px-4 py-2 fw-bold text-uppercase" (click)="openGallery(0)">
+          <i class="fa-solid fa-expand me-1.5"></i> Open Full Gallery
+        </button>
+      </div>
+
+      <!-- Photo Cards Grid -->
+      <div class="row g-4">
+        <div *ngFor="let photo of activeLocation.photos; let photoIdx = index" class="col-md-6 col-lg-3">
+          <div class="photo-preview-card bg-white rounded-4 overflow-hidden border shadow-sm cursor-pointer transition-all position-relative" (click)="openGallery(photoIdx)">
+            <div class="photo-img-wrapper position-relative overflow-hidden">
+              <img [src]="photo.imageUrl" [alt]="photo.title" class="w-100 h-100 object-fit-cover">
+              <div class="img-overlay d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-magnifying-glass-plus text-white fa-2x"></i>
+              </div>
+            </div>
+            <div class="p-3">
+              <h6 class="fw-extrabold text-dark mb-1 line-clamp-1">{{ photo.title }}</h6>
+              <p class="text-muted small m-0 line-clamp-2">{{ photo.subtitle }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX GALLERY MODAL -->
+  <div *ngIf="isGalleryOpen()" class="gallery-lightbox-overlay position-fixed inset-0 z-1050 d-flex align-items-center justify-content-center p-3 animate-fade-in" (click)="closeGallery()">
+    <div class="gallery-lightbox-card bg-white rounded-4 overflow-hidden shadow-2xl max-w-900 w-100 position-relative" (click)="$event.stopPropagation()">
+      
+      <button class="btn btn-close-gallery position-absolute top-0 end-0 m-3 rounded-circle border-0 text-white z-3" (click)="closeGallery()">
+        <i class="fa-solid fa-xmark fa-lg"></i>
+      </button>
+
+      <div class="lightbox-img-box position-relative bg-dark">
+        <img [src]="activeLocation.photos[selectedPhotoIndex()].imageUrl" [alt]="activeLocation.photos[selectedPhotoIndex()].title" class="w-100 h-100 object-fit-contain">
+
+        <!-- Navigation Buttons -->
+        <button class="btn-gallery-nav nav-prev position-absolute top-50 start-0 translate-middle-y ms-3 rounded-circle text-white border-0" (click)="prevPhoto()">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="btn-gallery-nav nav-next position-absolute top-50 end-0 translate-middle-y me-3 rounded-circle text-white border-0" (click)="nextPhoto()">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="p-4 bg-white border-top">
+        <span class="badge bg-purple-light text-purple text-uppercase rounded-pill px-3 py-1 mb-1 fw-bold">{{ activeLocation.city }} Studio Photo {{ selectedPhotoIndex() + 1 }} of {{ activeLocation.photos.length }}</span>
+        <h4 class="fw-extrabold text-dark mb-1">{{ activeLocation.photos[selectedPhotoIndex()].title }}</h4>
+        <p class="text-muted m-0">{{ activeLocation.photos[selectedPhotoIndex()].subtitle }}</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

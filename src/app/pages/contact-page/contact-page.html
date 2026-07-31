@@ -1,0 +1,229 @@
+<div class="contact-page-wrapper bg-white position-relative">
+
+  <!-- HERO HEADER SECTION -->
+  <section class="contact-hero-section position-relative py-5 py-lg-6 overflow-hidden">
+    <div class="hero-bg-watermark"></div>
+    <div class="hero-glow-effect"></div>
+
+    <div class="container position-relative z-2">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-10 col-xl-8">
+          <span class="hero-badge text-uppercase mb-3 d-inline-block">
+            <i class="fa-solid fa-comments me-2"></i>Connect With Our Studio
+          </span>
+          <h1 class="hero-title text-uppercase mb-3">Get In Touch</h1>
+          <p class="hero-subtitle mb-0">
+            Have a project in mind, need a 3D floor plan layout, or want to experience our German modular hardware in person? Reach out to our senior architects today.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIRECT CONTACT CHANNELS & FORM SECTION -->
+  <section class="contact-main-section py-5 position-relative">
+    <div class="container">
+      <div class="row g-4 gy-5 align-items-stretch">
+
+        <!-- Left Column: Direct Contact Info & Quick Channels -->
+        <div class="col-lg-5 d-flex flex-column justify-content-between">
+          <div class="contact-info-stack d-flex flex-column gap-3">
+            
+            <div class="info-card p-4 rounded-4 border bg-white shadow-sm d-flex align-items-start gap-3">
+              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div>
+                <span class="info-label text-uppercase small text-purple fw-bold d-block">Call Us Directly</span>
+                <h5 class="fw-extrabold text-dark m-0">+91 98765 43210</h5>
+                <span class="text-muted small">Toll Free: 1800 123 4567</span>
+              </div>
+            </div>
+
+            <div class="info-card p-4 rounded-4 border bg-white shadow-sm d-flex align-items-start gap-3">
+              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div>
+                <span class="info-label text-uppercase small text-purple fw-bold d-block">Email Consultancy</span>
+                <h5 class="fw-extrabold text-dark m-0">hello&#64;primespaceinterior.com</h5>
+                <span class="text-muted small">Instant response within 2 business hours</span>
+              </div>
+            </div>
+
+            <div class="info-card p-4 rounded-4 border bg-white shadow-sm d-flex align-items-start gap-3">
+              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div>
+                <span class="info-label text-uppercase small text-purple fw-bold d-block">Instant WhatsApp</span>
+                <h5 class="fw-extrabold text-dark m-0">+91 98765 43210</h5>
+                <span class="text-muted small">Chat live with our design project manager</span>
+              </div>
+            </div>
+
+            <div class="info-card p-4 rounded-4 border bg-white shadow-sm d-flex align-items-start gap-3">
+              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center">
+                <i class="fa-regular fa-clock"></i>
+              </div>
+              <div>
+                <span class="info-label text-uppercase small text-purple fw-bold d-block">Studio Working Hours</span>
+                <h5 class="fw-extrabold text-dark m-0">Mon - Sat: 9:00 AM - 7:00 PM</h5>
+                <span class="text-muted small">Sunday by prior appointment only</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Quick Consultation Card Banner -->
+          <div class="quick-cta-card mt-4 p-4 rounded-4 bg-purple-dark text-white shadow-lg">
+            <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-2 fw-bold">Free Design Consultation</span>
+            <h4 class="fw-black text-white text-uppercase mb-2">Want a Custom 3D Plan?</h4>
+            <p class="small text-white opacity-90 mb-3">Book a 1-on-1 virtual or in-person consultation with our senior architect.</p>
+            <button class="btn btn-light rounded-pill px-4 py-2.5 fw-bold text-purple text-uppercase w-100" (click)="consultationModalService.open()">
+              <span>BOOK 3D CONSULTATION</span>
+              <i class="fa-solid fa-arrow-right ms-2"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Column: Interactive Consultation & Message Form -->
+        <div class="col-lg-7">
+          <div class="contact-form-card p-4 p-md-5 rounded-4 border bg-white shadow-sm position-relative overflow-hidden">
+            
+            <div *ngIf="!isSubmitted(); else successState">
+              <div class="mb-4">
+                <span class="section-subtitle text-uppercase text-purple mb-1 fw-bold d-block">Project Enquiry</span>
+                <h3 class="fw-black text-dark text-uppercase m-0">Send Us A Message</h3>
+                <p class="text-muted small mt-1">Fill in your property details below and our senior designer will contact you within 2 hours with an estimate.</p>
+              </div>
+
+              <form (submit)="submitContactForm($event)">
+                <div class="row g-3">
+
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Full Name *</label>
+                    <input type="text" class="form-control form-control-lg rounded-3 shadow-none border" placeholder="e.g. Rahul Sharma" [ngModel]="fullName()" (ngModelChange)="fullName.set($event)" name="fullName" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Phone Number *</label>
+                    <input type="tel" class="form-control form-control-lg rounded-3 shadow-none border" placeholder="e.g. +91 9876543210" [ngModel]="phone()" (ngModelChange)="phone.set($event)" name="phone" required>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Email Address</label>
+                    <input type="email" class="form-control form-control-lg rounded-3 shadow-none border" placeholder="e.g. rahul@gmail.com" [ngModel]="email()" (ngModelChange)="email.set($event)" name="email">
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Property Type</label>
+                    <select class="form-select form-select-lg rounded-3 shadow-none border" [ngModel]="propertyType()" (ngModelChange)="propertyType.set($event)" name="propertyType">
+                      <option value="1bhk">1 BHK Apartment</option>
+                      <option value="2bhk">2 BHK Apartment</option>
+                      <option value="3bhk">3 BHK Apartment</option>
+                      <option value="4bhk">4 BHK / Duplex</option>
+                      <option value="villa">Independent Villa</option>
+                      <option value="kitchen">Modular Kitchen Only</option>
+                      <option value="commercial">Commercial / Office</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Approximate Budget</label>
+                    <select class="form-select form-select-lg rounded-3 shadow-none border" [ngModel]="budget()" (ngModelChange)="budget.set($event)" name="budget">
+                      <option value="under5">Under ₹5 Lakhs</option>
+                      <option value="5-10lakhs">₹5 - ₹10 Lakhs</option>
+                      <option value="10-15lakhs">₹10 - ₹15 Lakhs</option>
+                      <option value="above15">Above ₹15 Lakhs</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Preferred Studio Location</label>
+                    <select class="form-select form-select-lg rounded-3 shadow-none border" [ngModel]="studioLocation()" (ngModelChange)="studioLocation.set($event)" name="studioLocation">
+                      <option value="bengaluru">Bengaluru Studio (Indiranagar)</option>
+                      <option value="bhubaneswar">Bhubaneswar Studio (Saheed Nagar)</option>
+                      <option value="virtual">Virtual Online Consultation</option>
+                    </select>
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label small fw-bold text-uppercase text-muted">Your Requirements / Message</label>
+                    <textarea class="form-control rounded-3 shadow-none border" rows="4" placeholder="Tell us about your home floor plan, target possession date, or preferred design style..." [ngModel]="message()" (ngModelChange)="message.set($event)" name="message"></textarea>
+                  </div>
+
+                  <div class="col-12 pt-2">
+                    <button type="submit" class="btn btn-purple rounded-pill py-3 px-5 fw-extrabold text-uppercase w-100 shadow" [disabled]="isSubmitting()">
+                      <span *ngIf="!isSubmitting()">SUBMIT ENQUIRY FOR 3D LAYOUT</span>
+                      <span *ngIf="isSubmitting()"><i class="fa-solid fa-spinner fa-spin me-2"></i>SUBMITTING...</span>
+                    </button>
+                  </div>
+
+                </div>
+              </form>
+            </div>
+
+            <!-- Success Submission State -->
+            <ng-template #successState>
+              <div class="text-center py-5 my-3 animate-fade-in">
+                <div class="success-icon-circle mx-auto mb-4 bg-success text-white rounded-circle d-flex align-items-center justify-content-center">
+                  <i class="fa-solid fa-check fa-2x"></i>
+                </div>
+                <h3 class="fw-black text-dark text-uppercase mb-2">Thank You, {{ fullName() }}!</h3>
+                <p class="text-muted mb-4 max-w-500 mx-auto">Your enquiry has been assigned to our senior interior architect. We will call you at <strong>{{ phone() }}</strong> within 2 hours with initial design ideas.</p>
+                <button class="btn btn-purple rounded-pill px-4 py-2.5 fw-bold" (click)="resetForm()">
+                  Send Another Message
+                </button>
+              </div>
+            </ng-template>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE CENTERS GOOGLE MAPS SECTION -->
+  <section class="contact-map-section py-5 bg-light border-top border-bottom">
+    <div class="container mb-4 text-center">
+      <span class="section-subtitle text-uppercase text-purple mb-1 fw-bold d-block">Visit Our Studios</span>
+      <h2 class="fw-black text-dark text-uppercase m-0">Experience Centers & Maps</h2>
+    </div>
+    <app-map-contact></app-map-contact>
+  </section>
+
+  <!-- FREQUENTLY ASKED QUESTIONS (FAQ) SECTION -->
+  <section class="contact-faq-section py-5 bg-white position-relative">
+    <div class="container">
+      <div class="row justify-content-center text-center mb-5">
+        <div class="col-lg-8">
+          <span class="section-subtitle text-uppercase text-purple mb-1 fw-bold d-block">Got Questions?</span>
+          <h2 class="fw-black text-dark text-uppercase m-0">Frequently Asked Questions</h2>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="faq-accordion-stack d-flex flex-column gap-3">
+            <div *ngFor="let item of faqs; let idx = index" class="faq-item-card rounded-4 border bg-white overflow-hidden shadow-sm transition-all" [class.active]="activeFaqIndex() === idx">
+              <div class="faq-header-bar p-4 d-flex align-items-center justify-content-between cursor-pointer" (click)="toggleFaq(idx)">
+                <h5 class="fw-extrabold text-dark m-0 d-flex align-items-center">
+                  <i class="fa-solid fa-circle-question text-purple me-3"></i>
+                  <span>{{ item.q }}</span>
+                </h5>
+                <i class="fa-solid fa-chevron-down faq-chevron ms-3 text-purple" [class.rotate-180]="activeFaqIndex() === idx"></i>
+              </div>
+              <div *ngIf="activeFaqIndex() === idx" class="faq-body-content px-4 pb-4 border-top pt-3 text-muted line-height-relaxed animate-fade-in">
+                <p class="m-0">{{ item.a }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
