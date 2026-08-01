@@ -46,7 +46,7 @@
 
 /* Colors & Design Tokens matching PrimeSpace Interior theme */
 .bg-light-neutral {
-  background-color: #faf9f6;
+  background-color: #ffffff !important;
 }
 
 .text-purple {

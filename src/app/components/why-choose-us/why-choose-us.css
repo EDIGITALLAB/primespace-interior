@@ -1,7 +1,7 @@
 /* Architectural Bento Grid Stylesheet */
 
 .why-choose-us-section {
-  background: linear-gradient(180deg, #fafbfc 0%, #ffffff 100%);
+  background-color: #ffffff !important;
   padding: 50px 0 55px 0;
 }
 
@@ -195,21 +195,7 @@
   background: var(--primary-purple);
   color: #ffffff;
   font-size: 30px;
-  box-shadow: 0 10px 30px rgba(var(--primary-purple-rgb), 0.5);
-  animation: pulse-hub-icon 3s infinite ease-in-out;
-}
-
-@keyframes pulse-hub-icon {
-  0%,
-  100% {
-    transform: scale(1);
-    box-shadow: 0 8px 25px rgba(var(--primary-purple-rgb), 0.45);
-  }
-
-  50% {
-    transform: scale(1.08);
-    box-shadow: 0 14px 38px rgba(var(--primary-purple-rgb), 0.7);
-  }
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .hub-crown-pill {

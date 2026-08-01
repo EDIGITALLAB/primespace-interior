@@ -11,6 +11,8 @@
 .main-footer .container-fluid {
   position: relative;
   z-index: 2;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 /* Linear glow divider line at the top */
@@ -25,24 +27,22 @@
   z-index: 3;
 }
 
-/* Full Luxury Home Living Room Interior Furniture Vector Background (Subtle Whisper Opacity) */
+/* Architectural White Building Skyline Watermark Background Overlay */
 .footer-single-home-watermark {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  color: rgba(255, 255, 255, 0.038);
+  opacity: 0.18;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.08) 100%);
-  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.08) 100%);
-  transition: color 0.4s ease;
+  transition: opacity 0.4s ease;
 }
 
 .main-footer:hover .footer-single-home-watermark {
-  color: rgba(255, 255, 255, 0.075);
+  opacity: 0.28;
 }
 
 /* Architectural Building Skyline Blueprint Watermark Overlay */

@@ -1,5 +1,5 @@
 <section id="featured-services-section"
-  class="featured-services-section position-relative overflow-hidden py-4 bg-light-neutral">
+  class="featured-services-section position-relative overflow-hidden py-4 bg-white">
 
   <div class="container-fluid fs-exact-container position-relative z-2">
 
@@ -90,15 +90,17 @@
       }
     </div>
 
-    <!-- Bottom Consultation CTA Banner matching exact user screenshot -->
+    <!-- Bottom Consultation CTA Banner -->
     <div
-      class="fs-cta-banner bg-white rounded-4 py-3.5 px-4 py-md-4 px-md-5 mt-3 shadow-sm d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      class="fs-cta-banner bg-white rounded-4 p-4 p-md-4 px-lg-5 mt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 position-relative overflow-hidden">
+
+      <div class="fs-cta-glow"></div>
 
       <!-- Left Content -->
-      <div>
+      <div class="position-relative z-2">
         <div class="d-flex align-items-center gap-2 mb-1">
           <span class="fs-cta-subhead font-size-micro fw-extrabold text-uppercase text-purple">
-            <i class="fa-solid fa-sparkles me-1"></i> READY TO BEGIN YOUR JOURNEY?
+            <i class="fa-solid fa-sparkles me-1.5"></i> READY TO BEGIN YOUR JOURNEY?
           </span>
         </div>
         <h3 class="fs-cta-title fw-bold m-0 text-dark">
@@ -107,13 +109,13 @@
       </div>
 
       <!-- Right Pill CTA Button -->
-      <div>
+      <div class="position-relative z-2">
         <button type="button"
-          class="btn btn-fs-banner-cta rounded-pill px-4 py-3 d-inline-flex align-items-center gap-2 text-uppercase fw-extrabold shadow-md cursor-pointer"
+          class="btn btn-fs-banner-cta rounded-pill px-4 py-3 d-inline-flex align-items-center gap-2 text-uppercase fw-extrabold cursor-pointer"
           (click)="openConsultationModal($event)">
           <span>Book a Free Consultation</span>
           <span
-            class="fs-cta-arrow-circle d-inline-flex align-items-center justify-content-center rounded-circle bg-white">
+            class="fs-cta-arrow-circle d-inline-flex align-items-center justify-content-center rounded-circle">
             <i class="fa-solid fa-arrow-right font-size-micro"></i>
           </span>
         </button>

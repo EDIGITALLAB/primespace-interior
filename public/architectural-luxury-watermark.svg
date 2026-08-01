@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="100%" height="100%">
+  <!-- Luxury Architectural CAD Watermark Overlay -->
+  <g fill="none" stroke="#96053E" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Architectural CAD Grid & Dimension Axis -->
+    <g stroke-width="0.8" stroke-dasharray="4 8" opacity="0.35">
+      <line x1="80" y1="120" x2="1120" y2="120" />
+      <line x1="80" y1="420" x2="1120" y2="420" />
+      <line x1="80" y1="680" x2="1120" y2="680" />
+      <line x1="180" y1="60" x2="180" y2="740" />
+      <line x1="620" y1="60" x2="620" y2="740" />
+      <line x1="980" y1="60" x2="980" y2="740" />
+    </g>
+
+    <!-- Top Right Architectural Compass Rose Dial -->
+    <g transform="translate(940, 200)">
+      <circle cx="0" cy="0" r="95" stroke-width="1" stroke-dasharray="3 3" opacity="0.5" />
+      <circle cx="0" cy="0" r="75" stroke-width="1.2" />
+      <circle cx="0" cy="0" r="4" fill="#96053E" />
+      <line x1="0" y1="-105" x2="0" y2="105" stroke-width="1.2" />
+      <line x1="-105" y1="0" x2="105" y2="0" stroke-width="1.2" />
+      <polygon points="0,-75 -8,-35 0,-45 8,-35" fill="#96053E" />
+      <text x="0" y="-115" text-anchor="middle" fill="#96053E" font-family="sans-serif" font-size="14" font-weight="900" letter-spacing="1">N</text>
+    </g>
+
+    <!-- Architectural Blueprint Layout (Right Side) -->
+    <g transform="translate(640, 250)" stroke-width="2">
+      <!-- Wall Outline -->
+      <rect x="0" y="0" width="360" height="320" rx="6" />
+      <line x1="0" y1="130" x2="230" y2="130" />
+      <line x1="230" y1="0" x2="230" y2="320" />
+
+      <!-- Swing Door Arc -->
+      <path d="M 0 130 A 55 55 0 0 1 55 185" stroke-dasharray="3 3" stroke-width="1" />
+      <line x1="0" y1="130" x2="0" y2="185" />
+
+      <!-- Living Lounge Sofa Blueprint -->
+      <rect x="35" y="30" width="160" height="65" rx="8" stroke-width="1.5" />
+      <path d="M 45 40 H 185 V 85 H 45 Z" stroke-width="1.2" />
+
+      <!-- Dining Table Set Blueprint -->
+      <rect x="45" y="205" width="140" height="75" rx="10" stroke-width="1.5" />
+      <circle cx="25" cy="242" r="12" stroke-width="1.2" />
+      <circle cx="205" cy="242" r="12" stroke-width="1.2" />
+      <circle cx="75" cy="185" r="12" stroke-width="1.2" />
+      <circle cx="155" cy="185" r="12" stroke-width="1.2" />
+      <circle cx="75" cy="298" r="12" stroke-width="1.2" />
+      <circle cx="155" cy="298" r="12" stroke-width="1.2" />
+    </g>
+
+    <!-- Architectural Scale & Title Marker -->
+    <g transform="translate(640, 610)">
+      <line x1="0" y1="0" x2="360" y2="0" stroke-width="1.5" />
+      <line x1="0" y1="-5" x2="0" y2="5" stroke-width="1.5" />
+      <line x1="180" y1="-5" x2="180" y2="5" stroke-width="1.5" />
+      <line x1="360" y1="-5" x2="360" y2="5" stroke-width="1.5" />
+      <text x="0" y="22" fill="#96053E" font-family="sans-serif" font-size="11" font-weight="800" letter-spacing="2.5">SCALE 1:50 | ARCHITECTURAL MASTERPLAN</text>
+    </g>
+
+  </g>
+</svg>
