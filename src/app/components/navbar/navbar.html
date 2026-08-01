@@ -15,7 +15,7 @@
         </a>
 
         <!-- Center: Collapsible Menu -->
-        <div class="collapse navbar-collapse h-100 d-lg-flex align-items-center justify-content-center"
+        <div class="collapse navbar-collapse d-lg-flex align-items-center justify-content-center"
           id="mainNavbarSupportedContent">
 
           <!-- Main Navigation Links Centered horizontally -->
@@ -31,23 +31,23 @@
 
 
 
-            <li class="nav-item dropdown px-lg-1.5">
+            <li class="nav-item dropdown px-lg-1.5" [class.show]="isLocationsDropdownOpen">
               <a class="nav-link dropdown-toggle d-flex align-items-center" routerLink="/locations" routerLinkActive="active" id="locationsDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                role="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="toggleLocationsDropdown($event)">
                 <span class="nav-link-text">LOCATIONS</span>
                 <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations"
+              <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations" [class.show]="isLocationsDropdownOpen"
                 aria-labelledby="locationsDropdown">
                 <div class="dropdown-grid-locations">
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bengaluru">
+                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bengaluru" (click)="isMobileMenuOpen = false">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BENGALURU</span>
                       <span class="dropdown-desc">Silicon Valley Hub</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bhubaneswar">
+                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bhubaneswar" (click)="isMobileMenuOpen = false">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BHUBANESWAR</span>
@@ -86,11 +86,9 @@
             </a>
           </div>
 
-          <!-- Toggler for Mobile (Grouped on right side next to desktop hamburger context) -->
-          <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse"
-            data-bs-target="#mainNavbarSupportedContent" aria-controls="mainNavbarSupportedContent"
-            aria-expanded="false" aria-label="Toggle navigation" (click)="toggleMobileMenu()">
-            <div class="hamburger-mobile-icon" [class.open]="isMobileMenuOpen">
+          <!-- Toggler for Mobile (Opens Side Bar Drawer Menu on mobile screens) -->
+          <button class="navbar-toggler custom-mobile-toggler d-lg-none ms-2" type="button" aria-label="Toggle side drawer menu" (click)="toggleSideMenu()">
+            <div class="hamburger-mobile-icon" [class.open]="isSideMenuOpen">
               <span></span>
               <span></span>
               <span></span>
@@ -103,85 +101,63 @@
   </div>
 </header>
 
-<!-- Offcanvas Sidebar Drawer (Desktop & Mobile) -->
-<div class="offcanvas-drawer" [class.open]="isSideMenuOpen">
-  <div class="drawer-header d-flex justify-content-between align-items-center">
-    <div class="drawer-logo">
-      <img src="/BrandLogo.svg" alt="Prime Space Interior" class="drawer-logo-img">
-    </div>
+<!-- Offcanvas Sidebar Drawer (Matching User Reference Design) -->
+<div class="offcanvas-drawer purple-drawer" [class.open]="isSideMenuOpen">
+  
+  <!-- Header with Top-Right Close Button -->
+  <div class="drawer-header d-flex justify-content-end align-items-center mb-3">
     <button class="drawer-close-btn d-flex align-items-center justify-content-center" (click)="toggleSideMenu()"
       aria-label="Close sidebar">
       <i class="fa-solid fa-xmark"></i>
     </button>
   </div>
 
-  <div class="drawer-content d-flex flex-column justify-content-between">
-    <div class="drawer-top-section">
-      <div class="drawer-about mb-5">
-        <h4 class="drawer-section-title">ABOUT PRIME SPACE</h4>
-        <p class="drawer-about-text">
-          Bespoke luxury interior design consultancy firm creating sensitivity, quality, and credibility in top hotels,
-          offices, and homes around the world.
-        </p>
-      </div>
+  <div class="drawer-content d-flex flex-column justify-content-between h-100">
+    <div class="drawer-main-menu">
+      <ul class="drawer-nav-list list-unstyled m-0">
+        
+        <!-- HOME -->
+        <li class="drawer-menu-item">
+          <a routerLink="/" (click)="toggleSideMenu()" class="drawer-link">HOME</a>
+        </li>
 
-      <div class="drawer-contact mb-5">
-        <h4 class="drawer-section-title">GET IN TOUCH</h4>
-        <ul class="drawer-contact-list list-unstyled">
-          <li class="d-flex align-items-start mb-3">
-            <i class="fa-solid fa-location-dot mt-1 me-3 accent-color"></i>
-            <span>123, Luxury Design Avenue, Indiranagar, Bengaluru, India</span>
-          </li>
-          <li class="d-flex align-items-center mb-3">
-            <i class="fa-solid fa-phone me-3 accent-color"></i>
-            <a href="tel:+1800123456" class="text-decoration-none text-white transition-all">+1 800 123 456</a>
-          </li>
-          <li class="d-flex align-items-center mb-3">
-            <i class="fa-solid fa-envelope me-3 accent-color"></i>
-            <a href="mailto:info@primespaceinterior.com"
-              class="text-decoration-none text-white transition-all">info@primespaceinterior.com</a>
-          </li>
-          <li class="d-flex align-items-center">
-            <i class="fa-solid fa-clock me-3 accent-color"></i>
-            <span>Mon - Sat: 9:00 AM - 7:00 PM</span>
-          </li>
-        </ul>
-      </div>
-    </div>
+        <!-- CATEGORIES -->
+        <li class="drawer-menu-item">
+          <a routerLink="/categories" (click)="toggleSideMenu()" class="drawer-link">CATEGORIES</a>
+        </li>
 
-    <div class="drawer-bottom-section">
-      <!-- Quick Info CTA -->
-      <div class="drawer-cta mb-4">
-        <a href="#" class="btn btn-accent w-100 py-3 text-uppercase fw-bold letter-spacing-1"
-          (click)="openConsultationModal($event)">Book Consultation</a>
-      </div>
+        <!-- LOCATIONS (Collapsible) -->
+        <li class="drawer-menu-item" [class.active]="openDrawerSubmenu['locations']">
+          <div class="drawer-link-parent d-flex align-items-center justify-content-between" (click)="toggleDrawerSubmenu('locations', $event)">
+            <span>LOCATIONS</span>
+            <i class="fa-solid" [class.fa-chevron-down]="!openDrawerSubmenu['locations']" [class.fa-chevron-up]="openDrawerSubmenu['locations']"></i>
+          </div>
+          @if (openDrawerSubmenu['locations']) {
+            <ul class="drawer-submenu-list list-unstyled">
+              <li><a routerLink="/locations/bengaluru" (click)="toggleSideMenu()" class="drawer-sublink">BENGALURU</a></li>
+              <li><a routerLink="/locations/bhubaneswar" (click)="toggleSideMenu()" class="drawer-sublink">BHUBANESWAR</a></li>
+            </ul>
+          }
+        </li>
 
-      <!-- Social Media Links -->
-      <div class="drawer-socials">
-        <h5 class="drawer-socials-title text-center mb-3 text-uppercase">Follow Our Designs</h5>
-        <div class="d-flex justify-content-center gap-3">
-          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="Facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-          </a>
-          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="Instagram">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="Pinterest">
-            <i class="fa-brands fa-pinterest-p"></i>
-          </a>
-          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="LinkedIn">
-            <i class="fa-brands fa-linkedin-in"></i>
-          </a>
-          <a href="#" class="social-icon-btn d-flex align-items-center justify-content-center" aria-label="WhatsApp">
-            <i class="fa-brands fa-whatsapp"></i>
-          </a>
-        </div>
-      </div>
+        <!-- BLOGS -->
+        <li class="drawer-menu-item">
+          <a href="#" (click)="toggleSideMenu()" class="drawer-link">BLOGS</a>
+        </li>
+
+        <!-- PROJECTS -->
+        <li class="drawer-menu-item">
+          <a routerLink="/projects" (click)="toggleSideMenu()" class="drawer-link">PROJECTS</a>
+        </li>
+
+        <!-- CONTACT -->
+        <li class="drawer-menu-item">
+          <a routerLink="/contact" (click)="toggleSideMenu()" class="drawer-link">CONTACT</a>
+        </li>
+
+      </ul>
     </div>
   </div>
-
-  <!-- Subtle back lighting -->
-  <div class="drawer-glow-bg"></div>
 </div>
 
 <!-- Drawer Overlay backdrop -->

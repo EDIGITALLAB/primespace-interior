@@ -1,3 +1,9 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 9999 !important;
+}
+
 .hero-section {
   height: 90vh;
   min-height: 650px;
@@ -472,17 +478,6 @@
   }
 }
 
-.slide-3-brand-logo {
-  height: 32px;
-  width: auto;
-  object-fit: contain;
-}
-
-.slide-3-line {
-  width: 50px;
-  height: 1.5px;
-  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0.8), rgba(var(--primary-purple-rgb), 0.1));
-}
 
 .slide-3-tagline {
   font-family: var(--font-headings);
@@ -615,7 +610,7 @@
   transition: right 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
   overflow: visible;
-  z-index: 99999999 !important;
+  z-index: 999999999 !important;
 }
 
 .theme-switcher-widget.open {

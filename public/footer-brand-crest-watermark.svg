@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 400" width="100%" height="100%" preserveAspectRatio="xMidYMid slice">
+  <!-- Option 1: Ultra-Sleek Luxury Brand Crest & Starburst Watermark for Footer -->
+  <g fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round">
+    
+    <!-- Massive Right-Aligned Brand Crest Emblem -->
+    <g transform="translate(1080, 200)" stroke-width="1.8">
+      
+      <!-- Concentric Glow Circles -->
+      <circle cx="0" cy="0" r="180" stroke-width="1" stroke-dasharray="4 6" opacity="0.4" />
+      <circle cx="0" cy="0" r="140" stroke-width="1.2" opacity="0.6" />
+      <circle cx="0" cy="0" r="90" stroke-width="1.5" opacity="0.75" />
+
+      <!-- Center House Outline (Matches Logo) -->
+      <path d="M -45 35 L -45 -15 L 0 -55 L 45 -15 L 45 35 Z" stroke-width="2.5" />
+      
+      <!-- Hanging Pendant Light inside House -->
+      <line x1="0" y1="-55" x2="0" y2="-10" stroke-width="1.8" />
+      <path d="M -16 10 L 0 -10 L 16 10 Z" stroke-width="1.8" />
+      <circle cx="0" cy="10" r="4" fill="#ffffff" />
+      
+      <!-- Chair Outline inside House Base -->
+      <path d="M -22 35 H 22 V 22 H -22 Z" stroke-width="1.5" />
+
+      <!-- 4-Point Starburst Sparkles -->
+      <g transform="translate(-160, -90)">
+        <path d="M 0 -18 L 4 -4 L 18 0 L 4 4 L 0 18 L -4 4 L -18 0 L -4 -4 Z" fill="#ffffff" stroke="none" opacity="0.8" />
+      </g>
+      <g transform="translate(150, 110)">
+        <path d="M 0 -14 L 3 -3 L 14 0 L 3 3 L 0 14 L -3 3 L -14 0 L -3 -3 Z" fill="#ffffff" stroke="none" opacity="0.7" />
+      </g>
+    </g>
+
+    <!-- Subtle Left-Side Architectural Axis Lines (Non-intrusive) -->
+    <g stroke-width="0.8" stroke-dasharray="4 8" opacity="0.3">
+      <line x1="60" y1="80" x2="750" y2="80" />
+      <line x1="60" y1="320" x2="750" y2="320" />
+      <line x1="180" y1="30" x2="180" y2="370" />
+    </g>
+
+  </g>
+</svg>

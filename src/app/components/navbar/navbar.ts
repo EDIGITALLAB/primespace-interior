@@ -12,6 +12,14 @@ export class Navbar {
   isScrolled = false;
   isSideMenuOpen = false;
   isMobileMenuOpen = false;
+  isLocationsDropdownOpen = false;
+
+  openDrawerSubmenu: { [key: string]: boolean } = {
+    whatWeDo: false,
+    products: false,
+    locations: false,
+    more: false
+  };
 
   constructor(public consultationModalService: ConsultationModalService) {}
 
@@ -33,6 +41,22 @@ export class Navbar {
 
   toggleMobileMenu() {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  toggleLocationsDropdown(event: Event) {
+    if (typeof window !== 'undefined' && window.innerWidth <= 991.98) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.isLocationsDropdownOpen = !this.isLocationsDropdownOpen;
+    }
+  }
+
+  toggleDrawerSubmenu(key: string, event?: Event) {
+    if (event) {
+      event.preventDefault();
+      event.stopPropagation();
+    }
+    this.openDrawerSubmenu[key] = !this.openDrawerSubmenu[key];
   }
 
   openConsultationModal(event: Event) {

@@ -5,14 +5,15 @@
   --font-headings: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
   --primary-purple: #96053E;
+  --primary-black: #000000;
+  --white: #ffffff;
   --primary-purple-rgb: 150, 5, 62;
   --bg-light-blue: #f2f6f9;
-  --white: #ffffff;
 }
 
 body {
   font-family: var(--font-body);
-  background-color: #111111;
+  background-color: var(--primary-black);
   color: #ffffff;
   overflow-x: hidden;
 }

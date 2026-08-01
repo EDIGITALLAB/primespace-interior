@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="100%" height="100%">
+  <!-- Editorial High-Fashion Typography Watermark -->
+  <g fill="none" stroke="#96053E">
+    <g transform="translate(480, 420)" text-anchor="middle">
+      
+      <!-- Horizontal Decorative Line -->
+      <line x1="-380" y1="-120" x2="380" y2="-120" stroke-width="1.5" opacity="0.4" />
+      
+      <!-- Massive Luxurious Branding Wordmark -->
+      <text x="0" y="0" fill="#96053E" font-family="'Playfair Display', Georgia, serif" font-size="78" font-weight="900" letter-spacing="12" opacity="0.85">PRIME SPACE</text>
+      
+      <!-- Sub-Text Tagline -->
+      <text x="0" y="45" fill="#96053E" font-family="sans-serif" font-size="14" font-weight="800" letter-spacing="14" opacity="0.65">BESPOKE INTERIOR ARCHITECTURE</text>
+      
+      <!-- Bottom Decorative Line -->
+      <line x1="-380" y1="90" x2="380" y2="90" stroke-width="1.5" opacity="0.4" />
+      
+      <!-- Small Diamond Center -->
+      <polygon points="0,83 7,90 0,97 -7,90" fill="#96053E" stroke="none" opacity="0.8" />
+    </g>
+  </g>
+</svg>
