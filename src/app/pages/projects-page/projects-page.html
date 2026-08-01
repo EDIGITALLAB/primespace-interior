@@ -1,7 +1,7 @@
 <div class="projects-page-wrapper bg-white text-dark pb-6">
 
   <!-- HERO SECTION -->
-  <section class="proj-hero-section position-relative overflow-hidden py-5 border-bottom">
+  <section class="proj-hero-section position-relative overflow-hidden pb-5 border-bottom">
     <div class="hero-bg-watermark"></div>
 
     <div class="container position-relative z-2 py-3">
@@ -16,17 +16,15 @@
 
       <div class="row align-items-center gy-4">
         <div class="col-lg-7">
-          <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill proj-theme-badge mb-3">
-            <i class="fa-solid fa-crown text-purple"></i>
-            <span class="font-size-micro fw-extrabold text-uppercase letter-spacing-1 text-purple">ARCHITECTURAL
-              PORTFOLIO & LIVE SITE RADAR</span>
-          </div>
+          <span class="hero-badge text-uppercase mb-3 d-inline-flex align-items-center gap-2">
+            <i class="fa-solid fa-crown text-purple"></i>Architectural Portfolio & Live Site Radar
+          </span>
 
           <h1 class="proj-hero-heading text-uppercase fw-black mb-3 text-dark">
             BESPOKE HOMES & <span class="text-purple">SITE EXECUTION</span>
           </h1>
 
-          <p class="proj-hero-lead lead text-muted mb-4 max-w-750">
+          <p class="proj-hero-lead text-muted mb-4 max-w-750">
             Witness our journey from raw blueprints & German precision factory cutting to delivered luxury homes and
             active live construction sites.
           </p>
@@ -178,11 +176,11 @@
                   </p>
 
                   <!-- Scope List Pills -->
-                  <div class="d-flex flex-wrap gap-2 mb-4">
+                  <div class="d-flex flex-wrap gap-2 row-gap-2 mb-4">
                     @for (sc of p.scopeOfWork; track sc) {
                     <span
                       class="badge bg-purple-tint text-purple font-size-micro border border-purple-subtle fw-semibold py-1.5 px-3 rounded-2">
-                      <i class="fa-solid fa-check me-1"></i>{{ sc }}
+                      <i class="fa-solid fa-check" style="margin-right: 5px;"></i><span>{{ sc }}</span>
                     </span>
                     }
                   </div>
@@ -191,10 +189,9 @@
                 <div class="pt-3 border-top d-flex align-items-center justify-content-between">
                   <span class="font-size-xs text-muted">Client: <strong class="text-dark">{{ p.clientName
                       }}</strong></span>
-                  <button type="button"
-                    class="btn btn-accent rounded-pill px-4 py-2 font-size-xs fw-extrabold text-uppercase shadow-sm d-inline-flex align-items-center gap-2">
+                  <button type="button" class="proj-btn-portfolio">
                     <span>View Full Portfolio</span>
-                    <i class="fa-solid fa-arrow-right font-size-micro"></i>
+                    <i class="fa-solid fa-arrow-right"></i>
                   </button>
                 </div>
               </div>
@@ -216,13 +213,13 @@
               <!-- Top Left Status Pill Badge -->
               @if (p.status === 'completed') {
               <div
-                class="proj-status-badge completed-badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
+                class="proj-status-badge completed-badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-2">
                 <i class="fa-solid fa-circle-check text-success"></i>
                 <span>{{ p.statusLabel }}</span>
               </div>
               } @else {
               <div
-                class="proj-status-badge ongoing-badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
+                class="proj-status-badge ongoing-badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-2">
                 <span class="proj-radar-ring"></span>
                 <span>{{ p.statusLabel }}</span>
               </div>
@@ -247,16 +244,16 @@
 
                 <!-- Live Execution Milestone Bar for Ongoing Projects -->
                 @if (p.status === 'ongoing' && p.progressPercentage) {
-                <div class="proj-live-progress-box p-3 rounded-3 bg-purple-tint border border-purple-subtle mb-3">
-                  <div class="d-flex align-items-center justify-content-between font-size-micro fw-extrabold mb-1.5">
-                    <span class="text-purple text-uppercase d-flex align-items-center gap-1 text-truncate">
-                      <i class="fa-solid fa-list-check font-size-micro flex-shrink-0"></i> {{ p.currentPhase }}
+                <div class="proj-live-progress-box rounded-3 bg-purple-tint border border-purple-subtle mb-3" style="padding: 12px 16px;">
+                  <div class="d-flex align-items-center justify-content-between mb-2" style="font-size: 10.5px; font-weight: 800;">
+                    <span class="text-purple text-uppercase d-flex align-items-center text-truncate" style="letter-spacing: 0.3px;">
+                      <i class="fa-solid fa-list-check flex-shrink-0" style="font-size: 10px; margin-right: 5px;"></i><span>{{ p.currentPhase }}</span>
                     </span>
-                    <span class="text-dark font-size-xs fw-black ms-2">{{ p.progressPercentage }}%</span>
+                    <span class="text-dark fw-black ms-2" style="font-size: 10.5px;">{{ p.progressPercentage }}%</span>
                   </div>
 
-                  <div class="progress proj-track-progress rounded-pill bg-white" style="height: 7px;">
-                    <div class="progress-bar bg-purple-gradient rounded-pill" role="progressbar"
+                  <div class="progress proj-track-progress rounded-pill bg-white" style="height: 6px;">
+                    <div class="progress-bar bg-purple rounded-pill" role="progressbar"
                       [style.width.%]="p.progressPercentage" [attr.aria-valuenow]="p.progressPercentage"
                       aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
@@ -289,15 +286,15 @@
                 </p>
 
                 <!-- Scope Pills -->
-                <div class="d-flex flex-wrap gap-1.5 mb-3">
+                <div class="d-flex flex-wrap gap-2 row-gap-2 mb-3">
                   @for (sc of p.scopeOfWork.slice(0, 3); track sc) {
                   <span class="badge bg-light text-dark font-size-micro border fw-normal py-1 px-2.5 rounded-2">
-                    <i class="fa-solid fa-check text-purple me-1"></i>{{ sc }}
+                    <i class="fa-solid fa-check text-purple" style="margin-right: 5px;"></i><span>{{ sc }}</span>
                   </span>
                   }
                   @if (p.scopeOfWork.length > 3) {
                   <span
-                    class="badge bg-purple-tint text-purple font-size-micro border border-purple-subtle fw-bold py-1 px-2 rounded-2">
+                    class="badge bg-purple-tint text-purple font-size-micro border border-purple-subtle fw-bold py-1 px-2.5 rounded-2">
                     +{{ p.scopeOfWork.length - 3 }} more
                   </span>
                   }
@@ -464,9 +461,9 @@
           @if (activeModalTab() === 'materials' && selectedProjectModal()!.materialsUsed) {
           <div class="proj-materials-list d-flex flex-column gap-2 mb-4">
             @for (mat of selectedProjectModal()!.materialsUsed; track mat) {
-            <div class="d-flex align-items-center gap-2.5 p-2.5 rounded-3 bg-purple-tint border border-purple-subtle">
-              <i class="fa-solid fa-shield-halved text-purple font-size-md"></i>
-              <span class="font-size-xs fw-bold text-dark">{{ mat }}</span>
+            <div class="d-flex align-items-center p-2.5 px-3 rounded-3 bg-purple-tint border border-purple-subtle">
+              <i class="fa-solid fa-shield-halved text-purple font-size-md flex-shrink-0" style="margin-right: 6px;"></i>
+              <span class="font-size-xs fw-bold text-dark text-nowrap text-truncate">{{ mat }}</span>
             </div>
             }
           </div>
@@ -476,18 +473,18 @@
           @if (activeModalTab() === 'milestones' && selectedProjectModal()!.milestones) {
           <div class="proj-milestones-list d-flex flex-column gap-2 mb-4">
             @for (ms of selectedProjectModal()!.milestones; track ms.name) {
-            <div class="d-flex align-items-center gap-3 p-2.5 rounded-3 border"
+            <div class="d-flex align-items-center gap-3 p-2.5 px-3.5 rounded-3 border"
               [class.bg-success-subtle]="ms.status === 'completed'"
               [class.border-success-subtle]="ms.status === 'completed'"
               [class.bg-purple-tint]="ms.status === 'in-progress'"
               [class.border-purple-subtle]="ms.status === 'in-progress'" [class.bg-light]="ms.status === 'upcoming'">
 
               @if (ms.status === 'completed') {
-              <i class="fa-solid fa-circle-check text-success font-size-md"></i>
+              <i class="fa-solid fa-circle-check text-success font-size-md ms-1 flex-shrink-0"></i>
               } @else if (ms.status === 'in-progress') {
-              <i class="fa-solid fa-spinner fa-spin text-purple font-size-md"></i>
+              <i class="fa-solid fa-spinner fa-spin text-purple font-size-md ms-1 flex-shrink-0"></i>
               } @else {
-              <i class="fa-regular fa-circle text-muted font-size-md"></i>
+              <i class="fa-regular fa-circle text-muted font-size-md ms-1 flex-shrink-0"></i>
               }
 
               <div>
@@ -507,10 +504,10 @@
 
         <!-- Action Button -->
         <button type="button"
-          class="btn btn-accent rounded-pill w-100 py-3 font-size-xs fw-extrabold text-uppercase shadow-md"
+          class="proj-btn-portfolio w-100 justify-content-center py-3 cursor-pointer"
           (click)="openConsultation($event)">
           <span>Book Similar Design Consultation</span>
-          <i class="fa-solid fa-arrow-right ms-2"></i>
+          <i class="fa-solid fa-arrow-right"></i>
         </button>
 
       </div>
