@@ -185,7 +185,8 @@
 }
 
 .hub-ambient-glow {
-  display: none !important; /* Background card glow removed as requested */
+  display: none !important;
+  /* Background card glow removed as requested */
 }
 
 .hub-emblem-icon {

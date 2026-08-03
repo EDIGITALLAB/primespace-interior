@@ -66,14 +66,22 @@
 }
 
 @keyframes blink {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Slider Wrapper with fixed responsive ratio aspect */
 .slider-wrapper {
   width: 100%;
-  height: clamp(300px, 36vw, 480px); /* Ideal horizontal aspect height */
+  height: clamp(300px, 36vw, 480px);
+  /* Ideal horizontal aspect height */
   border-radius: 0;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.05);
@@ -127,14 +135,16 @@
 
 .before-badge {
   left: 24px;
-  background-color: rgba(15, 23, 42, 0.85); /* Premium Dark Slate */
+  background-color: rgba(15, 23, 42, 0.85);
+  /* Premium Dark Slate */
   color: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .after-badge {
   right: 24px;
-  background-color: rgba(255, 255, 255, 0.85); /* Sleek Glass White */
+  background-color: rgba(255, 255, 255, 0.85);
+  /* Sleek Glass White */
   color: #111111;
   border: 1px solid rgba(0, 0, 0, 0.06);
 }
@@ -186,8 +196,15 @@
 }
 
 @keyframes ring-pulse {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(1.6); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }
 
 /* Interactive Input Range Overlap */
@@ -349,9 +366,11 @@
   .before-after-section {
     padding: 60px 0;
   }
+
   .slider-frame-wrapper {
     padding: 8px;
   }
+
   .drag-tooltip {
     right: 20px;
   }
@@ -364,15 +383,15 @@
     font-size: 0.65rem;
     letter-spacing: 1px;
   }
-  
+
   .before-badge {
     left: 15px;
   }
-  
+
   .after-badge {
     right: 15px;
   }
-  
+
   .slider-button {
     width: 40px;
     height: 40px;
