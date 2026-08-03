@@ -63,7 +63,7 @@
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 4px;
-  color: var(--primary-purple) !important;
+  color: var(--primary-maroon) !important;
   display: block;
 }
 
@@ -81,15 +81,15 @@
   font-family: var(--font-body);
   font-size: 13.5px;
   /* Refined size to fit card cleanly */
-  color: #555555 !important;
+  color: var(--text-medium-grey) !important;
   line-height: 1.6;
 }
 
 /* Curved Category Info glass badge card */
 .category-info-card {
-  background: rgba(var(--primary-purple-rgb), 0.04);
+  background: rgba(var(--primary-maroon-rgb), 0.04);
   /* Light brand purple glass overlay */
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.08);
   border-radius: 12px;
   padding: 16px 20px;
   max-width: 480px;
@@ -100,13 +100,13 @@
 }
 
 .category-info-card:hover {
-  background: rgba(var(--primary-purple-rgb), 0.06);
-  border-color: rgba(var(--primary-purple-rgb), 0.15);
-  box-shadow: 0 6px 18px rgba(var(--primary-purple-rgb), 0.04);
+  background: rgba(var(--primary-maroon-rgb), 0.06);
+  border-color: rgba(var(--primary-maroon-rgb), 0.15);
+  box-shadow: 0 6px 18px rgba(var(--primary-maroon-rgb), 0.04);
 }
 
 .info-sparkle-svg {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   flex-shrink: 0;
 }
 
@@ -160,20 +160,20 @@
   top: 0;
   bottom: 0;
   width: 0;
-  background-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Sidebar item hover & active states */
 .sidebar-item:hover .item-name {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   padding-left: 8px;
   /* Elegant push right on hover */
 }
 
 .sidebar-arrow {
   font-size: 11px;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   opacity: 0;
   transform: translateX(-10px);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
@@ -186,22 +186,22 @@
 }
 
 .sidebar-item:hover .item-number {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 .sidebar-item.active {
-  background-color: rgba(var(--primary-purple-rgb), 0.04) !important;
+  background-color: rgba(var(--primary-maroon-rgb), 0.04) !important;
   /* Soft brand-purple active background highlight */
 }
 
 .sidebar-item.active .item-name {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   font-weight: 800;
   padding-left: 4px;
 }
 
 .sidebar-item.active .item-number {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 .sidebar-item.active .active-indicator-bar {
@@ -230,12 +230,12 @@
 }
 
 .btn-see-all-sidebar:hover {
-  color: var(--primary-purple) !important;
-  border-bottom-color: var(--primary-purple);
+  color: var(--primary-maroon) !important;
+  border-bottom-color: var(--primary-maroon);
 }
 
 .btn-see-all-sidebar:hover .btn-icon {
-  color: var(--primary-purple) !important;
+  color: var(--primary-maroon) !important;
   transform: translateX(6px);
 }
 
@@ -249,7 +249,7 @@
   flex: 1;
   height: 100%;
   background-color: #ffffff;
-  border: 2px solid var(--primary-purple);
+  border: 2px solid var(--primary-maroon);
   box-shadow: 0 25px 60px rgba(150, 5, 62, 0.12);
   border-radius: 0px;
   /* Removed curves as requested */
@@ -273,7 +273,7 @@
 }
 
 .preview-counter-badge .current-num {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   font-weight: 800;
   font-size: 13.5px;
 }
@@ -523,7 +523,7 @@
   font-size: 9.5px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   display: block;
 }
 
@@ -539,7 +539,7 @@
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.5;
-  color: #555555 !important;
+  color: var(--text-medium-grey) !important;
 }
 
 /* Explore CTA button inside floating badge */
@@ -551,7 +551,7 @@
   font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -562,7 +562,7 @@
 }
 
 .btn-explore-cat:hover {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 .btn-explore-cat:hover .btn-arrow {
@@ -711,8 +711,8 @@
   }
 
   .sidebar-item.active {
-    background-color: var(--primary-purple);
-    border-color: var(--primary-purple);
+    background-color: var(--primary-maroon);
+    border-color: var(--primary-maroon);
   }
 
   .sidebar-item.active .item-name {

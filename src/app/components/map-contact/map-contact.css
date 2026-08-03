@@ -1,6 +1,6 @@
 /* Map & Contact Section Base */
 .map-contact-section {
-  background-color: #ffffff !important;
+  background-color: var(--page-top-background) !important;
   overflow: hidden;
   position: relative;
 }
@@ -44,7 +44,7 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  color: #555555;
+  color: var(--text-medium-grey);
   background: transparent;
   border: none;
   border-radius: 20px;
@@ -53,13 +53,13 @@
 }
 
 .studio-tab-btn:hover {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 .studio-tab-btn.active {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(var(--primary-purple-rgb), 0.3);
+  box-shadow: 0 4px 12px rgba(var(--primary-maroon-rgb), 0.3);
 }
 
 /* Clean Natural Map View */
@@ -118,7 +118,7 @@
   font-size: 9.5px;
   font-weight: 700;
   letter-spacing: 1.3px;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 /* Live Status Pulse Dot */
@@ -177,7 +177,7 @@
   font-family: var(--font-body);
   font-size: 12px;
   line-height: 1.4;
-  color: #555555 !important;
+  color: var(--text-medium-grey) !important;
 }
 
 .studio-meta .meta-item {
@@ -188,9 +188,9 @@
 
 /* Studio Gallery Preview Button */
 .btn-gallery-preview {
-  background: rgba(var(--primary-purple-rgb), 0.08);
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.2);
-  color: var(--primary-purple);
+  background: rgba(var(--primary-maroon-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.2);
+  color: var(--primary-maroon);
   border-radius: 18px;
   font-size: 11px;
   font-weight: 600;
@@ -199,10 +199,10 @@
 }
 
 .btn-gallery-preview:hover {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   color: #ffffff !important;
-  border-color: var(--primary-purple);
-  box-shadow: 0 4px 12px rgba(var(--primary-purple-rgb), 0.3);
+  border-color: var(--primary-maroon);
+  box-shadow: 0 4px 12px rgba(var(--primary-maroon-rgb), 0.3);
 }
 
 .btn-gallery-preview:hover i {
@@ -211,8 +211,8 @@
 
 /* Directions Button */
 .btn-directions-sm {
-  background: var(--primary-purple);
-  border: 1px solid var(--primary-purple);
+  background: var(--primary-maroon);
+  border: 1px solid var(--primary-maroon);
   color: #ffffff !important;
   border-radius: 18px;
   font-size: 11px;
@@ -223,15 +223,15 @@
 }
 
 .btn-directions-sm:hover {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   filter: brightness(0.85);
   color: #ffffff !important;
-  box-shadow: 0 4px 12px rgba(var(--primary-purple-rgb), 0.3);
+  box-shadow: 0 4px 12px rgba(var(--primary-maroon-rgb), 0.3);
 }
 
 /* Right Column: Brand Purple/Magenta Luxury Column */
 .contact-details-column {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   padding: 35px 24px;
   min-height: 480px;
   overflow: hidden;
@@ -301,6 +301,7 @@
 .gradient-accent-text {
   background: linear-gradient(135deg, #ffffff 0%, #ffe6ee 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -397,7 +398,7 @@ select.contact-form-input option {
 /* White Submit Button */
 .btn-submit-message {
   background-color: #ffffff;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   border: 1px solid #ffffff;
   border-radius: 28px;
   font-size: 13px;
@@ -428,7 +429,7 @@ select.contact-form-input option {
 }
 
 .text-purple {
-  color: var(--primary-purple) !important;
+  color: var(--primary-maroon) !important;
 }
 
 /* Trust Features Row */
@@ -460,7 +461,7 @@ select.contact-form-input option {
 
 .gallery-modal-content {
   background: #ffffff;
-  border: 1.5px solid rgba(var(--primary-purple-rgb), 0.2);
+  border: 1.5px solid rgba(var(--primary-maroon-rgb), 0.2);
   border-radius: 20px;
   width: 100%;
   max-width: 720px;
@@ -475,16 +476,16 @@ select.contact-form-input option {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: rgba(var(--primary-purple-rgb), 0.08);
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
-  color: var(--primary-purple);
+  background: rgba(var(--primary-maroon-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.18);
+  color: var(--primary-maroon);
   font-size: 16px;
   transition: all 0.25s ease;
   z-index: 10;
 }
 
 .btn-close-modal:hover {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   color: #ffffff;
   transform: rotate(90deg);
 }
@@ -496,11 +497,11 @@ select.contact-form-input option {
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1px;
-  color: var(--primary-purple);
-  background: rgba(var(--primary-purple-rgb), 0.08);
+  color: var(--primary-maroon);
+  background: rgba(var(--primary-maroon-rgb), 0.08);
   padding: 5px 12px;
   border-radius: 12px;
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.18);
 }
 
 .modal-title {
@@ -512,7 +513,7 @@ select.contact-form-input option {
 
 .modal-subtitle {
   font-size: 12.5px;
-  color: #555555;
+  color: var(--text-medium-grey);
 }
 
 .main-photo-stage {
@@ -535,7 +536,7 @@ select.contact-form-input option {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   border: 1px solid rgba(255, 255, 255, 0.4);
   color: #ffffff;
   font-size: 14px;
@@ -544,7 +545,7 @@ select.contact-form-input option {
 }
 
 .btn-photo-nav:hover {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   filter: brightness(1.15);
   color: #ffffff;
   transform: translateY(-50%) scale(1.1);
@@ -578,11 +579,11 @@ select.contact-form-input option {
 .thumb-item:hover,
 .thumb-item.active {
   opacity: 1;
-  border-color: var(--primary-purple) !important;
+  border-color: var(--primary-maroon) !important;
   transform: scale(1.05);
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.96); }
   to { opacity: 1; transform: scale(1); }
-}
+}

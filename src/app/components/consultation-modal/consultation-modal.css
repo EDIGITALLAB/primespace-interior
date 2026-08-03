@@ -20,7 +20,7 @@
 
 .consultation-modal-card {
   background: #ffffff;
-  border: 1.5px solid rgba(var(--primary-purple-rgb), 0.2);
+  border: 1.5px solid rgba(var(--primary-maroon-rgb), 0.2);
   width: 100%;
   max-width: 620px;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
@@ -36,16 +36,16 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: rgba(var(--primary-purple-rgb), 0.08);
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
-  color: var(--primary-purple);
+  background: rgba(var(--primary-maroon-rgb), 0.08);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.18);
+  color: var(--primary-maroon);
   font-size: 16px;
   transition: all 0.25s ease;
   z-index: 10;
 }
 
 .btn-close-consultation:hover {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   color: #ffffff;
   transform: rotate(90deg);
 }
@@ -55,11 +55,11 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  color: var(--primary-purple);
-  background: rgba(var(--primary-purple-rgb), 0.08);
+  color: var(--primary-maroon);
+  background: rgba(var(--primary-maroon-rgb), 0.08);
   padding: 5px 14px;
   border-radius: 20px;
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.18);
 }
 
 .consultation-title {
@@ -79,7 +79,7 @@
   left: 15px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   font-size: 13.5px;
   pointer-events: none;
   z-index: 3;
@@ -102,24 +102,24 @@
 
 .modal-input:focus {
   background: #ffffff !important;
-  border-color: var(--primary-purple) !important;
-  box-shadow: 0 0 0 3px rgba(var(--primary-purple-rgb), 0.15) !important;
+  border-color: var(--primary-maroon) !important;
+  box-shadow: 0 0 0 3px rgba(var(--primary-maroon-rgb), 0.15) !important;
 }
 
 .btn-modal-submit {
-  background: var(--primary-purple) !important;
+  background: var(--primary-maroon) !important;
   color: #ffffff !important;
   border: none !important;
   border-radius: 30px !important;
   font-family: var(--font-headings);
   font-size: 13px !important;
   letter-spacing: 1.5px;
-  box-shadow: 0 8px 25px rgba(var(--primary-purple-rgb), 0.35);
+  box-shadow: 0 8px 25px rgba(var(--primary-maroon-rgb), 0.35);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-modal-submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(var(--primary-purple-rgb), 0.5);
+  box-shadow: 0 12px 30px rgba(var(--primary-maroon-rgb), 0.5);
   filter: brightness(1.08);
 }

@@ -12,7 +12,7 @@
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 4px;
-  color: var(--primary-purple) !important;
+  color: var(--primary-maroon) !important;
   display: block;
 }
 
@@ -79,11 +79,11 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background-color: rgba(var(--primary-purple-rgb), 0.05);
-  color: var(--primary-purple);
+  background-color: rgba(var(--primary-maroon-rgb), 0.05);
+  color: var(--primary-maroon);
   font-size: 1.35rem;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 15px rgba(var(--primary-purple-rgb), 0.04);
+  box-shadow: 0 4px 15px rgba(var(--primary-maroon-rgb), 0.04);
 }
 
 /* Typography styles */
@@ -107,26 +107,26 @@
 .step-card.active {
   transform: translateY(-8px);
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.07);
-  border-color: rgba(var(--primary-purple-rgb), 0.18);
+  border-color: rgba(var(--primary-maroon-rgb), 0.18);
 }
 
 .step-card:hover .step-number-badge,
 .step-card.active .step-number-badge {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   transform: scale(1.12);
 }
 
 .step-card:hover .step-icon-wrapper,
 .step-card.active .step-icon-wrapper {
-  background-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
   color: #ffffff;
   transform: scale(1.08) rotate(360deg);
-  box-shadow: 0 8px 25px rgba(var(--primary-purple-rgb), 0.3);
+  box-shadow: 0 8px 25px rgba(var(--primary-maroon-rgb), 0.3);
 }
 
 .step-card:hover .step-title,
 .step-card.active .step-title {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 .step-card:hover .step-desc,
@@ -137,8 +137,8 @@
 /* Illuminate connector line on hover */
 .step-card:hover .connection-line-right,
 .step-card.active .connection-line-right {
-  background: var(--primary-purple);
-  box-shadow: 0 0 10px rgba(var(--primary-purple-rgb), 0.5);
+  background: var(--primary-maroon);
+  box-shadow: 0 0 10px rgba(var(--primary-maroon-rgb), 0.5);
   height: 2px;
 }
 

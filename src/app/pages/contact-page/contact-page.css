@@ -8,7 +8,7 @@
 }
 
 .contact-hero-section {
-  background-color: #fafbfc !important;
+  background-color: var(--page-top-background) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   padding-top: 140px !important;
 }
@@ -28,9 +28,9 @@
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 2.5px;
-  color: var(--primary-purple);
-  background: rgba(var(--primary-purple-rgb), 0.06);
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.15);
+  color: var(--primary-maroon);
+  background: rgba(var(--primary-maroon-rgb), 0.06);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.15);
   padding: 6px 18px;
   border-radius: 30px;
 }
@@ -46,7 +46,7 @@
 .hero-subtitle {
   font-family: var(--font-body);
   font-size: 15px;
-  color: #555555;
+  color: var(--text-medium-grey);
   line-height: 1.6;
   max-width: 680px;
   margin: 0 auto;
@@ -60,7 +60,7 @@
 .info-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08) !important;
-  border-color: rgba(var(--primary-purple-rgb), 0.25) !important;
+  border-color: rgba(var(--primary-maroon-rgb), 0.25) !important;
 }
 
 .info-icon-box {
@@ -68,24 +68,24 @@
   height: 46px;
   font-size: 18px;
   flex-shrink: 0;
-  background-color: var(--primary-purple) !important;
-  box-shadow: 0 6px 16px rgba(var(--primary-purple-rgb), 0.3);
+  background-color: var(--primary-maroon) !important;
+  box-shadow: 0 6px 16px rgba(var(--primary-maroon-rgb), 0.3);
 }
 
 .bg-purple-dark {
-  background-color: var(--primary-purple, #96053E) !important;
+  background-color: var(--primary-maroon, #96053E) !important;
 }
 
 .bg-purple {
-  background-color: var(--primary-purple, #96053E) !important;
+  background-color: var(--primary-maroon, #96053E) !important;
 }
 
 .text-purple {
-  color: var(--primary-purple, #96053E) !important;
+  color: var(--primary-maroon, #96053E) !important;
 }
 
 .btn-purple {
-  background-color: var(--primary-purple, #96053E);
+  background-color: var(--primary-maroon, #96053E);
   color: #ffffff;
   border: none;
   transition: all 0.3s ease;
@@ -105,8 +105,8 @@
 
 .contact-form-card .form-control:focus,
 .contact-form-card .form-select:focus {
-  border-color: var(--primary-purple) !important;
-  box-shadow: 0 0 0 3px rgba(var(--primary-purple-rgb), 0.12) !important;
+  border-color: var(--primary-maroon) !important;
+  box-shadow: 0 0 0 3px rgba(var(--primary-maroon-rgb), 0.12) !important;
 }
 
 .success-icon-circle {
@@ -124,7 +124,7 @@
 }
 
 .faq-item-card.active {
-  border-color: rgba(var(--primary-purple-rgb), 0.3) !important;
+  border-color: rgba(var(--primary-maroon-rgb), 0.3) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06) !important;
 }
 
