@@ -502,6 +502,7 @@
   transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   padding: 30px 22px;
   overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
 }
@@ -512,13 +513,20 @@
 
 /* Purple Offcanvas Drawer Matching User Reference Screenshot */
 .offcanvas-drawer.purple-drawer {
-  width: 300px !important;
+  width: 380px !important;
   max-width: 78vw !important;
   background: var(--primary-purple, #96053E) !important;
   color: #ffffff !important;
   padding: 25px 22px !important;
   border-left: none !important;
   box-shadow: none !important;
+}
+
+@media (min-width: 992px) {
+  .offcanvas-drawer.purple-drawer {
+    width: 420px !important;
+    padding: 35px 35px !important;
+  }
 }
 
 .offcanvas-drawer.purple-drawer .drawer-header {
@@ -571,7 +579,6 @@
 .drawer-link:hover,
 .drawer-link-parent:hover {
   opacity: 0.85;
-  transform: translateX(4px);
 }
 
 .drawer-link-parent i {
@@ -584,9 +591,11 @@
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 6px;
   padding-top: 4px;
-  padding-left: 12px;
+  padding-left: 0;
+  margin-left: 12px;
+  border-left: 2px solid rgba(255, 255, 255, 0.6);
 }
 
 .drawer-sublink {
@@ -596,13 +605,23 @@
   letter-spacing: 0.6px;
   color: rgba(255, 255, 255, 0.88) !important;
   text-decoration: none;
-  display: inline-block;
-  transition: all 0.2s ease;
+  display: block;
+  width: auto;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  border-radius: 0;
+  background-color: transparent;
+  transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-.drawer-sublink:hover {
-  color: #ffffff !important;
-  transform: translateX(4px);
+.drawer-sublink:hover,
+.drawer-sublink:active,
+.drawer-sublink:focus {
+  color: var(--primary-purple, #96053E) !important;
+  background-color: #ffffff !important;
+  border-left: 2px solid #111111 !important;
+  margin-left: -2px !important;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2) !important;
 }
 
 .drawer-header {

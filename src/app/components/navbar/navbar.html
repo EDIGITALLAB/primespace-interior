@@ -20,7 +20,7 @@
 
           <!-- Main Navigation Links Centered horizontally -->
           <ul class="navbar-nav mx-auto mb-0 align-items-lg-center"
-            style="font-weight: 600; font-size: 13px; font-family: var(--font-headings); letter-spacing: 0.5px;">
+            style="font-weight: 600; font-size: 14px; font-family: var(--font-headings); letter-spacing: 0.5px;">
 
             <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/"><span
                   class="nav-link-text">HOME</span></a></li>
@@ -32,22 +32,25 @@
 
 
             <li class="nav-item dropdown px-lg-1.5" [class.show]="isLocationsDropdownOpen">
-              <a class="nav-link dropdown-toggle d-flex align-items-center" routerLink="/locations" routerLinkActive="active" id="locationsDropdown"
-                role="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="toggleLocationsDropdown($event)">
+              <a class="nav-link dropdown-toggle d-flex align-items-center" routerLink="/locations"
+                routerLinkActive="active" id="locationsDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false" (click)="toggleLocationsDropdown($event)">
                 <span class="nav-link-text">LOCATIONS</span>
                 <i class="fas fa-chevron-down ms-1 chevron-icon" style="font-size: 9px; vertical-align: middle;"></i>
               </a>
-              <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations" [class.show]="isLocationsDropdownOpen"
-                aria-labelledby="locationsDropdown">
+              <div class="dropdown-menu dropdown-menu-custom dropdown-menu-locations"
+                [class.show]="isLocationsDropdownOpen" aria-labelledby="locationsDropdown">
                 <div class="dropdown-grid-locations">
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bengaluru" (click)="isMobileMenuOpen = false">
+                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bengaluru"
+                    (click)="isMobileMenuOpen = false">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BENGALURU</span>
                       <span class="dropdown-desc">Silicon Valley Hub</span>
                     </div>
                   </a>
-                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bhubaneswar" (click)="isMobileMenuOpen = false">
+                  <a class="dropdown-item d-flex align-items-center" routerLink="/locations/bhubaneswar"
+                    (click)="isMobileMenuOpen = false">
                     <div class="dropdown-icon-box"><i class="fa-solid fa-location-dot"></i></div>
                     <div class="dropdown-meta">
                       <span class="dropdown-title">BHUBANESWAR</span>
@@ -87,7 +90,8 @@
           </div>
 
           <!-- Toggler for Mobile (Opens Side Bar Drawer Menu on mobile screens) -->
-          <button class="navbar-toggler custom-mobile-toggler d-lg-none ms-2" type="button" aria-label="Toggle side drawer menu" (click)="toggleSideMenu()">
+          <button class="navbar-toggler custom-mobile-toggler d-lg-none ms-2" type="button"
+            aria-label="Toggle side drawer menu" (click)="toggleSideMenu()">
             <div class="hamburger-mobile-icon" [class.open]="isSideMenuOpen">
               <span></span>
               <span></span>
@@ -103,7 +107,7 @@
 
 <!-- Offcanvas Sidebar Drawer (Matching User Reference Design) -->
 <div class="offcanvas-drawer purple-drawer" [class.open]="isSideMenuOpen">
-  
+
   <!-- Header with Top-Right Close Button -->
   <div class="drawer-header d-flex justify-content-end align-items-center mb-3">
     <button class="drawer-close-btn d-flex align-items-center justify-content-center" (click)="toggleSideMenu()"
@@ -115,7 +119,7 @@
   <div class="drawer-content d-flex flex-column justify-content-between h-100">
     <div class="drawer-main-menu">
       <ul class="drawer-nav-list list-unstyled m-0">
-        
+
         <!-- HOME -->
         <li class="drawer-menu-item">
           <a routerLink="/" (click)="toggleSideMenu()" class="drawer-link">HOME</a>
@@ -128,15 +132,19 @@
 
         <!-- LOCATIONS (Collapsible) -->
         <li class="drawer-menu-item" [class.active]="openDrawerSubmenu['locations']">
-          <div class="drawer-link-parent d-flex align-items-center justify-content-between" (click)="toggleDrawerSubmenu('locations', $event)">
+          <div class="drawer-link-parent d-flex align-items-center justify-content-between"
+            (click)="toggleDrawerSubmenu('locations', $event)">
             <span>LOCATIONS</span>
-            <i class="fa-solid" [class.fa-chevron-down]="!openDrawerSubmenu['locations']" [class.fa-chevron-up]="openDrawerSubmenu['locations']"></i>
+            <i class="fa-solid" [class.fa-chevron-down]="!openDrawerSubmenu['locations']"
+              [class.fa-chevron-up]="openDrawerSubmenu['locations']"></i>
           </div>
           @if (openDrawerSubmenu['locations']) {
-            <ul class="drawer-submenu-list list-unstyled">
-              <li><a routerLink="/locations/bengaluru" (click)="toggleSideMenu()" class="drawer-sublink">BENGALURU</a></li>
-              <li><a routerLink="/locations/bhubaneswar" (click)="toggleSideMenu()" class="drawer-sublink">BHUBANESWAR</a></li>
-            </ul>
+          <ul class="drawer-submenu-list list-unstyled">
+            <li><a routerLink="/locations/bengaluru" (click)="toggleSideMenu()" class="drawer-sublink">BENGALURU</a>
+            </li>
+            <li><a routerLink="/locations/bhubaneswar" (click)="toggleSideMenu()" class="drawer-sublink">BHUBANESWAR</a>
+            </li>
+          </ul>
           }
         </li>
 

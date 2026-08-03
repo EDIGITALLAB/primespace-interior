@@ -139,11 +139,13 @@
   position: absolute;
   bottom: 120px;
   left: 0px;
-  background: rgba(255, 255, 255, 0.92); /* Premium light glassmorphism */
+  background: rgba(255, 255, 255, 0.92);
+  /* Premium light glassmorphism */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-left: 4px solid var(--primary-purple) !important; /* Elegant brand accent line */
+  border-left: 4px solid var(--primary-purple) !important;
+  /* Elegant brand accent line */
   padding: 18px 24px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
   color: #111111;
@@ -159,7 +161,8 @@
 
 .experience-num {
   font-family: var(--font-headings);
-  font-size: 28px; /* Slightly reduced for letter text */
+  font-size: 28px;
+  /* Slightly reduced for letter text */
   font-weight: 900;
   letter-spacing: -0.5px;
   color: var(--primary-purple);
@@ -288,16 +291,20 @@
     height: 420px;
     max-width: 440px;
   }
+
   .primary-frame {
     height: 300px;
   }
+
   .secondary-frame {
     height: 180px;
   }
+
   .experience-card {
     bottom: 90px;
     padding: 12px 18px;
   }
+
   .experience-num {
     font-size: 24px;
   }
