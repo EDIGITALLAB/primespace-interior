@@ -4,11 +4,32 @@
 
   --font-headings: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --primary-purple: #96053E;
+  --primary-maroon: #96053E;
+  --primary-maroon-rgb: 150, 5, 62;
   --primary-black: #000000;
+  --text-dark-black: #111111;
+  --text-dark-grey: #444444;
+  --text-medium-grey: #555555;
   --white: #ffffff;
-  --primary-purple-rgb: 150, 5, 62;
-  --bg-light-blue: #f2f6f9;
+  --bg-light-white: #f2f6f9;
+  --page-top-background: #fafbfc;
+ 
+  --theme-gradient-end: #ff007a;
+
+  /* Global Theme Gradient Variable (Dynamically adapts fade to any selected theme color) */
+  --theme-gradient: linear-gradient(to right, var(--primary-maroon) 0%, color-mix(in srgb, var(--primary-maroon) 45%, var(--theme-gradient-end, #ff007a)) 100%);
+}
+
+/* Global Text Accent & Gradient Utilities */
+.text-highlight,
+.text-gradient-fade,
+.theme-title-accent {
+  background: var(--theme-gradient) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: var(--primary-maroon) !important;
+  display: inline-block;
 }
 
 body {

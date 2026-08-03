@@ -19,7 +19,7 @@
 .footer-border-glow {
   height: 2px;
   width: 100%;
-  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0) 0%, var(--primary-purple) 30%, rgba(255, 255, 255, 0.85) 50%, var(--primary-purple) 70%, rgba(var(--primary-purple-rgb), 0) 100%);
+  background: linear-gradient(to right, rgba(var(--primary-maroon-rgb), 0) 0%, var(--primary-maroon) 30%, rgba(255, 255, 255, 0.85) 50%, var(--primary-maroon) 70%, rgba(var(--primary-maroon-rgb), 0) 100%);
   position: absolute;
   top: 0;
   left: 0;
@@ -94,11 +94,11 @@
 }
 
 .social-link-icon:hover {
-  background-color: var(--primary-purple);
-  border-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
+  border-color: var(--primary-maroon);
   color: #ffffff;
   transform: translateY(-4px) scale(1.08);
-  box-shadow: 0 6px 15px rgba(var(--primary-purple-rgb), 0.35);
+  box-shadow: 0 6px 15px rgba(var(--primary-maroon-rgb), 0.35);
 }
 
 /* Column titles */
@@ -120,7 +120,7 @@
   left: 0;
   width: 32px;
   height: 2px;
-  background-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
   border-radius: 2px;
 }
 
@@ -152,7 +152,7 @@
 }
 
 .footer-link:hover i {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   transform: translateX(2px);
 }
 
@@ -183,9 +183,9 @@
 }
 
 .newsletter-input:focus {
-  border-color: var(--primary-purple) !important;
+  border-color: var(--primary-maroon) !important;
   background-color: #1a1a1a !important;
-  box-shadow: 0 0 12px rgba(var(--primary-purple-rgb), 0.25) !important;
+  box-shadow: 0 0 12px rgba(var(--primary-maroon-rgb), 0.25) !important;
 }
 
 .newsletter-submit-btn {
@@ -195,7 +195,7 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
   color: #ffffff;
   border: none;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -203,7 +203,7 @@
 
 .newsletter-submit-btn:hover {
   background-color: #ffffff;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   transform: scale(1.05);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
@@ -235,12 +235,12 @@
 }
 
 .location-badge i {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 .location-badge:hover {
-  background-color: rgba(var(--primary-purple-rgb), 0.08);
-  border-color: rgba(var(--primary-purple-rgb), 0.3);
+  background-color: rgba(var(--primary-maroon-rgb), 0.08);
+  border-color: rgba(var(--primary-maroon-rgb), 0.3);
   color: #ffffff;
   transform: scale(1.03);
 }

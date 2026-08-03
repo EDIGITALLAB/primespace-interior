@@ -1,12 +1,12 @@
 /* Featured Services Section Stylesheet - Top Floating Notch Icon & Full-Width Bottom Bar */
 
 .bg-light-neutral {
-  background-color: #ffffff !important;
+  background-color: var(--page-top-background) !important;
 }
 
 .featured-services-section {
   padding: 40px 0 45px 0;
-  background-color: #ffffff !important;
+  background-color: var(--page-top-background) !important;
   position: relative;
 }
 
@@ -30,11 +30,11 @@
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: var(--primary-purple);
-  background-color: rgba(var(--primary-purple-rgb), 0.07);
+  color: var(--primary-maroon);
+  background-color: rgba(var(--primary-maroon-rgb), 0.07);
   padding: 5px 14px;
   border-radius: 20px;
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.18);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.18);
   text-transform: uppercase;
 }
 
@@ -47,11 +47,11 @@
 }
 
 .fs-exact-title .text-purple {
-  background: linear-gradient(to right, var(--primary-purple, #96053E) 0%, color-mix(in srgb, var(--primary-purple, #96053E) 45%, #ff007a) 100%) !important;
+  background: var(--theme-gradient);
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  color: var(--primary-purple, #96053E) !important;
+  color: var(--primary-maroon, #96053E) !important;
   display: inline-block;
 }
 
@@ -59,7 +59,7 @@
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 500;
-  color: #555555;
+  color: var(--text-medium-grey);
   line-height: 1.6;
 }
 
@@ -69,7 +69,7 @@
 
 .fs-exact-divider-line {
   height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(var(--primary-purple-rgb), 0.7) 50%, transparent);
+  background: linear-gradient(90deg, transparent, rgba(var(--primary-maroon-rgb), 0.7) 50%, transparent);
   flex-grow: 1;
   max-width: 450px;
 }
@@ -130,7 +130,7 @@
   position: absolute;
   top: 14px;
   left: 14px;
-  background: rgba(var(--primary-purple-rgb), 0.88);
+  background: rgba(var(--primary-maroon-rgb), 0.88);
   backdrop-filter: blur(8px);
   color: #ffffff;
   font-size: 10px;
@@ -156,14 +156,14 @@
   border-radius: 50%;
   background: #ffffff;
   border: 3px solid #faf9f6;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   font-size: 26px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fs-exact-card:hover .fs-exact-icon-circle {
-  background: var(--primary-purple);
+  background: var(--primary-maroon);
   color: #ffffff;
   transform: scale(1.05);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
@@ -192,7 +192,7 @@
 
 .fs-item-pill {
   background: #f8f6f7;
-  border: 1px solid rgba(var(--primary-purple-rgb), 0.1);
+  border: 1px solid rgba(var(--primary-maroon-rgb), 0.1);
   transition: all 0.25s ease;
 }
 
@@ -205,8 +205,8 @@
 }
 
 .fs-exact-card:hover .fs-item-pill {
-  background: rgba(var(--primary-purple-rgb), 0.08);
-  border-color: rgba(var(--primary-purple-rgb), 0.22);
+  background: rgba(var(--primary-maroon-rgb), 0.08);
+  border-color: rgba(var(--primary-maroon-rgb), 0.22);
 }
 
 /* Bottom Card Footer & Full-Width Accent Bar */
@@ -221,7 +221,7 @@
 }
 
 .fs-exact-explore-link {
-  color: var(--primary-purple) !important;
+  color: var(--primary-maroon) !important;
   font-family: var(--font-headings);
   font-size: 12.5px;
   letter-spacing: 1px;
@@ -243,7 +243,7 @@
   left: 0;
   right: 0;
   height: 4px;
-  background-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   transition: height 0.3s ease, background-color 0.3s ease;
@@ -276,7 +276,7 @@
 }
 
 .fs-cta-subhead {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   letter-spacing: 1.5px;
   font-family: var(--font-headings);
   font-size: 11px;
@@ -291,16 +291,16 @@
 }
 
 .fs-cta-title .text-purple {
-  background: linear-gradient(to right, var(--primary-purple, #96053E) 0%, color-mix(in srgb, var(--primary-purple, #96053E) 45%, #ff007a) 100%) !important;
+  background: var(--theme-gradient);
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
-  color: var(--primary-purple, #96053E) !important;
+  color: var(--primary-maroon, #96053E) !important;
   display: inline-block;
 }
 
 .btn-fs-banner-cta {
-  background: var(--primary-purple, #96053E);
+  background: var(--primary-maroon, #96053E);
   color: #ffffff;
   border: none;
   font-family: var(--font-headings);
@@ -308,7 +308,7 @@
   letter-spacing: 1px;
   padding: 13px 26px !important;
   border-radius: 50px !important;
-  box-shadow: 0 4px 12px rgba(var(--primary-purple-rgb), 0.12);
+  box-shadow: 0 4px 12px rgba(var(--primary-maroon-rgb), 0.12);
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
@@ -322,7 +322,7 @@
   background: #7c0433;
   color: #ffffff;
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(var(--primary-purple-rgb), 0.18);
+  box-shadow: 0 6px 18px rgba(var(--primary-maroon-rgb), 0.18);
 }
 
 .btn-fs-banner-cta:hover::after {
@@ -332,7 +332,7 @@
 .fs-cta-arrow-circle {
   width: 26px;
   height: 26px;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
   background-color: #ffffff;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   margin-left: 6px;
@@ -342,5 +342,5 @@
 .btn-fs-banner-cta:hover .fs-cta-arrow-circle {
   transform: translateX(4px);
   background-color: #ffffff;
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }

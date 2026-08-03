@@ -11,7 +11,7 @@
   font-size: 0.85rem;
   font-weight: 800;
   letter-spacing: 4px;
-  color: var(--primary-purple) !important;
+  color: var(--primary-maroon) !important;
   display: block;
 }
 
@@ -36,11 +36,11 @@
 }
 
 .section-title::before {
-  background: linear-gradient(to left, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
+  background: linear-gradient(to left, rgba(var(--primary-maroon-rgb), 0) 0%, rgba(var(--primary-maroon-rgb), 0.6) 50%, rgba(var(--primary-maroon-rgb), 0) 100%);
 }
 
 .section-title::after {
-  background: linear-gradient(to right, rgba(var(--primary-purple-rgb), 0) 0%, rgba(var(--primary-purple-rgb), 0.6) 50%, rgba(var(--primary-purple-rgb), 0) 100%);
+  background: linear-gradient(to right, rgba(var(--primary-maroon-rgb), 0) 0%, rgba(var(--primary-maroon-rgb), 0.6) 50%, rgba(var(--primary-maroon-rgb), 0) 100%);
 }
 
 /* Base Package Card plinth */
@@ -61,13 +61,13 @@
 
 /* Featured / Recommended Card Highlight */
 .featured-card {
-  border: 2px solid var(--primary-purple) !important;
-  box-shadow: 0 20px 45px rgba(var(--primary-purple-rgb), 0.08);
+  border: 2px solid var(--primary-maroon) !important;
+  box-shadow: 0 20px 45px rgba(var(--primary-maroon-rgb), 0.08);
 }
 
 .featured-card:hover {
-  box-shadow: 0 30px 65px rgba(var(--primary-purple-rgb), 0.18);
-  border-color: var(--primary-purple) !important;
+  box-shadow: 0 30px 65px rgba(var(--primary-maroon-rgb), 0.18);
+  border-color: var(--primary-maroon) !important;
 }
 
 /* Floating ribbon indicator */
@@ -124,7 +124,7 @@
 }
 
 .featured-badge {
-  background-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
 }
 
 /* Typography elements */
@@ -159,13 +159,13 @@
 }
 
 .featured-price-new {
-  color: var(--primary-purple);
+  color: var(--primary-maroon);
 }
 
 /* Inclusions list check-marks */
 .inclusions-list li {
   font-size: 13.5px;
-  color: #555555;
+  color: var(--text-medium-grey);
   font-weight: 500;
 }
 
@@ -181,14 +181,14 @@
   height: 20px;
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.05);
-  color: #555555;
+  color: var(--text-medium-grey);
   font-size: 9px;
   flex-shrink: 0;
 }
 
 .featured-check-icon {
-  background-color: rgba(var(--primary-purple-rgb), 0.08);
-  color: var(--primary-purple);
+  background-color: rgba(var(--primary-maroon-rgb), 0.08);
+  color: var(--primary-maroon);
 }
 
 /* Interactive CTA Action Buttons */
@@ -211,14 +211,14 @@
 }
 
 .outline-btn:hover {
-  background-color: var(--primary-purple);
-  border-color: var(--primary-purple);
+  background-color: var(--primary-maroon);
+  border-color: var(--primary-maroon);
   color: #ffffff !important;
 }
 
 .solid-btn {
-  border: 1px solid var(--primary-purple);
-  background-color: var(--primary-purple);
+  border: 1px solid var(--primary-maroon);
+  background-color: var(--primary-maroon);
   color: #ffffff;
 }
 
