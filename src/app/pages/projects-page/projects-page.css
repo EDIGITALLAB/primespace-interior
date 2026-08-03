@@ -266,13 +266,14 @@
 }
 
 .proj-bento-cat {
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff;
+  background: #ffffff !important;
+  border: 1px solid rgba(var(--primary-purple-rgb), 0.25) !important;
+  color: var(--primary-purple, #96053E) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   font-size: 9.5px !important;
-  padding: 3px 10px !important;
-  letter-spacing: 0.4px;
+  padding: 4px 12px !important;
+  letter-spacing: 0.5px;
+  font-weight: 800 !important;
 }
 
 .proj-hover-icon-circle {
