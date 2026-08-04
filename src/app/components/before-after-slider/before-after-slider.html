@@ -11,10 +11,10 @@
   </div>
 
   <div class="container-fluid px-4 px-md-5 cards-container position-relative" style="z-index: 2;">
-    <div class="row align-items-center gy-5 gy-lg-0">
+    <div class="row align-items-center gy-4 gy-xl-0">
       
       <!-- Left Column: Slider Frame -->
-      <div class="col-lg-7">
+      <div class="col-xl-7">
         <div class="slider-frame-wrapper">
           <!-- Floating interactive guide tooltip -->
           <div class="drag-tooltip">
@@ -27,13 +27,19 @@
             <!-- Before Image (Base Layer) -->
             <div class="image-container before-image-container">
               <img src="/before_living_room.png" alt="Before Interior Renovation" class="slider-img">
-              <div class="label-badge before-badge">Before Renovation</div>
             </div>
 
             <!-- After Image (Layered & Clipped) -->
             <div class="image-container after-image-container" [style.clip-path]="'inset(0 0 0 ' + sliderPosition() + '%)'">
               <img src="/after_living_room.png" alt="After Luxury Interior Design" class="slider-img">
-              <div class="label-badge after-badge">After Design</div>
+            </div>
+
+            <!-- Badges positioned on top of slider with dynamic opacity -->
+            <div class="label-badge before-badge" [style.opacity]="beforeOpacity()">
+              Before<span class="d-none d-sm-inline"> Renovation</span>
+            </div>
+            <div class="label-badge after-badge" [style.opacity]="afterOpacity()">
+              After<span class="d-none d-sm-inline"> Design</span>
             </div>
 
             <!-- Drag Handle Line & Circles -->
@@ -53,7 +59,7 @@
       </div>
 
       <!-- Right Column: Interactive Content cards -->
-      <div class="col-lg-5 ps-lg-5">
+      <div class="col-xl-5 ps-xl-4">
         <div class="slider-content-wrapper">
           <div class="content-header-pill mb-3">
             <span class="pill-dot"></span>

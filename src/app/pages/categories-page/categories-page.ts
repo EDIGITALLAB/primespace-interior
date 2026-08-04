@@ -25,6 +25,7 @@ export interface CategoryDetail {
 export interface MaterialDetail {
   id: string;
   title: string;
+  shortTitle?: string;
   icon: string;
   subtitle: string;
   desc: string;
@@ -212,6 +213,7 @@ export class CategoriesPage {
     {
       id: 'hdmr',
       title: 'HDMR & Boiling Waterproof Plywood',
+      shortTitle: 'HDMR Board',
       icon: 'fa-solid fa-layer-group',
       subtitle: 'Grade A Core Strength',
       desc: 'High-Density Moisture-Resistant (HDMR) boards engineered for maximum screw holding capacity, termite resistance, and zero swelling in humid climates.',
@@ -220,6 +222,7 @@ export class CategoriesPage {
     {
       id: 'acrylic',
       title: 'High-Gloss German Acrylic & Veneer',
+      shortTitle: 'German Acrylic',
       icon: 'fa-solid fa-gem',
       subtitle: 'Mirror Finish Elegance',
       desc: 'Ultra-glossy scratch-resistant acrylic sheets laminated onto HDMR core with 1mm anti-fingerprint technology for effortless cleaning.',
@@ -228,6 +231,7 @@ export class CategoriesPage {
     {
       id: 'hardware',
       title: 'Blum & Hettich German Hardware',
+      shortTitle: 'Blum Hardware',
       icon: 'fa-solid fa-gears',
       subtitle: 'Soft-Close Precision',
       desc: 'Top-tier German soft-close hinges, quad-rail tandem drawers, and gas lifts tested for over 200,000 open-close cycles.',
@@ -236,6 +240,7 @@ export class CategoriesPage {
     {
       id: 'quartz',
       title: 'Stain-Proof Quartz & Italian Slabs',
+      shortTitle: 'Quartz Surface',
       icon: 'fa-solid fa-cubes',
       subtitle: 'Luxury Counter Surfaces',
       desc: 'Non-porous quartz countertops resistant to turmeric stains, hot pans, and scratches, available in seamless waterfall edge profiles.',

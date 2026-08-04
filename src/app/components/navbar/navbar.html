@@ -27,10 +27,16 @@
             <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/categories" routerLinkActive="active"><span
                   class="nav-link-text">CATEGORIES</span></a></li>
 
+            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/projects" routerLinkActive="active"><span
+                  class="nav-link-text">PROJECTS</span></a>
+            </li>
 
 
 
 
+
+            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a>
+            </li>
             <li class="nav-item dropdown px-lg-1.5" [class.show]="isLocationsDropdownOpen">
               <a class="nav-link dropdown-toggle d-flex align-items-center" routerLink="/locations"
                 routerLinkActive="active" id="locationsDropdown" role="button" data-bs-toggle="dropdown"
@@ -59,12 +65,6 @@
                   </a>
                 </div>
               </div>
-            </li>
-
-            <li class="nav-item px-lg-1.5"><a class="nav-link" href="#"><span class="nav-link-text">BLOGS</span></a>
-            </li>
-            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/projects" routerLinkActive="active"><span
-                  class="nav-link-text">PROJECTS</span></a>
             </li>
             <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/contact" routerLinkActive="active"><span
                   class="nav-link-text">CONTACT</span></a>
@@ -130,6 +130,16 @@
           <a routerLink="/categories" (click)="toggleSideMenu()" class="drawer-link">CATEGORIES</a>
         </li>
 
+        <!-- PROJECTS -->
+        <li class="drawer-menu-item">
+          <a routerLink="/projects" (click)="toggleSideMenu()" class="drawer-link">PROJECTS</a>
+        </li>
+
+        <!-- BLOGS -->
+        <li class="drawer-menu-item">
+          <a href="#" (click)="toggleSideMenu()" class="drawer-link">BLOGS</a>
+        </li>
+
         <!-- LOCATIONS (Collapsible) -->
         <li class="drawer-menu-item" [class.active]="openDrawerSubmenu['locations']">
           <div class="drawer-link-parent d-flex align-items-center justify-content-between"
@@ -146,16 +156,6 @@
             </li>
           </ul>
           }
-        </li>
-
-        <!-- BLOGS -->
-        <li class="drawer-menu-item">
-          <a href="#" (click)="toggleSideMenu()" class="drawer-link">BLOGS</a>
-        </li>
-
-        <!-- PROJECTS -->
-        <li class="drawer-menu-item">
-          <a routerLink="/projects" (click)="toggleSideMenu()" class="drawer-link">PROJECTS</a>
         </li>
 
         <!-- CONTACT -->
