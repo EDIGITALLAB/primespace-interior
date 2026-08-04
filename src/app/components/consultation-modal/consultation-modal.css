@@ -19,12 +19,12 @@
 }
 
 .consultation-modal-card {
-  background: #ffffff;
+  background: var(--white);
   border: 1.5px solid rgba(var(--primary-maroon-rgb), 0.2);
   width: 100%;
   max-width: 620px;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
-  color: #111111;
+  color: var(--text-dark-black);
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -46,7 +46,7 @@
 
 .btn-close-consultation:hover {
   background: var(--primary-maroon);
-  color: #ffffff;
+  color: var(--white);
   transform: rotate(90deg);
 }
 
@@ -65,7 +65,7 @@
 .consultation-title {
   font-family: var(--font-headings);
   font-size: clamp(22px, 3vw, 28px);
-  color: #111111;
+  color: var(--text-dark-black);
   letter-spacing: -0.5px;
 }
 
@@ -94,21 +94,21 @@
   background: rgba(0, 0, 0, 0.02) !important;
   border: 1px solid rgba(0, 0, 0, 0.12) !important;
   border-radius: 10px !important;
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   font-size: 13.5px !important;
   padding: 12px 14px 12px 42px !important;
   transition: all 0.3s ease !important;
 }
 
 .modal-input:focus {
-  background: #ffffff !important;
+  background: var(--white) !important;
   border-color: var(--primary-maroon) !important;
   box-shadow: 0 0 0 3px rgba(var(--primary-maroon-rgb), 0.15) !important;
 }
 
 .btn-modal-submit {
   background: var(--primary-maroon) !important;
-  color: #ffffff !important;
+  color: var(--white) !important;
   border: none !important;
   border-radius: 30px !important;
   font-family: var(--font-headings);

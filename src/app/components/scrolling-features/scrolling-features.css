@@ -1,7 +1,7 @@
 /* Scrolling Features Marquee Stylesheet */
 
 .marquee-section {
-  background-color: #ffffff !important;
+  background-color: var(--white) !important;
   border-top: 1px solid rgba(0, 0, 0, 0.05) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
   overflow: hidden;
@@ -55,7 +55,7 @@
 .marquee-icon-box {
   width: 58px;
   height: 52px;
-  color: #111111;
+  color: var(--text-dark-black);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +78,7 @@
   font-family: var(--font-headings);
   font-size: 16.5px;
   font-weight: 800;
-  color: #111111;
+  color: var(--text-dark-black);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }

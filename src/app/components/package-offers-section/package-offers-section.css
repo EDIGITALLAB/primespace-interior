@@ -1,7 +1,7 @@
 /* Package Offers Section Stylesheet - Professional Pricing Plinths Style */
 
 .package-offers-section {
-  background-color: #ffffff !important;
+  background-color: var(--white) !important;
   font-family: var(--font-body);
   padding: 80px 0;
 }
@@ -19,7 +19,7 @@
   font-family: var(--font-headings);
   font-size: clamp(24px, 3.8vw, 36px);
   font-weight: 900;
-  color: #111111;
+  color: var(--text-dark-black);
   letter-spacing: 1.5px;
   display: flex;
   align-items: center;
@@ -45,7 +45,7 @@
 
 /* Base Package Card plinth */
 .package-card {
-  background-color: #ffffff;
+  background-color: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 0 !important; /* Sharp corners matching maps/sliders */
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
@@ -112,7 +112,7 @@
   bottom: 15px;
   left: 15px;
   background: rgba(15, 23, 42, 0.82);
-  color: #ffffff;
+  color: var(--white);
   font-family: var(--font-headings);
   font-size: 9px;
   font-weight: 800;
@@ -132,7 +132,7 @@
   font-family: var(--font-headings);
   font-size: 20px;
   font-weight: 800;
-  color: #111111;
+  color: var(--text-dark-black);
   letter-spacing: -0.3px;
   margin: 0;
 }
@@ -154,7 +154,7 @@
   font-family: var(--font-headings);
   font-size: 22px;
   font-weight: 900;
-  color: #111111;
+  color: var(--text-dark-black);
   letter-spacing: -0.2px;
 }
 
@@ -205,27 +205,27 @@
 }
 
 .outline-btn {
-  border: 1px solid #111111;
+  border: 1px solid var(--text-dark-black);
   background-color: transparent;
-  color: #111111;
+  color: var(--text-dark-black);
 }
 
 .outline-btn:hover {
   background-color: var(--primary-maroon);
   border-color: var(--primary-maroon);
-  color: #ffffff !important;
+  color: var(--white) !important;
 }
 
 .solid-btn {
   border: 1px solid var(--primary-maroon);
   background-color: var(--primary-maroon);
-  color: #ffffff;
+  color: var(--white);
 }
 
 .solid-btn:hover {
   background-color: transparent;
-  border-color: #111111;
-  color: #111111 !important;
+  border-color: var(--text-dark-black);
+  color: var(--text-dark-black) !important;
 }
 
 /* Arrow slide transition */

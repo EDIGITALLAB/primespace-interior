@@ -13,7 +13,7 @@
   --white: #ffffff;
   --bg-light-white: #f2f6f9;
   --page-top-background: #fafbfc;
- 
+
   --theme-gradient-end: #ff007a;
 
   /* Global Theme Gradient Variable (Dynamically adapts fade to any selected theme color) */
@@ -35,7 +35,7 @@
 body {
   font-family: var(--font-body);
   background-color: var(--primary-black);
-  color: #ffffff;
+  color: var(--white);
   overflow-x: hidden;
 }
 

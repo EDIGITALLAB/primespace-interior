@@ -2,8 +2,8 @@
 
 .contact-page-wrapper {
   overflow-x: hidden;
-  background-color: #ffffff !important;
-  color: #111111;
+  background-color: var(--white) !important;
+  color: var(--text-dark-black);
   min-height: 100vh;
 }
 
@@ -39,7 +39,7 @@
   font-family: var(--font-headings);
   font-size: clamp(28px, 4.5vw, 48px);
   font-weight: 900;
-  color: #111111;
+  color: var(--text-dark-black);
   letter-spacing: -0.5px;
 }
 
@@ -86,14 +86,14 @@
 
 .btn-purple {
   background-color: var(--primary-maroon, #96053E);
-  color: #ffffff;
+  color: var(--white);
   border: none;
   transition: all 0.3s ease;
 }
 
 .btn-purple:hover {
-  background-color: #111111 !important;
-  color: #ffffff !important;
+  background-color: var(--text-dark-black) !important;
+  color: var(--white) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
   transform: translateY(-2px);
 }

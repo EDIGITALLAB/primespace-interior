@@ -78,7 +78,7 @@
   font-size: clamp(1.8rem, 5vw, 3.8rem);
   font-weight: 800;
   letter-spacing: 0px;
-  color: #ffffff !important;
+  color: var(--white) !important;
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
   display: block;
 }
@@ -179,7 +179,7 @@
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -1px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 0;
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
@@ -251,7 +251,7 @@
 
 /* Hover effects */
 .bonado-btn:hover {
-  color: #ffffff !important;
+  color: var(--white) !important;
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 10px 25px rgba(var(--primary-maroon-rgb), 0.35);
   border-color: var(--primary-maroon);
@@ -317,7 +317,7 @@
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.5px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 0;
 }
 
@@ -493,7 +493,7 @@
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -1px;
-  color: #ffffff;
+  color: var(--white);
   margin-bottom: 0;
   text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
@@ -518,7 +518,7 @@
 }
 
 .slide-3-link {
-  color: #ffffff;
+  color: var(--white);
   font-family: var(--font-headings);
   font-size: 0.95rem;
   font-weight: 800;
@@ -542,7 +542,7 @@
 /* Hover effects */
 .slide-3-link:hover {
   color: var(--primary-maroon);
-  border-bottom-color: #ffffff;
+  border-bottom-color: var(--white);
 }
 
 .slide-3-link:hover .slide-3-arrow {
@@ -627,7 +627,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-right: none;
   border-radius: 12px 0 0 12px;
-  color: #ffffff;
+  color: var(--white);
   font-size: 1.2rem;
   cursor: pointer;
   display: flex;
@@ -681,11 +681,11 @@
 
 .theme-color-circle:hover {
   transform: scale(1.15);
-  border-color: #ffffff;
+  border-color: var(--white);
 }
 
 .theme-color-circle.active {
-  border-color: #ffffff;
+  border-color: var(--white);
   transform: scale(1.1);
   box-shadow: 0 0 12px var(--primary-maroon);
 }
@@ -721,7 +721,7 @@
 
 .custom-color-input-container:hover {
   transform: scale(1.1);
-  border-color: #ffffff;
+  border-color: var(--white);
 }
 
 .custom-color-input {

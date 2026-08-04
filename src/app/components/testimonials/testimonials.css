@@ -1,7 +1,7 @@
 /* Testimonials Section Stylesheet - 3 Cards Grid */
 
 .testimonials-section {
-  background-color: #ffffff !important;
+  background-color: var(--white) !important;
   font-family: var(--font-body);
   padding: 80px 0;
   overflow: hidden;
@@ -20,7 +20,7 @@
   font-family: var(--font-headings);
   font-size: clamp(22px, 3.5vw, 34px);
   font-weight: 900;
-  color: #111111;
+  color: var(--text-dark-black);
   letter-spacing: 1.5px;
   display: flex;
   align-items: center;
@@ -57,7 +57,7 @@
 
 /* Testimonial Card Styling */
 .testimonial-card {
-  background-color: #ffffff;
+  background-color: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
   position: relative;
@@ -112,7 +112,7 @@
 }
 
 .client-avatar-img {
-  border: 2px solid #ffffff;
+  border: 2px solid var(--white);
   border-radius: 50%;
 }
 
@@ -120,7 +120,7 @@
   font-family: var(--font-headings);
   font-size: 14px;
   font-weight: 800;
-  color: #111111;
+  color: var(--text-dark-black);
   letter-spacing: 0.8px;
 }
 
