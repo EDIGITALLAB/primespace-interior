@@ -5,22 +5,20 @@
   <div class="container cards-container position-relative" style="z-index: 2;">
 
     <!-- Section Header (Modern left-aligned heading with lead description) -->
-    <div class="row mb-3 align-items-end">
-      <div class="col-12">
-        <span class="section-subtitle text-uppercase mb-2">Room Inspirations</span>
-        <h2 class="section-title text-uppercase m-0">Explore Categories</h2>
-      </div>
+    <div class="mb-2 mb-md-3">
+      <span class="section-subtitle text-uppercase mb-1 d-block">Room Inspirations</span>
+      <h2 class="section-title text-uppercase m-0">Explore Categories</h2>
     </div>
 
     <!-- Main Interactive Container Row -->
-    <div class="row gy-4 gy-lg-0 interactive-showcase-row align-items-stretch">
+    <div class="row gy-3 gy-lg-0 interactive-showcase-row align-items-stretch">
 
       <!-- Left Column: Navigation Sidebar List -->
       <div class="col-lg-4 sidebar-column">
         <div class="category-sidebar-list d-flex flex-column">
 
           <div *ngFor="let cat of categories; let i = index" class="sidebar-item d-flex align-items-center"
-            [class.active]="activeIndex() === i" (mouseenter)="setActiveCategory(i)" (click)="setActiveCategory(i)">
+            [class.active]="activeIndex() === i" (mouseenter)="setActiveCategory(i)" (click)="setActiveCategory(i, $event)">
 
             <span class="item-number me-3">{{ cat.num }}</span>
             <span class="item-name text-uppercase">{{ cat.name }}</span>
@@ -29,10 +27,16 @@
 
           </div>
 
+          <!-- Mobile See All Pill at Right End -->
+          <a class="sidebar-item sidebar-item-see-all d-lg-none d-flex align-items-center text-decoration-none" routerLink="/categories">
+            <span class="item-name text-uppercase fw-bold me-1">SEE ALL</span>
+            <i class="fa-solid fa-arrow-right sidebar-arrow"></i>
+          </a>
+
         </div>
 
-        <!-- Small See All Button below list -->
-        <div class="sidebar-footer-action mt-4 pt-2">
+        <!-- Small See All Button below list (Desktop only) -->
+        <div class="sidebar-footer-action mt-4 pt-2 d-none d-lg-block">
           <a class="btn-see-all-sidebar text-uppercase d-inline-flex align-items-center" routerLink="/categories">
             <span>SEE ALL</span>
             <i class="fa-solid fa-arrow-right ms-2 btn-icon"></i>

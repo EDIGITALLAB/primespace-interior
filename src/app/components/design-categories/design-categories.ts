@@ -79,7 +79,15 @@ export class DesignCategories {
     }
   ];
 
-  setActiveCategory(index: number) {
+  setActiveCategory(index: number, event?: Event) {
     this.activeIndex.set(index);
+    if (event && event.currentTarget) {
+      const el = event.currentTarget as HTMLElement;
+      el.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
   }
 }

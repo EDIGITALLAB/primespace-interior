@@ -61,8 +61,8 @@
   <div class="container-fluid bento-container position-relative z-2">
 
     <!-- Header Block -->
-    <div class="text-center mb-5 max-w-750 mx-auto">
-      <div class="d-inline-flex align-items-center gap-2 mb-2">
+    <div class="text-center mb-4 mb-md-5 max-w-750 mx-auto">
+      <div class="why-badge-pills-wrap d-inline-flex align-items-center justify-content-center flex-nowrap gap-2 mb-2">
         <span class="why-bento-badge">
           <i class="fa-solid fa-crown me-1.5"></i> THE PRIME ADVANTAGE
         </span>
@@ -78,10 +78,10 @@
     </div>
 
     <!-- Architectural Bento Grid Layout -->
-    <div class="row g-4 align-items-center">
+    <div class="row g-3 g-lg-4 align-items-center">
 
       <!-- LEFT BENTO COLUMN (3 Pillars: 01, 03, 05) -->
-      <div class="col-lg-4 d-flex flex-column gap-4">
+      <div class="col-lg-4 d-flex flex-column gap-3 gap-lg-4 order-2 order-lg-1">
 
         <!-- Pillar 01 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
@@ -121,24 +121,12 @@
 
       </div>
 
-      <!-- CENTER BENTO FEATURE HUB (Pillar 07, Center Brand Core Hub, Pillar 08) -->
-      <div class="col-lg-4 d-flex flex-column gap-4">
-
-        <!-- Pillar 07 -->
-        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
-          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
-            <div class="bento-icon-box d-flex align-items-center justify-content-center">
-              <i [class]="pillars[6].icon"></i>
-            </div>
-            <span class="bento-tag">{{ pillars[6].badgeText }}</span>
-          </div>
-          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[6].title }}</h4>
-          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[6].description }}</p>
-        </div>
+      <!-- CENTER BENTO FEATURE HUB (Center Brand Core Hub, Pillar 07, Pillar 08) -->
+      <div class="col-lg-4 d-flex flex-column gap-3 gap-lg-4 order-1 order-lg-2">
 
         <!-- Center Brand Emblem Plinth -->
         <div
-          class="bento-center-hub p-4 p-md-5 rounded-4 text-center position-relative overflow-hidden shadow-lg border">
+          class="bento-center-hub p-4 p-md-5 rounded-4 text-center position-relative overflow-hidden shadow-lg border order-first order-lg-2">
           <div class="hub-ambient-glow"></div>
 
           <div class="hub-emblem-icon mx-auto mb-3 d-flex align-items-center justify-content-center">
@@ -153,8 +141,20 @@
           <p class="hub-subtitle font-size-xs text-muted mb-0">Engineering Precision & Bespoke Interiors</p>
         </div>
 
+        <!-- Pillar 07 -->
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm order-2 order-lg-1">
+          <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+            <div class="bento-icon-box d-flex align-items-center justify-content-center">
+              <i [class]="pillars[6].icon"></i>
+            </div>
+            <span class="bento-tag">{{ pillars[6].badgeText }}</span>
+          </div>
+          <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[6].title }}</h4>
+          <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[6].description }}</p>
+        </div>
+
         <!-- Pillar 08 -->
-        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
+        <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm order-3 order-lg-3">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
               <i [class]="pillars[7].icon"></i>
@@ -167,7 +167,7 @@
       </div>
 
       <!-- RIGHT BENTO COLUMN (3 Pillars: 02, 04, 06) -->
-      <div class="col-lg-4 d-flex flex-column gap-4">
+      <div class="col-lg-4 d-flex flex-column gap-3 gap-lg-4 order-3 order-lg-3">
 
         <!-- Pillar 02 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">

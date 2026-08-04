@@ -24,73 +24,96 @@
       </p>
     </div>
 
-    <!-- 3 Modern Premium Service Cards Grid -->
-    <div class="row row-cols-1 row-cols-lg-3 g-4 align-items-stretch fs-cards-row">
-      @for (s of servicesList; track s.id) {
-      <div class="col">
-        <div
-          class="fs-exact-card bg-white rounded-4 h-100 d-flex flex-column justify-content-between position-relative shadow-sm border cursor-pointer overflow-hidden"
-          [routerLink]="['/service-details', s.slug]">
+    <!-- 3 Modern Premium Service Cards Grid + Mobile Side Buttons -->
+    <div class="fs-carousel-wrapper position-relative">
 
-          <!-- Card Header Image Banner -->
-          <div class="fs-card-img-banner position-relative overflow-hidden">
-            <img [src]="s.image" [alt]="s.title" class="fs-banner-img w-100 h-100 object-fit-cover">
-            <div class="fs-banner-overlay"></div>
+      <!-- Prev Button (left side, mobile only) -->
+      <button class="fs-slide-btn fs-slide-btn-left d-lg-none" (click)="slidePrev()"
+        [disabled]="currentSlide() === 0" aria-label="Previous">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
 
-            <!-- Top Badge Pill -->
-            <span class="fs-badge-pill text-uppercase">
-              {{ s.badge }}
-            </span>
-          </div>
+      <div class="row row-cols-1 row-cols-lg-3 g-4 align-items-stretch fs-cards-row" #fsCardsRow>
+        @for (s of servicesList; track s.id) {
+        <div class="col">
+          <div
+            class="fs-exact-card bg-white rounded-4 h-100 d-flex flex-column justify-content-between position-relative shadow-sm border cursor-pointer overflow-hidden"
+            [routerLink]="['/service-details', s.slug]">
 
-          <!-- Icon Circle Floating Notch -->
-          <div class="fs-notch-wrapper d-flex align-items-center justify-content-center">
-            <div class="fs-exact-icon-circle d-flex align-items-center justify-content-center">
-              <i [class]="s.icon"></i>
+            <!-- Card Header Image Banner -->
+            <div class="fs-card-img-banner position-relative overflow-hidden">
+              <img [src]="s.image" [alt]="s.title" class="fs-banner-img w-100 h-100 object-fit-cover">
+              <div class="fs-banner-overlay"></div>
+
+              <!-- Top Badge Pill -->
+              <span class="fs-badge-pill text-uppercase">
+                {{ s.badge }}
+              </span>
             </div>
-          </div>
 
-          <!-- Card Content Body -->
-          <div class="fs-card-body p-4 pt-2 d-flex flex-column flex-grow-1">
-            <h3 class="fs-exact-card-title text-center fw-bold mb-1">
-              {{ s.title }}
-            </h3>
-
-            <p class="fs-card-tagline text-center text-muted font-size-xs mb-4">
-              {{ s.tagline }}
-            </p>
-
-            <!-- Pill Grid for List Items -->
-            <div class="fs-items-pill-grid d-flex flex-wrap gap-2 justify-content-center mb-4">
-              @for (item of s.items; track item) {
-              <div class="fs-item-pill d-flex align-items-center gap-1.5 px-3 py-1.5 rounded-pill">
-                <i class="fa-solid fa-circle-check text-purple font-size-micro"></i>
-                <span class="fs-exact-item-text">{{ item }}</span>
+            <!-- Icon Circle Floating Notch -->
+            <div class="fs-notch-wrapper d-flex align-items-center justify-content-center">
+              <div class="fs-exact-icon-circle d-flex align-items-center justify-content-center">
+                <i [class]="s.icon"></i>
               </div>
-              }
-            </div>
-          </div>
-
-          <!-- Bottom Explore Link & Full-Width Bottom Accent Bar -->
-          <div class="fs-card-footer-wrapper">
-            <div class="text-center py-3">
-              <a [routerLink]="['/service-details', s.slug]"
-                class="fs-exact-explore-link font-size-xs fw-bold text-uppercase text-decoration-none d-inline-flex align-items-center gap-2">
-                <span>Explore Solutions</span>
-                <i class="fa-solid fa-arrow-right font-size-xs"></i>
-              </a>
             </div>
 
-            <!-- Full-Width Bottom Theme Accent Bar -->
-            <div class="fs-exact-bottom-bar"></div>
-          </div>
+            <!-- Card Content Body -->
+            <div class="fs-card-body p-4 pt-2 d-flex flex-column flex-grow-1">
+              <h3 class="fs-exact-card-title text-center fw-bold mb-1">
+                {{ s.title }}
+              </h3>
 
+              <p class="fs-card-tagline text-center text-muted font-size-xs mb-4">
+                {{ s.tagline }}
+              </p>
+
+              <!-- Pill Grid for List Items -->
+              <div class="fs-items-pill-grid d-flex flex-wrap gap-2 justify-content-center mb-4">
+                @for (item of s.items; track item) {
+                <div class="fs-item-pill d-flex align-items-center gap-1.5 px-3 py-1.5 rounded-pill">
+                  <i class="fa-solid fa-circle-check text-purple font-size-micro"></i>
+                  <span class="fs-exact-item-text">{{ item }}</span>
+                </div>
+                }
+              </div>
+            </div>
+
+            <!-- Bottom Explore Link & Full-Width Bottom Accent Bar -->
+            <div class="fs-card-footer-wrapper">
+              <div class="text-center py-3">
+                <a [routerLink]="['/service-details', s.slug]"
+                  class="fs-exact-explore-link font-size-xs fw-bold text-uppercase text-decoration-none d-inline-flex align-items-center gap-2">
+                  <span>Explore Solutions</span>
+                  <i class="fa-solid fa-arrow-right font-size-xs"></i>
+                </a>
+              </div>
+
+              <!-- Full-Width Bottom Theme Accent Bar -->
+              <div class="fs-exact-bottom-bar"></div>
+            </div>
+
+          </div>
         </div>
+        }
       </div>
+
+      <!-- Next Button (right side, mobile only) -->
+      <button class="fs-slide-btn fs-slide-btn-right d-lg-none" (click)="slideNext()"
+        [disabled]="currentSlide() === totalCards - 1" aria-label="Next">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+    </div>
+
+    <!-- Mobile Dots only -->
+    <div class="fs-mobile-dots d-flex d-lg-none align-items-center justify-content-center gap-2 mt-3">
+      @for (s of servicesList; track s.id; let i = $index) {
+        <span class="fs-dot" [class.active]="currentSlide() === i" (click)="slideTo(i)"></span>
       }
     </div>
 
-    <!-- Bottom Consultation CTA Banner -->
+
     <div
       class="fs-cta-banner bg-white rounded-4 p-4 p-md-4 px-lg-5 mt-4 d-flex flex-column flex-md-row align-items-center justify-content-between gap-3 position-relative overflow-hidden">
 
