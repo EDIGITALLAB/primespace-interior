@@ -13,6 +13,13 @@
   padding-top: 140px !important;
 }
 
+@media (max-width: 991.98px) {
+  .contact-hero-section {
+    padding-top: 75px !important;
+    padding-bottom: 2rem !important;
+  }
+}
+
 .hero-bg-watermark {
   position: absolute;
   inset: 0;

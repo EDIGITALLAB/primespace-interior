@@ -53,11 +53,21 @@
       <!-- Controls & Ticker Bar -->
       <div
         class="controls-bar d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 border-bottom pb-3">
-        <div class="d-flex align-items-center gap-2">
-          <span class="grid-counter-badge rounded-pill px-3 py-1.5 text-uppercase fw-bold">
-            Showing {{ filteredCategories().length }} {{ filteredCategories().length === 1 ? 'Space' : 'Spaces' }}
-          </span>
-          <span *ngIf="searchQuery()" class="text-muted small">for "{{ searchQuery() }}"</span>
+        <div class="d-flex align-items-center justify-content-between gap-2 w-100 min-w-0">
+          <div class="d-flex align-items-center gap-2 min-w-0 flex-shrink-1 overflow-hidden">
+            <span class="grid-counter-badge rounded-pill px-3 py-1.5 text-uppercase fw-bold text-nowrap flex-shrink-0">
+              Showing {{ filteredCategories().length }} {{ filteredCategories().length === 1 ? 'Space' : 'Spaces' }}
+            </span>
+            <span *ngIf="searchQuery()" class="text-muted small text-truncate d-inline-block">for "{{ searchQuery() }}"</span>
+          </div>
+
+          <!-- Reset Button -->
+          <button
+            *ngIf="activeFilter() !== 'all' || searchQuery() || budgetFilter() !== 'all' || sortBy() !== 'recommended'"
+            class="btn btn-sm btn-link text-purple text-decoration-none p-0 fw-bold text-nowrap flex-shrink-0 ms-2"
+            (click)="setFilter('all'); searchQuery.set(''); budgetFilter.set('all'); sortBy.set('recommended')">
+            Reset <i class="fa-solid fa-rotate-left ms-1"></i>
+          </button>
         </div>
 
         <!-- Budget & Sort Selectors -->
@@ -80,14 +90,6 @@
             <option value="turnaround">Fastest Delivery</option>
             <option value="rating">Highest Rated ⭐</option>
           </select>
-
-          <!-- Reset Button -->
-          <button
-            *ngIf="activeFilter() !== 'all' || searchQuery() || budgetFilter() !== 'all' || sortBy() !== 'recommended'"
-            class="btn btn-sm btn-link text-purple text-decoration-none p-0 fw-bold ms-1"
-            (click)="setFilter('all'); searchQuery.set(''); budgetFilter.set('all'); sortBy.set('recommended')">
-            Reset <i class="fa-solid fa-rotate-left ms-1"></i>
-          </button>
         </div>
       </div>
 
@@ -136,7 +138,7 @@
 
               <!-- Image Gallery Indicator Dots -->
               <div *ngIf="cat.images.length > 1"
-                class="gallery-dots-bar position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-1.5 z-3"
+                class="gallery-dots-bar position-absolute bottom-0 start-50 translate-middle-x mb-2 d-flex gap-2 z-3"
                 (click)="$event.stopPropagation()">
                 <span *ngFor="let img of cat.images; let imgIdx = index" class="thumb-dot rounded-circle"
                   [class.active]="(activeCardImageMap()[cat.id] || 0) === imgIdx"
@@ -144,10 +146,7 @@
                 </span>
               </div>
 
-              <!-- Bottom Turnaround Badge -->
-              <span class="card-time-badge position-absolute bottom-0 start-0 m-3 rounded-pill px-2.5 py-1">
-                <i class="fa-regular fa-clock me-1"></i> {{ cat.turnaround }} Delivery
-              </span>
+
             </div>
 
             <!-- Card Content Body -->
@@ -211,15 +210,15 @@
       </div>
 
       <!-- Material Tabs -->
-      <div class="row justify-content-center mb-5">
-        <div class="col-lg-10">
+      <div class="row justify-content-center mb-3 mb-md-5">
+        <div class="col-lg-10 text-center">
           <div
-            class="material-tabs-nav d-flex flex-wrap justify-content-center gap-2 p-2 bg-white rounded-pill shadow-sm border">
+            class="material-tabs-nav d-inline-flex flex-wrap justify-content-center gap-1.5 gap-md-2 p-1.5 p-md-2 bg-white rounded-pill shadow-sm border">
             <button *ngFor="let m of materials"
-              class="material-tab-btn rounded-pill border-0 px-4 py-2.5 d-flex align-items-center fw-bold transition-all"
+              class="material-tab-btn rounded-pill border-0 px-3 px-md-4 py-2 py-md-2.5 d-flex align-items-center fw-bold transition-all"
               [class.active]="activeMaterialTab() === m.id" (click)="setMaterialTab(m.id)">
-              <i [class]="m.icon + ' me-2'"></i>
-              <span>{{ m.title.split('&')[0] }}</span>
+              <i [class]="m.icon + ' me-1 me-md-2'"></i>
+              <span>{{ m.shortTitle || m.title.split('&')[0] }}</span>
             </button>
           </div>
         </div>
@@ -229,32 +228,32 @@
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div *ngFor="let m of materials" [class.d-none]="activeMaterialTab() !== m.id"
-            class="material-detail-card bg-white rounded-4 p-4 p-md-5 shadow-sm border animate-fade-in">
-            <div class="row align-items-stretch gy-4">
+            class="material-detail-card bg-white rounded-4 p-3 p-md-5 shadow-sm border animate-fade-in">
+            <div class="row align-items-stretch gy-3 gy-md-4">
               <div class="col-md-7">
-                <span class="badge bg-purple-light text-purple text-uppercase rounded-pill px-3 py-1 mb-2 fw-bold">{{
+                <span class="badge bg-purple-light text-purple text-uppercase rounded-pill px-2.5 px-md-3 py-1 mb-2 fw-bold material-badge">{{
                   m.subtitle }}</span>
-                <h3 class="fw-extrabold text-dark mb-3">{{ m.title }}</h3>
-                <p class="text-muted mb-4 line-height-relaxed">{{ m.desc }}</p>
+                <h3 class="fw-extrabold text-dark mb-2 mb-md-3 material-title">{{ m.title }}</h3>
+                <p class="text-muted mb-3 mb-md-4 line-height-relaxed material-desc">{{ m.desc }}</p>
 
-                <div class="row g-3">
-                  <div *ngFor="let h of m.highlights" class="col-sm-6">
-                    <div class="material-highlight-item d-flex align-items-center p-2.5 rounded-3 bg-light border">
+                <div class="row g-2 g-md-3">
+                  <div *ngFor="let h of m.highlights" class="col-6 col-sm-6">
+                    <div class="material-highlight-item d-flex align-items-center p-2 p-md-2.5 rounded-3 bg-light border">
                       <div
-                        class="icon-circle me-3 bg-purple text-white rounded-circle d-flex align-items-center justify-content-center">
+                        class="icon-circle me-2 me-md-3 bg-purple text-white rounded-circle d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-check"></i>
                       </div>
-                      <span class="fw-bold small text-dark">{{ h }}</span>
+                      <span class="fw-bold small text-dark highlight-text">{{ h }}</span>
                     </div>
                   </div>
                 </div>
 
               </div>
               <div class="col-md-5 text-center d-flex flex-column">
-                <div class="material-guarantee-badge h-100 p-4 p-lg-5 rounded-4 text-white shadow-lg d-flex flex-column justify-content-center align-items-center">
-                  <i class="fa-solid fa-shield-halved fa-3x text-white mb-3"></i>
-                  <h4 class="fw-bold mb-2 text-uppercase text-white">10-YEAR WARRANTY</h4>
-                  <p class="small text-white opacity-90 mb-0">On all factory-made modular cabinets, hardware, and structural
+                <div class="material-guarantee-badge h-100 p-3 p-md-5 rounded-4 text-white shadow-lg d-flex flex-column justify-content-center align-items-center">
+                  <i class="fa-solid fa-shield-halved text-white mb-2 mb-md-3 guarantee-icon"></i>
+                  <h4 class="fw-bold mb-1 mb-md-2 text-uppercase text-white guarantee-title">10-YEAR WARRANTY</h4>
+                  <p class="small text-white opacity-90 mb-0 guarantee-desc">On all factory-made modular cabinets, hardware, and structural
                     hinges.</p>
                 </div>
               </div>
@@ -281,18 +280,18 @@
   </section>
 
   <!-- CONSULTATION CTA BANNER -->
-  <section class="categories-cta-banner py-5 bg-purple-dark text-white position-relative overflow-hidden">
+  <section class="categories-cta-banner py-4 py-md-5 bg-purple-dark text-white position-relative overflow-hidden">
     <div class="cta-glow-effect"></div>
     <div class="container position-relative z-2">
-      <div class="row align-items-center justify-content-between gy-4">
+      <div class="row align-items-center justify-content-between gy-3 gy-md-4">
         <div class="col-lg-8">
-          <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-2 fw-bold">Free Design Service</span>
-          <h2 class="text-white text-uppercase fw-black mb-2">Ready To Transform Your Home Space?</h2>
-          <p class="text-white-80 mb-0">Get a 3D floor plan layout, material samples, and an exact cost quote from our senior interior architects.</p>
+          <span class="badge bg-white text-purple text-uppercase rounded-pill px-2.5 px-md-3 py-1 mb-2 fw-bold cta-badge">Free Design Service</span>
+          <h2 class="text-white text-uppercase fw-black mb-2 cta-title">Ready To Transform Your Home Space?</h2>
+          <p class="text-white-80 mb-0 cta-desc">Get a 3D floor plan layout, material samples, and an exact cost quote from our senior interior architects.</p>
         </div>
         <div class="col-lg-4 text-lg-end">
           <button (click)="openConsultation($event)"
-            class="btn btn-light-cta rounded-pill px-4 py-3 fw-bold text-uppercase shadow-lg">
+            class="btn btn-light-cta rounded-pill px-3 px-md-4 py-2.5 py-md-3 fw-bold text-uppercase shadow-lg">
             <span>BOOK FREE 3D CONSULTATION</span>
             <i class="fa-solid fa-arrow-right ms-2"></i>
           </button>
@@ -346,13 +345,13 @@
             <p class="text-muted mb-4">{{ selectedCategoryModal()?.desc }}</p>
 
             <!-- Price & Delivery Badges -->
-            <div class="d-flex flex-wrap gap-2 mb-4">
-              <div class="p-2.5 rounded-3 bg-purple-light border border-purple-20 flex-grow-1">
-                <span class="text-uppercase small text-muted fw-bold d-block">Starting Price</span>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <div class="modal-spec-badge bg-purple-light border border-purple-20 flex-grow-1">
+                <span class="text-uppercase small text-muted fw-bold d-block mb-1">Starting Price</span>
                 <span class="fw-extrabold text-purple h5 m-0">{{ selectedCategoryModal()?.startingPrice }}</span>
               </div>
-              <div class="p-2.5 rounded-3 bg-light border flex-grow-1">
-                <span class="text-uppercase small text-muted fw-bold d-block">Delivery Time</span>
+              <div class="modal-spec-badge bg-light border flex-grow-1">
+                <span class="text-uppercase small text-muted fw-bold d-block mb-1">Delivery Time</span>
                 <span class="fw-extrabold text-dark h5 m-0">{{ selectedCategoryModal()?.turnaround }}</span>
               </div>
             </div>
@@ -372,8 +371,8 @@
             <!-- Modal Action Buttons -->
             <div class="d-flex gap-2 pt-2 border-top">
               <button (click)="openConsultation($event)"
-                class="btn btn-purple rounded-pill py-2.5 px-4 fw-bold text-uppercase flex-grow-1 shadow">
-                <span>BOOK 3D DESIGN FOR THIS ROOM</span>
+                class="btn btn-purple rounded-pill py-2.5 px-4 fw-bold text-uppercase flex-grow-1 shadow d-flex align-items-center justify-content-center">
+                <span>BOOK 3D DESIGN <span class="d-none d-sm-inline">FOR THIS ROOM</span></span>
                 <i class="fa-solid fa-arrow-right ms-2"></i>
               </button>
             </div>

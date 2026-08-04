@@ -129,8 +129,10 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
   z-index: 5;
   user-select: none;
+  pointer-events: none;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
 }
 
 .before-badge {
@@ -362,13 +364,22 @@
 }
 
 /* Responsive adjustments */
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px) {
   .before-after-section {
-    padding: 60px 0;
+    padding: 35px 0;
   }
 
   .slider-frame-wrapper {
     padding: 8px;
+    border-radius: 14px;
+  }
+
+  .slider-wrapper {
+    height: clamp(280px, 45vw, 380px);
+  }
+
+  .slider-content-wrapper {
+    margin-top: 10px;
   }
 
   .drag-tooltip {
@@ -377,24 +388,115 @@
 }
 
 @media (max-width: 767.98px) {
+  .before-after-section {
+    padding: 15px 0 !important;
+  }
+
+  .slider-frame-wrapper {
+    padding: 6px !important;
+    border-radius: 12px !important;
+  }
+
+  .slider-wrapper {
+    height: clamp(210px, 54vw, 280px) !important;
+    border-radius: 8px !important;
+  }
+
+  .drag-tooltip {
+    top: -12px !important;
+    right: 12px !important;
+    font-size: 8.5px !important;
+    padding: 4px 10px !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .pulse-dot {
+    width: 5px !important;
+    height: 5px !important;
+  }
+
   .label-badge {
-    top: 15px;
-    padding: 6px 12px;
-    font-size: 0.65rem;
-    letter-spacing: 1px;
+    top: 10px !important;
+    padding: 4px 10px !important;
+    font-size: 0.6rem !important;
+    letter-spacing: 0.5px !important;
+    border-radius: 20px !important;
   }
 
   .before-badge {
-    left: 15px;
+    left: 10px !important;
   }
 
   .after-badge {
-    right: 15px;
+    right: 10px !important;
   }
 
   .slider-button {
-    width: 40px;
-    height: 40px;
-    font-size: 0.85rem;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 0.8rem !important;
+  }
+
+  .cards-container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .content-header-pill {
+    padding: 3px 10px !important;
+    margin-bottom: 6px !important;
+    border-radius: 14px !important;
+  }
+
+  .pill-dot {
+    width: 4px !important;
+    height: 4px !important;
+  }
+
+  .content-badge {
+    font-size: 8.5px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .content-headline {
+    font-size: 16px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 8px !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  .content-desc {
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .highlights-list {
+    gap: 8px !important;
+  }
+
+  .highlight-card {
+    padding: 8px 12px !important;
+    margin-bottom: 0 !important;
+    border-radius: 10px !important;
+  }
+
+  .highlight-icon-box {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 11px !important;
+    margin-right: 8px !important;
+    border-radius: 6px !important;
+  }
+
+  .highlight-title {
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    margin-bottom: 2px !important;
+  }
+
+  .highlight-desc {
+    font-size: 10.5px !important;
+    line-height: 1.35 !important;
   }
 }
