@@ -1,7 +1,7 @@
 /* Company Highlights Section Styles */
 
 .company-highlights-section {
-  background-color: #ffffff;
+  background-color: var(--white);
   padding: 80px 0;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .highlight-icon-circle:hover i {
-  color: #ffffff;
+  color: var(--white);
   transform: scale(1.1);
 }
 

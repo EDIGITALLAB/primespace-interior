@@ -104,7 +104,7 @@
   width: 97%;
   margin: 0 auto;
   border-radius: 80px;
-  background: #ffffff;
+  background: var(--white);
   /* Always solid white background */
   border: 1px solid rgba(0, 0, 0, 0.08);
   /* Soft dark boundary line */
@@ -121,7 +121,7 @@
   max-width: 100%;
   border-radius: 0;
   /* Remove rounded pill sides */
-  background: #ffffff;
+  background: var(--white);
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
   /* Increased line visibility */
@@ -181,7 +181,7 @@
 }
 
 .navbar-brand-text .brand-title .space-text {
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   font-weight: 800;
 }
 
@@ -202,7 +202,7 @@
 
 /* Nav Link Color Shifts & Styling */
 .main-header .nav-link {
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   font-weight: 700;
   transition: color 0.3s ease;
 }
@@ -213,11 +213,11 @@
 }
 
 .main-header.scrolled .nav-link {
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
 }
 
 .main-header.scrolled .chevron-icon {
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
 }
 
 .main-header.scrolled .navbar-toggler-icon {
@@ -234,7 +234,7 @@
 }
 
 .chevron-icon {
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   opacity: 0.8;
   font-size: 9px !important;
   transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
@@ -342,7 +342,7 @@
   font-family: var(--font-headings);
   font-size: 13px !important;
   font-weight: 700 !important;
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
@@ -374,7 +374,7 @@
     position: relative;
     padding: 24px 15px !important;
     /* Increased spacing between links */
-    color: #111111 !important;
+    color: var(--text-dark-black) !important;
     opacity: 0.9 !important;
     transition: opacity 0.2s ease, color 0.3s ease;
   }
@@ -427,7 +427,7 @@
 }
 
 .menu-icon-link {
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   opacity: 1 !important;
   transition: opacity 0.2s ease !important;
 }
@@ -441,7 +441,7 @@
 }
 
 .main-header.scrolled .menu-icon-link {
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
 }
 
 /* Unique SVG Hamburger Menu Icon Animations */
@@ -516,7 +516,7 @@
   width: 380px !important;
   max-width: 78vw !important;
   background: var(--primary-maroon, #96053E) !important;
-  color: #ffffff !important;
+  color: var(--white) !important;
   padding: 25px 22px !important;
   border-left: none !important;
   box-shadow: none !important;
@@ -541,7 +541,7 @@
   border-radius: 50%;
   border: none !important;
   background: transparent !important;
-  color: #ffffff !important;
+  color: var(--white) !important;
   font-size: 24px !important;
   transition: all 0.3s ease;
 }
@@ -567,7 +567,7 @@
   font-size: 16px;
   font-weight: 700;
   letter-spacing: 0.8px;
-  color: #ffffff !important;
+  color: var(--white) !important;
   text-decoration: none;
   cursor: pointer;
   display: flex;
@@ -583,7 +583,7 @@
 
 .drawer-link-parent i {
   font-size: 13px;
-  color: #ffffff;
+  color: var(--white);
   transition: transform 0.3s ease;
 }
 
@@ -618,8 +618,8 @@
 .drawer-sublink:active,
 .drawer-sublink:focus {
   color: var(--primary-maroon, #96053E) !important;
-  background-color: #ffffff !important;
-  border-left: 2px solid #111111 !important;
+  background-color: var(--white) !important;
+  border-left: 2px solid var(--text-dark-black) !important;
   margin-left: -2px !important;
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2) !important;
 }
@@ -642,7 +642,7 @@
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: transparent;
-  color: #111111;
+  color: var(--text-dark-black);
   /* Dark close icon */
   transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -674,7 +674,7 @@
   font-weight: 700;
   font-family: var(--font-headings);
   letter-spacing: 0.8px;
-  color: #111111;
+  color: var(--text-dark-black);
   padding: 11px 16px;
   border-radius: 12px;
   background-color: rgba(0, 0, 0, 0.035);
@@ -691,13 +691,13 @@
 
 .drawer-nav-link:hover {
   background-color: var(--primary-maroon);
-  color: #ffffff;
+  color: var(--white);
   padding-left: 20px;
   box-shadow: 0 8px 18px rgba(var(--primary-maroon-rgb), 0.25);
 }
 
 .drawer-nav-link:hover i {
-  color: #ffffff !important;
+  color: var(--white) !important;
   transform: translateX(4px);
 }
 
@@ -740,8 +740,8 @@
 }
 
 .btn-accent:hover {
-  background-color: #111111 !important;
-  border-color: #111111 !important;
+  background-color: var(--text-dark-black) !important;
+  border-color: var(--text-dark-black) !important;
   color: var(--white) !important;
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(var(--primary-maroon-rgb), 0.3);
@@ -857,7 +857,7 @@
   display: block;
   height: 2.8px;
   border-radius: 4px;
-  background-color: #111111 !important;
+  background-color: var(--text-dark-black) !important;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -880,7 +880,7 @@
 .hamburger-mobile-icon.open span:nth-child(1) {
   width: 28px !important;
   transform: translateY(7.5px) rotate(45deg);
-  background-color: #111111 !important;
+  background-color: var(--text-dark-black) !important;
 }
 
 .hamburger-mobile-icon.open span:nth-child(2) {
@@ -891,7 +891,7 @@
 .hamburger-mobile-icon.open span:nth-child(3) {
   width: 28px !important;
   transform: translateY(-7.5px) rotate(-45deg);
-  background-color: #111111 !important;
+  background-color: var(--text-dark-black) !important;
 }
 
 /* Transition utility */
@@ -960,7 +960,7 @@
     border-radius: 24px !important;
     margin-top: 0 !important;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18) !important;
-    background-color: #ffffff !important;
+    background-color: var(--white) !important;
     backdrop-filter: blur(25px) !important;
     -webkit-backdrop-filter: blur(25px) !important;
     border: 1px solid rgba(0, 0, 0, 0.08) !important;
@@ -972,7 +972,7 @@
   .nav-link {
     padding: 12px 0 !important;
     border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-    color: #111111 !important;
+    color: var(--text-dark-black) !important;
     font-size: 13px !important;
   }
 

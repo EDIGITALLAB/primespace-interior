@@ -1,7 +1,7 @@
 /* Design Categories Component CSS - Interactive Showcase Style (Light Theme with Luxury Glow) */
 
 .design-categories-section {
-  background-color: #ffffff;
+  background-color: var(--white);
   position: relative;
   padding: 90px 0;
   overflow: hidden;
@@ -71,7 +71,7 @@
   font-family: var(--font-headings);
   font-size: clamp(24px, 3.8vw, 36px);
   font-weight: 900;
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   /* Clean Dark Slate on light background */
   letter-spacing: 1.5px;
   display: block;
@@ -215,9 +215,9 @@
   font-size: 12.5px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   text-decoration: none !important;
-  border-bottom: 2px solid #111111;
+  border-bottom: 2px solid var(--text-dark-black);
   padding-bottom: 4px;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
@@ -225,7 +225,7 @@
 
 .btn-see-all-sidebar .btn-icon {
   font-size: 11px;
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -248,7 +248,7 @@
 .showcase-preview-card {
   flex: 1;
   height: 100%;
-  background-color: #ffffff;
+  background-color: var(--white);
   border: 2px solid var(--primary-maroon);
   box-shadow: 0 25px 60px rgba(150, 5, 62, 0.12);
   border-radius: 0px;
@@ -268,7 +268,7 @@
   font-family: var(--font-headings);
   font-size: 11.5px;
   letter-spacing: 1px;
-  color: #111111;
+  color: var(--text-dark-black);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
 }
 
@@ -510,7 +510,7 @@
 }
 
 .preview-details-panel:hover {
-  background: #ffffff !important;
+  background: var(--white) !important;
   /* Brighter background on hover */
 }
 
@@ -532,7 +532,7 @@
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: #111111 !important;
+  color: var(--text-dark-black) !important;
 }
 
 .details-desc {
@@ -716,7 +716,7 @@
   }
 
   .sidebar-item.active .item-name {
-    color: #ffffff !important;
+    color: var(--white) !important;
   }
 
   /* Adjust preview cards to natural heights instead of overlap */
@@ -750,7 +750,7 @@
     clip-path: none !important;
     /* Remove the arrow clip-path on mobile */
     padding: 24px 20px !important;
-    background: #ffffff !important;
+    background: var(--white) !important;
     border: none !important;
     border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
     box-shadow: none !important;
