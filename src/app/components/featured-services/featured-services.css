@@ -10,6 +10,303 @@
   position: relative;
 }
 
+/* ===================================================
+   MOBILE RESPONSIVE — Featured Services
+   =================================================== */
+
+@media (max-width: 991px) {
+
+  /* Section padding compact */
+  .featured-services-section {
+    padding: 28px 0 30px 0 !important;
+  }
+
+  .fs-exact-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  /* Header tighter */
+  .fs-exact-crown-badge {
+    font-size: 9px !important;
+    padding: 4px 12px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  /* Override Bootstrap mb-5 on header block */
+  .featured-services-section .text-center.mb-5 {
+    margin-bottom: 12px !important;
+  }
+
+  .fs-exact-title {
+    font-size: clamp(1.3rem, 6vw, 1.8rem) !important;
+    letter-spacing: 1px !important;
+  }
+
+  .fs-exact-subtitle {
+    font-size: 13px !important;
+    margin-top: 4px !important;
+  }
+
+  /* Cards: horizontal scroll row on mobile — 1 card at a time */
+  .fs-cards-row {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 12px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 0 !important;
+    margin-top: 12px !important;
+  }
+
+  /* Hide scrollbar */
+  .fs-cards-row::-webkit-scrollbar { display: none !important; }
+  .fs-cards-row { -ms-overflow-style: none !important; scrollbar-width: none !important; }
+
+  /* Each card col: exactly 100% width — 1 card at a time, no peeking */
+  .fs-cards-row > .col {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    scroll-snap-align: start !important;
+    padding: 0 8px !important;
+  }
+
+  /* Slide Controls */
+  .fs-mobile-controls {
+    padding: 4px 0 8px 0;
+  }
+
+  /* Carousel wrapper — enables absolute positioned side buttons + full width bleed */
+  .fs-carousel-wrapper {
+    position: relative !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+  }
+
+  /* Side buttons stay inside the bleed area */
+  .fs-slide-btn-left {
+    position: absolute !important;
+    left: 4px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .fs-slide-btn-right {
+    position: absolute !important;
+    right: 4px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .fs-slide-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 0;
+    border: none;
+    background: transparent;
+    color: var(--primary-maroon);
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    box-shadow: none;
+    z-index: 10;
+    padding: 0;
+  }
+
+  .fs-slide-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  .fs-slide-btn:not(:disabled):active {
+    background: var(--primary-maroon);
+    color: var(--white);
+    border-color: var(--primary-maroon);
+  }
+
+  /* Left side floating button */
+  .fs-slide-btn-left {
+    position: absolute !important;
+    left: -4px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  /* Right side floating button */
+  .fs-slide-btn-right {
+    position: absolute !important;
+    right: -4px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+  }
+
+  .fs-mobile-dots {
+    padding: 2px 0 6px 0;
+  }
+
+  .fs-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: rgba(var(--primary-maroon-rgb), 0.2);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: inline-block;
+  }
+
+  .fs-dot.active {
+    background: var(--primary-maroon);
+    width: 20px;
+    border-radius: 4px;
+  }
+
+  /* Card internals — equal height for all 3 cards */
+  .fs-cards-row {
+    align-items: stretch !important;
+  }
+
+  .fs-cards-row > .col {
+    display: flex !important;
+    align-items: stretch !important;
+  }
+
+  .fs-exact-card {
+    border-radius: 18px !important;
+    height: 520px !important;
+    min-height: 520px !important;
+    max-height: 520px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07) !important;
+    border: 1px solid rgba(0, 0, 0, 0.07) !important;
+    overflow: hidden !important;
+  }
+
+  .fs-card-img-banner {
+    height: 150px !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Shrink icon notch */
+  .fs-notch-wrapper {
+    margin-top: -30px !important;
+    margin-bottom: 4px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fs-exact-icon-circle {
+    width: 58px !important;
+    height: 58px !important;
+    font-size: 22px !important;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.1) !important;
+  }
+
+  .fs-exact-card-title {
+    font-size: 1.1rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .fs-card-tagline {
+    font-size: 12px !important;
+    margin-bottom: 10px !important;
+    line-height: 1.45 !important;
+  }
+
+  .fs-card-body {
+    padding: 10px 14px !important;
+    flex: 1 !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  /* Items pill grid: scrollable inside fixed card height */
+  .fs-items-pill-grid {
+    margin-bottom: 0 !important;
+    flex: 1 !important;
+    overflow-y: auto !important;
+    max-height: 180px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+    align-content: flex-start !important;
+    padding-bottom: 6px !important;
+  }
+
+  .fs-items-pill-grid::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .fs-item-pill {
+    padding: 4px 10px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .fs-exact-item-text {
+    font-size: 11.5px !important;
+  }
+
+  .fs-card-footer-wrapper {
+    flex-shrink: 0 !important;
+    margin-top: auto !important;
+  }
+
+  /* CTA Banner: stack on mobile */
+  .fs-cta-banner {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 18px 16px !important;
+    border-radius: 16px !important;
+    margin-top: 14px !important;
+    gap: 14px !important;
+    align-items: center !important;
+  }
+
+  .fs-cta-banner > div {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .fs-cta-subhead {
+    font-size: 9px !important;
+    letter-spacing: 1px !important;
+    display: block !important;
+    margin-bottom: 4px !important;
+  }
+
+  .fs-cta-title {
+    font-size: 1.1rem !important;
+    letter-spacing: -0.2px !important;
+    line-height: 1.35 !important;
+  }
+
+  .btn-fs-banner-cta {
+    font-size: 10px !important;
+    letter-spacing: 1.2px !important;
+    padding: 10px 20px !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+    white-space: nowrap !important;
+  }
+
+  .fs-cta-arrow-circle {
+    width: 24px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+  }
+
+}
+
 
 .max-w-800 {
   max-width: 800px;

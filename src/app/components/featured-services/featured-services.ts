@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
@@ -22,8 +22,14 @@ export interface ServiceCardData {
   templateUrl: './featured-services.html',
   styleUrl: './featured-services.css',
 })
-export class FeaturedServices {
+export class FeaturedServices implements AfterViewInit {
+  @ViewChild('fsCardsRow') fsCardsRow!: ElementRef<HTMLDivElement>;
+
+  currentSlide = signal(0);
+
   constructor(public consultationModalService: ConsultationModalService) {}
+
+  ngAfterViewInit() {}
 
   readonly servicesList: ServiceCardData[] = [
     {
@@ -84,6 +90,24 @@ export class FeaturedServices {
       ]
     }
   ];
+
+  get totalCards() {
+    return this.servicesList.length;
+  }
+
+  slideTo(index: number) {
+    if (index < 0 || index >= this.totalCards) return;
+    this.currentSlide.set(index);
+    const row = this.fsCardsRow?.nativeElement;
+    if (!row) return;
+    const card = row.children[index] as HTMLElement;
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    }
+  }
+
+  slidePrev() { this.slideTo(this.currentSlide() - 1); }
+  slideNext() { this.slideTo(this.currentSlide() + 1); }
 
   openConsultationModal(event: Event) {
     event.preventDefault();

@@ -289,27 +289,204 @@
   padding-right: 24px;
 }
 
-/* Mobile responsive layout overrides */
+/* Mobile & Tablet Responsive Layout Overrides */
 @media (max-width: 991.98px) {
+  .about-section {
+    padding: 35px 0 30px 0 !important;
+  }
+
   .layered-image-container {
-    height: 420px;
-    max-width: 440px;
+    height: 310px;
+    max-width: 420px;
+    margin: 0 auto 10px auto !important;
   }
 
   .primary-frame {
-    height: 300px;
+    top: 0;
+    left: 15px;
+    width: 72%;
+    height: 250px;
   }
 
   .secondary-frame {
-    height: 180px;
+    bottom: 0;
+    right: 15px;
+    width: 52%;
+    height: 160px;
   }
 
   .experience-card {
-    bottom: 90px;
-    padding: 12px 18px;
+    bottom: 30px;
+    left: 5px;
+    padding: 9px 15px;
   }
 
   .experience-num {
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .experience-text {
+    font-size: 9.5px;
+    letter-spacing: 1px;
+  }
+
+  .about-left-watermark,
+  .about-architectural-watermark {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .layered-image-container {
+    height: 260px;
+    max-width: 350px;
+    margin: 0 auto 5px auto !important;
+  }
+
+  .geometric-shape {
+    display: none !important;
+  }
+
+  .primary-frame {
+    top: 0;
+    left: 10px;
+    width: 74%;
+    height: 210px;
+  }
+
+  .secondary-frame {
+    bottom: 0;
+    right: 10px;
+    width: 54%;
+    height: 135px;
+  }
+
+  .experience-card {
+    bottom: 25px;
+    left: 0;
+    padding: 8px 12px;
+  }
+
+  .experience-num {
+    font-size: 19px;
+  }
+
+  .experience-text {
+    font-size: 8.5px;
+    letter-spacing: 0.8px;
+  }
+
+  .about-badge-pill {
+    margin-bottom: 12px !important;
+  }
+
+  .about-headline {
+    font-size: 1.45rem !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.4px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .about-desc {
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .about-sub-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 20px !important;
+  }
+
+  .stats-grid {
+    padding-top: 16px !important;
+  }
+
+  .stat-card {
+    padding: 14px 6px !important;
+    border-radius: 10px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 76px;
+  }
+
+  .stat-number {
+    font-size: 1.25rem !important;
+    margin-bottom: 3px !important;
+    white-space: nowrap;
+  }
+
+  .stat-label {
+    font-size: 8px !important;
+    letter-spacing: 0.4px !important;
+    line-height: 1.2 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .about-section {
+    padding: 25px 0 20px 0 !important;
+  }
+
+  .layered-image-container {
+    height: 220px;
+    max-width: 290px;
+    margin: 0 auto 0 auto !important;
+  }
+
+  .primary-frame {
+    top: 0;
+    left: 0;
+    width: 75%;
+    height: 180px;
+  }
+
+  .secondary-frame {
+    bottom: 0;
+    right: 0;
+    width: 55%;
+    height: 115px;
+  }
+
+  .experience-card {
+    bottom: 18px;
+    left: 0px;
+    padding: 6px 10px;
+  }
+
+  .experience-num {
+    font-size: 16px;
+  }
+
+  .experience-text {
+    font-size: 7.5px;
+    letter-spacing: 0.5px;
+  }
+
+  .about-headline {
+    font-size: 1.3rem !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.3px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .stat-card {
+    padding: 12px 4px !important;
+  }
+
+  .stat-number {
+    font-size: 1.1rem !important;
+  }
+
+  .stat-label {
+    font-size: 7.5px !important;
   }
 }
