@@ -1,51 +1,87 @@
-<section class="testimonials-section py-5 py-md-6 bg-white position-relative">
+<section class="testimonials-section bg-white position-relative" (mouseenter)="stopAutoSlide()" (mouseleave)="startAutoSlide()">
   <div class="container cards-container">
 
     <!-- Section Title -->
-    <div class="w-100 py-3">
-      <div class="text-center mb-4 mb-md-5 position-relative">
-        <span class="section-subtitle text-uppercase mb-2">Client Stories</span>
+    <div class="w-100">
+      <div class="text-center mb-2 mb-md-4 position-relative">
+        <span class="section-subtitle text-uppercase mb-1">Client Stories</span>
         <h2 class="section-title fw-medium text-uppercase m-0">Voices of Satisfaction</h2>
       </div>
     </div>
 
-    <!-- 3 Testimonial Cards Grid -->
-    <div class="row g-4 justify-content-center">
-      <div class="col-lg-4 col-md-6" *ngFor="let item of list">
+    <!-- Testimonials Slider Wrapper -->
+    <div class="testimonials-wrapper position-relative">
+      
+      <!-- Viewport container for mobile touch & slider -->
+      <div class="testimonials-slider-viewport" 
+           (touchstart)="onTouchStart($event)" 
+           (touchend)="onTouchEnd($event)">
 
-        <div class="testimonial-card p-4 p-xl-4 text-center h-100 d-flex flex-column position-relative">
+        <!-- Track container: 3 columns grid on desktop (>=992px), CSS transform slider on mobile/tablet (<992px) -->
+        <div class="testimonials-slider-track row g-4 justify-content-center"
+             [class.no-transition]="!isAnimating()"
+             [style.transform]="'translateX(' + (-activeIndex() * 100) + '%)'">
 
-          <!-- Quote Icon Watermark -->
-          <div class="quote-watermark"><i class="fa-solid fa-quote-right"></i></div>
+          <div class="col-lg-4 col-md-6 card-col-item" 
+               *ngFor="let item of displayList; let i = index" 
+               [class.active-slide]="activeDotIndex === (i % list.length)"
+               [class.is-clone]="item.isClone">
 
-          <!-- Rating Stars -->
-          <div class="stars-wrapper mb-3">
-            <i class="fa-solid fa-star me-1" *ngFor="let s of [1,2,3,4,5]"></i>
-          </div>
+            <div class="testimonial-card p-4 p-xl-4 text-center h-100 d-flex flex-column position-relative">
 
-          <!-- Review Text -->
-          <p class="review-text mb-4 flex-grow-1">
-            "{{ item.review }}"
-          </p>
+              <!-- Quote Icon Watermark -->
+              <div class="quote-watermark"><i class="fa-solid fa-quote-right"></i></div>
 
-          <div class="card-footer-info mt-auto">
-            <!-- Divider line -->
-            <div class="card-divider mx-auto mb-3"></div>
+              <!-- Rating Stars -->
+              <div class="stars-wrapper mb-3">
+                <i class="fa-solid fa-star me-1" *ngFor="let s of [1,2,3,4,5]"></i>
+              </div>
 
-            <!-- Client Profile Avatar Image -->
-            <div class="client-avatar-wrap mx-auto mb-3">
-              <img [src]="item.avatar" [alt]="item.name" class="client-avatar-img w-100 h-100 object-fit-cover rounded-circle shadow-sm">
+              <!-- Review Text -->
+              <p class="review-text mb-4 flex-grow-1">
+                "{{ item.review }}"
+              </p>
+
+              <div class="card-footer-info mt-auto">
+                <!-- Divider line -->
+                <div class="card-divider mx-auto mb-3"></div>
+
+                <!-- Client Profile Avatar Image -->
+                <div class="client-avatar-wrap mx-auto mb-3">
+                  <img [src]="item.avatar" [alt]="item.name" class="client-avatar-img w-100 h-100 object-fit-cover rounded-circle shadow-sm">
+                </div>
+
+                <!-- Client details -->
+                <h5 class="client-name mb-1 text-uppercase">{{ item.name }}</h5>
+                <span class="client-location d-block mb-2">{{ item.location }}</span>
+                <span class="client-service text-uppercase font-size-micro">{{ item.service }}</span>
+              </div>
+
             </div>
 
-            <!-- Client details -->
-            <h5 class="client-name mb-1 text-uppercase">{{ item.name }}</h5>
-            <span class="client-location d-block mb-2">{{ item.location }}</span>
-            <span class="client-service text-uppercase font-size-micro">{{ item.service }}</span>
           </div>
-
         </div>
 
       </div>
+
+      <!-- Mobile Navigation Arrow Controls -->
+      <button class="slider-arrow arrow-prev d-lg-none" (click)="prevIndex()" aria-label="Previous Testimonial">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button class="slider-arrow arrow-next d-lg-none" (click)="nextIndex()" aria-label="Next Testimonial">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+
+      <!-- Mobile Pagination Dots (3 dots for 3 unique testimonials) -->
+      <div class="slider-dots-wrapper d-flex justify-content-center align-items-center gap-2 mt-3 d-lg-none">
+        <button *ngFor="let item of list; let i = index" 
+                class="slider-dot-btn" 
+                [class.active]="activeDotIndex === i"
+                (click)="setIndex(i)"
+                [attr.aria-label]="'Go to testimonial slide ' + (i + 1)">
+        </button>
+      </div>
+
     </div>
 
   </div>

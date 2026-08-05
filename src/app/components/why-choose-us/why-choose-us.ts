@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal, ElementRef, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 export interface WhyChoosePillar {
   id: string;
@@ -19,6 +19,9 @@ export interface WhyChoosePillar {
   styleUrl: './why-choose-us.css',
 })
 export class WhyChooseUs {
+  readonly activePillarIndex = signal(0);
+  @ViewChild('pillarsTrack') pillarsTrack?: ElementRef<HTMLDivElement>;
+
   readonly pillars: WhyChoosePillar[] = [
     {
       id: '01',
@@ -93,4 +96,63 @@ export class WhyChooseUs {
       badgeText: 'Lifetime Support'
     }
   ];
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+  nextPillar() {
+    this.activePillarIndex.update(val => (val + 1) % this.pillars.length);
+    this.scrollToActivePillar();
+  }
+
+  prevPillar() {
+    this.activePillarIndex.update(val => (val - 1 + this.pillars.length) % this.pillars.length);
+    this.scrollToActivePillar();
+  }
+
+  setPillarIndex(idx: number) {
+    this.activePillarIndex.set(idx);
+    this.scrollToActivePillar();
+  }
+
+  scrollToActivePillar() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    if (this.pillarsTrack?.nativeElement) {
+      const track = this.pillarsTrack.nativeElement;
+      const cards = Array.from(track.children) as HTMLElement[];
+      const card = cards[this.activePillarIndex()];
+      if (card) {
+        const trackWidth = track.clientWidth;
+        const targetScrollLeft = card.offsetLeft - (trackWidth - card.clientWidth) / 2;
+        track.scrollTo({ left: Math.max(0, targetScrollLeft), behavior: 'smooth' });
+      }
+    }
+  }
+
+  onPillarsScroll(event: Event) {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const target = event.target as HTMLElement;
+    if (target && target.clientWidth > 0) {
+      const scrollPos = target.scrollLeft;
+      const cards = Array.from(target.children) as HTMLElement[];
+      
+      if (cards.length > 0) {
+        let closestIndex = 0;
+        let minDistance = Infinity;
+        const centerPos = scrollPos + target.clientWidth / 2;
+
+        cards.forEach((card, idx) => {
+          const cardCenter = card.offsetLeft + card.clientWidth / 2;
+          const distance = Math.abs(centerPos - cardCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = idx;
+          }
+        });
+
+        if (closestIndex !== this.activePillarIndex()) {
+          this.activePillarIndex.set(closestIndex);
+        }
+      }
+    }
+  }
 }
