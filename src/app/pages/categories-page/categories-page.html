@@ -95,11 +95,11 @@
 
       <!-- No Results State -->
       <div *ngIf="filteredCategories().length === 0"
-        class="no-results-box text-center py-5 my-4 bg-light rounded-4 border">
-        <i class="fa-solid fa-compass-drafting fa-3x text-purple mb-3"></i>
-        <h4 class="fw-bold text-dark mb-2">No Room Categories Found</h4>
-        <p class="text-muted mb-3">We couldn't find any category matching your selected filters.</p>
-        <button class="btn btn-purple rounded-pill px-4"
+        class="no-results-box text-center py-4 py-md-5 my-3 my-md-4 bg-light rounded-4 border px-3">
+        <i class="fa-solid fa-compass-drafting text-purple mb-2 mb-md-3 no-results-icon"></i>
+        <h5 class="fw-extrabold text-dark mb-1 mb-md-2 no-results-title">No Room Categories Found</h5>
+        <p class="text-muted mb-3 no-results-desc">We couldn't find any category matching your selected filters.</p>
+        <button class="btn btn-purple rounded-pill px-3 px-md-4 py-2 py-md-2.5 fw-bold"
           (click)="setFilter('all'); searchQuery.set(''); budgetFilter.set('all'); sortBy.set('recommended')">
           Reset All Filters
         </button>
@@ -218,7 +218,7 @@
               class="material-tab-btn rounded-pill border-0 px-3 px-md-4 py-2 py-md-2.5 d-flex align-items-center fw-bold transition-all"
               [class.active]="activeMaterialTab() === m.id" (click)="setMaterialTab(m.id)">
               <i [class]="m.icon + ' me-1 me-md-2'"></i>
-              <span>{{ m.shortTitle || m.title.split('&')[0] }}</span>
+              <span>{{ m.shortTitle }}</span>
             </button>
           </div>
         </div>

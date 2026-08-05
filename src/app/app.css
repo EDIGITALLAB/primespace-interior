@@ -32,11 +32,14 @@
   display: inline-block;
 }
 
+html,
 body {
   font-family: var(--font-body);
   background-color: var(--primary-black);
   color: var(--white);
-  overflow-x: hidden;
+  overflow-x: hidden !important;
+  width: 100%;
+  max-width: 100vw;
 }
 
 h1,
@@ -46,6 +49,34 @@ h4,
 h5,
 h6 {
   font-family: var(--font-headings);
+}
+
+/* Global Responsive Helpers & Overflow Guards */
+.min-w-0 {
+  min-width: 0 !important;
+}
+
+.text-break {
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+}
+
+img, iframe, video {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 575.98px) {
+  .container-fluid,
+  .container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .btn {
+    white-space: normal !important;
+    word-break: break-word !important;
+  }
 }
 
 /* Animations */
