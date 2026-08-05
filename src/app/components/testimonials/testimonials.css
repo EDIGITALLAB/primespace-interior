@@ -1,9 +1,9 @@
-/* Testimonials Section Stylesheet - 3 Cards Grid */
+/* Testimonials Section Stylesheet - 3 Cards Grid Desktop / Infinite Transform Slider Mobile */
 
 .testimonials-section {
   background-color: var(--white) !important;
   font-family: var(--font-body);
-  padding: 80px 0;
+  padding: 35px 0 70px 0;
   overflow: hidden;
 }
 
@@ -148,9 +148,161 @@
   margin: 0 auto;
 }
 
-/* Responsive adjustments */
+/* Desktop Grid View (>= 992px): Normal 3-column row, transform ignored, clones hidden, top clearance for hover elevation */
+@media (min-width: 992px) {
+  .testimonials-slider-viewport {
+    overflow: visible !important;
+    padding-top: 10px !important;
+  }
+  .testimonials-slider-track {
+    transform: none !important;
+  }
+  .card-col-item.is-clone {
+    display: none !important;
+  }
+}
+
+/* Mobile & Tablet Slider Layout Adjustments (< 991.98px) */
 @media (max-width: 991.98px) {
   .testimonials-section {
-    padding: 60px 0;
+    padding: 22px 0 40px 0 !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.2rem, 5.2vw, 1.55rem) !important;
+    letter-spacing: 0.5px !important;
+    white-space: nowrap !important;
+  }
+
+  .section-title::before,
+  .section-title::after {
+    display: none !important;
+  }
+
+  .cards-container {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  .testimonials-slider-viewport {
+    width: 100%;
+    overflow: hidden !important;
+    padding-top: 8px !important;
+    touch-action: pan-y;
+  }
+
+  .testimonials-slider-track {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 4px 0 16px 0 !important;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform;
+  }
+
+  .testimonials-slider-track.no-transition {
+    transition: none !important;
+  }
+
+  .card-col-item {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .testimonial-card {
+    min-height: 350px;
+  }
+
+  /* Sleek Modern Compact Slider Navigation Arrows */
+  .slider-arrow {
+    position: absolute;
+    top: 48%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--primary-maroon) !important;
+    border: 1.5px solid rgba(var(--primary-maroon-rgb), 0.2) !important;
+    box-shadow: 0 4px 12px rgba(var(--primary-maroon-rgb), 0.15), 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    font-size: 11px;
+    padding: 0;
+    outline: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .slider-arrow:focus,
+  .slider-arrow:focus-visible {
+    outline: none !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: var(--primary-maroon) !important;
+    border-color: rgba(var(--primary-maroon-rgb), 0.2) !important;
+  }
+
+  /* Momentary active press feedback on touch */
+  .slider-arrow:active {
+    transform: translateY(-50%) scale(0.88) !important;
+    background: var(--primary-maroon) !important;
+    color: var(--white) !important;
+    border-color: var(--primary-maroon) !important;
+  }
+
+  /* Hover effect ONLY on devices that support true mouse hover (desktop) */
+  @media (hover: hover) {
+    .slider-arrow:hover {
+      transform: translateY(-50%) scale(0.92);
+      background: var(--primary-maroon) !important;
+      color: var(--white) !important;
+      border-color: var(--primary-maroon) !important;
+      box-shadow: 0 6px 16px rgba(var(--primary-maroon-rgb), 0.3);
+    }
+  }
+
+  .arrow-prev {
+    left: 4px;
+  }
+
+  .arrow-next {
+    right: 4px;
+  }
+
+  /* Sleek Minimalist Slider Dots */
+  .slider-dots-wrapper {
+    margin-top: 14px !important;
+  }
+
+  .slider-dot-btn {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(var(--primary-maroon-rgb), 0.2);
+    padding: 0;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+  }
+
+  .slider-dot-btn.active {
+    width: 22px;
+    border-radius: 8px;
+    background: var(--primary-maroon);
+    box-shadow: 0 2px 6px rgba(var(--primary-maroon-rgb), 0.3);
   }
 }

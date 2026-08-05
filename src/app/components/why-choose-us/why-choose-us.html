@@ -3,7 +3,6 @@
   <!-- Subtle luxury background graphics -->
   <div class="why-mesh-glow"></div>
 
-  <!-- Full Background Architectural & Interior CAD Blueprint SVG Pattern Overlay -->
   <!-- Full Background Endless Tiling Architectural & Interior Blueprint SVG Pattern Overlay -->
   <div class="why-full-bg-svg-wrap">
     <svg class="why-full-bg-svg" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
@@ -77,13 +76,11 @@
       </p>
     </div>
 
-    <!-- Architectural Bento Grid Layout -->
-    <div class="row g-3 g-lg-4 align-items-center">
+    <!-- Desktop Architectural Bento Grid Layout (>= 992px) -->
+    <div class="row g-3 g-lg-4 align-items-center d-none d-lg-flex">
 
       <!-- LEFT BENTO COLUMN (3 Pillars: 01, 03, 05) -->
       <div class="col-lg-4 d-flex flex-column gap-3 gap-lg-4 order-2 order-lg-1">
-
-        <!-- Pillar 01 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -95,7 +92,6 @@
           <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[0].description }}</p>
         </div>
 
-        <!-- Pillar 03 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -107,7 +103,6 @@
           <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[2].description }}</p>
         </div>
 
-        <!-- Pillar 05 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -118,30 +113,22 @@
           <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[4].title }}</h4>
           <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[4].description }}</p>
         </div>
-
       </div>
 
-      <!-- CENTER BENTO FEATURE HUB (Center Brand Core Hub, Pillar 07, Pillar 08) -->
+      <!-- CENTER BENTO FEATURE HUB -->
       <div class="col-lg-4 d-flex flex-column gap-3 gap-lg-4 order-1 order-lg-2">
-
-        <!-- Center Brand Emblem Plinth -->
-        <div
-          class="bento-center-hub p-4 p-md-5 rounded-4 text-center position-relative overflow-hidden shadow-lg border order-first order-lg-2">
+        <div class="bento-center-hub p-4 p-md-5 rounded-4 text-center position-relative overflow-hidden shadow-lg border order-first order-lg-2">
           <div class="hub-ambient-glow"></div>
-
           <div class="hub-emblem-icon mx-auto mb-3 d-flex align-items-center justify-content-center">
             <i class="fa-solid fa-award"></i>
           </div>
-
           <span class="hub-crown-pill mb-2 d-inline-block text-uppercase">
             <i class="fa-solid fa-sparkles me-1 text-purple"></i> UNMATCHED STANDARDS
           </span>
-
           <h3 class="hub-title fw-black text-uppercase mb-2">PRIME SPACE</h3>
           <p class="hub-subtitle font-size-xs text-muted mb-0">Engineering Precision & Bespoke Interiors</p>
         </div>
 
-        <!-- Pillar 07 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm order-2 order-lg-1">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -153,7 +140,6 @@
           <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[6].description }}</p>
         </div>
 
-        <!-- Pillar 08 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm order-3 order-lg-3">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -168,8 +154,6 @@
 
       <!-- RIGHT BENTO COLUMN (3 Pillars: 02, 04, 06) -->
       <div class="col-lg-4 d-flex flex-column gap-3 gap-lg-4 order-3 order-lg-3">
-
-        <!-- Pillar 02 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -181,7 +165,6 @@
           <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[1].description }}</p>
         </div>
 
-        <!-- Pillar 04 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -193,7 +176,6 @@
           <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[3].description }}</p>
         </div>
 
-        <!-- Pillar 06 -->
         <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm">
           <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
             <div class="bento-icon-box d-flex align-items-center justify-content-center">
@@ -204,7 +186,68 @@
           <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillars[5].title }}</h4>
           <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillars[5].description }}</p>
         </div>
+      </div>
 
+    </div>
+
+    <!-- Mobile & Tablet Slider Layout (< 992px) -->
+    <div class="d-lg-none mobile-why-slider-wrapper">
+
+      <!-- Center Brand Plinth Hub Banner -->
+      <div class="bento-center-hub p-4 rounded-4 text-center position-relative overflow-hidden shadow-sm border mb-4">
+        <div class="hub-emblem-icon mx-auto mb-2 d-flex align-items-center justify-content-center">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <span class="hub-crown-pill mb-2 d-inline-block text-uppercase">
+          <i class="fa-solid fa-sparkles me-1 text-purple"></i> UNMATCHED STANDARDS
+        </span>
+        <h3 class="hub-title fw-black text-uppercase mb-1">PRIME SPACE</h3>
+        <p class="hub-subtitle font-size-xs text-muted mb-0">Engineering Precision & Bespoke Interiors</p>
+      </div>
+
+      <!-- Horizontal Cards Snap Track -->
+      <div class="mobile-pillars-viewport overflow-hidden">
+        <div #pillarsTrack class="mobile-pillars-track d-flex flex-nowrap" (scroll)="onPillarsScroll($event)">
+          <div class="mobile-pillar-item" *ngFor="let pillar of pillars; let i = index" [class.active]="activePillarIndex() === i">
+            
+            <div class="bento-card p-4 rounded-4 position-relative overflow-hidden border bg-white shadow-sm h-100">
+              <div class="d-flex align-items-center justify-content-between mb-3 position-relative z-1">
+                <div class="bento-icon-box d-flex align-items-center justify-content-center">
+                  <i [class]="pillar.icon"></i>
+                </div>
+                <span class="bento-tag">{{ pillar.badgeText }}</span>
+              </div>
+              <h4 class="bento-title fw-black mb-2 position-relative z-1">{{ pillar.title }}</h4>
+              <p class="bento-desc font-size-xs text-muted m-0 position-relative z-1">{{ pillar.description }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Controls -->
+      <div class="mobile-slider-controls d-flex align-items-center justify-content-between mt-3 px-2">
+        <span class="slider-counter-text font-size-xs text-muted fw-bold">
+          <span class="text-purple fw-black">0{{ activePillarIndex() + 1 }}</span> / 0{{ pillars.length }}
+        </span>
+
+        <div class="slider-dots-wrapper d-flex align-items-center gap-1.5">
+          <button *ngFor="let p of pillars; let i = index"
+                  class="slider-dot-btn"
+                  [class.active]="activePillarIndex() === i"
+                  (click)="setPillarIndex(i)"
+                  [attr.aria-label]="'Go to pillar slide ' + (i + 1)">
+          </button>
+        </div>
+
+        <div class="slider-nav-btns d-flex align-items-center gap-2">
+          <button class="slider-arrow arrow-prev" (click)="prevPillar()" aria-label="Previous Pillar">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+          <button class="slider-arrow arrow-next" (click)="nextPillar()" aria-label="Next Pillar">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
       </div>
 
     </div>

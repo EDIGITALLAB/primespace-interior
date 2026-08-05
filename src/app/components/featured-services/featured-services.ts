@@ -1,5 +1,5 @@
-import { Component, signal, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal, ElementRef, ViewChild, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
@@ -22,14 +22,41 @@ export interface ServiceCardData {
   templateUrl: './featured-services.html',
   styleUrl: './featured-services.css',
 })
-export class FeaturedServices implements AfterViewInit {
+export class FeaturedServices implements OnInit, OnDestroy {
   @ViewChild('fsCardsRow') fsCardsRow!: ElementRef<HTMLDivElement>;
 
   currentSlide = signal(0);
+  private timer: any = null;
 
-  constructor(public consultationModalService: ConsultationModalService) {}
+  constructor(
+    public consultationModalService: ConsultationModalService,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {}
 
-  ngAfterViewInit() {}
+  ngOnInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      this.startAutoSlide();
+    }
+  }
+
+  ngOnDestroy() {
+    this.stopAutoSlide();
+  }
+
+  startAutoSlide() {
+    if (!isPlatformBrowser(this.platformId)) return;
+    this.stopAutoSlide();
+    this.timer = setInterval(() => {
+      this.slideNext();
+    }, 3800);
+  }
+
+  stopAutoSlide() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
 
   readonly servicesList: ServiceCardData[] = [
     {
@@ -96,18 +123,57 @@ export class FeaturedServices implements AfterViewInit {
   }
 
   slideTo(index: number) {
-    if (index < 0 || index >= this.totalCards) return;
-    this.currentSlide.set(index);
+    const targetIndex = (index + this.totalCards) % this.totalCards;
+    this.currentSlide.set(targetIndex);
+    if (!isPlatformBrowser(this.platformId)) return;
     const row = this.fsCardsRow?.nativeElement;
     if (!row) return;
-    const card = row.children[index] as HTMLElement;
+    const cards = Array.from(row.children) as HTMLElement[];
+    const card = cards[targetIndex];
     if (card) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      const rowWidth = row.clientWidth;
+      const targetScrollLeft = card.offsetLeft - (rowWidth - card.clientWidth) / 2;
+      row.scrollTo({ left: Math.max(0, targetScrollLeft), behavior: 'smooth' });
     }
   }
 
-  slidePrev() { this.slideTo(this.currentSlide() - 1); }
-  slideNext() { this.slideTo(this.currentSlide() + 1); }
+  slidePrev() { 
+    this.slideTo(this.currentSlide() - 1); 
+    this.startAutoSlide();
+  }
+  
+  slideNext() { 
+    this.slideTo(this.currentSlide() + 1); 
+    this.startAutoSlide();
+  }
+
+  onCardsScroll(event: Event) {
+    if (!isPlatformBrowser(this.platformId)) return;
+    const target = event.target as HTMLElement;
+    if (target && target.clientWidth > 0) {
+      const scrollPos = target.scrollLeft;
+      const cards = Array.from(target.children) as HTMLElement[];
+      
+      if (cards.length > 0) {
+        let closestIndex = 0;
+        let minDistance = Infinity;
+        const centerPos = scrollPos + target.clientWidth / 2;
+
+        cards.forEach((card, idx) => {
+          const cardCenter = card.offsetLeft + card.clientWidth / 2;
+          const distance = Math.abs(centerPos - cardCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = idx;
+          }
+        });
+
+        if (closestIndex !== this.currentSlide()) {
+          this.currentSlide.set(closestIndex);
+        }
+      }
+    }
+  }
 
   openConsultationModal(event: Event) {
     event.preventDefault();
