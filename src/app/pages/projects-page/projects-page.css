@@ -1,5 +1,26 @@
 /* Premium Magazinic Architectural Projects Page Stylesheet */
 
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.projects-page-wrapper .breadcrumb-item {
+  font-size: 12.5px !important;
+  letter-spacing: 0.3px;
+}
+
 .projects-page-wrapper {
   overflow-x: hidden;
   background-color: var(--white) !important;
@@ -74,7 +95,7 @@
 .proj-hero-lead {
   font-family: var(--font-body);
   font-size: 14.5px;
-  line-height: 1.65;
+  line-height: 1.55;
   color: var(--text-medium-grey);
 }
 
@@ -89,14 +110,41 @@
 
 .hero-badge {
   font-family: var(--font-headings);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
-  letter-spacing: 2.5px;
+  letter-spacing: 1.8px;
   color: var(--primary-maroon);
   background: rgba(var(--primary-maroon-rgb), 0.06);
   border: 1px solid rgba(var(--primary-maroon-rgb), 0.15);
-  padding: 6px 18px;
+  padding: 5px 14px;
   border-radius: 30px;
+}
+
+@media (max-width: 767.98px) {
+  .hero-badge {
+    font-size: 8.5px !important;
+    letter-spacing: 0.7px !important;
+    padding: 4px 10px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 9px !important;
+  }
+
+  .hero-badge i {
+    font-size: 8.5px !important;
+    margin-right: 3px !important;
+  }
+
+  .proj-hero-heading {
+    font-size: 24px !important;
+    font-weight: 900 !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.3px !important;
+  }
+
+  .proj-hero-lead {
+    font-size: 13px !important;
+    line-height: 1.5 !important;
+  }
 }
 
 .proj-theme-badge {
@@ -159,9 +207,14 @@
   background: var(--white);
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: var(--text-medium-grey);
-  font-size: 11.5px;
+  font-size: 11px;
   font-weight: 600;
   padding: 5px 14px;
+  border-radius: 20px !important;
+  white-space: nowrap !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.25s ease;
 }
 
@@ -284,8 +337,8 @@
 }
 
 .proj-hover-icon-circle {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--primary-maroon);
   color: var(--white);
@@ -398,12 +451,17 @@
 }
 
 .proj-thumb-img {
-  width: 50px;
-  height: 40px;
-  object-fit: cover;
+  width: 50px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  max-height: 38px !important;
+  object-fit: cover !important;
+  flex-shrink: 0 !important;
+  border: 2px solid transparent !important;
+  box-sizing: border-box !important;
 }
 
-.border-purple {
+.proj-thumb-img.border-purple {
   border-color: var(--primary-maroon) !important;
 }
 
@@ -416,5 +474,272 @@
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* MOBILE RESPONSIVE STYLES FOR PROJECTS PAGE */
+@media (max-width: 767.98px) {
+  .proj-hero-section {
+    padding-top: 85px !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  .hero-badge {
+    font-size: 8.5px !important;
+    letter-spacing: 0.7px !important;
+    padding: 4px 10px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 9px !important;
+    white-space: nowrap !important;
+    max-width: 100%;
+  }
+
+  .proj-segmented-tabs {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 14px !important;
+    padding: 4px !important;
+    gap: 4px !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .proj-seg-btn {
+    font-size: 10px !important;
+    padding: 6px 10px !important;
+    flex: 1 1 auto !important;
+    white-space: nowrap !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .proj-city-filter-container {
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .proj-city-filter-row {
+    overflow-x: auto;
+    flex-wrap: nowrap !important;
+    padding-bottom: 2px;
+    gap: 10px !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .proj-city-filter-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .proj-city-pill {
+    font-size: 10px !important;
+    padding: 4px 10px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .proj-featured-card {
+    border-radius: 16px !important;
+    padding: 12px !important;
+  }
+
+  .proj-featured-img-wrapper {
+    height: 180px !important;
+  }
+
+  .proj-bento-card {
+    border-radius: 16px !important;
+  }
+
+  .proj-bento-media {
+    height: 165px !important;
+  }
+
+  .proj-featured-title,
+  .proj-bento-title {
+    font-size: 0.92rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .proj-featured-card p,
+  .proj-bento-card p {
+    font-size: 11.5px !important;
+    line-height: 1.4 !important;
+  }
+
+  .proj-status-badge,
+  .proj-bento-cat {
+    font-size: 8px !important;
+    padding: 2px 8px !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .proj-status-badge i {
+    font-size: 8px !important;
+  }
+
+  .proj-featured-card .font-size-xs,
+  .proj-bento-card .font-size-xs {
+    font-size: 11px !important;
+  }
+
+  .proj-btn-portfolio {
+    font-size: 9.5px !important;
+    padding: 7px 14px !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.4px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .site-tour-subtitle {
+    font-size: 9px !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.5px !important;
+  }
+
+  .site-tour-heading {
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .proj-badge-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 13px !important;
+  }
+
+  .site-tour-btn {
+    font-size: 0.75rem !important;
+    padding: 10px 14px !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.4px !important;
+  }
+
+  .proj-hover-icon-circle {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 11px !important;
+  }
+
+  .proj-modal-title {
+    font-size: 1rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .proj-modal-subtitle {
+    font-size: 0.75rem !important;
+  }
+
+  .proj-modal-desc {
+    font-size: 0.72rem !important;
+    line-height: 1.4 !important;
+  }
+
+  .proj-modal-badge {
+    font-size: 8px !important;
+    padding: 2px 7px !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .proj-modal-tabs-row {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .proj-modal-tab-btn {
+    flex: 1 1 0px !important;
+    text-align: center !important;
+    font-size: 9.5px !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .proj-specs-box {
+    padding: 10px 12px !important;
+  }
+
+  .proj-specs-box .font-size-micro {
+    font-size: 8px !important;
+    letter-spacing: 0.3px !important;
+    margin-bottom: 2px !important;
+  }
+
+  .proj-specs-box .fw-bold {
+    font-size: 11px !important;
+    line-height: 1.25 !important;
+  }
+
+  .proj-thumb-img {
+    width: 44px !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    max-height: 32px !important;
+    object-fit: cover !important;
+    flex-shrink: 0 !important;
+    border: 2px solid transparent !important;
+    box-sizing: border-box !important;
+  }
+
+  .proj-thumb-img.border-purple {
+    border-color: var(--primary-maroon) !important;
+  }
+
+  .proj-mat-item {
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+  }
+
+  .proj-ms-title {
+    font-size: 10px !important;
+    line-height: 1.25 !important;
+  }
+
+  .proj-ms-subtext {
+    font-size: 8.5px !important;
+    line-height: 1.2 !important;
+  }
+
+  .proj-modal-overlay {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  .proj-modal-card {
+    max-height: 90vh !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .proj-modal-img-col {
+    position: relative !important;
+    flex-shrink: 0 !important;
+    min-height: 190px !important;
+    height: 190px !important;
+    z-index: 5 !important;
+  }
+
+  .proj-modal-close-btn {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 12px !important;
+    position: absolute !important;
+    top: 8px !important;
+    right: 8px !important;
+    z-index: 999 !important;
+  }
+
+  .proj-modal-body {
+    flex: 1 1 auto !important;
+    max-height: calc(90vh - 190px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 20px !important;
+  }
+
+  .projects-page-wrapper .breadcrumb-item {
+    font-size: 11.5px !important;
   }
 }

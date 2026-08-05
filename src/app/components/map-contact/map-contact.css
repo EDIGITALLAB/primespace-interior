@@ -195,6 +195,8 @@
   font-size: 11px;
   font-weight: 600;
   padding: 5px 12px;
+  white-space: nowrap !important;
+  flex-shrink: 0;
   transition: all 0.25s ease;
 }
 
@@ -218,6 +220,8 @@
   font-size: 11px;
   font-weight: 600;
   padding: 5px 12px;
+  white-space: nowrap !important;
+  flex-shrink: 0;
   text-decoration: none;
   transition: all 0.25s ease;
 }
@@ -227,6 +231,61 @@
   filter: brightness(0.85);
   color: var(--white) !important;
   box-shadow: 0 4px 12px rgba(var(--primary-maroon-rgb), 0.3);
+}
+
+/* Mobile Responsive Optimizations for Map Contact Component */
+@media (max-width: 575.98px) {
+  .map-wrapper {
+    min-height: 470px !important;
+    height: 470px !important;
+  }
+
+  .studio-switcher-bar {
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    width: calc(100% - 20px) !important;
+    padding: 3px !important;
+    border-radius: 20px !important;
+    justify-content: center !important;
+  }
+
+  .studio-tab-btn {
+    font-size: 9.5px !important;
+    padding: 5px 8px !important;
+    flex: 1 1 50% !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+
+  .map-info-card {
+    left: 10px !important;
+    right: 10px !important;
+    bottom: 10px !important;
+    width: calc(100% - 20px) !important;
+    padding: 12px 14px !important;
+  }
+
+  .studio-name {
+    font-size: 0.95rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .studio-address {
+    font-size: 11px !important;
+    margin-bottom: 6px !important;
+  }
+
+  .studio-meta .meta-item {
+    font-size: 10.5px !important;
+  }
+
+  .btn-gallery-preview,
+  .btn-directions-sm {
+    font-size: 10px !important;
+    padding: 4px 9px !important;
+    white-space: nowrap !important;
+  }
 }
 
 /* Right Column: Brand Purple/Magenta Luxury Column */
