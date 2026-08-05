@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 164 145" width="100%" height="100%">
-  <!-- Interior Design Line-Art Icon (Clean House Logo) -->
-  <g fill="none" stroke="#A60A38" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Interior Design Line-Art Icon (Clean House Logo - Dynamic Theme Color) -->
+  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
     
     <!-- 1. Bottom Baseline -->
     <line x1="8" y1="138" x2="158" y2="138" stroke-width="3.2" />
@@ -20,31 +20,31 @@
     <!-- 4. Hanging Pendant Lamp -->
     <line x1="83" y1="8" x2="83" y2="60" stroke-width="2.2" />
     <!-- Lamp top cap -->
-    <path d="M 80 60 H 86 V 62 H 80 Z" fill="#A60A38" stroke="none" />
+    <path d="M 80 60 H 86 V 62 H 80 Z" fill="currentColor" stroke="none" />
     <!-- Lamp bell shade -->
-    <path d="M 74 74 C 74 64 92 64 92 74 Z" fill="#A60A38" stroke="none" />
-    <path d="M 72 74 Q 83 77 94 74 Q 83 78 72 74 Z" fill="#A60A38" stroke="none" />
+    <path d="M 74 74 C 74 64 92 64 92 74 Z" fill="currentColor" stroke="none" />
+    <path d="M 72 74 Q 83 77 94 74 Q 83 78 72 74 Z" fill="currentColor" stroke="none" />
     
     <!-- 5. 4-Point Star Sparkle (Top Right) -->
-    <path d="M 133 18 C 133 23 133 23 138 23 C 133 23 133 23 133 28 C 133 23 133 23 128 23 C 133 23 133 23 133 18 Z" fill="#A60A38" stroke="none" />
+    <path d="M 133 18 C 133 23 133 23 138 23 C 133 23 133 23 133 28 C 133 23 133 23 128 23 C 133 23 133 23 133 18 Z" fill="currentColor" stroke="none" />
     
     <!-- 6. Solid Slanted Doorway / Pillar (Right) -->
-    <polygon points="118,55 140,67 140,138 118,138" fill="#A60A38" stroke="none" />
+    <polygon points="118,55 140,67 140,138 118,138" fill="currentColor" stroke="none" />
     
     <!-- 7. Slim Lamp / Pole behind Plant -->
     <path d="M 108 138 L 108 80 L 114 76" stroke-width="2.5" />
     
     <!-- 8. Potted Plant -->
     <!-- Pot -->
-    <polygon points="95,123 99,138 111,138 115,123" fill="#A60A38" stroke="none" />
+    <polygon points="95,123 99,138 111,138 115,123" fill="currentColor" stroke="none" />
     <!-- Center Leaf -->
-    <path d="M 105 123 C 101 109 102 98 105 93 C 108 98 109 109 105 123 Z" fill="#A60A38" stroke="none" />
+    <path d="M 105 123 C 101 109 102 98 105 93 C 108 98 109 109 105 123 Z" fill="currentColor" stroke="none" />
     <line x1="105" y1="123" x2="105" y2="97" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" fill="none" />
     <!-- Left Leaf -->
-    <path d="M 105 123 C 90 117 86 103 93 101 C 100 104 102 115 105 123 Z" fill="#A60A38" stroke="none" />
+    <path d="M 105 123 C 90 117 86 103 93 101 C 100 104 102 115 105 123 Z" fill="currentColor" stroke="none" />
     <path d="M 105 123 Q 95 113 93 103" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" fill="none" />
     <!-- Right Leaf -->
-    <path d="M 105 123 C 120 117 124 103 117 101 C 110 104 108 115 105 123 Z" fill="#A60A38" stroke="none" />
+    <path d="M 105 123 C 120 117 124 103 117 101 C 110 104 108 115 105 123 Z" fill="currentColor" stroke="none" />
     <path d="M 105 123 Q 115 113 117 103" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" fill="none" />
     
     <!-- 9. Cozy Armchair (Left) -->
@@ -55,7 +55,7 @@
     <line x1="71" y1="121" x2="78" y2="138" stroke-width="2.8" />
     
     <!-- Armchair Body Silhouette -->
-    <path d="M 26 100 C 25 89 32 84 44 84 C 54 84 61 88 60 99 C 66 99 80 101 80 110 C 80 119 71 122 53 122 C 34 122 26 117 26 100 Z" fill="#A60A38" stroke="none" />
+    <path d="M 26 100 C 25 89 32 84 44 84 C 54 84 61 88 60 99 C 66 99 80 101 80 110 C 80 119 71 122 53 122 C 34 122 26 117 26 100 Z" fill="currentColor" stroke="none" />
     <!-- Inner Chair Cushion contour cut -->
     <path d="M 31 97 C 32 107 36 113 52 113 C 65 113 72 110 72 107" stroke="#FFFFFF" stroke-width="2" fill="none" />
 
