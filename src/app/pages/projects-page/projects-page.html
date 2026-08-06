@@ -1,10 +1,10 @@
 <div class="projects-page-wrapper bg-white text-dark pb-6">
 
   <!-- HERO SECTION -->
-  <section class="proj-hero-section position-relative overflow-hidden pb-5 border-bottom">
+  <section class="proj-hero-section position-relative overflow-hidden pb-2 pb-md-5 border-bottom">
     <div class="hero-bg-watermark"></div>
 
-    <div class="container position-relative z-2 py-3">
+    <div class="container position-relative z-2 py-2 py-md-3">
 
       <!-- Breadcrumb -->
       <nav aria-label="breadcrumb" class="mb-3">
@@ -16,22 +16,53 @@
 
       <div class="row align-items-center gy-4">
         <div class="col-lg-7">
-          <span class="hero-badge text-uppercase mb-3 d-inline-flex align-items-center gap-2">
+          <span class="hero-badge text-uppercase mb-2 mb-md-3 d-inline-flex align-items-center gap-2">
             <i class="fa-solid fa-crown text-purple"></i>Architectural Portfolio & Live Site Radar
           </span>
 
-          <h1 class="proj-hero-heading text-uppercase fw-black mb-3 text-dark">
+          <h1 class="proj-hero-heading text-uppercase fw-black mb-2 mb-md-3 text-dark">
             BESPOKE HOMES & <span class="text-purple">SITE EXECUTION</span>
           </h1>
 
-          <p class="proj-hero-lead text-muted mb-4 max-w-750">
+          <p class="proj-hero-lead text-muted mb-3 mb-md-4 max-w-750">
             Witness our journey from raw blueprints & German precision factory cutting to delivered luxury homes and
             active live construction sites.
           </p>
 
+          <!-- On-Site Tour Card (Mobile View) -->
+          <div class="d-lg-none my-3">
+            <div
+              class="bg-purple-tint p-3 rounded-4 border border-purple-subtle shadow-sm position-relative overflow-hidden">
+              <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-purple-subtle pb-3">
+                <div>
+                  <span class="text-purple font-size-micro fw-extrabold text-uppercase letter-spacing-1 d-block mb-1 site-tour-subtitle">
+                    <i class="fa-solid fa-compass me-1"></i> SCHEDULE ON-SITE TOUR
+                  </span>
+                  <h4 class="fw-bold text-dark m-0 site-tour-heading">Inspect Our Live Construction</h4>
+                </div>
+                <div
+                  class="proj-badge-icon rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
+                  <i class="fa-solid fa-hard-hat font-size-md"></i>
+                </div>
+              </div>
+
+              <p class="font-size-xs text-muted leading-relaxed mb-3">
+                Visit our ongoing site execution in Bengaluru or Bhubaneswar to test material durability, tile alignment,
+                and joinery quality firsthand.
+              </p>
+
+              <button type="button"
+                class="btn btn-purple rounded-pill w-100 py-2.5 font-size-xs fw-extrabold text-uppercase shadow-md d-flex align-items-center justify-content-center gap-2 cursor-pointer site-tour-btn"
+                (click)="openConsultation($event)">
+                <span>Book Site Visit Appointment</span>
+                <i class="fa-solid fa-arrow-right font-size-micro"></i>
+              </button>
+            </div>
+          </div>
+
           <!-- Filter Pill Tabs -->
           <div
-            class="d-flex flex-wrap align-items-center gap-2 mb-3 p-1.5 rounded-pill proj-segmented-tabs bg-light-neutral border">
+            class="d-flex align-items-center gap-1.5 gap-sm-2 mb-3 p-1.5 rounded-4 proj-segmented-tabs bg-light-neutral border">
             <button type="button" class="btn btn-sm rounded-pill proj-seg-btn fw-bold transition-all"
               [class.active]="activeStatusFilter() === 'all'" (click)="setStatusFilter('all')">
               <span>All Projects</span>
@@ -42,7 +73,7 @@
             <button type="button" class="btn btn-sm rounded-pill proj-seg-btn fw-bold transition-all completed-seg"
               [class.active]="activeStatusFilter() === 'completed'" (click)="setStatusFilter('completed')">
               <i class="fa-solid fa-award me-1.5 proj-seg-icon"></i>
-              <span>Delivered Showcase</span>
+              <span>Delivered</span>
               <span class="badge rounded-pill bg-purple-tint text-purple ms-1.5 font-size-micro">{{ completedCount()
                 }}</span>
             </button>
@@ -50,26 +81,26 @@
             <button type="button" class="btn btn-sm rounded-pill proj-seg-btn fw-bold transition-all ongoing-seg"
               [class.active]="activeStatusFilter() === 'ongoing'" (click)="setStatusFilter('ongoing')">
               <i class="fa-solid fa-bolt me-1.5 proj-seg-icon"></i>
-              <span>Live Construction</span>
+              <span>Live Sites</span>
               <span class="badge rounded-pill bg-purple-tint text-purple ms-1.5 font-size-micro">{{ ongoingCount()
                 }}</span>
             </button>
           </div>
         </div>
 
-        <!-- Right Hero Stats Showcase Box -->
-        <div class="col-lg-5">
+        <!-- Right Hero Stats Showcase Box (Desktop View) -->
+        <div class="col-lg-5 d-none d-lg-block">
           <div
             class="bg-purple-tint p-4 rounded-4 border border-purple-subtle shadow-sm position-relative overflow-hidden">
             <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-purple-subtle pb-3">
               <div>
-                <span class="text-purple font-size-micro fw-extrabold text-uppercase letter-spacing-1 d-block mb-1">
+                <span class="text-purple font-size-micro fw-extrabold text-uppercase letter-spacing-1 d-block mb-1 site-tour-subtitle">
                   <i class="fa-solid fa-compass me-1"></i> SCHEDULE ON-SITE TOUR
                 </span>
-                <h4 class="fw-bold text-dark m-0 font-size-md">Inspect Our Live Construction</h4>
+                <h4 class="fw-bold text-dark m-0 site-tour-heading">Inspect Our Live Construction</h4>
               </div>
               <div
-                class="proj-badge-icon rounded-circle bg-purple text-white d-flex align-items-center justify-content-center">
+                class="proj-badge-icon rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
                 <i class="fa-solid fa-hard-hat font-size-md"></i>
               </div>
             </div>
@@ -80,7 +111,7 @@
             </p>
 
             <button type="button"
-              class="btn btn-accent rounded-pill w-100 py-3 font-size-xs fw-extrabold text-uppercase shadow-md d-flex align-items-center justify-content-center gap-2 cursor-pointer"
+              class="btn btn-purple rounded-pill w-100 py-3 font-size-xs fw-extrabold text-uppercase shadow-md d-flex align-items-center justify-content-center gap-2 cursor-pointer site-tour-btn"
               (click)="openConsultation($event)">
               <span>Book Site Visit Appointment</span>
               <i class="fa-solid fa-arrow-right font-size-micro"></i>
@@ -93,31 +124,32 @@
   </section>
 
   <!-- MAIN PROJECTS SHOWCASE SECTION -->
-  <section class="py-5">
+  <section class="py-3 py-md-5">
     <div class="container">
 
       <!-- Location Filter Toolbar -->
-      <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
-        <div class="d-flex align-items-center gap-2">
-          <span class="font-size-xs text-muted text-uppercase fw-bold"><i
-              class="fa-solid fa-filter me-1 text-purple"></i> Filter Location:</span>
-          <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
-            [class.active]="activeCityFilter() === 'all'" (click)="setCityFilter('all')">
-            All Cities
-          </button>
-          <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
-            [class.active]="activeCityFilter() === 'Bengaluru'" (click)="setCityFilter('Bengaluru')">
-            <i class="fa-solid fa-location-dot me-1"></i> Bengaluru
-          </button>
-          <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
-            [class.active]="activeCityFilter() === 'Bhubaneswar'" (click)="setCityFilter('Bhubaneswar')">
-            <i class="fa-solid fa-location-dot me-1"></i> Bhubaneswar
-          </button>
+      <div class="d-flex align-items-center justify-content-between mb-3 mb-md-4 flex-wrap gap-2 gap-md-3">
+        <div class="d-flex align-items-center gap-2 proj-city-filter-container">
+          <span class="font-size-xs text-muted text-uppercase fw-bold flex-shrink-0"><i
+              class="fa-solid fa-filter me-1 text-purple"></i> Filter:</span>
+          <div class="d-flex align-items-center gap-2 gap-sm-2.5 proj-city-filter-row">
+            <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
+              [class.active]="activeCityFilter() === 'all'" (click)="setCityFilter('all')">
+              All Cities
+            </button>
+            <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
+              [class.active]="activeCityFilter() === 'Bengaluru'" (click)="setCityFilter('Bengaluru')">
+              <i class="fa-solid fa-location-dot me-1"></i> Bengaluru
+            </button>
+            <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
+              [class.active]="activeCityFilter() === 'Bhubaneswar'" (click)="setCityFilter('Bhubaneswar')">
+              <i class="fa-solid fa-location-dot me-1"></i> Bhubaneswar
+            </button>
+          </div>
         </div>
 
-        <div class="d-flex align-items-center gap-2">
-          <span class="font-size-xs text-muted fw-semibold">Showing <strong>{{ filteredProjects().length }}</strong>
-            Projects</span>
+        <div class="d-flex align-items-center gap-2 ms-auto ms-sm-0">
+          <span class="font-size-xs text-muted fw-semibold">Showing <strong>{{ filteredProjects().length }}</strong> Projects</span>
         </div>
       </div>
 
@@ -131,7 +163,7 @@
           <div
             class="proj-featured-card bg-white rounded-4 border shadow-sm overflow-hidden position-relative cursor-pointer transition-all p-3 p-md-4"
             (click)="openProjectModal(p, $event)">
-            <div class="row align-items-center gy-4">
+            <div class="row align-items-center gy-2 gy-md-4">
 
               <!-- Left Featured Media -->
               <div class="col-lg-7">
@@ -139,17 +171,20 @@
                   <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover proj-bento-img">
                   <div class="proj-bento-overlay"></div>
 
-                  <!-- Status Badge -->
-                  <span
-                    class="proj-status-badge completed-badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
-                    <i class="fa-solid fa-award text-success"></i> {{ p.statusLabel }}
-                  </span>
+                  <!-- Badges Stack -->
+                  <div class="position-absolute top-0 start-0 m-2 m-sm-3 d-flex flex-column flex-sm-row align-items-start gap-2 gap-sm-2.5 z-2">
+                    <!-- Status Badge -->
+                    <span
+                      class="proj-status-badge completed-badge px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
+                      <i class="fa-solid fa-award text-success"></i> {{ p.statusLabel }}
+                    </span>
 
-                  <!-- Category Badge -->
-                  <span
-                    class="proj-bento-cat position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-bold text-uppercase">
-                    FEATURED PROJECT • {{ p.category }}
-                  </span>
+                    <!-- Category Badge -->
+                    <span
+                      class="proj-bento-cat px-2.5 px-sm-3 py-1 rounded-pill font-size-micro fw-bold text-uppercase">
+                      FEATURED • {{ p.category }}
+                    </span>
+                  </div>
 
                   <div
                     class="proj-hover-icon-circle position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
@@ -159,37 +194,35 @@
               </div>
 
               <!-- Right Featured Details -->
-              <div class="col-lg-5 p-3 p-md-4 d-flex flex-column justify-content-between h-100">
+              <div class="col-lg-5 p-2.5 p-md-4 pt-0 pt-lg-4 d-flex flex-column justify-content-between h-100">
                 <div>
                   <div
-                    class="d-flex align-items-center gap-2 text-purple font-size-xs fw-extrabold text-uppercase mb-2">
+                    class="d-flex align-items-center justify-content-between flex-wrap gap-1 text-purple font-size-micro fw-extrabold text-uppercase mb-2">
                     <span><i class="fa-solid fa-location-dot me-1"></i> {{ p.location }}, {{ p.city }}</span>
-                    <span>•</span>
-                    <span>{{ p.areaSqft }}</span>
+                    <span class="badge bg-purple-tint text-purple rounded-pill px-2.5 py-0.5 border border-purple-subtle">{{ p.areaSqft }}</span>
                   </div>
 
-                  <h2 class="fw-black text-dark font-size-xl mb-2">{{ p.title }}</h2>
-                  <p class="font-size-xs text-purple fw-bold mb-3">{{ p.subtitle }}</p>
+                  <h2 class="fw-black text-dark font-size-lg mb-1 proj-featured-title">{{ p.title }}</h2>
+                  <p class="font-size-xs text-purple fw-bold mb-2">{{ p.subtitle }}</p>
 
-                  <p class="font-size-xs text-muted leading-relaxed mb-4">
+                  <p class="font-size-xs text-muted leading-relaxed mb-2.5 line-clamp-2">
                     {{ p.description }}
                   </p>
 
                   <!-- Scope List Pills -->
-                  <div class="d-flex flex-wrap gap-2 row-gap-2 mb-4">
-                    @for (sc of p.scopeOfWork; track sc) {
+                  <div class="d-flex flex-wrap gap-1.5 mb-2">
+                    @for (sc of p.scopeOfWork.slice(0, 3); track sc) {
                     <span
-                      class="badge bg-purple-tint text-purple font-size-micro border border-purple-subtle fw-semibold py-1.5 px-3 rounded-2">
-                      <i class="fa-solid fa-check" style="margin-right: 5px;"></i><span>{{ sc }}</span>
+                      class="badge bg-purple-tint text-purple font-size-micro border border-purple-subtle fw-semibold py-1 px-2.5 rounded-2">
+                      <i class="fa-solid fa-check" style="margin-right: 4px;"></i><span>{{ sc }}</span>
                     </span>
                     }
                   </div>
                 </div>
 
-                <div class="pt-3 border-top d-flex align-items-center justify-content-between">
-                  <span class="font-size-xs text-muted">Client: <strong class="text-dark">{{ p.clientName
-                      }}</strong></span>
-                  <button type="button" class="proj-btn-portfolio">
+                <div class="pt-2 mt-2 border-top d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2">
+                  <span class="font-size-xs text-muted">Client: <strong class="text-dark">{{ p.clientName }}</strong></span>
+                  <button type="button" class="proj-btn-portfolio w-100 w-sm-auto justify-content-center">
                     <span>View Full Portfolio</span>
                     <i class="fa-solid fa-arrow-right"></i>
                   </button>
@@ -210,26 +243,27 @@
               <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover proj-bento-img">
               <div class="proj-bento-overlay"></div>
 
-              <!-- Top Left Status Pill Badge -->
-              @if (p.status === 'completed') {
-              <div
-                class="proj-status-badge completed-badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-2">
-                <i class="fa-solid fa-circle-check text-success"></i>
-                <span>{{ p.statusLabel }}</span>
-              </div>
-              } @else {
-              <div
-                class="proj-status-badge ongoing-badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-2">
-                <span class="proj-radar-ring"></span>
-                <span>{{ p.statusLabel }}</span>
-              </div>
-              }
+              <!-- Badges Stack -->
+              <div class="position-absolute top-0 start-0 m-2 m-sm-3 d-flex flex-column flex-sm-row align-items-start gap-2 gap-sm-2.5 z-2">
+                @if (p.status === 'completed') {
+                <div
+                  class="proj-status-badge completed-badge px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
+                  <i class="fa-solid fa-circle-check text-success"></i>
+                  <span>{{ p.statusLabel }}</span>
+                </div>
+                } @else {
+                <div
+                  class="proj-status-badge ongoing-badge px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
+                  <span class="proj-radar-ring"></span>
+                  <span>{{ p.statusLabel }}</span>
+                </div>
+                }
 
-              <!-- Top Right Category Badge -->
-              <span
-                class="proj-bento-cat position-absolute top-0 end-0 m-3 px-2.5 py-1 rounded-pill font-size-micro fw-bold text-uppercase">
-                {{ p.category }}
-              </span>
+                <span
+                  class="proj-bento-cat px-2.5 px-sm-3 py-1 rounded-pill font-size-micro fw-bold text-uppercase">
+                  {{ p.category }}
+                </span>
+              </div>
 
               <!-- Hover Quick Action Icon -->
               <div
@@ -239,7 +273,7 @@
             </div>
 
             <!-- Content Body -->
-            <div class="p-4 d-flex flex-column flex-grow-1 justify-content-between">
+            <div class="p-3 p-md-4 d-flex flex-column flex-grow-1 justify-content-between">
               <div>
 
                 <!-- Live Execution Milestone Bar for Ongoing Projects -->
@@ -275,10 +309,9 @@
                 </div>
                 }
 
-                <div class="d-flex align-items-center gap-2 text-purple font-size-micro fw-bold text-uppercase mb-1">
+                <div class="d-flex align-items-center justify-content-between flex-wrap gap-1 text-purple font-size-micro fw-extrabold text-uppercase mb-2">
                   <span><i class="fa-solid fa-location-dot me-1"></i> {{ p.location }}, {{ p.city }}</span>
-                  <span>•</span>
-                  <span>{{ p.areaSqft }}</span>
+                  <span class="badge bg-purple-tint text-purple rounded-pill px-2.5 py-0.5 border border-purple-subtle">{{ p.areaSqft }}</span>
                 </div>
 
                 <h3 class="proj-bento-title fw-bold text-dark font-size-md mb-1.5">
@@ -290,16 +323,10 @@
                 </p>
 
                 <!-- Scope Pills -->
-                <div class="d-flex flex-wrap gap-2 row-gap-2 mb-3">
+                <div class="d-flex flex-wrap gap-1.5 row-gap-1.5 mb-3">
                   @for (sc of p.scopeOfWork.slice(0, 3); track sc) {
                   <span class="badge bg-light text-dark font-size-micro border fw-normal py-1 px-2.5 rounded-2">
                     <i class="fa-solid fa-check text-purple" style="margin-right: 5px;"></i><span>{{ sc }}</span>
-                  </span>
-                  }
-                  @if (p.scopeOfWork.length > 3) {
-                  <span
-                    class="badge bg-purple-tint text-purple font-size-micro border border-purple-subtle fw-bold py-1 px-2.5 rounded-2">
-                    +{{ p.scopeOfWork.length - 3 }} more
                   </span>
                   }
                 </div>
@@ -336,7 +363,7 @@
 
 <!-- LIGHT THEME MULTI-TAB PROJECT SPECIFICATION MODAL -->
 @if (selectedProjectModal()) {
-<div class="proj-modal-overlay d-flex align-items-center justify-content-center p-3" (click)="closeProjectModal()">
+<div class="proj-modal-overlay d-flex align-items-center justify-content-center p-2 p-sm-3" (click)="closeProjectModal()">
   <div
     class="proj-modal-card bg-white rounded-4 border overflow-hidden shadow-2xl position-relative max-w-900 w-100 text-dark"
     (click)="$event.stopPropagation()">
@@ -349,14 +376,14 @@
 
     <div class="row g-0">
       <!-- Left: Image Gallery & Navigation -->
-      <div class="col-lg-6 bg-dark position-relative proj-modal-img-col d-flex flex-column justify-content-between p-3">
+      <div class="col-lg-6 bg-dark position-relative proj-modal-img-col d-flex flex-column justify-content-between p-2.5 p-sm-3">
         <div class="proj-modal-img-display position-relative overflow-hidden rounded-3 h-100">
           <img [src]="selectedProjectModal()!.gallery[activeModalImageIndex()] || selectedProjectModal()!.heroImage"
             [alt]="selectedProjectModal()!.title" class="w-100 h-100 object-fit-cover">
 
           <!-- Top Badge inside Modal -->
           <span
-            class="badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-bold text-uppercase"
+            class="badge position-absolute top-0 start-0 m-2 m-sm-3 px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-bold text-uppercase"
             [class.bg-success]="selectedProjectModal()!.status === 'completed'"
             [class.bg-purple]="selectedProjectModal()!.status === 'ongoing'" [class.text-white]="true">
             {{ selectedProjectModal()!.statusLabel }}
@@ -365,7 +392,7 @@
 
         <!-- Thumbnails Carousel -->
         @if (selectedProjectModal()!.gallery.length > 1) {
-        <div class="d-flex gap-2 justify-content-center mt-3 z-2">
+        <div class="d-flex gap-2 justify-content-center mt-2 mt-sm-3 z-2">
           @for (img of selectedProjectModal()!.gallery; track img; let idx = $index) {
           <img [src]="img" class="proj-thumb-img rounded-2 cursor-pointer border border-2 opacity-70 transition-all"
             [class.border-purple]="activeModalImageIndex() === idx"
@@ -377,36 +404,36 @@
       </div>
 
       <!-- Right: Detailed Specifications & Execution Timeline -->
-      <div class="col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-between">
+      <div class="col-lg-6 p-3 p-md-5 d-flex flex-column justify-content-between proj-modal-body">
         <div>
           <!-- Subtitle & Category -->
           <div class="d-flex align-items-center gap-2 mb-1">
             <span
-              class="badge bg-purple-tint text-purple font-size-micro fw-bold text-uppercase px-2.5 py-1 rounded-pill border border-purple-subtle">
+              class="badge bg-purple-tint text-purple font-size-micro fw-bold text-uppercase px-2.5 py-1 rounded-pill border border-purple-subtle proj-modal-badge">
               {{ selectedProjectModal()!.category }} • {{ selectedProjectModal()!.city }}
             </span>
           </div>
 
-          <h3 class="fw-bold text-dark font-size-lg mb-1">{{ selectedProjectModal()!.title }}</h3>
-          <p class="font-size-xs text-purple fw-semibold mb-3">{{ selectedProjectModal()!.subtitle }}</p>
+          <h3 class="fw-bold text-dark font-size-md mb-1 proj-modal-title">{{ selectedProjectModal()!.title }}</h3>
+          <p class="font-size-xs text-purple fw-semibold mb-2 proj-modal-subtitle">{{ selectedProjectModal()!.subtitle }}</p>
 
-          <p class="font-size-xs text-muted leading-relaxed mb-4">
+          <p class="font-size-xs text-muted leading-relaxed mb-3 line-clamp-3 proj-modal-desc">
             {{ selectedProjectModal()!.description }}
           </p>
 
           <!-- Modal Tabs Switcher -->
-          <div class="d-flex gap-2 border-bottom pb-2 mb-3">
+          <div class="d-flex align-items-center gap-1.5 gap-sm-2 border-bottom pb-2 mb-3 proj-modal-tabs-row">
             <button type="button"
-              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none"
+              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none proj-modal-tab-btn"
               [class.text-purple]="activeModalTab() === 'gallery'" [class.text-muted]="activeModalTab() !== 'gallery'"
               (click)="setModalTab('gallery')">
-              Overview & Specs
+              Overview
             </button>
 
             @if (selectedProjectModal()!.materialsUsed) {
-            <span class="text-muted">|</span>
+            <span class="text-muted font-size-micro">|</span>
             <button type="button"
-              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none"
+              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none proj-modal-tab-btn"
               [class.text-purple]="activeModalTab() === 'materials'"
               [class.text-muted]="activeModalTab() !== 'materials'" (click)="setModalTab('materials')">
               Materials Used
@@ -414,9 +441,9 @@
             }
 
             @if (selectedProjectModal()!.milestones) {
-            <span class="text-muted">|</span>
+            <span class="text-muted font-size-micro">|</span>
             <button type="button"
-              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none"
+              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none proj-modal-tab-btn"
               [class.text-purple]="activeModalTab() === 'milestones'"
               [class.text-muted]="activeModalTab() !== 'milestones'" (click)="setModalTab('milestones')">
               Site Milestones
@@ -450,25 +477,27 @@
             </div>
           </div>
 
-          <h5 class="font-size-xs fw-extrabold text-uppercase text-purple mb-2">Scope of Execution</h5>
-          <ul class="list-unstyled d-flex flex-column gap-1.5 mb-4">
-            @for (sc of selectedProjectModal()!.scopeOfWork; track sc) {
-            <li class="font-size-xs text-dark d-flex align-items-center gap-2">
-              <i class="fa-solid fa-circle-check text-purple font-size-micro"></i>
-              <span>{{ sc }}</span>
-            </li>
-            }
-          </ul>
+          <div class="d-none d-md-block">
+            <h5 class="font-size-xs fw-extrabold text-uppercase text-purple mb-2">Scope of Execution</h5>
+            <ul class="list-unstyled d-flex flex-column gap-1.5 mb-4">
+              @for (sc of selectedProjectModal()!.scopeOfWork; track sc) {
+              <li class="font-size-xs text-dark d-flex align-items-center gap-2">
+                <i class="fa-solid fa-circle-check text-purple font-size-micro"></i>
+                <span>{{ sc }}</span>
+              </li>
+              }
+            </ul>
+          </div>
           }
 
           <!-- Tab Content 2: Materials Used -->
           @if (activeModalTab() === 'materials' && selectedProjectModal()!.materialsUsed) {
-          <div class="proj-materials-list d-flex flex-column gap-2 mb-4">
+          <div class="proj-materials-list d-flex flex-column gap-1.5 gap-sm-2 mb-3 mb-sm-4">
             @for (mat of selectedProjectModal()!.materialsUsed; track mat) {
-            <div class="d-flex align-items-center p-2.5 px-3 rounded-3 bg-purple-tint border border-purple-subtle">
-              <i class="fa-solid fa-shield-halved text-purple font-size-md flex-shrink-0"
+            <div class="d-flex align-items-center p-2 p-sm-2.5 px-2.5 px-sm-3 rounded-3 bg-purple-tint border border-purple-subtle">
+              <i class="fa-solid fa-shield-halved text-purple font-size-xs flex-shrink-0"
                 style="margin-right: 6px;"></i>
-              <span class="font-size-xs fw-bold text-dark text-nowrap text-truncate">{{ mat }}</span>
+              <span class="font-size-micro fw-bold text-dark text-truncate proj-mat-item">{{ mat }}</span>
             </div>
             }
           </div>
@@ -476,25 +505,25 @@
 
           <!-- Tab Content 3: Milestones -->
           @if (activeModalTab() === 'milestones' && selectedProjectModal()!.milestones) {
-          <div class="proj-milestones-list d-flex flex-column gap-2 mb-4">
+          <div class="proj-milestones-list d-flex flex-column gap-1 gap-sm-2 mb-3 mb-sm-4">
             @for (ms of selectedProjectModal()!.milestones; track ms.name) {
-            <div class="d-flex align-items-center gap-3 p-2.5 px-3.5 rounded-3 border"
+            <div class="d-flex align-items-center gap-1.5 gap-sm-2.5 p-2 p-sm-2.5 px-2.5 px-sm-3.5 rounded-3 border"
               [class.bg-success-subtle]="ms.status === 'completed'"
               [class.border-success-subtle]="ms.status === 'completed'"
               [class.bg-purple-tint]="ms.status === 'in-progress'"
               [class.border-purple-subtle]="ms.status === 'in-progress'" [class.bg-light]="ms.status === 'upcoming'">
 
               @if (ms.status === 'completed') {
-              <i class="fa-solid fa-circle-check text-success font-size-md ms-1 flex-shrink-0"></i>
+              <i class="fa-solid fa-circle-check text-success font-size-xs flex-shrink-0"></i>
               } @else if (ms.status === 'in-progress') {
-              <i class="fa-solid fa-spinner fa-spin text-purple font-size-md ms-1 flex-shrink-0"></i>
+              <i class="fa-solid fa-spinner fa-spin text-purple font-size-xs flex-shrink-0"></i>
               } @else {
-              <i class="fa-regular fa-circle text-muted font-size-md ms-1 flex-shrink-0"></i>
+              <i class="fa-regular fa-circle text-muted font-size-xs flex-shrink-0"></i>
               }
 
               <div>
-                <span class="font-size-xs fw-bold d-block text-dark">{{ ms.name }}</span>
-                <span class="font-size-micro text-muted">
+                <span class="font-size-micro fw-bold d-block text-dark proj-ms-title">{{ ms.name }}</span>
+                <span class="font-size-micro text-muted proj-ms-subtext">
                   @if (ms.status === 'completed') { Milestone Verified & Passed ({{ ms.dateText }}) }
                   @else if (ms.status === 'in-progress') { Currently Under Active Execution }
                   @else { Scheduled Phase ({{ ms.dateText }}) }
@@ -508,11 +537,13 @@
         </div>
 
         <!-- Action Button -->
-        <button type="button" class="proj-btn-portfolio w-100 justify-content-center py-3 cursor-pointer"
-          (click)="openConsultation($event)">
-          <span>Book Similar Design Consultation</span>
-          <i class="fa-solid fa-arrow-right"></i>
-        </button>
+        <div class="mt-3 mb-2 mb-sm-0">
+          <button type="button" class="proj-btn-portfolio w-100 justify-content-center py-2.5 py-sm-3 cursor-pointer"
+            (click)="openConsultation($event)">
+            <span>Book Similar Design Consultation</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
 
       </div>
     </div>

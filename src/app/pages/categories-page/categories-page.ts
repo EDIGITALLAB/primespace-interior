@@ -25,7 +25,7 @@ export interface CategoryDetail {
 export interface MaterialDetail {
   id: string;
   title: string;
-  shortTitle?: string;
+  shortTitle: string;
   icon: string;
   subtitle: string;
   desc: string;

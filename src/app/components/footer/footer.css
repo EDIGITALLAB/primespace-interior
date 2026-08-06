@@ -284,8 +284,96 @@
 
 @media (max-width: 767.98px) {
   .main-footer .container-fluid {
-    padding-top: 95px !important;
-    padding-bottom: 30px !important;
+    padding-top: 32px !important;
+    padding-bottom: 20px !important;
+  }
+
+  .main-footer .row {
+    --bs-gutter-y: 1.25rem !important;
+  }
+
+  .footer-logo-img {
+    height: 36px !important;
+  }
+
+  .footer-brand-text {
+    font-size: 12.5px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 12px !important;
+  }
+
+  .social-link-icon {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 14px !important;
+  }
+
+  .footer-title {
+    font-size: 13px !important;
+    margin-bottom: 12px !important;
+    letter-spacing: 1px !important;
+  }
+
+  .footer-links-list {
+    gap: 9px !important;
+  }
+
+  .footer-link {
+    font-size: 12.5px !important;
+  }
+
+  .newsletter-text {
+    font-size: 12.5px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .newsletter-form {
+    max-width: 100% !important;
+    margin-bottom: 14px !important;
+  }
+
+  .newsletter-input {
+    height: 42px !important;
+    font-size: 12.5px !important;
+    padding: 8px 42px 8px 14px !important;
+  }
+
+  .newsletter-submit-btn {
+    width: 34px !important;
+    height: 34px !important;
+    top: 4px !important;
+    right: 4px !important;
+  }
+
+  .footer-divider {
+    margin-top: 1.25rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .footer-bottom {
+    text-align: center;
+  }
+
+  .copyright {
+    font-size: 12px !important;
+  }
+
+  .footer-legal-links {
+    justify-content: center;
+    gap: 14px !important;
+  }
+
+  .legal-link {
+    font-size: 12px !important;
+  }
+
+  .footer-locations {
+    gap: 6px;
+  }
+
+  .location-badge {
+    font-size: 10px;
+    padding: 5px 10px;
   }
 }
 
