@@ -1,553 +1,316 @@
-<div class="projects-page-wrapper bg-white text-dark pb-6">
+<div class="projects-page-wrapper bg-white text-dark pb-5">
 
-  <!-- HERO SECTION -->
-  <section class="proj-hero-section position-relative overflow-hidden pb-2 pb-md-5 border-bottom">
-    <div class="hero-bg-watermark"></div>
+  <!-- TOP HERO HEADER SECTION (WATERMARK BACKGROUND AUTO-FITS TOP AREA ONLY) -->
+  <div class="proj-top-header-section position-relative mb-5">
+    <div class="proj-top-hero-bg position-absolute inset-0 overflow-hidden">
+      <div class="proj-top-watermark"></div>
+    </div>
 
-    <div class="container position-relative z-2 py-2 py-md-3">
+    <div class="container position-relative z-2">
+      <!-- Top Badge -->
+      <span class="hero-mini-badge badge bg-maroon-tint text-maroon font-size-micro fw-bold text-uppercase px-3 py-1.5 rounded-pill mb-3 border border-maroon-subtle d-inline-flex align-items-center gap-1.5">
+        <i class="fa-solid fa-crown text-maroon font-size-micro"></i>
+        <span>Architectural Portfolio & Live Radar</span>
+      </span>
 
-      <!-- Breadcrumb -->
-      <nav aria-label="breadcrumb" class="mb-3">
-        <ol class="breadcrumb proj-breadcrumb mb-0">
-          <li class="breadcrumb-item"><a routerLink="/" class="text-muted text-decoration-none">Home</a></li>
-          <li class="breadcrumb-item active text-purple fw-bold" aria-current="page">Projects Showcase</li>
-        </ol>
-      </nav>
+      <!-- PAGE HEADER WITH SEARCH BAR -->
+      <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+        <div>
+          <h1 class="page-main-title fw-black text-dark mb-1">Our Apartment Projects</h1>
+          <p class="page-main-subtitle text-muted mb-0 font-size-sm">Explore our completed and ongoing apartment projects</p>
+        </div>
 
-      <div class="row align-items-center gy-4">
-        <div class="col-lg-7">
-          <span class="hero-badge text-uppercase mb-2 mb-md-3 d-inline-flex align-items-center gap-2">
-            <i class="fa-solid fa-crown text-purple"></i>Architectural Portfolio & Live Site Radar
-          </span>
+        <!-- Search Input Box -->
+        <div class="search-box-container">
+          <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden bg-white border">
+            <input type="text" class="form-control border-0 shadow-none px-3 font-size-sm"
+              placeholder="Search apartment, location..." [ngModel]="searchQuery()"
+              (ngModelChange)="searchQuery.set($event)" (keyup.enter)="applyFilter()" />
+            <span class="input-group-text bg-transparent border-0 pe-3 text-muted">
+              <i class="fa-solid fa-magnifying-glass font-size-xs text-maroon"></i>
+            </span>
+          </div>
+        </div>
+      </div>
 
-          <h1 class="proj-hero-heading text-uppercase fw-black mb-2 mb-md-3 text-dark">
-            BESPOKE HOMES & <span class="text-purple">SITE EXECUTION</span>
-          </h1>
+      <!-- FILTER TOOLBAR ROW -->
+      <div class="filter-toolbar-row d-flex flex-wrap align-items-center gap-3 pt-1">
+        <!-- City Filter Select -->
+        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+          [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event)">
+          <option value="all">All Cities</option>
+          <option value="Bangalore">Bangalore</option>
+          <option value="Bhubaneswar">Bhubaneswar</option>
+        </select>
 
-          <p class="proj-hero-lead text-muted mb-3 mb-md-4 max-w-750">
-            Witness our journey from raw blueprints & German precision factory cutting to delivered luxury homes and
-            active live construction sites.
-          </p>
+        <!-- Apartment Filter Select -->
+        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+          [ngModel]="selectedApartment()" (ngModelChange)="selectedApartment.set($event)">
+          <option *ngFor="let opt of apartmentOptions" [value]="opt === 'All Apartments' ? 'all' : opt">{{ opt }}</option>
+        </select>
 
-          <!-- On-Site Tour Card (Mobile View) -->
-          <div class="d-lg-none my-3">
-            <div
-              class="bg-purple-tint p-3 rounded-4 border border-purple-subtle shadow-sm position-relative overflow-hidden">
-              <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-purple-subtle pb-3">
-                <div>
-                  <span class="text-purple font-size-micro fw-extrabold text-uppercase letter-spacing-1 d-block mb-1 site-tour-subtitle">
-                    <i class="fa-solid fa-compass me-1"></i> SCHEDULE ON-SITE TOUR
+        <!-- Status Filter Select -->
+        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+          [ngModel]="selectedStatus()" (ngModelChange)="selectedStatus.set($event)">
+          <option value="all">Status</option>
+          <option value="completed">Completed Projects</option>
+          <option value="ongoing">Live Construction Sites</option>
+        </select>
+
+        <!-- Project Type Filter Select -->
+        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+          [ngModel]="selectedProjectType()" (ngModelChange)="selectedProjectType.set($event)">
+          <option value="all">Project Type</option>
+          <option value="Villa">Villa</option>
+          <option value="Penthouse">Penthouse</option>
+          <option value="Duplex">Duplex</option>
+          <option value="Apartment">Apartment</option>
+        </select>
+
+        <!-- Filter Action Button -->
+        <button type="button" class="btn btn-filter-submit rounded-3 px-4 fw-extrabold font-size-micro text-uppercase shadow-xs"
+          (click)="applyFilter()">
+          FILTER
+        </button>
+
+        <!-- Reset Filter Action Button -->
+        <button type="button" class="btn btn-filter-reset rounded-3 px-3.5 fw-bold font-size-micro text-uppercase shadow-xs d-inline-flex align-items-center gap-1.5"
+          *ngIf="hasActiveFilters()" (click)="resetFilter()">
+          <i class="fa-solid fa-rotate-left font-size-micro"></i>
+          <span>RESET</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- SECTION 1: COMPLETED APARTMENT PROJECTS GRID -->
+    <div *ngIf="filteredCompletedProjects().length > 0" class="mb-5 pb-3">
+      <div class="row g-4 align-items-stretch">
+        <div *ngFor="let p of filteredCompletedProjects(); let idx = index" class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="apt-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all"
+            [class.card-active-highlight]="idx === 0" (click)="openProjectModal(p, $event)">
+
+            <!-- Media Banner with Top Right Badge -->
+            <div class="apt-media-box position-relative overflow-hidden">
+              <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover apt-card-img">
+              <span class="apt-homes-badge position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-bold text-white shadow-xs">
+                {{ p.homesCount }}
+              </span>
+            </div>
+
+            <!-- Card Content Body -->
+            <div class="apt-card-body p-4 d-flex flex-column flex-grow-1 justify-content-between">
+              <div>
+                <h3 class="apt-title fw-black text-dark font-size-md mb-1.5">{{ p.title }}</h3>
+                <p class="apt-loc text-muted font-size-xs mb-3.5 fw-medium">{{ p.location }}</p>
+
+                <!-- Details Icons Line -->
+                <div class="apt-info-row d-flex align-items-center gap-4 text-muted font-size-xs fw-medium mb-4">
+                  <span class="apt-info-item d-inline-flex align-items-center">
+                    <i class="fa-regular fa-building text-muted me-1.5"></i>
+                    <span>{{ p.blocksCount }}</span>
                   </span>
-                  <h4 class="fw-bold text-dark m-0 site-tour-heading">Inspect Our Live Construction</h4>
-                </div>
-                <div
-                  class="proj-badge-icon rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
-                  <i class="fa-solid fa-hard-hat font-size-md"></i>
+                  <span class="apt-info-item d-inline-flex align-items-center">
+                    <i class="fa-solid fa-house-chimney text-muted me-1.5"></i>
+                    <span>{{ p.homesCount }}</span>
+                  </span>
                 </div>
               </div>
 
-              <p class="font-size-xs text-muted leading-relaxed mb-3">
-                Visit our ongoing site execution in Bengaluru or Bhubaneswar to test material durability, tile alignment,
-                and joinery quality firsthand.
-              </p>
-
-              <button type="button"
-                class="btn btn-purple rounded-pill w-100 py-2.5 font-size-xs fw-extrabold text-uppercase shadow-md d-flex align-items-center justify-content-center gap-2 cursor-pointer site-tour-btn"
-                (click)="openConsultation($event)">
-                <span>Book Site Visit Appointment</span>
+              <!-- Action Button -->
+              <button type="button" class="btn btn-apt-action w-100 rounded-3 py-2.5 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-2 transition-all"
+                [class.btn-apt-solid]="p.buttonStyle === 'solid'"
+                [class.btn-apt-outline]="p.buttonStyle === 'outline'"
+                (click)="openProjectModal(p, $event)">
+                <span>VIEW DETAILS</span>
                 <i class="fa-solid fa-arrow-right font-size-micro"></i>
               </button>
-            </div>
-          </div>
 
-          <!-- Filter Pill Tabs -->
-          <div
-            class="d-flex align-items-center gap-1.5 gap-sm-2 mb-3 p-1.5 rounded-4 proj-segmented-tabs bg-light-neutral border">
-            <button type="button" class="btn btn-sm rounded-pill proj-seg-btn fw-bold transition-all"
-              [class.active]="activeStatusFilter() === 'all'" (click)="setStatusFilter('all')">
-              <span>All Projects</span>
-              <span class="badge rounded-pill bg-purple-tint text-purple ms-1.5 font-size-micro">{{ projects.length
-                }}</span>
-            </button>
-
-            <button type="button" class="btn btn-sm rounded-pill proj-seg-btn fw-bold transition-all completed-seg"
-              [class.active]="activeStatusFilter() === 'completed'" (click)="setStatusFilter('completed')">
-              <i class="fa-solid fa-award me-1.5 proj-seg-icon"></i>
-              <span>Delivered</span>
-              <span class="badge rounded-pill bg-purple-tint text-purple ms-1.5 font-size-micro">{{ completedCount()
-                }}</span>
-            </button>
-
-            <button type="button" class="btn btn-sm rounded-pill proj-seg-btn fw-bold transition-all ongoing-seg"
-              [class.active]="activeStatusFilter() === 'ongoing'" (click)="setStatusFilter('ongoing')">
-              <i class="fa-solid fa-bolt me-1.5 proj-seg-icon"></i>
-              <span>Live Sites</span>
-              <span class="badge rounded-pill bg-purple-tint text-purple ms-1.5 font-size-micro">{{ ongoingCount()
-                }}</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Right Hero Stats Showcase Box (Desktop View) -->
-        <div class="col-lg-5 d-none d-lg-block">
-          <div
-            class="bg-purple-tint p-4 rounded-4 border border-purple-subtle shadow-sm position-relative overflow-hidden">
-            <div class="d-flex align-items-center justify-content-between mb-3 border-bottom border-purple-subtle pb-3">
-              <div>
-                <span class="text-purple font-size-micro fw-extrabold text-uppercase letter-spacing-1 d-block mb-1 site-tour-subtitle">
-                  <i class="fa-solid fa-compass me-1"></i> SCHEDULE ON-SITE TOUR
-                </span>
-                <h4 class="fw-bold text-dark m-0 site-tour-heading">Inspect Our Live Construction</h4>
-              </div>
-              <div
-                class="proj-badge-icon rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
-                <i class="fa-solid fa-hard-hat font-size-md"></i>
-              </div>
             </div>
 
-            <p class="font-size-xs text-muted leading-relaxed mb-4">
-              Visit our ongoing site execution in Bengaluru or Bhubaneswar to test material durability, tile alignment,
-              and joinery quality firsthand.
-            </p>
-
-            <button type="button"
-              class="btn btn-purple rounded-pill w-100 py-3 font-size-xs fw-extrabold text-uppercase shadow-md d-flex align-items-center justify-content-center gap-2 cursor-pointer site-tour-btn"
-              (click)="openConsultation($event)">
-              <span>Book Site Visit Appointment</span>
-              <i class="fa-solid fa-arrow-right font-size-micro"></i>
-            </button>
           </div>
         </div>
       </div>
-
     </div>
-  </section>
 
-  <!-- MAIN PROJECTS SHOWCASE SECTION -->
-  <section class="py-3 py-md-5">
-    <div class="container">
-
-      <!-- Location Filter Toolbar -->
-      <div class="d-flex align-items-center justify-content-between mb-3 mb-md-4 flex-wrap gap-2 gap-md-3">
-        <div class="d-flex align-items-center gap-2 proj-city-filter-container">
-          <span class="font-size-xs text-muted text-uppercase fw-bold flex-shrink-0"><i
-              class="fa-solid fa-filter me-1 text-purple"></i> Filter:</span>
-          <div class="d-flex align-items-center gap-2 gap-sm-2.5 proj-city-filter-row">
-            <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
-              [class.active]="activeCityFilter() === 'all'" (click)="setCityFilter('all')">
-              All Cities
-            </button>
-            <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
-              [class.active]="activeCityFilter() === 'Bengaluru'" (click)="setCityFilter('Bengaluru')">
-              <i class="fa-solid fa-location-dot me-1"></i> Bengaluru
-            </button>
-            <button type="button" class="btn btn-xs rounded-pill proj-city-pill"
-              [class.active]="activeCityFilter() === 'Bhubaneswar'" (click)="setCityFilter('Bhubaneswar')">
-              <i class="fa-solid fa-location-dot me-1"></i> Bhubaneswar
-            </button>
-          </div>
-        </div>
-
-        <div class="d-flex align-items-center gap-2 ms-auto ms-sm-0">
-          <span class="font-size-xs text-muted fw-semibold">Showing <strong>{{ filteredProjects().length }}</strong> Projects</span>
-        </div>
+    <!-- SECTION 2: ACTIVE LIVE CONSTRUCTION SITES -->
+    <div *ngIf="filteredLiveSiteProjects().length > 0" class="mt-5 pt-3">
+      <!-- Live Sites Section Header -->
+      <div class="mb-4">
+        <h2 class="live-sites-heading fw-black text-dark mb-1.5 d-flex align-items-center gap-2">
+          <i class="fa-solid fa-bolt text-maroon"></i>
+          <span>Active Live Construction Sites</span>
+        </h2>
+        <p class="live-sites-subtext text-muted font-size-xs mb-0">Track our ongoing construction and live progress</p>
       </div>
 
-      <!-- PROJECTS CARDS GRID -->
+      <!-- Live Sites Grid -->
       <div class="row g-4 align-items-stretch">
-        @for (p of filteredProjects(); track p.id; let idx = $index) {
-        <div [class]="idx === 0 && activeStatusFilter() === 'all' ? 'col-12' : 'col-12 col-md-6 col-lg-4'">
+        <div *ngFor="let ls of filteredLiveSiteProjects()" class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="live-site-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all"
+            (click)="openProjectModal(ls, $event)">
 
-          <!-- FEATURED HERO BANNER CARD FOR 1ST ITEM -->
-          @if (idx === 0 && activeStatusFilter() === 'all') {
-          <div
-            class="proj-featured-card bg-white rounded-4 border shadow-sm overflow-hidden position-relative cursor-pointer transition-all p-3 p-md-4"
-            (click)="openProjectModal(p, $event)">
-            <div class="row align-items-center gy-2 gy-md-4">
-
-              <!-- Left Featured Media -->
-              <div class="col-lg-7">
-                <div class="proj-featured-img-wrapper position-relative overflow-hidden rounded-4">
-                  <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover proj-bento-img">
-                  <div class="proj-bento-overlay"></div>
-
-                  <!-- Badges Stack -->
-                  <div class="position-absolute top-0 start-0 m-2 m-sm-3 d-flex flex-column flex-sm-row align-items-start gap-2 gap-sm-2.5 z-2">
-                    <!-- Status Badge -->
-                    <span
-                      class="proj-status-badge completed-badge px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
-                      <i class="fa-solid fa-award text-success"></i> {{ p.statusLabel }}
-                    </span>
-
-                    <!-- Category Badge -->
-                    <span
-                      class="proj-bento-cat px-2.5 px-sm-3 py-1 rounded-pill font-size-micro fw-bold text-uppercase">
-                      FEATURED • {{ p.category }}
-                    </span>
-                  </div>
-
-                  <div
-                    class="proj-hover-icon-circle position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                    <i class="fa-solid fa-arrow-up-right-from-square font-size-md"></i>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Right Featured Details -->
-              <div class="col-lg-5 p-2.5 p-md-4 pt-0 pt-lg-4 d-flex flex-column justify-content-between h-100">
-                <div>
-                  <div
-                    class="d-flex align-items-center justify-content-between flex-wrap gap-1 text-purple font-size-micro fw-extrabold text-uppercase mb-2">
-                    <span><i class="fa-solid fa-location-dot me-1"></i> {{ p.location }}, {{ p.city }}</span>
-                    <span class="badge bg-purple-tint text-purple rounded-pill px-2.5 py-0.5 border border-purple-subtle">{{ p.areaSqft }}</span>
-                  </div>
-
-                  <h2 class="fw-black text-dark font-size-lg mb-1 proj-featured-title">{{ p.title }}</h2>
-                  <p class="font-size-xs text-purple fw-bold mb-2">{{ p.subtitle }}</p>
-
-                  <p class="font-size-xs text-muted leading-relaxed mb-2.5 line-clamp-2">
-                    {{ p.description }}
-                  </p>
-
-                  <!-- Scope List Pills -->
-                  <div class="d-flex flex-wrap gap-1.5 mb-2">
-                    @for (sc of p.scopeOfWork.slice(0, 3); track sc) {
-                    <span
-                      class="badge bg-purple-tint text-purple font-size-micro border border-purple-subtle fw-semibold py-1 px-2.5 rounded-2">
-                      <i class="fa-solid fa-check" style="margin-right: 4px;"></i><span>{{ sc }}</span>
-                    </span>
-                    }
-                  </div>
-                </div>
-
-                <div class="pt-2 mt-2 border-top d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2">
-                  <span class="font-size-xs text-muted">Client: <strong class="text-dark">{{ p.clientName }}</strong></span>
-                  <a [routerLink]="['/projects', p.id]" class="proj-btn-portfolio w-100 w-sm-auto justify-content-center text-decoration-none">
-                    <span>View Full Portfolio</span>
-                    <i class="fa-solid fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          } @else {
-
-          <!-- STANDARD ARCHITECTURAL CARD -->
-          <div
-            class="proj-bento-card bg-white rounded-4 border shadow-sm overflow-hidden h-100 d-flex flex-column justify-content-between position-relative cursor-pointer transition-all"
-            (click)="openProjectModal(p, $event)">
-
-            <!-- Header Media Box -->
-            <div class="proj-bento-media position-relative overflow-hidden">
-              <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover proj-bento-img">
-              <div class="proj-bento-overlay"></div>
-
-              <!-- Badges Stack -->
-              <div class="position-absolute top-0 start-0 m-2 m-sm-3 d-flex flex-column flex-sm-row align-items-start gap-2 gap-sm-2.5 z-2">
-                @if (p.status === 'completed') {
-                <div
-                  class="proj-status-badge completed-badge px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
-                  <i class="fa-solid fa-circle-check text-success"></i>
-                  <span>{{ p.statusLabel }}</span>
-                </div>
-                } @else {
-                <div
-                  class="proj-status-badge ongoing-badge px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-extrabold text-uppercase d-flex align-items-center gap-1.5">
-                  <span class="proj-radar-ring"></span>
-                  <span>{{ p.statusLabel }}</span>
-                </div>
-                }
-
-                <span
-                  class="proj-bento-cat px-2.5 px-sm-3 py-1 rounded-pill font-size-micro fw-bold text-uppercase">
-                  {{ p.category }}
-                </span>
-              </div>
-
-              <!-- Hover Quick Action Icon -->
-              <div
-                class="proj-hover-icon-circle position-absolute top-50 start-50 translate-middle d-flex align-items-center justify-content-center">
-                <i class="fa-solid fa-expand text-white font-size-md"></i>
-              </div>
+            <!-- Media Banner with Top Left Red Badge -->
+            <div class="live-media-box position-relative overflow-hidden">
+              <img [src]="ls.heroImage" [alt]="ls.title" class="w-100 h-100 object-fit-cover live-card-img">
+              <span class="live-status-badge position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-black text-white text-uppercase shadow-xs">
+                LIVE SITE
+              </span>
             </div>
 
-            <!-- Content Body -->
-            <div class="p-3 p-md-4 d-flex flex-column flex-grow-1 justify-content-between">
+            <!-- Card Content Body -->
+            <div class="live-card-body p-4 d-flex flex-column flex-grow-1 justify-content-between">
               <div>
+                <h3 class="live-title fw-black text-dark font-size-sm mb-1.5 text-truncate">{{ ls.title }}</h3>
+                <p class="live-loc text-muted font-size-xs mb-3.5 fw-medium">{{ ls.location }}</p>
 
-                <!-- Live Execution Milestone Bar for Ongoing Projects -->
-                @if (p.status === 'ongoing' && p.progressPercentage) {
-                <div class="proj-live-progress-box rounded-3 bg-purple-tint border border-purple-subtle mb-3"
-                  style="padding: 12px 16px;">
-                  <div class="d-flex align-items-center justify-content-between mb-2"
-                    style="font-size: 10.5px; font-weight: 800;">
-                    <span class="text-purple text-uppercase d-flex align-items-center text-truncate"
-                      style="letter-spacing: 0.3px;">
-                      <i class="fa-solid fa-list-check flex-shrink-0"
-                        style="font-size: 10px; margin-right: 5px;"></i><span>{{ p.currentPhase }}</span>
-                    </span>
-                    <span class="text-dark fw-black ms-2" style="font-size: 10.5px;">{{ p.progressPercentage }}%</span>
+                <!-- Progress Bar Line -->
+                <div class="live-progress-wrapper mb-4">
+                  <div class="d-flex align-items-center justify-content-between font-size-micro fw-bold mb-1.5">
+                    <span class="text-muted">Progress</span>
+                    <span class="text-dark fw-black">{{ ls.progressPercentage }}%</span>
                   </div>
-
-                  <div class="progress proj-track-progress rounded-pill bg-white" style="height: 6px;">
-                    <div class="progress-bar bg-purple rounded-pill" role="progressbar"
-                      [style.width.%]="p.progressPercentage" [attr.aria-valuenow]="p.progressPercentage"
+                  <div class="progress live-progress-track rounded-pill bg-light" style="height: 6px;">
+                    <div class="progress-bar live-progress-fill rounded-pill" role="progressbar"
+                      [style.width.%]="ls.progressPercentage" [attr.aria-valuenow]="ls.progressPercentage"
                       aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
                 </div>
-                }
-
-                <!-- Review Quote Badge for Completed Projects -->
-                @if (p.status === 'completed' && p.reviewQuote) {
-                <div
-                  class="proj-review-quote-box p-2.5 px-3 rounded-3 bg-light border mb-3 d-flex align-items-center gap-2">
-                  <i class="fa-solid fa-quote-left text-purple font-size-xs flex-shrink-0"></i>
-                  <p class="font-size-micro text-dark fw-medium m-0 text-truncate">
-                    "{{ p.reviewQuote }}"
-                  </p>
-                </div>
-                }
-
-                <div class="d-flex align-items-center justify-content-between flex-wrap gap-1 text-purple font-size-micro fw-extrabold text-uppercase mb-2">
-                  <span><i class="fa-solid fa-location-dot me-1"></i> {{ p.location }}, {{ p.city }}</span>
-                  <span class="badge bg-purple-tint text-purple rounded-pill px-2.5 py-0.5 border border-purple-subtle">{{ p.areaSqft }}</span>
-                </div>
-
-                <h3 class="proj-bento-title fw-bold text-dark font-size-md mb-1.5">
-                  {{ p.title }}
-                </h3>
-
-                <p class="font-size-xs text-muted leading-normal mb-3 line-clamp-2">
-                  {{ p.description }}
-                </p>
-
-                <!-- Scope Pills -->
-                <div class="d-flex flex-wrap gap-1.5 row-gap-1.5 mb-3">
-                  @for (sc of p.scopeOfWork.slice(0, 3); track sc) {
-                  <span class="badge bg-light text-dark font-size-micro border fw-normal py-1 px-2.5 rounded-2">
-                    <i class="fa-solid fa-check text-purple" style="margin-right: 5px;"></i><span>{{ sc }}</span>
-                  </span>
-                  }
-                </div>
-
               </div>
 
-              <!-- Footer Bar -->
-              <div class="pt-3 border-top d-flex align-items-center justify-content-between font-size-xs">
-                <span class="text-muted">
-                  @if (p.status === 'completed') { Delivered: <strong class="text-dark">{{ p.completedDate }}</strong> }
-                  @else { Target: <strong class="text-purple">{{ p.expectedHandover }}</strong> }
-                </span>
-
-                <a [routerLink]="['/projects', p.id]"
-                  class="text-purple font-size-micro fw-bold text-uppercase d-inline-flex align-items-center gap-1.5 proj-explore-arrow text-decoration-none">
-                  <span>Explore Specs</span>
-                  <i class="fa-solid fa-arrow-right font-size-micro"></i>
-                </a>
-              </div>
+              <!-- Progress Button -->
+              <button type="button" class="btn btn-apt-outline w-100 rounded-3 py-2 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-1.5 transition-all"
+                (click)="openProjectModal(ls, $event)">
+                <span>VIEW PROGRESS</span>
+                <i class="fa-solid fa-arrow-right font-size-micro"></i>
+              </button>
 
             </div>
 
           </div>
-          }
-
         </div>
-        }
       </div>
-
     </div>
-  </section>
 
+    <!-- No Results Empty State -->
+    <div *ngIf="filteredCompletedProjects().length === 0 && filteredLiveSiteProjects().length === 0"
+      class="text-center py-5 my-4 bg-light rounded-4 border px-3">
+      <i class="fa-solid fa-building-circle-xmark text-maroon mb-3 display-5"></i>
+      <h4 class="fw-black text-dark mb-2">No Apartment Projects Found</h4>
+      <p class="text-muted font-size-sm mb-4">We couldn't find any projects matching your selected filters.</p>
+      <button class="btn btn-filter-submit rounded-pill px-4 py-2 font-size-xs fw-extrabold"
+        (click)="searchQuery.set(''); selectedCity.set('all'); selectedApartment.set('all'); selectedStatus.set('all'); selectedProjectType.set('all')">
+        Reset All Filters
+      </button>
+    </div>
+
+  </div>
 </div>
 
-<!-- LIGHT THEME MULTI-TAB PROJECT SPECIFICATION MODAL -->
-@if (selectedProjectModal()) {
-<div class="proj-modal-overlay d-flex align-items-center justify-content-center p-2 p-sm-3" (click)="closeProjectModal()">
-  <div
-    class="proj-modal-card bg-white rounded-4 border overflow-hidden shadow-2xl position-relative max-w-900 w-100 text-dark"
-    (click)="$event.stopPropagation()">
+<!-- SPECIFICATION DETAILS MODAL -->
+<div *ngIf="selectedProjectModal(); let proj" class="proj-modal-overlay d-flex align-items-center justify-content-center p-2 p-sm-3" (click)="closeProjectModal()">
+  <div class="proj-modal-card bg-white rounded-4 border overflow-hidden shadow-2xl position-relative max-w-900 w-100 text-dark" (click)="$event.stopPropagation()">
 
-    <!-- Floating Close Button -->
-    <button type="button" class="proj-modal-close-btn d-flex align-items-center justify-content-center"
-      (click)="closeProjectModal()">
+    <!-- Close Button -->
+    <button type="button" class="proj-modal-close-btn d-flex align-items-center justify-content-center" (click)="closeProjectModal()">
       <i class="fa-solid fa-xmark"></i>
     </button>
 
     <div class="row g-0">
-      <!-- Left: Image Gallery & Navigation -->
+      <!-- Gallery Column -->
       <div class="col-lg-6 bg-dark position-relative proj-modal-img-col d-flex flex-column justify-content-between p-2.5 p-sm-3">
-        <div class="proj-modal-img-display position-relative overflow-hidden rounded-3 h-100">
-          <img [src]="selectedProjectModal()!.gallery[activeModalImageIndex()] || selectedProjectModal()!.heroImage"
-            [alt]="selectedProjectModal()!.title" class="w-100 h-100 object-fit-cover">
+        <div class="proj-modal-img-display position-relative overflow-hidden rounded-3 h-100" style="min-height: 300px;">
+          <img [src]="proj.gallery[activeModalImageIndex()] || proj.heroImage" [alt]="proj.title" class="w-100 h-100 object-fit-cover proj-modal-main-img">
 
-          <!-- Top Badge inside Modal -->
-          <span
-            class="badge position-absolute top-0 start-0 m-2 m-sm-3 px-2.5 px-sm-3 py-1 py-sm-1.5 rounded-pill font-size-micro fw-bold text-uppercase"
-            [class.bg-success]="selectedProjectModal()!.status === 'completed'"
-            [class.bg-purple]="selectedProjectModal()!.status === 'ongoing'" [class.text-white]="true">
-            {{ selectedProjectModal()!.statusLabel }}
+          <span class="badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-bold text-uppercase shadow-sm text-white"
+            [class.bg-maroon]="isLiveSite(proj)" [class.bg-success]="!isLiveSite(proj)">
+            {{ isLiveSite(proj) ? 'LIVE SITE (' + proj.progressPercentage + '%)' : 'COMPLETED PROJECT' }}
+          </span>
+
+          <span class="badge position-absolute bottom-0 end-0 m-3 px-2.5 py-1 rounded-pill font-size-micro fw-bold bg-dark-glass-blur text-white border-white-20">
+            <i class="fa-solid fa-camera me-1 text-maroon"></i> {{ activeModalImageIndex() + 1 }} / {{ proj.gallery.length || 1 }}
           </span>
         </div>
 
-        <!-- Thumbnails Carousel -->
-        @if (selectedProjectModal()!.gallery.length > 1) {
-        <div class="d-flex gap-2 justify-content-center mt-2 mt-sm-3 z-2">
-          @for (img of selectedProjectModal()!.gallery; track img; let idx = $index) {
-          <img [src]="img" class="proj-thumb-img rounded-2 cursor-pointer border border-2 opacity-70 transition-all"
-            [class.border-purple]="activeModalImageIndex() === idx"
+        <div *ngIf="proj.gallery.length > 1" class="d-flex gap-2 justify-content-center mt-2.5 z-2 overflow-x-auto py-1">
+          <div *ngFor="let img of proj.gallery; let idx = index" class="proj-thumb-box rounded-2 overflow-hidden cursor-pointer border border-2 transition-all"
+            [class.border-maroon]="activeModalImageIndex() === idx"
+            [class.border-transparent]="activeModalImageIndex() !== idx"
             [class.opacity-100]="activeModalImageIndex() === idx"
-            [class.border-transparent]="activeModalImageIndex() !== idx" (click)="setModalImage(idx)">
-          }
+            [class.opacity-60]="activeModalImageIndex() !== idx"
+            (click)="setModalImage(idx)">
+            <img [src]="img" [alt]="proj.title + ' photo ' + (idx + 1)" class="w-100 h-100 object-fit-cover">
+          </div>
         </div>
-        }
       </div>
 
-      <!-- Right: Detailed Specifications & Execution Timeline -->
-      <div class="col-lg-6 p-3 p-md-5 d-flex flex-column justify-content-between proj-modal-body">
+      <!-- Info Column -->
+      <div class="col-lg-6 p-3.5 p-md-4 d-flex flex-column justify-content-between proj-modal-body">
         <div>
-          <!-- Subtitle & Category -->
-          <div class="d-flex align-items-center gap-2 mb-1">
-            <span
-              class="badge bg-purple-tint text-purple font-size-micro fw-bold text-uppercase px-2.5 py-1 rounded-pill border border-purple-subtle proj-modal-badge">
-              {{ selectedProjectModal()!.category }} • {{ selectedProjectModal()!.city }}
+          <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+            <span class="badge bg-maroon-tint text-maroon font-size-micro fw-bold text-uppercase px-3 py-1 rounded-pill border border-maroon-subtle">
+              {{ proj.projectType }} • {{ proj.city }}
             </span>
+            <span class="font-size-micro fw-bold text-muted"><i class="fa-solid fa-ruler-combined me-1 text-maroon"></i> {{ proj.areaSqft }}</span>
           </div>
 
-          <h3 class="fw-bold text-dark font-size-md mb-1 proj-modal-title">{{ selectedProjectModal()!.title }}</h3>
-          <p class="font-size-xs text-purple fw-semibold mb-2 proj-modal-subtitle">{{ selectedProjectModal()!.subtitle }}</p>
+          <h3 class="fw-black text-dark font-size-md mb-1 proj-modal-title">{{ proj.title }}</h3>
+          <p *ngIf="proj.subtitle" class="font-size-xs text-maroon fw-bold mb-2.5 proj-modal-subtitle">{{ proj.subtitle }}</p>
+          <p class="font-size-xs text-muted leading-relaxed mb-3 proj-modal-desc">{{ proj.description }}</p>
 
-          <p class="font-size-xs text-muted leading-relaxed mb-3 line-clamp-3 proj-modal-desc">
-            {{ selectedProjectModal()!.description }}
-          </p>
-
-          <!-- Modal Tabs Switcher -->
-          <div class="d-flex align-items-center gap-1.5 gap-sm-2 border-bottom pb-2 mb-3 proj-modal-tabs-row">
-            <button type="button"
-              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none proj-modal-tab-btn"
-              [class.text-purple]="activeModalTab() === 'gallery'" [class.text-muted]="activeModalTab() !== 'gallery'"
-              (click)="setModalTab('gallery')">
-              Overview
-            </button>
-
-            @if (selectedProjectModal()!.materialsUsed) {
-            <span class="text-muted font-size-micro">|</span>
-            <button type="button"
-              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none proj-modal-tab-btn"
-              [class.text-purple]="activeModalTab() === 'materials'"
-              [class.text-muted]="activeModalTab() !== 'materials'" (click)="setModalTab('materials')">
-              Materials Used
-            </button>
-            }
-
-            @if (selectedProjectModal()!.milestones) {
-            <span class="text-muted font-size-micro">|</span>
-            <button type="button"
-              class="btn btn-sm btn-link p-0 font-size-xs fw-bold text-uppercase text-decoration-none proj-modal-tab-btn"
-              [class.text-purple]="activeModalTab() === 'milestones'"
-              [class.text-muted]="activeModalTab() !== 'milestones'" (click)="setModalTab('milestones')">
-              Site Milestones
-            </button>
-            }
+          <div class="d-flex align-items-center w-100 rounded-3 bg-light p-1 border mb-3 proj-modal-tabs-row">
+            <button type="button" class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
+              [class.bg-white]="activeModalTab() === 'gallery'" [class.text-maroon]="activeModalTab() === 'gallery'" [class.shadow-xs]="activeModalTab() === 'gallery'" [class.text-muted]="activeModalTab() !== 'gallery'"
+              (click)="setModalTab('gallery')">Overview</button>
+            <button *ngIf="proj.materialsUsed" type="button" class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
+              [class.bg-white]="activeModalTab() === 'materials'" [class.text-maroon]="activeModalTab() === 'materials'" [class.shadow-xs]="activeModalTab() === 'materials'" [class.text-muted]="activeModalTab() !== 'materials'"
+              (click)="setModalTab('materials')">Materials Used</button>
+            <button *ngIf="isLiveSite(proj) && proj.milestones" type="button" class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
+              [class.bg-white]="activeModalTab() === 'milestones'" [class.text-maroon]="activeModalTab() === 'milestones'" [class.shadow-xs]="activeModalTab() === 'milestones'" [class.text-muted]="activeModalTab() !== 'milestones'"
+              (click)="setModalTab('milestones')">Site Milestones</button>
           </div>
 
-          <!-- Tab Content 1: Overview & Specs -->
-          @if (activeModalTab() === 'gallery') {
-          <div class="proj-specs-box p-3 bg-light rounded-3 border mb-3">
+          <div *ngIf="activeModalTab() === 'gallery'" class="proj-specs-box p-3 bg-maroon-tint rounded-3 border border-maroon-subtle mb-3">
             <div class="row g-2 font-size-xs">
-              <div class="col-6">
-                <span class="text-muted d-block font-size-micro text-uppercase fw-bold">Client</span>
-                <span class="fw-bold text-dark">{{ selectedProjectModal()!.clientName }}</span>
-              </div>
-              <div class="col-6">
-                <span class="text-muted d-block font-size-micro text-uppercase fw-bold">Built-up Area</span>
-                <span class="fw-bold text-dark">{{ selectedProjectModal()!.areaSqft }}</span>
-              </div>
-              <div class="col-6 mt-2">
-                <span class="text-muted d-block font-size-micro text-uppercase fw-bold">Location</span>
-                <span class="fw-bold text-dark">{{ selectedProjectModal()!.location }}</span>
-              </div>
-              <div class="col-6 mt-2">
-                <span class="text-muted d-block font-size-micro text-uppercase fw-bold">Timeline</span>
-                <span class="fw-bold text-purple">
-                  {{ selectedProjectModal()!.status === 'completed' ? selectedProjectModal()!.completedDate :
-                  selectedProjectModal()!.expectedHandover }}
-                </span>
-              </div>
+              <div class="col-6"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Client</span><span class="fw-bold text-dark">{{ proj.clientName }}</span></div>
+              <div class="col-6"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Built-up Area</span><span class="fw-bold text-dark">{{ proj.areaSqft }}</span></div>
+              <div class="col-6 mt-2"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Location</span><span class="fw-bold text-dark">{{ proj.location }}</span></div>
+              <div class="col-6 mt-2"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Timeline</span><span class="fw-bold text-maroon">{{ isLiveSite(proj) ? proj.expectedHandover : proj.completedDate }}</span></div>
             </div>
           </div>
 
-          <div class="d-none d-md-block">
-            <h5 class="font-size-xs fw-extrabold text-uppercase text-purple mb-2">Scope of Execution</h5>
-            <ul class="list-unstyled d-flex flex-column gap-1.5 mb-4">
-              @for (sc of selectedProjectModal()!.scopeOfWork; track sc) {
-              <li class="font-size-xs text-dark d-flex align-items-center gap-2">
-                <i class="fa-solid fa-circle-check text-purple font-size-micro"></i>
-                <span>{{ sc }}</span>
-              </li>
-              }
-            </ul>
-          </div>
-          }
-
-          <!-- Tab Content 2: Materials Used -->
-          @if (activeModalTab() === 'materials' && selectedProjectModal()!.materialsUsed) {
-          <div class="proj-materials-list d-flex flex-column gap-1.5 gap-sm-2 mb-3 mb-sm-4">
-            @for (mat of selectedProjectModal()!.materialsUsed; track mat) {
-            <div class="d-flex align-items-center p-2 p-sm-2.5 px-2.5 px-sm-3 rounded-3 bg-purple-tint border border-purple-subtle">
-              <i class="fa-solid fa-shield-halved text-purple font-size-xs flex-shrink-0"
-                style="margin-right: 6px;"></i>
-              <span class="font-size-micro fw-bold text-dark text-truncate proj-mat-item">{{ mat }}</span>
+          <div *ngIf="activeModalTab() === 'materials' && proj.materialsUsed" class="proj-materials-list d-flex flex-column gap-1.5 mb-3">
+            <div *ngFor="let mat of proj.materialsUsed" class="d-flex align-items-center p-2.5 rounded-3 bg-maroon-tint border border-maroon-subtle">
+              <i class="fa-solid fa-shield-halved text-maroon font-size-xs flex-shrink-0 me-2"></i>
+              <span class="font-size-xs fw-bold text-dark text-truncate">{{ mat }}</span>
             </div>
-            }
           </div>
-          }
 
-          <!-- Tab Content 3: Milestones -->
-          @if (activeModalTab() === 'milestones' && selectedProjectModal()!.milestones) {
-          <div class="proj-milestones-list d-flex flex-column gap-1 gap-sm-2 mb-3 mb-sm-4">
-            @for (ms of selectedProjectModal()!.milestones; track ms.name) {
-            <div class="d-flex align-items-center gap-1.5 gap-sm-2.5 p-2 p-sm-2.5 px-2.5 px-sm-3.5 rounded-3 border"
-              [class.bg-success-subtle]="ms.status === 'completed'"
-              [class.border-success-subtle]="ms.status === 'completed'"
-              [class.bg-purple-tint]="ms.status === 'in-progress'"
-              [class.border-purple-subtle]="ms.status === 'in-progress'" [class.bg-light]="ms.status === 'upcoming'">
-
-              @if (ms.status === 'completed') {
-              <i class="fa-solid fa-circle-check text-success font-size-xs flex-shrink-0"></i>
-              } @else if (ms.status === 'in-progress') {
-              <i class="fa-solid fa-spinner fa-spin text-purple font-size-xs flex-shrink-0"></i>
-              } @else {
-              <i class="fa-regular fa-circle text-muted font-size-xs flex-shrink-0"></i>
-              }
-
+          <div *ngIf="activeModalTab() === 'milestones' && isLiveSite(proj) && proj.milestones" class="proj-milestones-list d-flex flex-column gap-1.5 mb-3">
+            <div *ngFor="let ms of proj.milestones" class="d-flex align-items-center gap-2.5 p-2.5 rounded-3 border"
+              [class.bg-success-subtle]="ms.status === 'completed'" [class.bg-maroon-tint]="ms.status === 'in-progress'" [class.bg-light]="ms.status === 'upcoming'">
+              <i *ngIf="ms.status === 'completed'" class="fa-solid fa-circle-check text-success font-size-xs flex-shrink-0"></i>
+              <i *ngIf="ms.status === 'in-progress'" class="fa-solid fa-spinner fa-spin text-maroon font-size-xs flex-shrink-0"></i>
+              <i *ngIf="ms.status === 'upcoming'" class="fa-regular fa-circle text-muted font-size-xs flex-shrink-0"></i>
               <div>
-                <span class="font-size-micro fw-bold d-block text-dark proj-ms-title">{{ ms.name }}</span>
-                <span class="font-size-micro text-muted proj-ms-subtext">
-                  @if (ms.status === 'completed') { Milestone Verified & Passed ({{ ms.dateText }}) }
-                  @else if (ms.status === 'in-progress') { Currently Under Active Execution }
-                  @else { Scheduled Phase ({{ ms.dateText }}) }
-                </span>
+                <span class="font-size-micro fw-bold d-block text-dark">{{ ms.name }}</span>
+                <span class="font-size-micro text-muted">{{ ms.status === 'completed' ? 'Milestone Passed (' + ms.dateText + ')' : (ms.status === 'in-progress' ? 'Active Site Execution' : 'Scheduled Phase') }}</span>
               </div>
             </div>
-            }
           </div>
-          }
-
         </div>
 
-        <!-- Action Button -->
-        <div class="mt-3 mb-2 mb-sm-0">
-          <button type="button" class="proj-btn-portfolio w-100 justify-content-center py-2.5 py-sm-3 cursor-pointer"
-            (click)="openConsultation($event)">
-            <span>Book Similar Design Consultation</span>
-            <i class="fa-solid fa-arrow-right"></i>
+        <div class="mt-3">
+          <button type="button" class="btn btn-apt-solid w-100 justify-content-center py-3 cursor-pointer rounded-3 fw-bold" (click)="openConsultation($event)">
+            <span>Book Design Consultation</span>
+            <i class="fa-solid fa-arrow-right ms-2"></i>
           </button>
         </div>
-
       </div>
     </div>
 
   </div>
 </div>
-}
+
