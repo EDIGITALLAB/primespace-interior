@@ -19,167 +19,200 @@
     </div>
   </section>
 
-  <!-- DIRECT CONTACT CHANNELS & FORM SECTION -->
-  <section class="contact-main-section py-3 py-md-5 position-relative">
+  <!-- DIRECT CONTACT CHANNELS & FORM SECTION (EXACT MOCKUP MATCH) -->
+  <section class="contact-main-section py-4 py-md-5 position-relative">
     <div class="container">
-      <div class="row g-4 gy-3 gy-lg-5 align-items-stretch">
+      <div class="row justify-content-center">
+        <div class="col-xl-11 col-xxl-10">
 
-        <!-- Left Column: Direct Contact Info & Quick Channels -->
-        <div class="col-lg-5 d-flex flex-column justify-content-between">
-          <div class="contact-info-stack d-flex flex-column gap-3">
-            
-            <div class="info-card p-3 p-sm-4 rounded-4 border bg-white shadow-sm d-flex align-items-center gap-3">
-              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
-                <i class="fa-solid fa-phone"></i>
-              </div>
-              <div class="flex-grow-1 min-w-0">
-                <span class="info-label text-uppercase small text-purple fw-bold d-block">Call Us Directly</span>
-                <h5 class="fw-extrabold text-dark m-0 text-break">+91 98765 43210</h5>
-                <span class="text-muted small d-block">Toll Free: 1800 123 4567</span>
-              </div>
-            </div>
+          <!-- UNIFIED CONTAINER -->
+          <div class="contact-mockup-wrapper bg-white rounded-4 overflow-hidden shadow-sm border position-relative">
+            <div class="row g-0 align-items-stretch">
 
-            <div class="info-card p-3 p-sm-4 rounded-4 border bg-white shadow-sm d-flex align-items-center gap-3">
-              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
-                <i class="fa-solid fa-envelope"></i>
-              </div>
-              <div class="flex-grow-1 min-w-0">
-                <span class="info-label text-uppercase small text-purple fw-bold d-block">Email Consultancy</span>
-                <h5 class="fw-extrabold text-dark m-0 text-break">hello&#64;primespaceinterior.com</h5>
-                <span class="text-muted small d-block">Instant response within 2 business hours</span>
-              </div>
-            </div>
+              <!-- LEFT SIDE: LIGHT ELEGANT CONTENT WITH PLANT BACKGROUND PHOTO -->
+              <div class="col-lg-6 position-relative overflow-hidden d-flex flex-column">
+                <!-- Background Plant Photo -->
+                <div class="contact-left-plant-bg position-absolute inset-0 w-100 h-100">
+                  <img src="https://images.unsplash.com/photo-1545241047-6083a3684587?q=80&w=1200&auto=format&fit=crop"
+                    alt="Aesthetic Potted Plant Interior" class="w-100 h-100 object-fit-cover">
+                  <div class="plant-bg-overlay position-absolute inset-0"></div>
+                </div>
 
-            <div class="info-card p-3 p-sm-4 rounded-4 border bg-white shadow-sm d-flex align-items-center gap-3">
-              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
-                <i class="fa-brands fa-whatsapp"></i>
-              </div>
-              <div class="flex-grow-1 min-w-0">
-                <span class="info-label text-uppercase small text-purple fw-bold d-block">Instant WhatsApp</span>
-                <h5 class="fw-extrabold text-dark m-0 text-break">+91 98765 43210</h5>
-                <span class="text-muted small d-block">Chat live with our design project manager</span>
-              </div>
-            </div>
-
-            <div class="info-card p-3 p-sm-4 rounded-4 border bg-white shadow-sm d-flex align-items-center gap-3">
-              <div class="info-icon-box rounded-circle bg-purple text-white d-flex align-items-center justify-content-center flex-shrink-0">
-                <i class="fa-regular fa-clock"></i>
-              </div>
-              <div class="flex-grow-1 min-w-0">
-                <span class="info-label text-uppercase small text-purple fw-bold d-block">Studio Working Hours</span>
-                <h5 class="fw-extrabold text-dark m-0 text-break">Mon - Sat: 9:00 AM - 7:00 PM</h5>
-                <span class="text-muted small d-block">Sunday by prior appointment only</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Quick Consultation Card Banner -->
-          <div class="quick-cta-card mt-3 mt-md-4 p-3 p-sm-4 rounded-4 bg-purple-dark text-white shadow-lg">
-            <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-2 fw-bold">Free Design Consultation</span>
-            <h4 class="fw-black text-white text-uppercase mb-2">Want a Custom 3D Plan?</h4>
-            <p class="small text-white opacity-90 mb-3">Book a 1-on-1 virtual or in-person consultation with our senior architect.</p>
-            <button class="btn btn-light rounded-pill px-3 px-sm-4 py-2.5 fw-bold text-purple text-uppercase w-100" (click)="consultationModalService.open()">
-              <span>BOOK 3D CONSULTATION</span>
-              <i class="fa-solid fa-arrow-right ms-2"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Right Column: Interactive Consultation & Message Form -->
-        <div class="col-lg-7">
-          <div class="contact-form-card p-4 p-md-5 rounded-4 border bg-white shadow-sm position-relative overflow-hidden">
-            
-            <div *ngIf="!isSubmitted(); else successState">
-              <div class="mb-4">
-                <span class="section-subtitle text-uppercase text-purple mb-1 fw-bold d-block">Project Enquiry</span>
-                <h3 class="fw-black text-dark text-uppercase m-0">Send Us A Message</h3>
-                <p class="text-muted small mt-1">Fill in your property details below and our senior designer will contact you within 2 hours with an estimate.</p>
-              </div>
-
-              <form (submit)="submitContactForm($event)">
-                <div class="row g-3">
-
-                  <div class="col-md-6">
-                    <label class="form-label small fw-bold text-uppercase text-muted">Full Name *</label>
-                    <input type="text" class="form-control form-control-lg rounded-3 shadow-none border" placeholder="e.g. Rahul Sharma" [ngModel]="fullName()" (ngModelChange)="fullName.set($event)" name="fullName" required>
+                <div class="contact-mockup-left p-4 p-md-5 d-flex flex-column justify-content-center position-relative z-2 h-100">
+                  
+                  <!-- Top Soft Badge -->
+                  <div class="mb-3">
+                    <span class="badge bg-gold-tan text-dark-brown font-size-micro fw-bold text-uppercase px-3 py-2 rounded-2 tracking-wider">
+                      FREE 3D DESIGN CONSULTATION
+                    </span>
                   </div>
 
-                  <div class="col-md-6">
-                    <label class="form-label small fw-bold text-uppercase text-muted">Phone Number *</label>
-                    <input type="tel" class="form-control form-control-lg rounded-3 shadow-none border" placeholder="e.g. +91 9876543210" [ngModel]="phone()" (ngModelChange)="phone.set($event)" name="phone" required>
-                  </div>
+                  <!-- Main Serif Heading -->
+                  <h1 class="mockup-serif-heading mb-3">
+                    Great Design<br>
+                    <span class="text-maroon-theme">Better Living</span>
+                  </h1>
 
-                  <div class="col-md-6">
-                    <label class="form-label small fw-bold text-uppercase text-muted">Email Address</label>
-                    <input type="email" class="form-control form-control-lg rounded-3 shadow-none border" placeholder="e.g. rahul@gmail.com" [ngModel]="email()" (ngModelChange)="email.set($event)" name="email">
-                  </div>
+                  <!-- Subtitle -->
+                  <p class="text-muted font-size-sm mb-4 max-w-450">
+                    Tell us about your dream home and we'll take care of the rest.
+                  </p>
 
-                  <div class="col-md-6">
-                    <label class="form-label small fw-bold text-uppercase text-muted">Property Type</label>
-                    <select class="form-select form-select-lg rounded-3 shadow-none border" [ngModel]="propertyType()" (ngModelChange)="propertyType.set($event)" name="propertyType">
-                      <option value="1bhk">1 BHK Apartment</option>
-                      <option value="2bhk">2 BHK Apartment</option>
-                      <option value="3bhk">3 BHK Apartment</option>
-                      <option value="4bhk">4 BHK / Duplex</option>
-                      <option value="villa">Independent Villa</option>
-                      <option value="kitchen">Modular Kitchen Only</option>
-                      <option value="commercial">Commercial / Office</option>
-                    </select>
-                  </div>
+                  <!-- 4 Feature Highlights -->
+                  <div class="d-flex flex-column gap-3.5 pt-1">
+                    
+                    <!-- Item 1 -->
+                    <div class="d-flex align-items-start gap-3">
+                      <div class="mockup-icon-box text-maroon-theme font-size-md flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-pen-ruler"></i>
+                      </div>
+                      <div>
+                        <h6 class="fw-bold text-dark m-0 font-size-sm">Free 3D Concept</h6>
+                        <p class="text-muted font-size-xs m-0">Visualize your space before it's built.</p>
+                      </div>
+                    </div>
 
-                  <div class="col-md-6">
-                    <label class="form-label small fw-bold text-uppercase text-muted">Approximate Budget</label>
-                    <select class="form-select form-select-lg rounded-3 shadow-none border" [ngModel]="budget()" (ngModelChange)="budget.set($event)" name="budget">
-                      <option value="under5">Under ₹5 Lakhs</option>
-                      <option value="5-10lakhs">₹5 - ₹10 Lakhs</option>
-                      <option value="10-15lakhs">₹10 - ₹15 Lakhs</option>
-                      <option value="above15">Above ₹15 Lakhs</option>
-                    </select>
-                  </div>
+                    <!-- Item 2 -->
+                    <div class="d-flex align-items-start gap-3">
+                      <div class="mockup-icon-box text-maroon-theme font-size-md flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                      </div>
+                      <div>
+                        <h6 class="fw-bold text-dark m-0 font-size-sm">Expert Interior Designers</h6>
+                        <p class="text-muted font-size-xs m-0">Experience &amp; creativity you can trust.</p>
+                      </div>
+                    </div>
 
-                  <div class="col-md-6">
-                    <label class="form-label small fw-bold text-uppercase text-muted">Preferred Studio Location</label>
-                    <select class="form-select form-select-lg rounded-3 shadow-none border" [ngModel]="studioLocation()" (ngModelChange)="studioLocation.set($event)" name="studioLocation">
-                      <option value="bengaluru">Bengaluru Studio (Indiranagar)</option>
-                      <option value="bhubaneswar">Bhubaneswar Studio (Saheed Nagar)</option>
-                      <option value="virtual">Virtual Online Consultation</option>
-                    </select>
-                  </div>
+                    <!-- Item 3 -->
+                    <div class="d-flex align-items-start gap-3">
+                      <div class="mockup-icon-box text-maroon-theme font-size-md flex-shrink-0 mt-0.5">
+                        <i class="fa-regular fa-clock"></i>
+                      </div>
+                      <div>
+                        <h6 class="fw-bold text-dark m-0 font-size-sm">On-time Delivery</h6>
+                        <p class="text-muted font-size-xs m-0">We value your time.</p>
+                      </div>
+                    </div>
 
-                  <div class="col-12">
-                    <label class="form-label small fw-bold text-uppercase text-muted">Your Requirements / Message</label>
-                    <textarea class="form-control rounded-3 shadow-none border" rows="4" placeholder="Tell us about your home floor plan, target possession date, or preferred design style..." [ngModel]="message()" (ngModelChange)="message.set($event)" name="message"></textarea>
-                  </div>
+                    <!-- Item 4 -->
+                    <div class="d-flex align-items-start gap-3">
+                      <div class="mockup-icon-box text-maroon-theme font-size-md flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-coins"></i>
+                      </div>
+                      <div>
+                        <h6 class="fw-bold text-dark m-0 font-size-sm">Transparent Pricing</h6>
+                        <p class="text-muted font-size-xs m-0">No hidden costs. Ever.</p>
+                      </div>
+                    </div>
 
-                  <div class="col-12 pt-2">
-                    <button type="submit" class="btn btn-purple rounded-pill py-3 px-5 fw-extrabold text-uppercase w-100 shadow" [disabled]="isSubmitting()">
-                      <span *ngIf="!isSubmitting()">SUBMIT ENQUIRY FOR 3D LAYOUT</span>
-                      <span *ngIf="isSubmitting()"><i class="fa-solid fa-spinner fa-spin me-2"></i>SUBMITTING...</span>
-                    </button>
                   </div>
 
                 </div>
-              </form>
-            </div>
-
-            <!-- Success Submission State -->
-            <ng-template #successState>
-              <div class="text-center py-3 py-md-5 my-2 my-md-3 animate-fade-in success-state-wrapper">
-                <div class="success-icon-circle mx-auto mb-3 mb-md-4 bg-success text-white rounded-circle d-flex align-items-center justify-content-center">
-                  <i class="fa-solid fa-check fs-4 fs-md-2"></i>
-                </div>
-                <h3 class="fw-black text-dark text-uppercase mb-2 success-title">Thank You, {{ fullName() }}!</h3>
-                <p class="text-muted mb-3 mb-md-4 max-w-500 mx-auto success-desc">Your enquiry has been assigned to our senior interior architect. We will call you at <strong>{{ phone() }}</strong> within 2 hours with initial design ideas.</p>
-                <button class="btn btn-purple rounded-pill px-3 px-md-4 py-2 py-md-2.5 fw-bold success-reset-btn" (click)="resetForm()">
-                  Send Another Message
-                </button>
               </div>
-            </ng-template>
 
+              <!-- RIGHT SIDE: DARK MAROON FORM CARD -->
+              <div class="col-lg-6 p-3 p-md-4">
+                <div class="contact-mockup-form-card p-4 p-md-4.5 rounded-4 text-white shadow-lg position-relative overflow-hidden">
+                  
+                  <div *ngIf="!isSubmitted(); else successState">
+                    <form (submit)="submitContactForm($event)">
+                      <div class="d-flex flex-column gap-3">
+
+                        <!-- Full Name * -->
+                        <div class="input-group rounded-3 overflow-hidden bg-cream-input">
+                          <span class="input-group-text bg-cream-input border-0 pe-1 text-muted-brown font-size-sm">
+                            <i class="fa-regular fa-user"></i>
+                          </span>
+                          <input type="text" class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
+                            placeholder="Full Name *" [ngModel]="fullName()" (ngModelChange)="fullName.set($event)" name="fullName" required />
+                        </div>
+
+                        <!-- Email Address * -->
+                        <div class="input-group rounded-3 overflow-hidden bg-cream-input">
+                          <span class="input-group-text bg-cream-input border-0 pe-1 text-muted-brown font-size-sm">
+                            <i class="fa-regular fa-envelope"></i>
+                          </span>
+                          <input type="email" class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
+                            placeholder="Email Address *" [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" required />
+                        </div>
+
+                        <!-- +91 v | Phone Number * -->
+                        <div class="input-group rounded-3 overflow-hidden bg-cream-input">
+                          <span class="input-group-text bg-cream-input border-0 pe-2 text-dark font-size-sm d-flex align-items-center gap-1">
+                            <span class="fw-semibold font-size-xs">+91</span>
+                            <i class="fa-solid fa-chevron-down font-size-micro text-muted"></i>
+                          </span>
+                          <span class="input-group-text bg-cream-input border-0 px-1 text-muted-brown font-size-sm border-start">
+                            <i class="fa-solid fa-phone font-size-xs"></i>
+                          </span>
+                          <input type="tel" class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
+                            placeholder="Phone Number *" [ngModel]="phone()" (ngModelChange)="phone.set($event)" name="phone" required />
+                        </div>
+
+                        <!-- Send me updates on WhatsApp -->
+                        <div class="form-check d-flex align-items-center gap-2 ps-4 my-0.5">
+                          <input class="form-check-input rounded-1 border-0 shadow-none mt-0 cursor-pointer" type="checkbox"
+                            id="whatsappCheck" checked>
+                          <label class="form-check-label font-size-xs text-white fw-medium cursor-pointer d-flex align-items-center gap-1.5" for="whatsappCheck">
+                            <i class="fa-brands fa-whatsapp text-whatsapp-green font-size-xs"></i>
+                            <span>Send me updates on WhatsApp</span>
+                          </label>
+                        </div>
+
+                        <!-- Location Select Dropdown -->
+                        <div class="input-group rounded-3 overflow-hidden bg-cream-input">
+                          <span class="input-group-text bg-cream-input border-0 pe-1 text-maroon-theme font-size-sm">
+                            <i class="fa-solid fa-location-dot"></i>
+                          </span>
+                          <select class="form-select border-0 shadow-none ps-1 pe-4 font-size-sm text-dark cursor-pointer fw-bold bg-cream-input"
+                            [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event)" name="citySelect">
+                            <option value="Bangalore">Bangalore Studio (Indiranagar)</option>
+                            <option value="Bhubaneswar">Bhubaneswar Studio (Saheed Nagar)</option>
+                          </select>
+                        </div>
+
+                        <!-- Action CTA Button -->
+                        <div class="pt-2">
+                          <button type="submit" class="btn btn-mockup-cta w-100 rounded-3 py-3 px-3 fw-bold font-size-sm text-uppercase d-flex align-items-center justify-content-center gap-2 shadow-sm">
+                            <span>GET FREE 3D ESTIMATE & LAYOUT</span>
+                            <i class="fa-solid fa-arrow-right font-size-xs"></i>
+                          </button>
+                        </div>
+
+                        <!-- Footer Disclaimer Terms -->
+                        <div class="text-center pt-2">
+                          <p class="font-size-micro text-white-50 mb-0 opacity-80">
+                            By submitting this form, you agree to our<br>
+                            <a href="#" class="text-white text-decoration-underline fw-semibold">Privacy Policy</a> &amp;
+                            <a href="#" class="text-white text-decoration-underline fw-semibold">Terms &amp; Conditions</a>.
+                          </p>
+                        </div>
+
+                      </div>
+                    </form>
+                  </div>
+
+                  <!-- Success State Template -->
+                  <ng-template #successState>
+                    <div class="text-center py-5">
+                      <div class="mb-3 text-success">
+                        <i class="fa-solid fa-circle-check display-4"></i>
+                      </div>
+                      <h3 class="fw-bold text-white mb-2">Thank You!</h3>
+                      <p class="text-white-50 small mb-4">Your enquiry has been submitted. Our designer will reach out to you shortly.</p>
+                      <button type="button" class="btn btn-outline-light rounded-pill px-4" (click)="resetForm()">
+                        Send Another Message
+                      </button>
+                    </div>
+                  </ng-template>
+
+                </div>
+              </div>
+
+            </div>
           </div>
-        </div>
 
+        </div>
       </div>
     </div>
   </section>

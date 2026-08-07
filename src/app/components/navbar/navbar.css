@@ -617,10 +617,11 @@
 
 .drawer-sublink:hover,
 .drawer-sublink:active,
-.drawer-sublink:focus {
+.drawer-sublink:focus,
+.drawer-sublink.active {
   color: var(--primary-maroon, #96053E) !important;
   background-color: var(--white) !important;
-  border-left: 2px solid var(--text-dark-black) !important;
+  border-left: 3px solid var(--primary-maroon, #96053E) !important;
   margin-left: -2px !important;
   box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2) !important;
 }
