@@ -19,6 +19,7 @@ export class ContactPage {
   readonly propertyType = signal<string>('2bhk');
   readonly budget = signal<string>('10-15lakhs');
   readonly studioLocation = signal<string>('bengaluru');
+  readonly selectedCity = signal<string>('Bangalore');
   readonly message = signal<string>('');
 
   // Form State
