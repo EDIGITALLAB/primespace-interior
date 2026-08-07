@@ -233,7 +233,7 @@
                 <i [class]="cat.iconClass" class="cat-icon"></i>
                 <span class="sidebar-cat-name text-truncate">{{ cat.name }}</span>
               </div>
-              <span class="cat-count-badge badge rounded-pill">{{ cat.count }}</span>
+              <span class="cat-count-badge badge rounded-pill">{{ getCategoryPhotoCount(cat.id) }}</span>
             </button>
           </div>
         </div>

@@ -8,7 +8,8 @@
 
     <div class="container position-relative z-2">
       <!-- Top Badge -->
-      <span class="hero-mini-badge badge bg-maroon-tint text-maroon font-size-micro fw-bold text-uppercase px-3 py-1.5 rounded-pill mb-3 border border-maroon-subtle d-inline-flex align-items-center gap-1.5">
+      <span
+        class="hero-mini-badge badge bg-maroon-tint text-maroon font-size-micro fw-bold text-uppercase px-3 py-1.5 rounded-pill mb-3 border border-maroon-subtle d-inline-flex align-items-center gap-1.5">
         <i class="fa-solid fa-crown text-maroon font-size-micro"></i>
         <span>Architectural Portfolio & Live Radar</span>
       </span>
@@ -17,7 +18,8 @@
       <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
         <div>
           <h1 class="page-main-title fw-black text-dark mb-1">Our Apartment Projects</h1>
-          <p class="page-main-subtitle text-muted mb-0 font-size-sm">Explore our completed and ongoing apartment projects</p>
+          <p class="page-main-subtitle text-muted mb-0 font-size-sm">Explore our completed and ongoing apartment
+            projects</p>
         </div>
 
         <!-- Search Input Box -->
@@ -25,7 +27,7 @@
           <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden bg-white border">
             <input type="text" class="form-control border-0 shadow-none px-3 font-size-sm"
               placeholder="Search apartment, location..." [ngModel]="searchQuery()"
-              (ngModelChange)="searchQuery.set($event)" (keyup.enter)="applyFilter()" />
+              (ngModelChange)="onSearchChange($event)" (keyup.enter)="applyFilter()" />
             <span class="input-group-text bg-transparent border-0 pe-3 text-muted">
               <i class="fa-solid fa-magnifying-glass font-size-xs text-maroon"></i>
             </span>
@@ -37,7 +39,7 @@
       <div class="filter-toolbar-row d-flex flex-wrap align-items-center gap-3 pt-1">
         <!-- City Filter Select -->
         <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event)">
+          [ngModel]="selectedCity()" (ngModelChange)="onCityChange($event)">
           <option value="all">All Cities</option>
           <option value="Bangalore">Bangalore</option>
           <option value="Bhubaneswar">Bhubaneswar</option>
@@ -45,13 +47,14 @@
 
         <!-- Apartment Filter Select -->
         <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedApartment()" (ngModelChange)="selectedApartment.set($event)">
-          <option *ngFor="let opt of apartmentOptions" [value]="opt === 'All Apartments' ? 'all' : opt">{{ opt }}</option>
+          [ngModel]="selectedApartment()" (ngModelChange)="onApartmentChange($event)">
+          <option *ngFor="let opt of apartmentOptions" [value]="opt === 'All Apartments' ? 'all' : opt">{{ opt }}
+          </option>
         </select>
 
         <!-- Status Filter Select -->
         <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedStatus()" (ngModelChange)="selectedStatus.set($event)">
+          [ngModel]="selectedStatus()" (ngModelChange)="onStatusChange($event)">
           <option value="all">Status</option>
           <option value="completed">Completed Projects</option>
           <option value="ongoing">Live Construction Sites</option>
@@ -59,7 +62,7 @@
 
         <!-- Project Type Filter Select -->
         <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedProjectType()" (ngModelChange)="selectedProjectType.set($event)">
+          [ngModel]="selectedProjectType()" (ngModelChange)="onProjectTypeChange($event)">
           <option value="all">Project Type</option>
           <option value="Villa">Villa</option>
           <option value="Penthouse">Penthouse</option>
@@ -68,13 +71,15 @@
         </select>
 
         <!-- Filter Action Button -->
-        <button type="button" class="btn btn-filter-submit rounded-3 px-4 fw-extrabold font-size-micro text-uppercase shadow-xs"
+        <button type="button"
+          class="btn btn-filter-submit rounded-3 px-4 fw-extrabold font-size-micro text-uppercase shadow-xs"
           (click)="applyFilter()">
           FILTER
         </button>
 
         <!-- Reset Filter Action Button -->
-        <button type="button" class="btn btn-filter-reset rounded-3 px-3.5 fw-bold font-size-micro text-uppercase shadow-xs d-inline-flex align-items-center gap-1.5"
+        <button type="button"
+          class="btn btn-filter-reset rounded-3 px-3.5 fw-bold font-size-micro text-uppercase shadow-xs d-inline-flex align-items-center gap-1.5"
           *ngIf="hasActiveFilters()" (click)="resetFilter()">
           <i class="fa-solid fa-rotate-left font-size-micro"></i>
           <span>RESET</span>
@@ -89,13 +94,15 @@
     <div *ngIf="filteredCompletedProjects().length > 0" class="mb-5 pb-3">
       <div class="row g-4 align-items-stretch">
         <div *ngFor="let p of filteredCompletedProjects(); let idx = index" class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="apt-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all"
+          <div
+            class="apt-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all cursor-pointer"
             [class.card-active-highlight]="idx === 0" (click)="openProjectModal(p, $event)">
 
             <!-- Media Banner with Top Right Badge -->
             <div class="apt-media-box position-relative overflow-hidden">
               <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover apt-card-img">
-              <span class="apt-homes-badge position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-bold text-white shadow-xs">
+              <span
+                class="apt-homes-badge position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-bold text-white shadow-xs">
                 {{ p.homesCount }}
               </span>
             </div>
@@ -120,9 +127,9 @@
               </div>
 
               <!-- Action Button -->
-              <button type="button" class="btn btn-apt-action w-100 rounded-3 py-2.5 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-2 transition-all"
-                [class.btn-apt-solid]="p.buttonStyle === 'solid'"
-                [class.btn-apt-outline]="p.buttonStyle === 'outline'"
+              <button type="button"
+                class="btn btn-apt-action w-100 rounded-3 py-2.5 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-2 transition-all"
+                [class.btn-apt-solid]="p.buttonStyle === 'solid'" [class.btn-apt-outline]="p.buttonStyle === 'outline'"
                 (click)="openProjectModal(p, $event)">
                 <span>VIEW DETAILS</span>
                 <i class="fa-solid fa-arrow-right font-size-micro"></i>
@@ -149,13 +156,15 @@
       <!-- Live Sites Grid -->
       <div class="row g-4 align-items-stretch">
         <div *ngFor="let ls of filteredLiveSiteProjects()" class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div class="live-site-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all"
+          <div
+            class="live-site-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all cursor-pointer"
             (click)="openProjectModal(ls, $event)">
 
             <!-- Media Banner with Top Left Red Badge -->
             <div class="live-media-box position-relative overflow-hidden">
               <img [src]="ls.heroImage" [alt]="ls.title" class="w-100 h-100 object-fit-cover live-card-img">
-              <span class="live-status-badge position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-black text-white text-uppercase shadow-xs">
+              <span
+                class="live-status-badge position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-black text-white text-uppercase shadow-xs">
                 LIVE SITE
               </span>
             </div>
@@ -174,14 +183,15 @@
                   </div>
                   <div class="progress live-progress-track rounded-pill bg-light" style="height: 6px;">
                     <div class="progress-bar live-progress-fill rounded-pill" role="progressbar"
-                      [style.width.%]="ls.progressPercentage" [attr.aria-valuenow]="ls.progressPercentage"
-                      aria-valuemin="0" aria-valuemax="100"></div>
+                      [style.width.%]="ls.progressPercentage" [attr.aria-valuenow]="ls.progressPercentage" aria-valuemin="0"
+                      aria-valuemax="100"></div>
                   </div>
                 </div>
               </div>
 
               <!-- Progress Button -->
-              <button type="button" class="btn btn-apt-outline w-100 rounded-3 py-2 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-1.5 transition-all"
+              <button type="button"
+                class="btn btn-apt-outline w-100 rounded-3 py-2 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-1.5 transition-all"
                 (click)="openProjectModal(ls, $event)">
                 <span>VIEW PROGRESS</span>
                 <i class="fa-solid fa-arrow-right font-size-micro"></i>
@@ -210,36 +220,47 @@
 </div>
 
 <!-- SPECIFICATION DETAILS MODAL -->
-<div *ngIf="selectedProjectModal(); let proj" class="proj-modal-overlay d-flex align-items-center justify-content-center p-2 p-sm-3" (click)="closeProjectModal()">
-  <div class="proj-modal-card bg-white rounded-4 border overflow-hidden shadow-2xl position-relative max-w-900 w-100 text-dark" (click)="$event.stopPropagation()">
+<div *ngIf="selectedProjectModal(); let proj"
+  class="proj-modal-overlay d-flex align-items-center justify-content-center p-2 p-sm-3" (click)="closeProjectModal()">
+  <div
+    class="proj-modal-card bg-white rounded-4 border overflow-hidden shadow-2xl position-relative max-w-900 w-100 text-dark"
+    (click)="$event.stopPropagation()">
 
     <!-- Close Button -->
-    <button type="button" class="proj-modal-close-btn d-flex align-items-center justify-content-center" (click)="closeProjectModal()">
+    <button type="button" class="proj-modal-close-btn d-flex align-items-center justify-content-center"
+      (click)="closeProjectModal()">
       <i class="fa-solid fa-xmark"></i>
     </button>
 
     <div class="row g-0">
       <!-- Gallery Column -->
-      <div class="col-lg-6 bg-dark position-relative proj-modal-img-col d-flex flex-column justify-content-between p-2.5 p-sm-3">
-        <div class="proj-modal-img-display position-relative overflow-hidden rounded-3 h-100" style="min-height: 300px;">
-          <img [src]="proj.gallery[activeModalImageIndex()] || proj.heroImage" [alt]="proj.title" class="w-100 h-100 object-fit-cover proj-modal-main-img">
+      <div
+        class="col-lg-6 bg-dark position-relative proj-modal-img-col d-flex flex-column justify-content-between p-2.5 p-sm-3">
+        <div class="proj-modal-img-display position-relative overflow-hidden rounded-3 h-100"
+          style="min-height: 300px;">
+          <img [src]="proj.gallery[activeModalImageIndex()] || proj.heroImage" [alt]="proj.title"
+            class="w-100 h-100 object-fit-cover proj-modal-main-img">
 
-          <span class="badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-bold text-uppercase shadow-sm text-white"
+          <span
+            class="badge position-absolute top-0 start-0 m-3 px-3 py-1.5 rounded-pill font-size-micro fw-bold text-uppercase shadow-sm text-white"
             [class.bg-maroon]="isLiveSite(proj)" [class.bg-success]="!isLiveSite(proj)">
-            {{ isLiveSite(proj) ? 'LIVE SITE (' + proj.progressPercentage + '%)' : 'COMPLETED PROJECT' }}
+            {{ isLiveSite(proj) ? 'LIVE SITE (' + getProgressPercentage(proj) + '%)' : 'COMPLETED PROJECT' }}
           </span>
 
-          <span class="badge position-absolute bottom-0 end-0 m-3 px-2.5 py-1 rounded-pill font-size-micro fw-bold bg-dark-glass-blur text-white border-white-20">
-            <i class="fa-solid fa-camera me-1 text-maroon"></i> {{ activeModalImageIndex() + 1 }} / {{ proj.gallery.length || 1 }}
+          <span
+            class="badge position-absolute bottom-0 end-0 m-3 px-2.5 py-1 rounded-pill font-size-micro fw-bold bg-dark-glass-blur text-white border-white-20">
+            <i class="fa-solid fa-camera me-1 text-maroon"></i> {{ activeModalImageIndex() + 1 }} / {{
+            proj.gallery.length || 1 }}
           </span>
         </div>
 
-        <div *ngIf="proj.gallery.length > 1" class="d-flex gap-2 justify-content-center mt-2.5 z-2 overflow-x-auto py-1">
-          <div *ngFor="let img of proj.gallery; let idx = index" class="proj-thumb-box rounded-2 overflow-hidden cursor-pointer border border-2 transition-all"
+        <div *ngIf="proj.gallery.length > 1"
+          class="d-flex gap-2 justify-content-center mt-2.5 z-2 overflow-x-auto py-1">
+          <div *ngFor="let img of proj.gallery; let idx = index"
+            class="proj-thumb-box rounded-2 overflow-hidden cursor-pointer border border-2 transition-all"
             [class.border-maroon]="activeModalImageIndex() === idx"
             [class.border-transparent]="activeModalImageIndex() !== idx"
-            [class.opacity-100]="activeModalImageIndex() === idx"
-            [class.opacity-60]="activeModalImageIndex() !== idx"
+            [class.opacity-100]="activeModalImageIndex() === idx" [class.opacity-60]="activeModalImageIndex() !== idx"
             (click)="setModalImage(idx)">
             <img [src]="img" [alt]="proj.title + ' photo ' + (idx + 1)" class="w-100 h-100 object-fit-cover">
           </div>
@@ -250,60 +271,88 @@
       <div class="col-lg-6 p-3.5 p-md-4 d-flex flex-column justify-content-between proj-modal-body">
         <div>
           <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
-            <span class="badge bg-maroon-tint text-maroon font-size-micro fw-bold text-uppercase px-3 py-1 rounded-pill border border-maroon-subtle">
+            <span
+              class="badge bg-maroon-tint text-maroon font-size-micro fw-bold text-uppercase px-3 py-1 rounded-pill border border-maroon-subtle">
               {{ proj.projectType }} • {{ proj.city }}
             </span>
-            <span class="font-size-micro fw-bold text-muted"><i class="fa-solid fa-ruler-combined me-1 text-maroon"></i> {{ proj.areaSqft }}</span>
+            <span class="font-size-micro fw-bold text-muted"><i class="fa-solid fa-ruler-combined me-1 text-maroon"></i>
+              {{ proj.areaSqft }}</span>
           </div>
 
           <h3 class="fw-black text-dark font-size-md mb-1 proj-modal-title">{{ proj.title }}</h3>
-          <p *ngIf="proj.subtitle" class="font-size-xs text-maroon fw-bold mb-2.5 proj-modal-subtitle">{{ proj.subtitle }}</p>
+          <p *ngIf="proj.subtitle" class="font-size-xs text-maroon fw-bold mb-2.5 proj-modal-subtitle">{{ proj.subtitle
+            }}</p>
           <p class="font-size-xs text-muted leading-relaxed mb-3 proj-modal-desc">{{ proj.description }}</p>
 
           <div class="d-flex align-items-center w-100 rounded-3 bg-light p-1 border mb-3 proj-modal-tabs-row">
-            <button type="button" class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
-              [class.bg-white]="activeModalTab() === 'gallery'" [class.text-maroon]="activeModalTab() === 'gallery'" [class.shadow-xs]="activeModalTab() === 'gallery'" [class.text-muted]="activeModalTab() !== 'gallery'"
+            <button type="button"
+              class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
+              [class.bg-white]="activeModalTab() === 'gallery'" [class.text-maroon]="activeModalTab() === 'gallery'"
+              [class.shadow-xs]="activeModalTab() === 'gallery'" [class.text-muted]="activeModalTab() !== 'gallery'"
               (click)="setModalTab('gallery')">Overview</button>
-            <button *ngIf="proj.materialsUsed" type="button" class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
-              [class.bg-white]="activeModalTab() === 'materials'" [class.text-maroon]="activeModalTab() === 'materials'" [class.shadow-xs]="activeModalTab() === 'materials'" [class.text-muted]="activeModalTab() !== 'materials'"
+            <button *ngIf="proj.materialsUsed" type="button"
+              class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
+              [class.bg-white]="activeModalTab() === 'materials'" [class.text-maroon]="activeModalTab() === 'materials'"
+              [class.shadow-xs]="activeModalTab() === 'materials'" [class.text-muted]="activeModalTab() !== 'materials'"
               (click)="setModalTab('materials')">Materials Used</button>
-            <button *ngIf="isLiveSite(proj) && proj.milestones" type="button" class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
-              [class.bg-white]="activeModalTab() === 'milestones'" [class.text-maroon]="activeModalTab() === 'milestones'" [class.shadow-xs]="activeModalTab() === 'milestones'" [class.text-muted]="activeModalTab() !== 'milestones'"
-              (click)="setModalTab('milestones')">Site Milestones</button>
+            <button *ngIf="isLiveSite(proj) && getMilestones(proj)" type="button"
+              class="btn btn-sm py-2 font-size-xs fw-extrabold text-uppercase transition-all proj-modal-tab-btn flex-fill text-center rounded-2"
+              [class.bg-white]="activeModalTab() === 'milestones'"
+              [class.text-maroon]="activeModalTab() === 'milestones'"
+              [class.shadow-xs]="activeModalTab() === 'milestones'"
+              [class.text-muted]="activeModalTab() !== 'milestones'" (click)="setModalTab('milestones')">Site
+              Milestones</button>
           </div>
 
-          <div *ngIf="activeModalTab() === 'gallery'" class="proj-specs-box p-3 bg-maroon-tint rounded-3 border border-maroon-subtle mb-3">
+          <div *ngIf="activeModalTab() === 'gallery'"
+            class="proj-specs-box p-3 bg-maroon-tint rounded-3 border border-maroon-subtle mb-3">
             <div class="row g-2 font-size-xs">
-              <div class="col-6"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Client</span><span class="fw-bold text-dark">{{ proj.clientName }}</span></div>
-              <div class="col-6"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Built-up Area</span><span class="fw-bold text-dark">{{ proj.areaSqft }}</span></div>
-              <div class="col-6 mt-2"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Location</span><span class="fw-bold text-dark">{{ proj.location }}</span></div>
-              <div class="col-6 mt-2"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Timeline</span><span class="fw-bold text-maroon">{{ isLiveSite(proj) ? proj.expectedHandover : proj.completedDate }}</span></div>
+              <div class="col-6"><span
+                  class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Client</span><span
+                  class="fw-bold text-dark">{{ proj.clientName }}</span></div>
+              <div class="col-6"><span class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Built-up
+                  Area</span><span class="fw-bold text-dark">{{ proj.areaSqft }}</span></div>
+              <div class="col-6 mt-2"><span
+                  class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Location</span><span
+                  class="fw-bold text-dark">{{ proj.location }}</span></div>
+              <div class="col-6 mt-2"><span
+                  class="text-muted d-block font-size-micro text-uppercase fw-bold mb-0.5">Timeline</span><span
+                  class="fw-bold text-maroon">{{ getTimelineText(proj) }}</span></div>
             </div>
           </div>
 
-          <div *ngIf="activeModalTab() === 'materials' && proj.materialsUsed" class="proj-materials-list d-flex flex-column gap-1.5 mb-3">
-            <div *ngFor="let mat of proj.materialsUsed" class="d-flex align-items-center p-2.5 rounded-3 bg-maroon-tint border border-maroon-subtle">
+          <div *ngIf="activeModalTab() === 'materials' && proj.materialsUsed"
+            class="proj-materials-list d-flex flex-column gap-1.5 mb-3">
+            <div *ngFor="let mat of proj.materialsUsed"
+              class="d-flex align-items-center p-2.5 rounded-3 bg-maroon-tint border border-maroon-subtle">
               <i class="fa-solid fa-shield-halved text-maroon font-size-xs flex-shrink-0 me-2"></i>
               <span class="font-size-xs fw-bold text-dark text-truncate">{{ mat }}</span>
             </div>
           </div>
 
-          <div *ngIf="activeModalTab() === 'milestones' && isLiveSite(proj) && proj.milestones" class="proj-milestones-list d-flex flex-column gap-1.5 mb-3">
-            <div *ngFor="let ms of proj.milestones" class="d-flex align-items-center gap-2.5 p-2.5 rounded-3 border"
-              [class.bg-success-subtle]="ms.status === 'completed'" [class.bg-maroon-tint]="ms.status === 'in-progress'" [class.bg-light]="ms.status === 'upcoming'">
-              <i *ngIf="ms.status === 'completed'" class="fa-solid fa-circle-check text-success font-size-xs flex-shrink-0"></i>
-              <i *ngIf="ms.status === 'in-progress'" class="fa-solid fa-spinner fa-spin text-maroon font-size-xs flex-shrink-0"></i>
-              <i *ngIf="ms.status === 'upcoming'" class="fa-regular fa-circle text-muted font-size-xs flex-shrink-0"></i>
+          <div *ngIf="activeModalTab() === 'milestones' && isLiveSite(proj) && getMilestones(proj) as milestones"
+            class="proj-milestones-list d-flex flex-column gap-1.5 mb-3">
+            <div *ngFor="let ms of milestones" class="d-flex align-items-center gap-2.5 p-2.5 rounded-3 border"
+              [class.bg-success-subtle]="ms.status === 'completed'" [class.bg-maroon-tint]="ms.status === 'in-progress'"
+              [class.bg-light]="ms.status === 'upcoming'">
+              <i *ngIf="ms.status === 'completed'"
+                class="fa-solid fa-circle-check text-success font-size-xs flex-shrink-0"></i>
+              <i *ngIf="ms.status === 'in-progress'"
+                class="fa-solid fa-spinner fa-spin text-maroon font-size-xs flex-shrink-0"></i>
+              <i *ngIf="ms.status === 'upcoming'"
+                class="fa-regular fa-circle text-muted font-size-xs flex-shrink-0"></i>
               <div>
                 <span class="font-size-micro fw-bold d-block text-dark">{{ ms.name }}</span>
-                <span class="font-size-micro text-muted">{{ ms.status === 'completed' ? 'Milestone Passed (' + ms.dateText + ')' : (ms.status === 'in-progress' ? 'Active Site Execution' : 'Scheduled Phase') }}</span>
+                <span class="font-size-micro text-muted">{{ getMilestoneText(ms) }}</span>
               </div>
             </div>
           </div>
         </div>
 
         <div class="mt-3">
-          <button type="button" class="btn btn-apt-solid w-100 justify-content-center py-3 cursor-pointer rounded-3 fw-bold" (click)="openConsultation($event)">
+          <button type="button"
+            class="btn btn-apt-solid w-100 justify-content-center py-3 cursor-pointer rounded-3 fw-bold"
+            (click)="openConsultation($event)">
             <span>Book Design Consultation</span>
             <i class="fa-solid fa-arrow-right ms-2"></i>
           </button>
@@ -313,4 +362,3 @@
 
   </div>
 </div>
-

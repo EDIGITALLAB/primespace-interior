@@ -137,11 +137,77 @@ export class ProjectDetails implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      const id = params.get('id') || 'royal-villa-indiranagar';
+      const id = params.get('id') || 'royale-villa';
       const found = this.projectsDataService.getProjectById(id) || this.projectsDataService.projects[0];
       this.project.set(found);
       this.activeImageIndex.set(0);
+
+      if (found) {
+        this.updateProjectBlocksAndPhotos(found);
+      }
     });
+  }
+
+  private updateProjectBlocksAndPhotos(proj: ProjectItem) {
+    const gallery = proj.gallery && proj.gallery.length > 0 ? proj.gallery : [proj.heroImage];
+    const hero = proj.heroImage;
+
+    this.blocks.set([
+      {
+        id: 'block-a',
+        name: proj.title + ' - Block A',
+        tag: proj.category + ' • Main Living Suite',
+        specs: 'Built-up Area: ' + proj.areaSqft,
+        homeCount: 4,
+        iconClass: 'fa-solid fa-building-user',
+        selectedImageIndex: 0,
+        mainImages: [
+          hero,
+          gallery[0] || hero,
+          gallery[1] || hero,
+          gallery[2] || hero
+        ]
+      },
+      {
+        id: 'block-b',
+        name: proj.title + ' - Block B',
+        tag: 'Bespoke Modular Kitchen & Joinery',
+        specs: 'Location: ' + proj.location,
+        homeCount: 3,
+        iconClass: 'fa-solid fa-utensils',
+        selectedImageIndex: 0,
+        mainImages: [
+          gallery[1] || hero,
+          gallery[2] || hero,
+          gallery[0] || hero,
+          hero
+        ]
+      },
+      {
+        id: 'block-c',
+        name: proj.title + ' - Block C',
+        tag: 'Master Bedrooms & Balcony Suite',
+        specs: 'Client: ' + proj.clientName,
+        homeCount: 3,
+        iconClass: 'fa-solid fa-bed',
+        selectedImageIndex: 0,
+        mainImages: [
+          gallery[2] || hero,
+          gallery[0] || hero,
+          hero,
+          gallery[1] || hero
+        ]
+      }
+    ]);
+
+    this.modalPhotosList = [
+      { id: 1, title: proj.title + ' - Open Concept Living Lounge', category: 'living', url: hero },
+      { id: 2, title: proj.title + ' - Modular Kitchen & Dining', category: 'kitchen', url: gallery[0] || hero },
+      { id: 3, title: proj.title + ' - Master Bed Suite & Ambient Ceiling', category: 'master-bed', url: gallery[1] || hero },
+      { id: 4, title: proj.title + ' - Custom Accent TV Wall', category: 'living', url: gallery[2] || hero },
+      { id: 5, title: proj.title + ' - Outdoor Balcony & Terrace', category: 'balcony', url: gallery[3] || hero },
+      { id: 6, title: proj.title + ' - Designer Bathroom Fixtures', category: 'bathrooms', url: gallery[0] || hero }
+    ];
   }
 
   setBlockFilter(filter: string) {
@@ -185,6 +251,13 @@ export class ProjectDetails implements OnInit {
     this.activeRoomCategory.set(catId);
     this.modalCurrentPage.set(1);
     this.activeModalPhotoIndex.set(-1);
+  }
+
+  getCategoryPhotoCount(catId: string): number {
+    if (catId === 'all') {
+      return this.modalPhotosList.length;
+    }
+    return this.modalPhotosList.filter(p => p.category === catId).length;
   }
 
   get filteredModalPhotos(): PopupGalleryPhoto[] {
