@@ -1,6 +1,7 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 export interface Milestone {
@@ -50,6 +51,8 @@ export interface LiveSiteProject {
   description: string;
 }
 
+export type ProjectItem = CompletedProject | LiveSiteProject;
+
 @Component({
   selector: 'app-projects-page',
   standalone: true,
@@ -68,11 +71,14 @@ export class ProjectsPage {
   readonly activeModalImageIndex = signal<number>(0);
   readonly activeModalTab = signal<'gallery' | 'materials' | 'milestones'>('gallery');
 
-  constructor(public consultationModalService: ConsultationModalService) {}
+  constructor(
+    private router: Router,
+    public consultationModalService: ConsultationModalService
+  ) {}
 
   readonly completedProjects: CompletedProject[] = [
     {
-      id: 'cp-01',
+      id: 'royale-villa',
       title: 'Royale Villa',
       subtitle: 'Bespoke Contemporary Luxury Residence',
       location: 'Indiranagar, Bangalore',
@@ -94,7 +100,7 @@ export class ProjectsPage {
       description: 'A grand luxury villa featuring floor-to-ceiling glass wardrobes, Italian marble TV console backdrop, acoustic ceilings, and smart mood lighting.'
     },
     {
-      id: 'cp-02',
+      id: 'skyline-residency',
       title: 'Skyline Residency',
       subtitle: 'Panoramic Sky Lounge & High-Gloss Suite',
       location: 'HSR Layout, Bangalore',
@@ -116,7 +122,7 @@ export class ProjectsPage {
       description: 'Panoramic penthouse suite designed with warm veneer wall paneling, floating marble staircase lighting, and weather-proof WPC outdoor balcony decking.'
     },
     {
-      id: 'cp-03',
+      id: 'greenfield-apartments',
       title: 'Greenfield Apartments',
       subtitle: 'Minimalist Scandinavian Luxury Home',
       location: 'Whitefield, Bangalore',
@@ -138,7 +144,7 @@ export class ProjectsPage {
       description: 'Clean minimalist Scandinavian luxury concept with soft beige tones, hidden storage units, sensor LED closets, and high-gloss quartz counters.'
     },
     {
-      id: 'cp-04',
+      id: 'urban-nest',
       title: 'Urban Nest',
       subtitle: 'Bespoke Modern Apartments & Suites',
       location: 'Jayanagar, Bangalore',
@@ -160,7 +166,7 @@ export class ProjectsPage {
       description: 'Contemporary high-rise living space featuring floor-to-ceiling glass paneling and acoustic false ceilings.'
     },
     {
-      id: 'cp-05',
+      id: 'serene-heights',
       title: 'Serene Heights',
       subtitle: 'Ultra-Modern Architectural Residence',
       location: 'Marathahalli, Bangalore',
@@ -182,7 +188,7 @@ export class ProjectsPage {
       description: 'Luxury residential project with terrace garden lounge and Italian travertine marble TV console.'
     },
     {
-      id: 'cp-06',
+      id: 'utkal-royal-tower',
       title: 'Utkal Royal Tower',
       subtitle: 'Luxury High-Rise Residence & Modular Interior',
       location: 'Janpath, Bhubaneswar',
@@ -204,7 +210,7 @@ export class ProjectsPage {
       description: 'A grand 3BHK luxury apartment featuring German soft-close hydraulics, acrylic kitchen cabinetry, and fluted acoustic wall paneling.'
     },
     {
-      id: 'cp-07',
+      id: 'kalinga-grand-residency',
       title: 'Kalinga Grand Residency',
       subtitle: 'Bespoke Executive Suites & Sky Balcony',
       location: 'Jaydev Vihar, Bhubaneswar',
@@ -229,7 +235,7 @@ export class ProjectsPage {
 
   readonly liveSiteProjects: LiveSiteProject[] = [
     {
-      id: 'ls-01',
+      id: 'royale-villa-block-b',
       title: 'Royale Villa - Block B',
       blockName: 'Block B',
       location: 'Indiranagar, Bangalore',
@@ -256,7 +262,7 @@ export class ProjectsPage {
       description: 'Live site currently undergoing modular carcass alignment, soft-close Blum hardware installation, and profile LED routing.'
     },
     {
-      id: 'ls-02',
+      id: 'skyline-residency-block-a',
       title: 'Skyline Residency - Block A',
       blockName: 'Block A',
       location: 'HSR Layout, Bangalore',
@@ -282,7 +288,7 @@ export class ProjectsPage {
       description: 'Concealed copper wiring and plumbing leak test verified by site engineers. Gypsum ceiling framework in progress.'
     },
     {
-      id: 'ls-03',
+      id: 'greenfield-apartments-block-c',
       title: 'Greenfield Apartments - Block C',
       blockName: 'Block C',
       location: 'Whitefield, Bangalore',
@@ -307,7 +313,7 @@ export class ProjectsPage {
       description: 'Initial site preparation stage: wall chipping and electrical conduit marking underway as per approved 2D drawings.'
     },
     {
-      id: 'ls-04',
+      id: 'urban-nest-block-b',
       title: 'Urban Nest - Block B',
       blockName: 'Block B',
       location: 'Jayanagar, Bangalore',
@@ -402,11 +408,14 @@ export class ProjectsPage {
     // Triggers computed re-evaluations automatically
   }
 
-  openProjectModal(proj: CompletedProject | LiveSiteProject, event: Event) {
-    event.preventDefault();
-    this.selectedProjectModal.set(proj);
-    this.activeModalImageIndex.set(0);
-    this.activeModalTab.set('gallery');
+  openProjectModal(proj: CompletedProject | LiveSiteProject, event?: Event) {
+    if (event) event.preventDefault();
+    this.router.navigate(['/projects', proj.id]);
+  }
+
+  openProjectDetails(proj: CompletedProject | LiveSiteProject, event?: Event) {
+    if (event) event.preventDefault();
+    this.router.navigate(['/projects', proj.id]);
   }
 
   closeProjectModal() {
@@ -427,7 +436,58 @@ export class ProjectsPage {
     this.consultationModalService.open();
   }
 
+  onSearchChange(val: string) {
+    this.searchQuery.set(val || '');
+  }
+
+  onCityChange(val: string) {
+    this.selectedCity.set(val || 'all');
+  }
+
+  onApartmentChange(val: string) {
+    this.selectedApartment.set(val || 'all');
+  }
+
+  onStatusChange(val: string) {
+    this.selectedStatus.set(val || 'all');
+  }
+
+  onProjectTypeChange(val: string) {
+    this.selectedProjectType.set(val || 'all');
+  }
+
+  getProgressPercentage(proj: CompletedProject | LiveSiteProject | null): number {
+    if (!proj) return 0;
+    return 'progressPercentage' in proj && proj.progressPercentage ? proj.progressPercentage : 0;
+  }
+
+  getTimelineText(proj: CompletedProject | LiveSiteProject | null): string {
+    if (!proj) return '';
+    if ('expectedHandover' in proj && proj.expectedHandover) {
+      return proj.expectedHandover;
+    }
+    if ('completedDate' in proj && proj.completedDate) {
+      return proj.completedDate;
+    }
+    return '';
+  }
+
+  getMilestones(proj: CompletedProject | LiveSiteProject | null): Milestone[] | undefined {
+    if (!proj) return undefined;
+    return 'milestones' in proj ? proj.milestones : undefined;
+  }
+
+  getMilestoneText(ms: Milestone): string {
+    if (ms.status === 'completed') {
+      return 'Milestone Passed (' + (ms.dateText || '') + ')';
+    }
+    if (ms.status === 'in-progress') {
+      return 'Active Site Execution';
+    }
+    return 'Scheduled Phase';
+  }
+
   isLiveSite(proj: any): proj is LiveSiteProject {
-    return 'progressPercentage' in proj;
+    return proj && typeof proj === 'object' && 'progressPercentage' in proj;
   }
 }
