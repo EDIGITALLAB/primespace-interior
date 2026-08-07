@@ -222,10 +222,10 @@
 
                 <div class="pt-2 mt-2 border-top d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2">
                   <span class="font-size-xs text-muted">Client: <strong class="text-dark">{{ p.clientName }}</strong></span>
-                  <button type="button" class="proj-btn-portfolio w-100 w-sm-auto justify-content-center">
+                  <a [routerLink]="['/projects', p.id]" class="proj-btn-portfolio w-100 w-sm-auto justify-content-center text-decoration-none">
                     <span>View Full Portfolio</span>
                     <i class="fa-solid fa-arrow-right"></i>
-                  </button>
+                  </a>
                 </div>
               </div>
 
@@ -340,11 +340,11 @@
                   @else { Target: <strong class="text-purple">{{ p.expectedHandover }}</strong> }
                 </span>
 
-                <span
-                  class="text-purple font-size-micro fw-bold text-uppercase d-inline-flex align-items-center gap-1.5 proj-explore-arrow">
+                <a [routerLink]="['/projects', p.id]"
+                  class="text-purple font-size-micro fw-bold text-uppercase d-inline-flex align-items-center gap-1.5 proj-explore-arrow text-decoration-none">
                   <span>Explore Specs</span>
                   <i class="fa-solid fa-arrow-right font-size-micro"></i>
-                </span>
+                </a>
               </div>
 
             </div>

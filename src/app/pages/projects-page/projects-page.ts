@@ -1,6 +1,6 @@
 import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 export interface Milestone {
@@ -50,11 +50,19 @@ export class ProjectsPage {
   readonly activeModalImageIndex = signal<number>(0);
   readonly activeModalTab = signal<'gallery' | 'materials' | 'milestones'>('gallery');
 
-  constructor(public consultationModalService: ConsultationModalService) {}
+  constructor(
+    private router: Router,
+    public consultationModalService: ConsultationModalService
+  ) {}
+
+  openProjectModal(proj: ProjectItem, event?: Event) {
+    if (event) event.preventDefault();
+    this.router.navigate(['/projects', proj.id]);
+  }
 
   readonly projects: ProjectItem[] = [
     {
-      id: 'proj-01',
+      id: 'royal-villa-indiranagar',
       title: 'Royal Villa Indiranagar',
       subtitle: 'Bespoke Contemporary Luxury Residence',
       category: '4BHK Villa',
@@ -78,7 +86,7 @@ export class ProjectsPage {
       description: 'A grand 4BHK luxury villa featuring floor-to-ceiling glass wardrobes, Italian marble TV console backdrop, acoustic ceiling moldings, and smart mood lighting.'
     },
     {
-      id: 'proj-04',
+      id: 'emerald-palms-villa-hsr',
       title: 'Emerald Palms Villa HSR',
       subtitle: 'Ultra-Luxury Smart Duplex Transformation',
       category: 'Independent Villa',
@@ -108,7 +116,7 @@ export class ProjectsPage {
       description: 'Currently undergoing final modular assembly and soft-close hardware alignment. Structural civil modifications and tile laser leveling verified.'
     },
     {
-      id: 'proj-02',
+      id: 'skyline-penthouse-patia',
       title: 'Skyline Penthouse Patia',
       subtitle: 'Panoramic Sky Lounge & High-Gloss Suite',
       category: 'Penthouse',
@@ -131,7 +139,7 @@ export class ProjectsPage {
       description: 'Panoramic penthouse suite designed with warm veneer wall paneling, floating marble staircase lighting, and weather-proof WPC outdoor balcony decking.'
     },
     {
-      id: 'proj-05',
+      id: 'grand-residency-janpath',
       title: 'Grand Residency Janpath',
       subtitle: 'Premium High-Rise Corporate & Residence',
       category: 'Luxury Residence',
@@ -161,12 +169,12 @@ export class ProjectsPage {
       description: 'Plumbing conduits and concealed copper electrical rewiring verified by site engineers. Waterproofing leak testing completed.'
     },
     {
-      id: 'proj-03',
+      id: 'modern-duplex-whitefield',
       title: 'Modern Duplex Whitefield',
       subtitle: 'Minimalist Scandinavian Luxury Home',
       category: 'Duplex Home',
       status: 'completed',
-      statusLabel: 'Completed & Handed Over',
+      statusLabel: 'Completed & Delivered',
       completedDate: 'Jan 2026',
       location: 'Prestige Tech Park Road',
       city: 'Bengaluru',
@@ -184,7 +192,7 @@ export class ProjectsPage {
       description: 'Clean minimalist Scandinavian luxury concept with soft beige tones, hidden storage units, sensor LED closets, and high-gloss quartz counters.'
     },
     {
-      id: 'proj-06',
+      id: 'koramangala-heritage-remodel',
       title: 'Koramangala Heritage Remodel',
       subtitle: 'Complete 20-Year Old Property Facelift',
       category: 'Full Renovation',
@@ -238,13 +246,6 @@ export class ProjectsPage {
 
   setViewMode(mode: 'grid' | 'split') {
     this.activeViewMode.set(mode);
-  }
-
-  openProjectModal(proj: ProjectItem, event: Event) {
-    event.preventDefault();
-    this.selectedProjectModal.set(proj);
-    this.activeModalImageIndex.set(0);
-    this.activeModalTab.set('gallery');
   }
 
   closeProjectModal() {

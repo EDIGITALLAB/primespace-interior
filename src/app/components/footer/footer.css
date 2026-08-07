@@ -34,7 +34,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.18;
+  opacity: 0.3;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
@@ -42,7 +42,7 @@
 }
 
 .main-footer:hover .footer-single-home-watermark {
-  opacity: 0.28;
+  opacity: 0.5;
 }
 
 /* Architectural Building Skyline Blueprint Watermark Overlay */
