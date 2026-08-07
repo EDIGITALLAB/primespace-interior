@@ -3,13 +3,30 @@
   background-color: var(--page-top-background) !important;
   overflow: hidden;
   position: relative;
+  width: 100% !important;
+}
+
+.map-contact-section .container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.map-contact-section .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Map Column */
 .map-container-column {
   min-height: 440px;
   position: relative;
-  background-color: #f8f9fa;
+  background-color: #e5e9ec;
+  background-image: radial-gradient(#d1d5db 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 @media (min-width: 992px) {
@@ -23,6 +40,7 @@
   width: 100%;
   height: 100%;
   min-height: 440px;
+  overflow: hidden !important;
 }
 
 /* Floating Studio Switcher Bar over Map */
@@ -62,13 +80,36 @@
   box-shadow: 0 4px 12px rgba(var(--primary-maroon-rgb), 0.3);
 }
 
-/* Clean Natural Map View */
+.switcher-divider {
+  width: 1px;
+  height: 18px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.satellite-tab-btn {
+  background: rgba(var(--primary-maroon-rgb), 0.06);
+  color: var(--primary-maroon);
+}
+
+.satellite-tab-btn:hover {
+  background: rgba(var(--primary-maroon-rgb), 0.14);
+}
+
+.satellite-tab-btn.active {
+  background: var(--primary-maroon) !important;
+  color: var(--white) !important;
+}
+
+/* Clean Natural Map View - Hide Top Header & Bottom-Left Google Controls */
 .google-map-iframe {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: -140px !important;
+  bottom: -80px !important;
+  left: -80px !important;
+  right: -80px !important;
+  width: calc(100% + 160px) !important;
+  height: calc(100% + 220px) !important;
+  max-width: none !important;
   filter: saturate(0.9) contrast(1.02);
 }
 
@@ -88,7 +129,7 @@
 .map-info-card {
   position: absolute;
   bottom: 14px;
-  left: 80px;
+  left: 16px;
   right: auto;
   width: calc(100% - 100px);
   max-width: 420px;
@@ -104,7 +145,74 @@
   transition: all 0.3s ease;
 }
 
+/* Floating Satellite Toggle Tile (Bottom Right) */
+.satellite-toggle-card {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  z-index: 3;
+  cursor: pointer;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+  border: 2px solid #ffffff;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+  background: #ffffff;
+}
+
+.satellite-toggle-card:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
+}
+
+.satellite-preview-box {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=150&q=80');
+}
+
+.satellite-preview-box.is-satellite {
+  background-image: linear-gradient(180deg, rgba(0,0,0,0.2), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?auto=format&fit=crop&w=150&q=80');
+}
+
+.satellite-overlay {
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+}
+
+.satellite-overlay i {
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.satellite-text {
+  font-family: var(--font-headings);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
 @media (max-width: 768px) {
+  .map-wrapper {
+    overflow: hidden !important;
+  }
+
+  .google-map-iframe {
+    width: calc(100% + 160px) !important;
+    height: calc(100% + 220px) !important;
+    top: -140px !important;
+    bottom: -80px !important;
+    left: -80px !important;
+    right: -80px !important;
+    max-width: none !important;
+  }
+
   .map-info-card {
     left: 16px;
     bottom: 12px;
@@ -195,6 +303,7 @@
   font-size: 11px;
   font-weight: 600;
   padding: 5px 12px;
+  gap: 6px !important;
   white-space: nowrap !important;
   flex-shrink: 0;
   transition: all 0.25s ease;
@@ -220,6 +329,7 @@
   font-size: 11px;
   font-weight: 600;
   padding: 5px 12px;
+  gap: 6px !important;
   white-space: nowrap !important;
   flex-shrink: 0;
   text-decoration: none;
@@ -238,6 +348,17 @@
   .map-wrapper {
     min-height: 470px !important;
     height: 470px !important;
+    overflow: hidden !important;
+  }
+
+  .google-map-iframe {
+    width: calc(100% + 160px) !important;
+    height: calc(100% + 220px) !important;
+    top: -140px !important;
+    bottom: -80px !important;
+    left: -80px !important;
+    right: -80px !important;
+    max-width: none !important;
   }
 
   .studio-switcher-bar {
@@ -285,6 +406,29 @@
     font-size: 10px !important;
     padding: 4px 9px !important;
     white-space: nowrap !important;
+  }
+
+  .satellite-toggle-card {
+    top: 54px !important;
+    bottom: auto !important;
+    right: 12px !important;
+    border-radius: 8px !important;
+    border-width: 1.5px !important;
+  }
+
+  .satellite-toggle-card .satellite-preview-box {
+    width: 42px !important;
+    height: 42px !important;
+  }
+
+  .satellite-toggle-card .satellite-overlay i {
+    font-size: 11px !important;
+    margin-bottom: 1px !important;
+  }
+
+  .satellite-toggle-card .satellite-text {
+    font-size: 7.5px !important;
+    letter-spacing: 0.3px !important;
   }
 }
 

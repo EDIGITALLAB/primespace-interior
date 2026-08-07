@@ -10,13 +10,13 @@
           <div class="studio-switcher-bar d-flex gap-2 position-absolute">
             <button *ngFor="let loc of locations" type="button" class="btn studio-tab-btn d-flex align-items-center"
               [class.active]="loc.id === activeLocationId" (click)="selectLocation(loc.id)">
-              <i class="fa-solid fa-building-user me-1.5"></i>
+              <i class="fa-solid fa-building-user me-2"></i>
               <span>{{ loc.city }} Studio</span>
             </button>
           </div>
 
           <iframe [src]="activeLocation.safeMapUrl" width="100%" height="100%" style="border:0;" allowfullscreen=""
-            loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="google-map-iframe">
+            loading="eager" referrerpolicy="no-referrer-when-downgrade" class="google-map-iframe">
           </iframe>
           <div class="map-overlay-vignette"></div>
 
@@ -24,7 +24,7 @@
           <div class="map-info-card glass-card">
             <div class="d-flex justify-content-between align-items-center mb-1">
               <div class="card-header-badge d-flex align-items-center">
-                <i class="fa-solid fa-location-dot me-1 text-purple"></i>
+                <i class="fa-solid fa-location-dot me-2 text-purple"></i>
                 <span>EXPERIENCE CENTER</span>
                 <span class="live-status-pill ms-2 d-none d-sm-inline-flex align-items-center">
                   <span class="pulse-ring"></span>
@@ -38,25 +38,37 @@
 
             <div
               class="studio-meta d-flex flex-column flex-sm-row justify-content-between align-items-sm-center pt-2 border-top border-secondary-subtle gap-1 mb-2">
-              <span class="meta-item"><i class="fa-regular fa-clock me-1 text-purple"></i> {{ activeLocation.hours
+              <span class="meta-item"><i class="fa-regular fa-clock me-2 text-purple"></i> {{ activeLocation.hours
                 }}</span>
-              <span class="meta-item"><i class="fa-solid fa-phone me-1 text-purple"></i> {{ activeLocation.phone
+              <span class="meta-item"><i class="fa-solid fa-phone me-2 text-purple"></i> {{ activeLocation.phone
                 }}</span>
             </div>
 
             <!-- Card Action Footer Buttons -->
             <div
               class="card-actions-row d-flex justify-content-between align-items-center pt-2 border-top border-secondary-subtle gap-2">
-              <button type="button" class="btn btn-gallery-preview d-flex align-items-center"
+              <button type="button" class="btn btn-gallery-preview d-flex align-items-center gap-2"
                 (click)="openStudioGallery()">
-                <i class="fa-solid fa-camera-retro me-1.5 text-purple"></i>
+                <i class="fa-solid fa-camera-retro me-2 text-purple"></i>
                 <span>View Photos ({{ galleryPhotos.length }})</span>
               </button>
               <a [href]="activeLocation.directionsUrl" target="_blank" rel="noopener noreferrer"
-                class="btn btn-directions-sm d-flex align-items-center gap-1.5">
+                class="btn btn-directions-sm d-flex align-items-center gap-2">
                 <span>Directions</span>
-                <i class="fa-solid fa-arrow-up-right-from-square font-size-micro"></i>
+                <i class="fa-solid fa-arrow-up-right-from-square font-size-micro ms-2"></i>
               </a>
+            </div>
+          </div>
+
+          <!-- Floating Dedicated Satellite Toggle Tile on Right Side (Bottom Right) -->
+          <div class="satellite-toggle-card position-absolute" (click)="toggleMapType()" role="button" tabindex="0"
+            [title]="currentMapType === 'satellite' ? 'Switch to Map View' : 'Switch to Satellite View'">
+            <div class="satellite-preview-box d-flex align-items-center justify-content-center"
+              [class.is-satellite]="currentMapType === 'satellite'">
+              <div class="satellite-overlay d-flex flex-column align-items-center justify-content-center">
+                <i class="fa-solid" [ngClass]="currentMapType === 'satellite' ? 'fa-map' : 'fa-earth-americas'"></i>
+                <span class="satellite-text">{{ currentMapType === 'satellite' ? 'Map' : 'Satellite' }}</span>
+              </div>
             </div>
           </div>
 

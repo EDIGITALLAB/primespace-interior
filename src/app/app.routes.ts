@@ -5,11 +5,15 @@ import { CategoriesPage } from './pages/categories-page/categories-page';
 import { ContactPage } from './pages/contact-page/contact-page';
 import { LocationsPage } from './pages/locations-page/locations-page';
 import { ProjectsPage } from './pages/projects-page/projects-page';
+import { ProjectDetails } from './pages/project-details/project-details';
 
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'categories', component: CategoriesPage },
   { path: 'projects', component: ProjectsPage },
+  { path: 'projects/:id', component: ProjectDetails },
+  { path: 'project-details', component: ProjectDetails },
+  { path: 'project-details/:id', component: ProjectDetails },
   { path: 'contact', component: ContactPage },
   { path: 'locations', component: LocationsPage },
   { path: 'locations/:city', component: LocationsPage },

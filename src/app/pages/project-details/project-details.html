@@ -1,0 +1,363 @@
+<div class="project-details-page bg-light-neutral min-vh-100" *ngIf="project() as p">
+  <div class="container-fluid max-w-1300 px-3 px-md-4">
+
+    <!-- BREADCRUMB NAVIGATION -->
+    <nav aria-label="breadcrumb" class="mb-3 mb-md-4">
+      <ol class="breadcrumb proj-breadcrumb m-0">
+        <li class="breadcrumb-item"><a routerLink="/" class="text-muted text-decoration-none">Home</a></li>
+        <li class="breadcrumb-item"><a routerLink="/projects" class="text-muted text-decoration-none">Projects</a></li>
+        <li class="breadcrumb-item active text-purple fw-bold" aria-current="page">{{ p.title }}</li>
+      </ol>
+    </nav>
+
+    <!-- MAIN HERO PRODUCT / CASE STUDY SECTION -->
+    <div class="row gy-4 align-items-center mb-4 mb-md-5">
+
+          <!-- LEFT COLUMN: WIDER HERO IMAGE SHOWCASE (col-lg-6) -->
+          <div class="col-lg-6 col-xl-6">
+            <div class="hero-image-stage position-relative rounded-4 overflow-hidden shadow-sm">
+              <img [src]="p.gallery[activeImageIndex()] || p.heroImage" [alt]="p.title" class="main-stage-img w-100 object-fit-cover">
+
+              <!-- Top-Right Status Pill Badge -->
+              <div class="stage-status-badge position-absolute top-0 end-0 m-3 z-2">
+                <span class="badge rounded-pill px-2.5 py-1.5 fw-bold text-uppercase d-inline-flex align-items-center gap-2 shadow-sm bg-purple text-white border border-white-20">
+                  <i class="fa-solid" [ngClass]="p.status === 'completed' ? 'fa-circle-check' : 'fa-bolt'"></i>
+                  <span>{{ p.statusLabel }}</span>
+                </span>
+              </div>
+
+              <!-- Bottom-Left Watermark Card Overlay -->
+              <div class="stage-watermark position-absolute bottom-0 start-0 p-3 p-md-4 z-2 text-white">
+                <h3 class="watermark-title text-uppercase fw-black m-0 font-size-md font-size-md-lg letter-spacing-1">{{ p.title }}</h3>
+                <span class="watermark-sub font-size-micro text-uppercase opacity-90 letter-spacing-2 font-headings">{{ p.location }}</span>
+              </div>
+              <div class="stage-vignette-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN: CLEAN SUMMARY & HORIZONTAL METRICS STRIP (col-lg-6) -->
+          <div class="col-lg-6 col-xl-6">
+            <div class="project-details-summary ps-lg-4">
+
+              <!-- Location Tag -->
+              <div class="location-header d-flex align-items-center text-purple font-size-xs fw-extrabold text-uppercase letter-spacing-1 mb-2">
+                <i class="fa-solid fa-location-dot me-2 font-size-sm text-purple"></i>
+                <span class="text-purple">{{ p.location }}</span>
+              </div>
+
+              <!-- Main Title & Subtitle -->
+              <h1 class="project-main-title fw-black text-dark font-size-2xl font-size-md-3xl mb-1.5 letter-spacing-tight">{{ p.title }}</h1>
+              <h4 class="project-subtitle text-purple fw-bold font-size-md font-size-md-lg mb-3">{{ p.subtitle }}</h4>
+
+              <!-- Description -->
+              <p class="project-desc text-muted leading-relaxed font-size-sm mb-4 max-w-700">
+                {{ p.description }}
+              </p>
+
+
+
+              <!-- ACTION BUTTONS ROW WITH THEME MAROON CTA -->
+              <div class="action-buttons-row d-flex flex-column flex-sm-row gap-3 pt-2">
+                <button type="button" class="btn btn-purple rounded-pill px-4 py-3 font-size-xs fw-extrabold text-uppercase shadow-md d-flex align-items-center justify-content-center gap-2 flex-grow-1"
+                  (click)="openConsultation($event)">
+                  <i class="fa-solid fa-calendar-days me-1"></i>
+                  <span>Book Site Visit Appointment</span>
+                  <i class="fa-solid fa-arrow-right font-size-micro ms-1"></i>
+                </button>
+              </div>
+
+            </div>
+          </div>
+    <!-- CLEAN PROJECT GALLERY SECTION -->
+    <div class="project-gallery-section pt-4 pt-md-5 mt-4 border-top border-secondary-subtle">
+      
+      <!-- Minimal Gallery Header & Filter Tabs -->
+      <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between mb-4 gap-3">
+        <div class="d-flex align-items-center gap-2">
+          <i class="fa-solid fa-layer-group text-purple font-size-md"></i>
+          <div>
+            <h5 class="gallery-main-title fw-black text-purple text-uppercase letter-spacing-1 m-0">Project Gallery</h5>
+            <span class="text-muted font-size-micro fw-bold">Explore residences across all blocks</span>
+          </div>
+        </div>
+
+        <!-- Clean Filter Tabs -->
+        <div class="minimal-filter-tabs d-inline-flex align-items-center bg-white rounded-pill border border-purple-subtle shadow-sm">
+          <button type="button" 
+            class="btn minimal-tab-btn rounded-pill transition-all"
+            [class.active]="activeBlockFilter() === 'all'"
+            (click)="setBlockFilter('all')">
+            All Homes
+          </button>
+
+          <button type="button" 
+            class="btn minimal-tab-btn rounded-pill transition-all"
+            [class.active]="activeBlockFilter() === 'block-a'"
+            (click)="setBlockFilter('block-a')">
+            Block A
+          </button>
+
+          <button type="button" 
+            class="btn minimal-tab-btn rounded-pill transition-all"
+            [class.active]="activeBlockFilter() === 'block-b'"
+            (click)="setBlockFilter('block-b')">
+            Block B
+          </button>
+
+          <button type="button" 
+            class="btn minimal-tab-btn rounded-pill transition-all"
+            [class.active]="activeBlockFilter() === 'block-c'"
+            (click)="setBlockFilter('block-c')">
+            Block C
+          </button>
+        </div>
+      </div>
+
+      <!-- Minimal Block Cards Grid -->
+      <div class="row g-4">
+        <div *ngFor="let block of filteredBlocks" class="col-12 col-md-6 col-lg-4">
+          <div class="minimal-gallery-card bg-white rounded-4 border p-3 p-md-3.5 h-100">
+            
+            <!-- Card Header: Title + Subtitle -->
+            <div class="d-flex align-items-center justify-content-between mb-3">
+              <div>
+                <h6 class="fw-black text-purple text-uppercase m-0 font-size-base letter-spacing-05">{{ block.name }}</h6>
+                <span class="text-muted font-size-micro fw-bold d-block mt-0.5">{{ block.homeCount }} Homes</span>
+              </div>
+              <span class="badge rounded-pill bg-purple-tint text-purple border border-purple-subtle font-size-micro px-2.5 py-1 text-uppercase fw-extrabold">{{ block.tag }}</span>
+            </div>
+
+            <!-- Main Showcase Image (Opens Residence Gallery Popup Modal) -->
+            <div class="minimal-img-stage position-relative rounded-3 overflow-hidden mb-2.5 cursor-pointer" (click)="openBlockGalleryModal(block)">
+              <img [src]="block.mainImages[block.selectedImageIndex]" [alt]="block.name" (error)="onImgError($event)" class="w-100 object-fit-cover minimal-stage-img">
+            </div>
+
+            <!-- 3 Thumbnail Images -->
+            <div class="row g-2">
+              <div *ngFor="let thumb of block.mainImages.slice(1, 4); let i = index" class="col-4">
+                <div class="minimal-thumb-box rounded-2 overflow-hidden position-relative" 
+                  [class.active-thumb]="block.selectedImageIndex === (i + 1)"
+                  (click)="i === 2 ? openBlockGalleryModal(block) : setBlockMainImage(block.id, i + 1)">
+                  
+                  <img [src]="thumb" [alt]="'Room thumbnail ' + (i + 1)" (error)="onImgError($event)" class="w-100 object-fit-cover minimal-thumb-img">
+                  
+                  <!-- OVERLAY FOR THE 3RD (RIGHT-MOST) THUMBNAIL -->
+                  <div *ngIf="i === 2" class="view-more-thumb-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white cursor-pointer z-2">
+                    <span class="fw-black font-size-xs line-height-1 mb-0.5">+{{ modalPhotosList.length - 3 }}</span>
+                    <span class="font-size-micro text-uppercase fw-extrabold letter-spacing-05">View More</span>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- INTERACTIVE RESIDENCE GALLERY POPUP MODAL (LIGHT THEME MATCHING BRAND DESIGN) -->
+  <div class="popup-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-9999 d-flex align-items-center justify-content-center p-2 p-md-4 bg-dark-90" *ngIf="showGalleryModal()">
+    <div class="popup-modal-container bg-white rounded-4 border border-gray-200 text-dark w-100 max-w-1250 shadow-2xl overflow-hidden d-flex flex-column">
+      
+      <!-- Top Modal Header Strip -->
+      <div class="modal-top-header d-flex flex-wrap align-items-center justify-content-between p-3 px-md-4 border-bottom border-gray-200 gap-3">
+        <!-- Left: Icon + Block & Room Info -->
+        <div class="d-flex align-items-center gap-3">
+          <div class="block-head-icon rounded-3 bg-purple-tint text-purple d-flex align-items-center justify-content-center">
+            <i class="fa-solid fa-building-user font-size-md"></i>
+          </div>
+          <div>
+            <h6 class="m-0 fw-black text-dark font-size-base letter-spacing-tight">{{ selectedModalBlock()?.name || 'Block A' }} – Home 12</h6>
+            <span class="text-muted font-size-micro fw-bold">3 BHK Apartment</span>
+          </div>
+        </div>
+
+        <!-- Middle: Photos & Rooms Counters -->
+        <div class="d-none d-lg-flex align-items-center gap-4 border-start border-end border-gray-200 px-4">
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-regular fa-images text-purple font-size-md"></i>
+            <div>
+              <span class="d-block font-size-xs fw-black leading-tight text-dark">{{ modalPhotosList.length }}</span>
+              <span class="font-size-micro text-muted">Photos</span>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <i class="fa-solid fa-door-open text-purple font-size-md"></i>
+            <div>
+              <span class="d-block font-size-xs fw-black leading-tight text-dark">{{ roomCategories.length - 1 }}</span>
+              <span class="font-size-micro text-muted">Rooms</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Action Controls -->
+        <div class="d-flex align-items-center gap-2">
+          <!-- Slideshow Button -->
+          <button type="button" 
+            class="btn btn-outline-light-custom rounded-pill px-3 py-1.5 font-size-xs fw-bold d-inline-flex align-items-center gap-2"
+            [class.active-btn]="isSlideshowPlaying()"
+            (click)="toggleSlideshow()">
+            <i class="fa-solid" [ngClass]="isSlideshowPlaying() ? 'fa-pause' : 'fa-circle-play'"></i>
+            <span>{{ isSlideshowPlaying() ? 'Pause' : 'Slideshow' }}</span>
+          </button>
+
+          <!-- Download All Button -->
+          <button type="button" class="btn btn-purple-cta rounded-pill px-3 py-1.5 font-size-xs fw-extrabold d-inline-flex align-items-center gap-2" (click)="downloadAllPhotos()">
+            <i class="fa-solid fa-download"></i>
+            <span>Download All</span>
+          </button>
+
+          <!-- Close Modal X Button -->
+          <button type="button" class="btn-close-dark rounded-circle ms-2" (click)="closeBlockGalleryModal()">
+            <i class="fa-solid fa-xmark font-size-md"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Main Body: Left Category Sidebar + Right Photo Grid -->
+      <div class="modal-main-body d-flex flex-column flex-md-row flex-grow-1 overflow-hidden">
+        
+        <!-- Left Sidebar: Room Categories Filter -->
+        <div class="popup-sidebar border-end border-gray-200 p-3 overflow-y-auto">
+          <div class="d-flex flex-column gap-2.5">
+            <button type="button" 
+              *ngFor="let cat of roomCategories"
+              class="sidebar-cat-btn text-start d-flex align-items-center justify-content-between transition-all"
+              [class.active-cat]="activeRoomCategory() === cat.id"
+              (click)="setRoomCategory(cat.id)">
+              <div class="d-flex align-items-center min-w-0 me-2 overflow-hidden">
+                <i [class]="cat.iconClass" class="cat-icon"></i>
+                <span class="sidebar-cat-name text-truncate">{{ cat.name }}</span>
+              </div>
+              <span class="cat-count-badge badge rounded-pill">{{ cat.count }}</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Main Panel: Photo Showcase Grid & Inline Expanded Preview -->
+        <div class="popup-grid-panel flex-grow-1 px-3 px-md-4 pt-2.5 pt-md-3 pb-3 overflow-y-auto position-relative">
+          
+          <!-- GRID VIEW (shown when activeModalPhotoIndex() === -1) -->
+          <div *ngIf="activeModalPhotoIndex() === -1" class="h-100 d-flex flex-column justify-content-between animate-fade-in">
+            <div>
+              <!-- Grid Header Row -->
+              <div class="d-flex align-items-center justify-content-between mb-3.5 pb-3 border-bottom border-gray-200">
+                <h6 class="m-0 fw-black text-dark font-size-base">
+                  All Photos <span class="text-muted font-size-xs">({{ activeCategoryPhotoCount }})</span>
+                </h6>
+                
+                <!-- Sort Dropdown -->
+                <div class="d-flex align-items-center gap-2">
+                  <span class="font-size-micro text-muted fw-bold">Sort by:</span>
+                  <select class="sort-select rounded-3 px-3 py-1 font-size-micro fw-bold">
+                    <option value="latest">Latest</option>
+                    <option value="popular">Most Popular</option>
+                    <option value="room">Room Order</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Top Row: 3 Large Featured Photo Cards -->
+              <div class="row g-3 mb-3">
+                <div *ngFor="let photo of filteredModalPhotos.slice(0, 3); let i = index" class="col-12 col-md-4">
+                  <div class="photo-card-featured position-relative rounded-3 overflow-hidden group-hover cursor-pointer" (click)="openModalPhotoPreview(i)">
+                    <img [src]="photo.url" [alt]="photo.title" (error)="onImgError($event)" class="w-100 object-fit-cover featured-img">
+                    <!-- Expand Icon Badge -->
+                    <div class="zoom-badge-icon position-absolute top-0 end-0 m-2 rounded-circle p-1.5">
+                      <i class="fa-solid fa-expand font-size-xs"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Remaining Photos Showcase Grid -->
+              <div class="row g-3">
+                <div *ngFor="let photo of filteredModalPhotos.slice(3); let i = index" class="col-6 col-md-3">
+                  <div class="photo-card-medium position-relative rounded-3 overflow-hidden cursor-pointer" (click)="openModalPhotoPreview(i + 3)">
+                    <img [src]="photo.url" [alt]="photo.title" (error)="onImgError($event)" class="w-100 object-fit-cover medium-img">
+                    <!-- Expand Icon Badge -->
+                    <div class="zoom-badge-icon position-absolute top-0 end-0 m-2 rounded-circle p-1.5">
+                      <i class="fa-solid fa-expand font-size-xs"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- INLINE EXPANDED PHOTO PREVIEW VIEW (Occupies the exact grid space inside popup) -->
+          <div *ngIf="activeModalPhotoIndex() !== -1 && currentModalPhoto as photo" class="popup-inline-preview-stage h-100 d-flex flex-column justify-content-between animate-zoom-in">
+            
+            <!-- Top Control Bar inside Preview -->
+            <div class="d-flex align-items-center justify-content-between mb-3 pb-2.5 border-bottom border-gray-200 gap-2">
+              <button type="button" class="btn btn-outline-purple-sm rounded-pill px-3 py-1 font-size-xs fw-bold d-inline-flex align-items-center gap-2" (click)="closeModalPhotoPreview()">
+                <i class="fa-solid fa-arrow-left font-size-xs"></i>
+                <span>Back to All Photos</span>
+              </button>
+
+              <div class="text-center px-2 min-w-0 flex-grow-1">
+                <h6 class="m-0 fw-black text-dark font-size-sm text-truncate">{{ photo.title }}</h6>
+              </div>
+
+              <span class="badge rounded-pill bg-purple-tint text-purple fw-extrabold px-3 py-1.5 font-size-xs flex-shrink-0">
+                {{ activeModalPhotoIndex() + 1 }} / {{ filteredModalPhotos.length }}
+              </span>
+            </div>
+
+            <!-- Main Expanded Image Stage -->
+            <div class="preview-main-stage position-relative flex-grow-1 rounded-4 overflow-hidden bg-dark-soft d-flex align-items-center justify-content-center p-2.5 mb-2.5">
+              
+              <img [src]="photo.url" [alt]="photo.title" (error)="onImgError($event)" class="expanded-preview-img object-fit-contain rounded-3 shadow-2xl">
+
+              <!-- Prev Arrow Button -->
+              <button type="button" class="inline-nav-btn nav-prev position-absolute top-50 start-0 translate-middle-y ms-3 rounded-circle border-0 p-3 d-flex align-items-center justify-content-center shadow-lg" (click)="prevModalPhoto()">
+                <i class="fa-solid fa-chevron-left font-size-sm"></i>
+              </button>
+
+              <!-- Next Arrow Button -->
+              <button type="button" class="inline-nav-btn nav-next position-absolute top-50 end-0 translate-middle-y me-3 rounded-circle border-0 p-3 d-flex align-items-center justify-content-center shadow-lg" (click)="nextModalPhoto()">
+                <i class="fa-solid fa-chevron-right font-size-sm"></i>
+              </button>
+            </div>
+
+            <!-- Bottom Horizontal Thumbnails Navigation Bar -->
+            <div class="preview-thumbs-strip d-flex align-items-center gap-2 overflow-x-auto py-1 px-1 rounded-3 bg-light-neutral">
+              <div *ngFor="let item of filteredModalPhotos; let i = index" 
+                class="inline-thumb-item rounded-3 overflow-hidden cursor-pointer flex-shrink-0 transition-all"
+                [class.active-inline-thumb]="i === activeModalPhotoIndex()"
+                (click)="openModalPhotoPreview(i)">
+                <img [src]="item.url" [alt]="item.title" (error)="onImgError($event)" class="w-100 h-100 object-fit-cover">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FULLSCREEN LIGHTBOX MODAL -->
+  <div class="lightbox-overlay position-fixed top-0 start-0 w-100 h-100 z-9999 d-flex align-items-center justify-content-center bg-dark-85 p-3" *ngIf="showLightbox()">
+    <div class="lightbox-content position-relative max-w-900 w-100">
+      <button type="button" class="btn-close-lightbox position-absolute top-0 end-0 m-3 rounded-circle border-0 text-white bg-dark-50 p-2 z-10" (click)="closeLightbox()">
+        <i class="fa-solid fa-xmark font-size-lg"></i>
+      </button>
+
+      <img [src]="p.gallery[activeImageIndex()] || p.heroImage" [alt]="p.title" class="w-100 rounded-4 max-h-80vh object-fit-contain shadow-2xl">
+
+      <!-- Navigation Arrows -->
+      <button type="button" class="lightbox-arrow nav-prev position-absolute top-50 start-0 translate-middle-y ms-2 rounded-circle border-0 text-white bg-dark-50 p-3" (click)="prevImage()">
+        <i class="fa-solid fa-chevron-left"></i>
+      </button>
+      <button type="button" class="lightbox-arrow nav-next position-absolute top-50 end-0 translate-middle-y me-2 rounded-circle border-0 text-white bg-dark-50 p-3" (click)="nextImage()">
+        <i class="fa-solid fa-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
