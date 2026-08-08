@@ -64,7 +64,7 @@ export class ProjectsDataService {
       reviewQuote: 'Flawless execution! Delivered ahead of schedule with premium Italian finishes.',
       materialsUsed: ['Italian Botticino Marble', 'Marine Plywood Grade 710', 'Blum Soft-Close Hydraulics', 'Royal Touch Natural Veneer'],
       scopeOfWork: ['Turnkey Villa Architecture', 'Italian Marble TV Backdrop', 'German Modular Kitchen', 'Walk-in Closets', 'Cove LED Profiles'],
-      description: 'A grand 4BHK luxury villa featuring floor-to-ceiling glass wardrobes, Italian marble TV console backdrop, acoustic ceiling moldings, German modular joinery, and smart mood lighting.'
+      description: 'A grand 4BHK luxury villa featuring floor-to-ceiling glass wardrobes, Italian marble TV console backdrop, acoustic ceiling moldings, and smart mood lighting.'
     },
     {
       id: 'skyline-residency',
