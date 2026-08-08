@@ -13,7 +13,7 @@
           <h1 class="hero-title text-uppercase mb-3">Explore Design Categories</h1>
           <p class="hero-subtitle mb-4">
             Discover bespoke modular kitchens, serene bedroom sanctuaries, and luxury living setups engineered with
-            German hardware and 10-year warranty.
+            premium hardware and 10-year warranty.
           </p>
 
           <!-- Interactive Search Bar -->
@@ -51,15 +51,12 @@
     <div class="container">
 
       <!-- Controls & Ticker Bar -->
-      <div
-        class="controls-bar d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4 border-bottom pb-3">
-        <div class="d-flex align-items-center justify-content-between gap-2 w-100 min-w-0">
-          <div class="d-flex align-items-center gap-2 min-w-0 flex-shrink-1 overflow-hidden">
-            <span class="grid-counter-badge rounded-pill px-3 py-1.5 text-uppercase fw-bold text-nowrap flex-shrink-0">
-              Showing {{ filteredCategories().length }} {{ filteredCategories().length === 1 ? 'Space' : 'Spaces' }}
-            </span>
-            <span *ngIf="searchQuery()" class="text-muted small text-truncate d-inline-block">for "{{ searchQuery() }}"</span>
-          </div>
+      <div class="controls-bar d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 border-bottom pb-3">
+        <div class="d-flex align-items-center gap-2 min-w-0 flex-wrap">
+          <span class="grid-counter-badge rounded-pill px-3 py-1.5 text-uppercase fw-bold text-nowrap flex-shrink-0">
+            Showing {{ filteredCategories().length }} {{ filteredCategories().length === 1 ? 'Space' : 'Spaces' }}
+          </span>
+          <span *ngIf="searchQuery()" class="text-muted small text-truncate d-inline-block">for "{{ searchQuery() }}"</span>
 
           <!-- Reset Button -->
           <button
@@ -71,7 +68,7 @@
         </div>
 
         <!-- Budget & Sort Selectors -->
-        <div class="d-flex flex-wrap align-items-center gap-2">
+        <div class="d-flex align-items-center gap-2 flex-wrap">
           <!-- Budget Selector -->
           <select class="form-select form-select-sm rounded-pill border shadow-none text-dark fw-bold w-auto"
             [ngModel]="budgetFilter()" (ngModelChange)="budgetFilter.set($event)">
@@ -205,7 +202,7 @@
           <span class="section-subtitle text-uppercase text-purple mb-2 fw-bold d-block">Craftsmanship Standards</span>
           <h2 class="section-title text-dark text-uppercase m-0 fw-black">Premium Material & Hardware Guarantee</h2>
           <p class="text-muted mt-2">Every PrimeSpace interior is crafted using 100% moisture-resistant HDMR core,
-            German soft-close fittings, and scratch-proof acrylic finishes.</p>
+            premium soft-close fittings, and scratch-proof acrylic finishes.</p>
         </div>
       </div>
 
@@ -231,14 +228,16 @@
             class="material-detail-card bg-white rounded-4 p-3 p-md-5 shadow-sm border animate-fade-in">
             <div class="row align-items-stretch gy-3 gy-md-4">
               <div class="col-md-7">
-                <span class="badge bg-purple-light text-purple text-uppercase rounded-pill px-2.5 px-md-3 py-1 mb-2 fw-bold material-badge">{{
+                <span
+                  class="badge bg-purple-light text-purple text-uppercase rounded-pill px-2.5 px-md-3 py-1 mb-2 fw-bold material-badge">{{
                   m.subtitle }}</span>
                 <h3 class="fw-extrabold text-dark mb-2 mb-md-3 material-title">{{ m.title }}</h3>
                 <p class="text-muted mb-3 mb-md-4 line-height-relaxed material-desc">{{ m.desc }}</p>
 
                 <div class="row g-2 g-md-3">
                   <div *ngFor="let h of m.highlights" class="col-6 col-sm-6">
-                    <div class="material-highlight-item d-flex align-items-center p-2 p-md-2.5 rounded-3 bg-light border">
+                    <div
+                      class="material-highlight-item d-flex align-items-center p-2 p-md-2.5 rounded-3 bg-light border">
                       <div
                         class="icon-circle me-2 me-md-3 bg-purple text-white rounded-circle d-flex align-items-center justify-content-center">
                         <i class="fa-solid fa-check"></i>
@@ -250,10 +249,12 @@
 
               </div>
               <div class="col-md-5 text-center d-flex flex-column">
-                <div class="material-guarantee-badge h-100 p-3 p-md-5 rounded-4 text-white shadow-lg d-flex flex-column justify-content-center align-items-center">
+                <div
+                  class="material-guarantee-badge h-100 p-3 p-md-5 rounded-4 text-white shadow-lg d-flex flex-column justify-content-center align-items-center">
                   <i class="fa-solid fa-shield-halved text-white mb-2 mb-md-3 guarantee-icon"></i>
                   <h4 class="fw-bold mb-1 mb-md-2 text-uppercase text-white guarantee-title">10-YEAR WARRANTY</h4>
-                  <p class="small text-white opacity-90 mb-0 guarantee-desc">On all factory-made modular cabinets, hardware, and structural
+                  <p class="small text-white opacity-90 mb-0 guarantee-desc">On all factory-made modular cabinets,
+                    hardware, and structural
                     hinges.</p>
                 </div>
               </div>
@@ -285,9 +286,12 @@
     <div class="container position-relative z-2">
       <div class="row align-items-center justify-content-between gy-3 gy-md-4">
         <div class="col-lg-8">
-          <span class="badge bg-white text-purple text-uppercase rounded-pill px-2.5 px-md-3 py-1 mb-2 fw-bold cta-badge">Free Design Service</span>
+          <span
+            class="badge bg-white text-purple text-uppercase rounded-pill px-2.5 px-md-3 py-1 mb-2 fw-bold cta-badge">Free
+            Design Service</span>
           <h2 class="text-white text-uppercase fw-black mb-2 cta-title">Ready To Transform Your Home Space?</h2>
-          <p class="text-white-80 mb-0 cta-desc">Get a 3D floor plan layout, material samples, and an exact cost quote from our senior interior architects.</p>
+          <p class="text-white-80 mb-0 cta-desc">Get a 3D floor plan layout, material samples, and an exact cost quote
+            from our senior interior architects.</p>
         </div>
         <div class="col-lg-4 text-lg-end">
           <button (click)="openConsultation($event)"
@@ -312,7 +316,8 @@
       <div
         class="modal-header-custom p-4 bg-purple-dark text-white d-flex align-items-center justify-content-between position-relative">
         <div>
-          <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-1 fw-bold">Space Specifications</span>
+          <span class="badge bg-white text-purple text-uppercase rounded-pill px-3 py-1 mb-1 fw-bold">Space
+            Specifications</span>
           <h3 class="text-white text-uppercase m-0 fw-black">{{ selectedCategoryModal()?.name }}</h3>
         </div>
         <button class="btn btn-close-modal text-white border-0 bg-transparent" (click)="closeQuickView()">

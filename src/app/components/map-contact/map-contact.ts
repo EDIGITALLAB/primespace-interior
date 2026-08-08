@@ -66,7 +66,7 @@ export class MapContact implements OnInit {
       imageUrl: '/living_cat.png'
     },
     {
-      title: 'German Modular Kitchen Unit',
+      title: 'Bespoke Modular Kitchen Unit',
       subtitle: 'Soft-close acrylic cabinetry with quartz countertops and built-in appliances.',
       imageUrl: '/kitchen_cat.png'
     },

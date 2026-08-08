@@ -8,20 +8,14 @@
     </button>
 
     <!-- Header Block -->
-    <div class="consultation-header-block mb-4 text-center">
-      <span class="consultation-badge mb-2 d-inline-flex align-items-center gap-1.5">
-        <i class="fa-solid fa-compass-drafting text-purple"></i> START YOUR TRANSFORMATION
-      </span>
-      <h3 class="consultation-title fw-black mb-1.5">
-        Let’s Build Your <span class="text-purple">Dream Space</span>
+    <div class="consultation-header-block mb-3 text-center">
+      <h3 class="consultation-title fw-black m-0 text-uppercase">
+        Book Free Consultation
       </h3>
-      <p class="consultation-subtitle font-size-xs mb-0">
-        Have a project in mind? Fill out the form below and our lead architect will reach out within 24 hours.
-      </p>
     </div>
 
     <!-- Form -->
-    <form class="consultation-modal-form" (submit)="onModalFormSubmit($event, modalName.value, modalEmail.value, modalPhone.value, modalService.value, modalMsg.value)">
+    <form class="consultation-modal-form" (submit)="onModalFormSubmit($event, modalName.value, modalEmail.value, modalPhone.value, modalCity.value)">
 
       <!-- Full Name -->
       <div class="form-group mb-3">
@@ -32,66 +26,44 @@
         </div>
       </div>
 
-      <div class="row g-3 mb-3">
-        <!-- Email -->
-        <div class="col-md-6 form-group">
-          <label for="modalEmailAddr" class="form-label font-size-xs fw-extrabold text-uppercase">Email Address</label>
-          <div class="input-icon-wrapper">
-            <i class="fa-regular fa-envelope field-icon text-purple"></i>
-            <input type="email" id="modalEmailAddr" placeholder="Enter your email" class="form-control modal-input with-icon" required #modalEmail>
-          </div>
-        </div>
-
-        <!-- Phone -->
-        <div class="col-md-6 form-group">
-          <label for="modalPhoneNum" class="form-label font-size-xs fw-extrabold text-uppercase">Phone Number</label>
-          <div class="input-icon-wrapper">
-            <i class="fa-solid fa-phone field-icon text-purple"></i>
-            <input type="tel" id="modalPhoneNum" placeholder="Enter your phone number" class="form-control modal-input with-icon" required #modalPhone>
-          </div>
+      <!-- Email -->
+      <div class="form-group mb-3">
+        <label for="modalEmailAddr" class="form-label font-size-xs fw-extrabold text-uppercase">Email Address</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-regular fa-envelope field-icon text-purple"></i>
+          <input type="email" id="modalEmailAddr" placeholder="Enter your email address" class="form-control modal-input with-icon" required #modalEmail>
         </div>
       </div>
 
-      <!-- Service -->
+      <!-- Phone -->
       <div class="form-group mb-3">
-        <label for="modalServiceType" class="form-label font-size-xs fw-extrabold text-uppercase">What service are you looking for?</label>
+        <label for="modalPhoneNum" class="form-label font-size-xs fw-extrabold text-uppercase">Phone Number</label>
         <div class="input-icon-wrapper">
-          <i class="fa-solid fa-compass field-icon text-purple"></i>
-          <select id="modalServiceType" class="form-select modal-input with-icon" required #modalService>
-            <option value="" disabled selected>Select a Service</option>
-            <option value="Modular Kitchen">Modular Kitchen</option>
-            <option value="Bespoke Bedroom">Bespoke Bedroom Design</option>
-            <option value="Luxury Living Area">Luxury Living Area</option>
-            <option value="Refined Dining Room">Refined Dining Room</option>
-            <option value="Kids Bedroom">Kids Bedroom</option>
-            <option value="Bespoke Decorative Unit">Decorative Unit</option>
-            <option value="Full Home Interior">Full Home Interior</option>
+          <i class="fa-solid fa-phone field-icon text-purple"></i>
+          <input type="tel" id="modalPhoneNum" placeholder="Enter your 10-digit phone number" class="form-control modal-input with-icon" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" required #modalPhone>
+        </div>
+      </div>
+
+      <!-- Location -->
+      <div class="form-group mb-3">
+        <label for="modalCitySelect" class="form-label font-size-xs fw-extrabold text-uppercase">Location</label>
+        <div class="input-icon-wrapper">
+          <i class="fa-solid fa-location-dot field-icon text-purple"></i>
+          <select id="modalCitySelect" class="form-select modal-input with-icon" required #modalCity>
+            <option value="" disabled selected>Select Location</option>
+            <option value="Bangalore Studio (Indiranagar)">Bangalore Studio (Indiranagar)</option>
+            <option value="Bhubaneswar Studio (Saheed Nagar)">Bhubaneswar Studio (Saheed Nagar)</option>
           </select>
         </div>
       </div>
 
-      <!-- Message -->
-      <div class="form-group mb-3">
-        <label for="modalMessageText" class="form-label font-size-xs fw-extrabold text-uppercase">Tell us about your project</label>
-        <div class="input-icon-wrapper">
-          <i class="fa-regular fa-comment-dots field-icon textarea-icon text-purple"></i>
-          <textarea id="modalMessageText" rows="3" placeholder="Describe your design needs, budget, or timeline..." class="form-control modal-input textarea-input with-icon" required #modalMsg></textarea>
-        </div>
-      </div>
 
       <!-- Submit Button -->
-      <div class="form-submit-container mb-3">
+      <div class="form-submit-container mb-0">
         <button type="submit" class="btn btn-modal-submit w-100 py-3 fw-black text-uppercase d-flex align-items-center justify-content-center gap-2">
           <span>SEND MESSAGE</span>
           <i class="fa-solid fa-paper-plane"></i>
         </button>
-      </div>
-
-      <!-- Trust Badges -->
-      <div class="trust-features-row d-flex justify-content-between align-items-center pt-3 border-top">
-        <span class="trust-item font-size-micro fw-bold text-muted"><i class="fa-solid fa-shield-halved me-1.5 text-purple"></i> 100% Privacy</span>
-        <span class="trust-item font-size-micro fw-bold text-muted"><i class="fa-solid fa-bolt me-1.5 text-purple"></i> 24h Response</span>
-        <span class="trust-item font-size-micro fw-bold text-muted"><i class="fa-solid fa-award me-1.5 text-purple"></i> Free Consultation</span>
       </div>
 
     </form>

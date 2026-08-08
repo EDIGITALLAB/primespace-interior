@@ -174,19 +174,6 @@
               <div>
                 <h3 class="live-title fw-black text-dark font-size-sm mb-1.5 text-truncate">{{ ls.title }}</h3>
                 <p class="live-loc text-muted font-size-xs mb-3.5 fw-medium">{{ ls.location }}</p>
-
-                <!-- Progress Bar Line -->
-                <div class="live-progress-wrapper mb-4">
-                  <div class="d-flex align-items-center justify-content-between font-size-micro fw-bold mb-1.5">
-                    <span class="text-muted">Progress</span>
-                    <span class="text-dark fw-black">{{ ls.progressPercentage }}%</span>
-                  </div>
-                  <div class="progress live-progress-track rounded-pill bg-light" style="height: 6px;">
-                    <div class="progress-bar live-progress-fill rounded-pill" role="progressbar"
-                      [style.width.%]="ls.progressPercentage" [attr.aria-valuenow]="ls.progressPercentage" aria-valuemin="0"
-                      aria-valuemax="100"></div>
-                  </div>
-                </div>
               </div>
 
               <!-- Progress Button -->

@@ -31,7 +31,7 @@ export class FeaturedServices implements OnInit, OnDestroy {
   constructor(
     public consultationModalService: ConsultationModalService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -137,13 +137,13 @@ export class FeaturedServices implements OnInit, OnDestroy {
     }
   }
 
-  slidePrev() { 
-    this.slideTo(this.currentSlide() - 1); 
+  slidePrev() {
+    this.slideTo(this.currentSlide() - 1);
     this.startAutoSlide();
   }
-  
-  slideNext() { 
-    this.slideTo(this.currentSlide() + 1); 
+
+  slideNext() {
+    this.slideTo(this.currentSlide() + 1);
     this.startAutoSlide();
   }
 
@@ -153,7 +153,7 @@ export class FeaturedServices implements OnInit, OnDestroy {
     if (target && target.clientWidth > 0) {
       const scrollPos = target.scrollLeft;
       const cards = Array.from(target.children) as HTMLElement[];
-      
+
       if (cards.length > 0) {
         let closestIndex = 0;
         let minDistance = Infinity;

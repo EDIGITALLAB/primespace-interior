@@ -12,7 +12,7 @@
           </span>
           <h1 class="hero-title text-uppercase mb-2 mb-md-3">Our Design Studios</h1>
           <p class="hero-subtitle mb-3 mb-md-4">
-            Step inside our physical experience centers. Touch raw HDMR samples, test German soft-close fittings, and
+            Step inside our physical experience centers. Touch raw HDMR samples, test premium soft-close fittings, and
             consult 1-on-1 with our principal interior architects.
           </p>
 
@@ -64,7 +64,7 @@
 
         <!-- Left Column: Live Google Map iFrame Display -->
         <div class="col-lg-7">
-          <div class="live-map-card rounded-4 overflow-hidden border shadow-sm h-100 position-relative">
+          <div class="live-map-card rounded-4 overflow-hidden border shadow-sm h-100 position-relative d-flex flex-column">
 
             <div
               class="map-badge-overlay position-absolute top-0 end-0 z-3 bg-white px-3 py-1.5 shadow-sm border-start border-bottom d-flex align-items-center gap-2">
@@ -73,7 +73,7 @@
             </div>
 
             <iframe [src]="activeLocation.safeMapUrl" width="100%" height="100%" style="min-height: 460px; border:0;"
-              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="location-map-iframe">
+              allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="location-map-iframe flex-grow-1 w-100 d-block">
             </iframe>
 
           </div>

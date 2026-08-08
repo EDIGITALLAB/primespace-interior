@@ -2,11 +2,40 @@
 
 
 
-<!-- Luxury Animated About Section Component -->
-<app-about></app-about>
+<!-- Single Continuous SVG Canvas Wave Wrapper for About & Why Choose Us -->
+<div class="about-why-combined-wrapper position-relative overflow-hidden">
+  
+  <!-- Continuous Dynamic Theme Fluid Wave SVG Canvas Overlay -->
+  <div class="combined-wave-bg-wrap">
+    <svg class="combined-wave-svg" viewBox="0 0 1440 1700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="combinedWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--primary-maroon)" stop-opacity="0.03" />
+          <stop offset="50%" stop-color="var(--primary-maroon)" stop-opacity="0.015" />
+          <stop offset="100%" stop-color="var(--primary-maroon)" stop-opacity="0.005" />
+        </linearGradient>
+      </defs>
 
-<!-- Why Choose Prime Space Interior Section Component -->
-<app-why-choose-us></app-why-choose-us>
+      <!-- Smooth Continuous Fluid Shading Fill 1 -->
+      <path d="M 0 0 C 450 300, 250 900, 1440 1400 L 1440 1700 L 0 1700 Z" fill="url(#combinedWaveGrad)" />
+
+      <!-- Smooth Continuous Fluid Shading Fill 2 -->
+      <path d="M 0 350 C 550 700, 380 1200, 1440 1600 L 1440 1700 L 0 1700 Z" fill="rgba(var(--primary-maroon-rgb), 0.01)" />
+
+      <!-- Single Continuous Accent Theme Stroke Line 1 (Flows from top-left of About to bottom-right of Why Choose Us) -->
+      <path d="M -50 120 C 450 450, 300 1100, 1490 1450" stroke="var(--primary-maroon)" stroke-width="1.5" fill="none" opacity="0.18" />
+
+      <!-- Single Continuous Accent Theme Stroke Line 2 -->
+      <path d="M -50 320 C 550 680, 420 1300, 1490 1580" stroke="var(--primary-maroon)" stroke-width="1.2" fill="none" opacity="0.12" />
+    </svg>
+  </div>
+
+  <!-- Luxury Animated About Section Component -->
+  <app-about></app-about>
+
+  <!-- Why Choose Prime Space Interior Section Component -->
+  <app-why-choose-us></app-why-choose-us>
+</div>
 <!-- Design Categories Component -->
 <app-design-categories></app-design-categories>
 

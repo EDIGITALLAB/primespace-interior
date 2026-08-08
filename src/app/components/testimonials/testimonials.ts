@@ -61,7 +61,7 @@ export class Testimonials implements OnInit, OnDestroy {
     { ...this.list[0], isClone: true }
   ];
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {

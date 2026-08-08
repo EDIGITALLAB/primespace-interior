@@ -46,7 +46,7 @@ export class ContactPage {
     },
     {
       q: 'What warranty is provided on modular cabinets and fittings?',
-      a: 'We provide a 10-year structural warranty on all factory-manufactured cabinets, HDMR cores, and German soft-close hardware fittings (Hettich & Blum).'
+      a: 'We provide a 10-year structural warranty on all factory-manufactured cabinets, HDMR cores, and premium soft-close hardware fittings (Hettich & Blum).'
     }
   ];
 
@@ -54,10 +54,20 @@ export class ContactPage {
     this.activeFaqIndex.set(this.activeFaqIndex() === idx ? null : idx);
   }
 
+  onPhoneInput(val: string) {
+    const cleaned = val.replace(/\D/g, '').slice(0, 10);
+    this.phone.set(cleaned);
+  }
+
   submitContactForm(event: Event) {
     event.preventDefault();
     if (!this.fullName() || !this.phone()) {
       alert('Please fill in your name and phone number so our designers can reach out to you.');
+      return;
+    }
+
+    if (this.phone().length !== 10) {
+      alert('Please enter a valid 10-digit phone number.');
       return;
     }
 

@@ -74,7 +74,7 @@ export class ProjectsPage {
   constructor(
     private router: Router,
     public consultationModalService: ConsultationModalService
-  ) {}
+  ) { }
 
   readonly completedProjects: CompletedProject[] = [
     {
@@ -390,10 +390,10 @@ export class ProjectsPage {
 
   readonly hasActiveFilters = computed(() => {
     return this.searchQuery().trim() !== '' ||
-           this.selectedCity() !== 'all' ||
-           this.selectedApartment() !== 'all' ||
-           this.selectedStatus() !== 'all' ||
-           this.selectedProjectType() !== 'all';
+      this.selectedCity() !== 'all' ||
+      this.selectedApartment() !== 'all' ||
+      this.selectedStatus() !== 'all' ||
+      this.selectedProjectType() !== 'all';
   });
 
   resetFilter() {

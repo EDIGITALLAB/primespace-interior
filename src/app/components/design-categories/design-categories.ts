@@ -26,7 +26,7 @@ export class DesignCategories {
       num: '01',
       name: 'Kitchen',
       image: '/kitchen_cat.png',
-      desc: 'Bespoke modular kitchens designed for culinary excellence, featuring intelligent space utilization and German-engineered soft-close fittings.'
+      desc: 'Bespoke modular kitchens designed for culinary excellence, featuring intelligent space utilization and precision-engineered soft-close fittings.'
     },
     {
       id: 'living',
