@@ -1,0 +1,108 @@
+.faq-page-wrapper {
+  min-height: 100vh;
+  font-family: var(--font-body, 'Inter', sans-serif);
+}
+
+.faq-hero {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary-maroon) 70%, #000) 0%, var(--primary-maroon) 50%, color-mix(in srgb, var(--primary-maroon) 60%, #000) 100%) !important;
+  padding-top: 130px !important;
+  position: relative;
+  overflow: hidden;
+}
+
+.faq-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.max-w-700 {
+  max-width: 700px;
+}
+
+.max-w-600 {
+  max-width: 600px;
+}
+
+.btn-category-pill {
+  background-color: #ffffff;
+  color: var(--text-dark-black, #1a1a1a);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-category-pill:hover {
+  background-color: rgba(var(--primary-maroon-rgb), 0.08);
+  color: var(--primary-maroon);
+  border-color: rgba(var(--primary-maroon-rgb), 0.25);
+}
+
+.btn-category-pill.active {
+  background-color: var(--primary-maroon) !important;
+  color: #ffffff !important;
+  border-color: var(--primary-maroon) !important;
+  box-shadow: 0 4px 14px rgba(var(--primary-maroon-rgb), 0.35) !important;
+}
+
+.faq-card {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-card:hover {
+  border-color: rgba(var(--primary-maroon-rgb), 0.3) !important;
+}
+
+.faq-card.open {
+  border-color: var(--primary-maroon) !important;
+  box-shadow: 0 8px 25px rgba(var(--primary-maroon-rgb), 0.15) !important;
+}
+
+.faq-badge {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(var(--primary-maroon-rgb), 0.1) !important;
+  color: var(--primary-maroon) !important;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.faq-toggle-icon {
+  width: 34px;
+  height: 34px;
+  background-color: rgba(0, 0, 0, 0.04);
+  color: var(--text-dark-black, #1a1a1a);
+  transition: all 0.3s ease;
+}
+
+.faq-card.open .faq-toggle-icon {
+  background-color: var(--primary-maroon, #96053E);
+  color: #ffffff;
+}
+
+.bg-purple-gradient {
+  background: linear-gradient(135deg, var(--primary-maroon) 0%, color-mix(in srgb, var(--primary-maroon) 70%, #000) 100%) !important;
+}
+
+.leading-relaxed {
+  line-height: 1.75;
+}
+
+.text-purple {
+  color: var(--primary-maroon, #96053E) !important;
+}
+
+.btn-purple-outline {
+  border: 1px solid var(--primary-maroon, #96053E);
+  color: var(--primary-maroon, #96053E);
+}
+
+.btn-purple-outline:hover {
+  background-color: var(--primary-maroon, #96053E);
+  color: #ffffff;
+}

@@ -12,7 +12,7 @@
           </span>
           <h1 class="hero-title text-uppercase mb-3">Get In Touch</h1>
           <p class="hero-subtitle mb-0">
-            Have a project in mind, need a 3D floor plan layout, or want to experience our German modular hardware in person? Reach out to our senior architects today.
+            Have a project in mind, need a 3D floor plan layout, or want to experience our premium modular hardware in person? Reach out to our senior architects today.
           </p>
         </div>
       </div>
@@ -112,11 +112,11 @@
 
               <!-- RIGHT SIDE: DARK MAROON FORM CARD -->
               <div class="col-lg-6 p-3 p-md-4">
-                <div class="contact-mockup-form-card p-4 p-md-4.5 rounded-4 text-white shadow-lg position-relative overflow-hidden">
+                <div class="contact-mockup-form-card p-4 p-md-5 rounded-4 text-white shadow-lg position-relative overflow-hidden h-100 d-flex flex-column justify-content-center">
                   
                   <div *ngIf="!isSubmitted(); else successState">
                     <form (submit)="submitContactForm($event)">
-                      <div class="d-flex flex-column gap-3">
+                      <div class="d-flex flex-column gap-3.5">
 
                         <!-- Full Name * -->
                         <div class="input-group rounded-3 overflow-hidden bg-cream-input">
@@ -146,18 +146,10 @@
                             <i class="fa-solid fa-phone font-size-xs"></i>
                           </span>
                           <input type="tel" class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
-                            placeholder="Phone Number *" [ngModel]="phone()" (ngModelChange)="phone.set($event)" name="phone" required />
+                            placeholder="Phone Number *" [ngModel]="phone()" (ngModelChange)="onPhoneInput($event)"
+                            maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" name="phone" required />
                         </div>
 
-                        <!-- Send me updates on WhatsApp -->
-                        <div class="form-check d-flex align-items-center gap-2 ps-4 my-0.5">
-                          <input class="form-check-input rounded-1 border-0 shadow-none mt-0 cursor-pointer" type="checkbox"
-                            id="whatsappCheck" checked>
-                          <label class="form-check-label font-size-xs text-white fw-medium cursor-pointer d-flex align-items-center gap-1.5" for="whatsappCheck">
-                            <i class="fa-brands fa-whatsapp text-whatsapp-green font-size-xs"></i>
-                            <span>Send me updates on WhatsApp</span>
-                          </label>
-                        </div>
 
                         <!-- Location Select Dropdown -->
                         <div class="input-group rounded-3 overflow-hidden bg-cream-input">

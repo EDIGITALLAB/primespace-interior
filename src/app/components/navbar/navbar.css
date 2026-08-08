@@ -367,22 +367,36 @@
 
   .nav-link {
     font-family: var(--font-headings) !important;
-    font-size: 15.5px !important;
-    /* Increased from default */
+    font-size: 14.5px !important;
     font-weight: 700 !important;
-    /* Bold headers for premium feel */
     letter-spacing: 0.5px !important;
     position: relative;
-    padding: 24px 15px !important;
-    /* Increased spacing between links */
+    padding: 24px 16px !important;
     color: var(--text-dark-black) !important;
     opacity: 0.9 !important;
-    transition: opacity 0.2s ease, color 0.3s ease;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .nav-link:hover {
     color: var(--primary-maroon) !important;
     opacity: 1 !important;
+    background: transparent !important;
+  }
+
+  .nav-link.active {
+    color: var(--primary-maroon, #96053E) !important;
+    font-weight: 800 !important;
+    opacity: 1 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .nav-link.active .chevron-icon {
+    color: var(--primary-maroon, #96053E) !important;
   }
 
   .nav-link-text {
@@ -395,10 +409,11 @@
     position: absolute;
     width: 100%;
     transform: scaleX(0);
-    height: 2px;
+    height: 3px;
     bottom: -6px;
     left: 0;
     background-color: var(--primary-maroon);
+    border-radius: 4px;
     transform-origin: bottom right;
     transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
@@ -580,6 +595,15 @@
 .drawer-link:hover,
 .drawer-link-parent:hover {
   opacity: 0.85;
+}
+
+.drawer-link.active {
+  color: var(--primary-maroon, #96053E) !important;
+  background: var(--white) !important;
+  padding: 8px 16px !important;
+  border-radius: 20px !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15) !important;
 }
 
 .drawer-link-parent i {

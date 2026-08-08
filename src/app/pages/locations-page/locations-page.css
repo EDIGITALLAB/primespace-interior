@@ -185,6 +185,20 @@
 }
 
 /* LIVE MAP */
+.live-map-card {
+  background-color: #e5e9ec !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.location-map-iframe {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 1 auto !important;
+  vertical-align: bottom !important;
+}
+
 .map-badge-overlay {
   pointer-events: none;
   background-color: rgba(255, 255, 255, 0.98) !important;

@@ -131,11 +131,15 @@
   background-color: #ffffff !important;
 }
 
+.gap-3\.5 {
+  gap: 1.15rem !important;
+}
+
 .contact-mockup-form-card .input-group .form-control,
 .contact-mockup-form-card .input-group .form-select,
 .contact-mockup-form-card .input-group .input-group-text {
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
   font-size: 13.5px !important;
 }
 

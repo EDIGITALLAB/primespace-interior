@@ -50,7 +50,7 @@
           <ul class="navbar-nav mx-auto mb-0 align-items-lg-center"
             style="font-weight: 600; font-size: 14px; font-family: var(--font-headings); letter-spacing: 0.5px;">
 
-            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/"><span
+            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active"><span
                   class="nav-link-text">HOME</span></a></li>
             <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/categories" routerLinkActive="active"><span
                   class="nav-link-text">CATEGORIES</span></a></li>
@@ -150,17 +150,17 @@
 
         <!-- HOME -->
         <li class="drawer-menu-item">
-          <a routerLink="/" (click)="toggleSideMenu()" class="drawer-link">HOME</a>
+          <a routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active" (click)="toggleSideMenu()" class="drawer-link">HOME</a>
         </li>
 
         <!-- CATEGORIES -->
         <li class="drawer-menu-item">
-          <a routerLink="/categories" (click)="toggleSideMenu()" class="drawer-link">CATEGORIES</a>
+          <a routerLink="/categories" routerLinkActive="active" (click)="toggleSideMenu()" class="drawer-link">CATEGORIES</a>
         </li>
 
         <!-- PROJECTS -->
         <li class="drawer-menu-item">
-          <a routerLink="/projects" (click)="toggleSideMenu()" class="drawer-link">PROJECTS</a>
+          <a routerLink="/projects" routerLinkActive="active" (click)="toggleSideMenu()" class="drawer-link">PROJECTS</a>
         </li>
 
         <!-- BLOGS -->
@@ -188,7 +188,7 @@
 
         <!-- CONTACT -->
         <li class="drawer-menu-item">
-          <a routerLink="/contact" (click)="toggleSideMenu()" class="drawer-link">CONTACT</a>
+          <a routerLink="/contact" routerLinkActive="active" (click)="toggleSideMenu()" class="drawer-link">CONTACT</a>
         </li>
 
       </ul>

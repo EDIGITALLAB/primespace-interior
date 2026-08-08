@@ -56,7 +56,7 @@ export class CategoriesPage {
   readonly calcRoomType = signal<string>('2bhk');
   readonly calcPackage = signal<string>('premium');
 
-  constructor(public consultationModalService: ConsultationModalService) {}
+  constructor(public consultationModalService: ConsultationModalService) { }
 
   readonly filterOptions = [
     { label: 'All Spaces', value: 'all' },
@@ -77,7 +77,7 @@ export class CategoriesPage {
       name: 'Kitchen Units',
       tagline: 'Culinary Excellence & Modular Utility',
       images: ['/kitchen_cat.png', '/hero_kitchen.png', '/eleganza_plus_kitchen.png', '/essential_kitchen.png'],
-      desc: 'Bespoke modular kitchens designed for culinary excellence, featuring intelligent space utilization, island counters, and German-engineered soft-close fittings.',
+      desc: 'Bespoke modular kitchens designed for culinary excellence, featuring intelligent space utilization, island counters, and precision-engineered soft-close fittings.',
       startingPrice: '₹1.4 Lakhs',
       priceNumeric: 140000,
       turnaround: '45 Days',
@@ -85,7 +85,7 @@ export class CategoriesPage {
       filterTag: 'kitchen',
       rating: 4.9,
       reviewsCount: 184,
-      features: ['German Soft-Close Fittings', 'Quartz & Granite Countertops', 'Profile LED Cabinets', 'Pantry & Spice Pullouts'],
+      features: ['Premium Soft-Close Fittings', 'Quartz & Granite Countertops', 'Profile LED Cabinets', 'Pantry & Spice Pullouts'],
       scopeOfWork: ['Base & Wall Cabinets', 'Tandem Drawer Units', 'Tall Appliance Unit', 'Quartz Countertop with Sink Cutout', 'Under-Cabinet Sensor LEDs']
     },
     {
@@ -221,8 +221,8 @@ export class CategoriesPage {
     },
     {
       id: 'acrylic',
-      title: 'High-Gloss German Acrylic & Veneer',
-      shortTitle: 'German Acrylic',
+      title: 'High-Gloss Premium Acrylic & Veneer',
+      shortTitle: 'Premium Acrylic',
       icon: 'fa-solid fa-gem',
       subtitle: 'Mirror Finish Elegance',
       desc: 'Ultra-glossy scratch-resistant acrylic sheets laminated onto HDMR core with 1mm anti-fingerprint technology for effortless cleaning.',
@@ -230,11 +230,11 @@ export class CategoriesPage {
     },
     {
       id: 'hardware',
-      title: 'Blum & Hettich German Hardware',
+      title: 'Blum & Hettich Premium Hardware',
       shortTitle: 'Blum Hardware',
       icon: 'fa-solid fa-gears',
       subtitle: 'Soft-Close Precision',
-      desc: 'Top-tier German soft-close hinges, quad-rail tandem drawers, and gas lifts tested for over 200,000 open-close cycles.',
+      desc: 'Top-tier soft-close hinges, quad-rail tandem drawers, and gas lifts tested for over 200,000 open-close cycles.',
       highlights: ['200,000 Cycle Tested', 'Lifetime Hardware Warranty', 'Silent Soft-Close Action', 'Heavy Weight Capacity (Up to 65kg)']
     },
     {
@@ -257,8 +257,8 @@ export class CategoriesPage {
 
     let list = this.categories.filter((cat) => {
       const matchesFilter = filter === 'all' || cat.filterTag === filter;
-      const matchesQuery = !query || 
-        cat.name.toLowerCase().includes(query) || 
+      const matchesQuery = !query ||
+        cat.name.toLowerCase().includes(query) ||
         cat.desc.toLowerCase().includes(query) ||
         cat.tagline.toLowerCase().includes(query);
 

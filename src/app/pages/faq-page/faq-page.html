@@ -1,0 +1,156 @@
+<div class="faq-page-wrapper">
+  <!-- Hero Header Banner -->
+  <section class="faq-hero position-relative py-5 text-white">
+    <div class="container position-relative z-1 py-4">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-9">
+          <nav aria-label="breadcrumb" class="d-inline-block mb-3">
+            <ol class="breadcrumb bg-transparent p-0 justify-content-center mb-0 text-uppercase font-size-xs fw-bold tracking-wider">
+              <li class="breadcrumb-item"><a routerLink="/" class="text-white-50 text-decoration-none">Home</a></li>
+              <li class="breadcrumb-item active text-white" aria-current="page">FAQ</li>
+            </ol>
+          </nav>
+          <h1 class="display-4 fw-black text-uppercase tracking-tight mb-3">Frequently Asked Questions</h1>
+          <p class="lead text-white-50 mx-auto max-w-700 mb-4">
+            Everything you need to know about our interior design process, 3D consultations, factory manufacturing, pricing, and 10-year warranty.
+          </p>
+
+          <!-- Search Bar -->
+          <div class="search-box-wrapper mx-auto max-w-600">
+            <div class="input-group search-input-group shadow-lg rounded-pill bg-white overflow-hidden p-1.5 border border-white-30">
+              <span class="input-group-text bg-transparent border-0 ps-3">
+                <i class="fa-solid fa-magnifying-glass text-purple"></i>
+              </span>
+              <input 
+                type="text" 
+                class="form-control border-0 shadow-none px-2 text-dark font-size-sm" 
+                placeholder="Search questions e.g. warranty, timeline, pricing..."
+                [ngModel]="searchQuery()" 
+                (ngModelChange)="searchQuery.set($event)">
+              <button 
+                *ngIf="searchQuery()" 
+                class="btn btn-link text-muted text-decoration-none pe-3" 
+                (click)="searchQuery.set('')">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main FAQ Section -->
+  <section class="py-5 bg-light">
+    <div class="container py-3">
+
+      <!-- Category Filter Pills -->
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-10">
+          <div class="d-flex flex-wrap align-items-center justify-content-center gap-2">
+            <button 
+              class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
+              [class.active]="activeCategory() === 'all'"
+              (click)="setCategory('all')">
+              <i class="fa-solid fa-border-all me-1.5"></i> All Questions
+            </button>
+            <button 
+              class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
+              [class.active]="activeCategory() === 'general'"
+              (click)="setCategory('general')">
+              <i class="fa-solid fa-circle-info me-1.5"></i> General & Studio
+            </button>
+            <button 
+              class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
+              [class.active]="activeCategory() === 'pricing'"
+              (click)="setCategory('pricing')">
+              <i class="fa-solid fa-indian-rupee-sign me-1.5"></i> Pricing & Payment
+            </button>
+            <button 
+              class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
+              [class.active]="activeCategory() === 'timeline'"
+              (click)="setCategory('timeline')">
+              <i class="fa-solid fa-clock me-1.5"></i> 45-Day Timeline
+            </button>
+            <button 
+              class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
+              [class.active]="activeCategory() === 'materials'"
+              (click)="setCategory('materials')">
+              <i class="fa-solid fa-layer-group me-1.5"></i> Materials & Hardware
+            </button>
+            <button 
+              class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
+              [class.active]="activeCategory() === 'warranty'"
+              (click)="setCategory('warranty')">
+              <i class="fa-solid fa-shield-check me-1.5"></i> 10-Yr Warranty
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion List -->
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          
+          <div *ngIf="filteredFaqs().length === 0" class="text-center py-5 bg-white rounded-4 shadow-sm border">
+            <i class="fa-solid fa-circle-question font-size-xxl text-purple-30 mb-3 d-block"></i>
+            <h5 class="fw-bold text-dark mb-1">No matching questions found</h5>
+            <p class="text-secondary font-size-xs mb-3">Try adjusting your search query or switching categories.</p>
+            <button class="btn btn-sm btn-purple-outline rounded-pill px-3" (click)="searchQuery.set(''); activeCategory.set('all')">
+              Reset Filters
+            </button>
+          </div>
+
+          <div class="d-flex flex-column gap-3">
+            <div 
+              *ngFor="let item of filteredFaqs()" 
+              class="faq-card bg-white rounded-4 shadow-sm border overflow-hidden transition-all"
+              [class.open]="item.isOpen">
+              
+              <div 
+                class="faq-header p-4 d-flex align-items-center justify-content-between cursor-pointer user-select-none"
+                (click)="toggleFaq(item)">
+                <h3 class="h6 fw-extrabold text-dark m-0 d-flex align-items-center gap-3">
+                  <span class="faq-badge rounded-circle flex-shrink-0 d-flex align-items-center justify-content-center">
+                    Q
+                  </span>
+                  <span>{{ item.question }}</span>
+                </h3>
+                <div class="faq-toggle-icon rounded-circle flex-shrink-0 d-flex align-items-center justify-content-center ms-3">
+                  <i class="fa-solid" [class.fa-plus]="!item.isOpen" [class.fa-minus]="item.isOpen"></i>
+                </div>
+              </div>
+
+              <div *ngIf="item.isOpen" class="faq-body px-4 pb-4 pt-0 text-secondary leading-relaxed border-top mt-2">
+                <div class="pt-3">
+                  {{ item.answer }}
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom CTA Banner -->
+          <div class="mt-5 p-4 p-md-5 bg-purple-gradient text-white rounded-4 shadow-md text-center position-relative overflow-hidden">
+            <div class="position-relative z-1">
+              <h3 class="h4 fw-black text-uppercase mb-2">Still Have Questions About Your Dream Space?</h3>
+              <p class="text-white-75 font-size-sm max-w-600 mx-auto mb-4">
+                Our principal interior architects are ready to assist you with floor plan reviews, material selections, and budget estimations.
+              </p>
+              <div class="d-flex flex-wrap align-items-center justify-content-center gap-3">
+                <button class="btn btn-light text-purple fw-extrabold text-uppercase font-size-xs rounded-pill px-4 py-3" (click)="consultationModalService.open()">
+                  Book Free Consultation <i class="fa-solid fa-arrow-right ms-2"></i>
+                </button>
+                <a href="tel:+919876543210" class="btn btn-outline-light fw-extrabold text-uppercase font-size-xs rounded-pill px-4 py-3">
+                  Call Us: +91 98765 43210 <i class="fa-solid fa-phone ms-2"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+</div>

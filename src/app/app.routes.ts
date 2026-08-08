@@ -6,6 +6,9 @@ import { ContactPage } from './pages/contact-page/contact-page';
 import { LocationsPage } from './pages/locations-page/locations-page';
 import { ProjectsPage } from './pages/projects-page/projects-page';
 import { ProjectDetails } from './pages/project-details/project-details';
+import { PrivacyPolicyPage } from './pages/privacy-policy-page/privacy-policy-page';
+import { TermsConditionsPage } from './pages/terms-conditions-page/terms-conditions-page';
+import { FaqPage } from './pages/faq-page/faq-page';
 
 export const routes: Routes = [
   { path: '', component: Landing },
@@ -21,5 +24,8 @@ export const routes: Routes = [
   { path: 'service-details/:slug', component: ServiceDetails },
   { path: 'services', component: ServiceDetails },
   { path: 'services/:slug', component: ServiceDetails },
+  { path: 'privacy-policy', component: PrivacyPolicyPage },
+  { path: 'terms-conditions', component: TermsConditionsPage },
+  { path: 'faq', component: FaqPage },
   { path: '**', redirectTo: '' }
 ];

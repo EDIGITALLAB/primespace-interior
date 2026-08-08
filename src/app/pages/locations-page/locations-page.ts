@@ -56,7 +56,7 @@ export class LocationsPage implements OnInit {
       directionsUrl: 'https://maps.google.com/?q=Indiranagar,Bengaluru',
       highlights: [
         'Full-Scale 1:1 Modular Kitchen Live Display',
-        '200+ German Hardware & Soft-Close Testing Bay',
+        '200+ Premium Hardware & Soft-Close Testing Bay',
         '500+ Natural Veneer, Acrylic & Marble Swatches',
         'Dedicated 3D VR Walkthrough Lounge'
       ],
@@ -73,7 +73,7 @@ export class LocationsPage implements OnInit {
           imageUrl: '/living_cat.png'
         },
         {
-          title: 'German Modular Kitchen Unit',
+          title: 'Bespoke Modular Kitchen Unit',
           subtitle: 'Soft-close acrylic cabinetry with quartz countertops and built-in appliances.',
           imageUrl: '/kitchen_cat.png'
         },
