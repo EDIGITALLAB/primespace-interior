@@ -1,42 +1,45 @@
 <div class="project-details-page bg-white min-vh-100 overflow-hidden" *ngIf="project() as p">
   
-  <!-- TOP HERO HEADER SECTION (WATERMARK BACKGROUND FOR TOP AREA ONLY) -->
-  <div class="project-details-top-hero position-relative pb-4">
-    <!-- FULL-BLEED HERO IMAGE BACKGROUND OVERLAY (MATCHING SERVICE DETAILS HERO) -->
+  <!-- TOP HERO HEADER SECTION (MATCHING EXACT SCREENSHOT DEMO LAYOUT) -->
+  <div class="project-details-top-hero position-relative">
+    <!-- FULL-BLEED HERO IMAGE BACKGROUND OVERLAY -->
     <div class="proj-hero-bg-overlay" [style.background-image]="'url(' + p.heroImage + ')'"></div>
     <div class="proj-hero-gradient-mask"></div>
 
-    <div class="container position-relative z-2 text-white">
+    <div class="container position-relative z-2 text-white h-100 d-flex flex-column justify-content-between min-h-340">
 
-
-      <!-- CENTERED MAIN HERO PRODUCT / CASE STUDY SECTION -->
-      <div class="row justify-content-center text-center py-2 py-md-3">
-        <div class="col-lg-10 col-xl-8">
-
+      <!-- MAIN HERO CENTERED CONTENT (TITLE, SUBTITLE, BADGES & BUTTON) -->
+      <div class="row align-items-center justify-content-center text-center py-2 py-md-3 my-auto">
+        <div class="col-12 col-md-10 col-lg-8 text-center">
+          
           <!-- Location & Status Badge Row -->
-          <div class="hero-glass-pill d-inline-flex align-items-center justify-content-center gap-3 mb-4 rounded-pill">
-            <div class="d-flex align-items-center gap-2">
+          <div class="hero-glass-pill d-inline-flex align-items-center justify-content-center gap-2.5 mb-3 rounded-pill">
+            <div class="d-flex align-items-center gap-1.5">
               <i class="fa-solid fa-location-dot font-size-xs text-purple"></i>
               <span class="location-text text-uppercase">{{ p.location }}</span>
             </div>
-            <span class="status-badge badge rounded-pill d-inline-flex align-items-center gap-1.5 text-uppercase shadow-xs">
+            <span class="status-badge badge rounded-pill d-inline-flex align-items-center gap-1 text-uppercase shadow-xs">
               <i class="fa-solid" [ngClass]="p.status === 'completed' ? 'fa-circle-check' : 'fa-bolt'"></i>
               <span>{{ p.statusLabel }}</span>
             </span>
           </div>
 
-          <!-- Main Title & Subtitle -->
-          <h1 class="project-main-title fw-black text-white font-size-2xl font-size-md-3xl mt-1 mb-2 letter-spacing-tight text-uppercase">{{ p.title }}</h1>
-          <h4 class="project-subtitle text-white-90 fw-bold font-size-sm font-size-md-base mb-2">{{ p.subtitle }}</h4>
+          <!-- Bold White Main Title Centered -->
+          <h1 class="project-main-title fw-black text-white display-4 mb-2 text-uppercase text-shadow-sm text-center">
+            {{ p.title }}
+          </h1>
+          <h4 class="project-subtitle text-white-90 fw-bold font-size-sm font-size-md-base mb-2 text-center">
+            {{ p.subtitle }}
+          </h4>
 
           <!-- Concise Description Text -->
-          <p class="project-desc text-white-80 leading-relaxed font-size-xs font-size-md-sm mb-3.5 max-w-650 mx-auto opacity-90">
+          <p class="project-desc text-white-80 leading-relaxed font-size-xs font-size-md-sm mb-3.5 max-w-750 mx-auto opacity-90 text-center">
             {{ p.description }}
           </p>
 
-          <!-- ACTION BUTTON -->
+          <!-- Book Appointment CTA Centered -->
           <div class="d-flex justify-content-center pt-1">
-            <button type="button" class="btn btn-purple btn-glass-shimmer rounded-pill px-4 py-2.5 font-size-xs fw-extrabold text-uppercase shadow-lg d-inline-flex align-items-center justify-content-center gap-2"
+            <button type="button" class="btn btn-purple btn-glass-shimmer rounded-pill px-4 py-2.5 font-size-xs fw-extrabold text-uppercase shadow-lg d-inline-flex align-items-center gap-2"
               (click)="openConsultation($event)">
               <i class="fa-solid fa-calendar-days me-1"></i>
               <span>Book Site Visit Appointment</span>
@@ -46,6 +49,31 @@
 
         </div>
       </div>
+
+      <!-- BOTTOM-LEFT FLOATING BREADCRUMB CARD (FLUSH TO BOTTOM EDGE MATCHING SCREENSHOT) -->
+      <div class="d-flex justify-content-start align-items-end mt-auto">
+        <div class="hero-bottom-breadcrumb-box bg-white shadow-lg d-inline-flex align-items-center">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 d-inline-flex align-items-center gap-2 font-size-xs">
+              <li class="breadcrumb-item d-inline-flex align-items-center">
+                <a routerLink="/" class="breadcrumb-link d-inline-flex align-items-center gap-1.5">
+                  <i class="fa-solid fa-house breadcrumb-home-icon"></i>
+                  <span>Home</span>
+                </a>
+              </li>
+              <li class="breadcrumb-item separator">/</li>
+              <li class="breadcrumb-item d-inline-flex align-items-center">
+                <a routerLink="/projects" class="breadcrumb-link">Projects</a>
+              </li>
+              <li class="breadcrumb-item separator">/</li>
+              <li class="breadcrumb-item active breadcrumb-active-title" aria-current="page">
+                {{ p.title }}
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+
     </div>
   </div>
 

@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Navbar } from './components/navbar/navbar';
@@ -12,7 +12,7 @@ import { ConsultationModal } from './components/consultation-modal/consultation-
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit {
   protected readonly title = signal('prime_space_interior');
   private router = inject(Router);
 
@@ -24,5 +24,24 @@ export class App {
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;
     });
+  }
+
+  ngOnInit() {
+    this.loadSavedTheme();
+  }
+
+  private loadSavedTheme() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const savedColor = localStorage.getItem('selectedThemeColor');
+      const savedRgb = localStorage.getItem('selectedThemeColorRgb');
+      const savedGradientEnd = localStorage.getItem('selectedThemeGradientEnd') || '#ff007a';
+      if (savedColor && savedRgb) {
+        document.documentElement.style.setProperty('--primary-maroon', savedColor);
+        document.documentElement.style.setProperty('--primary-maroon-rgb', savedRgb);
+        document.documentElement.style.setProperty('--primary-purple', savedColor);
+        document.documentElement.style.setProperty('--primary-purple-rgb', savedRgb);
+        document.documentElement.style.setProperty('--theme-gradient-end', savedGradientEnd);
+      }
+    }
   }
 }
