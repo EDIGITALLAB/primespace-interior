@@ -1,6 +1,6 @@
 import { Component, OnInit, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProjectsDataService, ProjectItem } from '../../services/projects-data.service';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
@@ -32,7 +32,7 @@ export interface PopupGalleryPhoto {
 @Component({
   selector: 'app-project-details',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './project-details.html',
   styleUrl: './project-details.css'
 })

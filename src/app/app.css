@@ -61,12 +61,15 @@ h6 {
   overflow-wrap: anywhere !important;
 }
 
-img, iframe, video {
+img,
+iframe,
+video {
   max-width: 100%;
   height: auto;
 }
 
 @media (max-width: 575.98px) {
+
   .container-fluid,
   .container {
     padding-left: 14px !important;
@@ -126,4 +129,58 @@ img, iframe, video {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+/* GLOBAL HERO BOTTOM BREADCRUMB BOX (FLOATING WHITE CARD AT BOTTOM-LEFT) */
+.hero-bottom-breadcrumb-box {
+  background-color: var(--white) !important;
+  border-top-left-radius: 6px !important;
+  border-top-right-radius: 6px !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.12), 0 4px 10px rgba(0, 0, 0, 0.08) !important;
+  padding: 8px 18px !important;
+  margin-bottom: 0 !important;
+  position: relative;
+  z-index: 10;
+  transform: translateY(1px);
+}
+
+.hero-bottom-breadcrumb-box .breadcrumb {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hero-bottom-breadcrumb-box .breadcrumb-item+.breadcrumb-item::before {
+  display: none !important;
+}
+
+.hero-bottom-breadcrumb-box .breadcrumb-link {
+  color: #334155 !important;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.hero-bottom-breadcrumb-box .breadcrumb-link:hover {
+  color: var(--primary-maroon, #96053E) !important;
+}
+
+.hero-bottom-breadcrumb-box .breadcrumb-home-icon {
+  color: #0284c7;
+  font-size: 14px;
+}
+
+.hero-bottom-breadcrumb-box .separator {
+  color: #94a3b8 !important;
+  font-size: 12px;
+  margin: 0 3px;
+}
+
+.hero-bottom-breadcrumb-box .breadcrumb-active-title {
+  color: var(--primary-maroon, #96053E) !important;
+  font-size: 13.5px;
+  font-weight: 700;
 }
