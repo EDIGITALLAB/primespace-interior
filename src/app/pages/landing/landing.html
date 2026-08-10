@@ -5,28 +5,105 @@
 <!-- Single Continuous SVG Canvas Wave Wrapper for About & Why Choose Us -->
 <div class="about-why-combined-wrapper position-relative overflow-hidden">
   
-  <!-- Continuous Dynamic Theme Fluid Wave SVG Canvas Overlay -->
+  <!-- Continuous Dynamic Luxury Organic Contour Waves Canvas Overlay (White Background, Theme Maroon Curves, Neutral Grid) -->
   <div class="combined-wave-bg-wrap">
     <svg class="combined-wave-svg" viewBox="0 0 1440 1700" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <linearGradient id="combinedWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="var(--primary-maroon)" stop-opacity="0.03" />
-          <stop offset="50%" stop-color="var(--primary-maroon)" stop-opacity="0.015" />
-          <stop offset="100%" stop-color="var(--primary-maroon)" stop-opacity="0.005" />
+        <!-- Gradients: Theme Maroon Wavy Lines Only -->
+        <linearGradient id="contourGradTheme" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--primary-maroon)" stop-opacity="0.25" />
+          <stop offset="50%" stop-color="var(--primary-maroon)" stop-opacity="0.16" />
+          <stop offset="100%" stop-color="var(--primary-maroon)" stop-opacity="0.08" />
         </linearGradient>
+
+        <linearGradient id="contourGradSoftTheme" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="var(--primary-maroon)" stop-opacity="0.18" />
+          <stop offset="100%" stop-color="var(--primary-maroon)" stop-opacity="0.05" />
+        </linearGradient>
+
+        <!-- Architectural Grid Guide Pattern (Neutral Light Gray Micro Plus Grid) -->
+        <pattern id="archGridGuidePattern" width="80" height="80" patternUnits="userSpaceOnUse">
+          <!-- Thin neutral dotted grid lines -->
+          <line x1="0" y1="0" x2="80" y2="0" stroke="#000000" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.04" />
+          <line x1="0" y1="0" x2="0" y2="80" stroke="#000000" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.04" />
+          <!-- Neutral intersection crosshairs (+) -->
+          <g stroke="#000000" stroke-width="0.75" opacity="0.07">
+            <line x1="36" y1="40" x2="44" y2="40" />
+            <line x1="40" y1="36" x2="40" y2="44" />
+          </g>
+          <!-- Neutral Intersecting Micro Dots -->
+          <circle cx="0" cy="0" r="1" fill="#000000" opacity="0.07" />
+          <circle cx="80" cy="0" r="1" fill="#000000" opacity="0.07" />
+          <circle cx="0" cy="80" r="1" fill="#000000" opacity="0.07" />
+          <circle cx="80" cy="80" r="1" fill="#000000" opacity="0.07" />
+        </pattern>
       </defs>
 
-      <!-- Smooth Continuous Fluid Shading Fill 1 -->
-      <path d="M 0 0 C 450 300, 250 900, 1440 1400 L 1440 1700 L 0 1700 Z" fill="url(#combinedWaveGrad)" />
+      <!-- Tiled Neutral Blueprint Grid Guide Overlay (Pure White Base) -->
+      <rect width="100%" height="100%" fill="url(#archGridGuidePattern)" />
 
-      <!-- Smooth Continuous Fluid Shading Fill 2 -->
-      <path d="M 0 350 C 550 700, 380 1200, 1440 1600 L 1440 1700 L 0 1700 Z" fill="rgba(var(--primary-maroon-rgb), 0.01)" />
+      <!-- Layered Topographic Contour Wave Lines (Theme Maroon Color) -->
+      
+      <!-- Topo Contour Line 1 -->
+      <path d="M -50 140 C 320 60, 680 420, 420 840 C 180 1260, 1120 1320, 1490 1580" 
+            stroke="url(#contourGradTheme)" stroke-width="1.8" fill="none" />
 
-      <!-- Single Continuous Accent Theme Stroke Line 1 (Flows from top-left of About to bottom-right of Why Choose Us) -->
-      <path d="M -50 120 C 450 450, 300 1100, 1490 1450" stroke="var(--primary-maroon)" stroke-width="1.5" fill="none" opacity="0.18" />
+      <!-- Topo Contour Line 2 -->
+      <path d="M -50 200 C 350 120, 710 480, 450 900 C 210 1320, 1150 1380, 1490 1630" 
+            stroke="url(#contourGradSoftTheme)" stroke-width="1.2" fill="none" />
 
-      <!-- Single Continuous Accent Theme Stroke Line 2 -->
-      <path d="M -50 320 C 550 680, 420 1300, 1490 1580" stroke="var(--primary-maroon)" stroke-width="1.2" fill="none" opacity="0.12" />
+      <!-- Topo Contour Line 3 (Dashed Elevation Guide Line 1) -->
+      <path d="M -50 260 C 380 180, 740 540, 480 960 C 240 1380, 1180 1440, 1490 1680" 
+            stroke="var(--primary-maroon)" stroke-width="0.8" stroke-dasharray="8 6" fill="none" opacity="0.16" />
+
+      <!-- Topo Contour Line 4 (Dashed Micro Topo Line 2) -->
+      <path d="M -50 310 C 400 230, 760 590, 500 1010 C 260 1430, 1200 1490, 1490 1720" 
+            stroke="var(--primary-maroon)" stroke-width="0.6" stroke-dasharray="4 4" fill="none" opacity="0.10" />
+
+      <!-- Topo Contour Line 5 (Secondary Dynamic Counter-Curve) -->
+      <path d="M 1490 80 C 1020 280, 580 180, 820 620 C 1060 1060, 380 1280, -50 1480" 
+            stroke="url(#contourGradTheme)" stroke-width="1.5" fill="none" />
+
+      <!-- Topo Contour Line 6 (Parallel Dashed Counter Contour) -->
+      <path d="M 1490 140 C 1050 340, 610 240, 850 680 C 1090 1120, 410 1340, -50 1540" 
+            stroke="var(--primary-maroon)" stroke-width="0.8" stroke-dasharray="6 4" fill="none" opacity="0.12" />
+
+      <!-- Topo Contour Line 7 -->
+      <path d="M -50 880 C 380 720, 880 1080, 1490 1180" 
+            stroke="url(#contourGradTheme)" stroke-width="1.5" fill="none" />
+
+      <!-- Topo Contour Line 8 -->
+      <path d="M -50 940 C 410 780, 910 1140, 1490 1240" 
+            stroke="var(--primary-maroon)" stroke-width="0.8" stroke-dasharray="7 5" fill="none" opacity="0.14" />
+
+      <!-- Topo Contour Line 9 -->
+      <path d="M -50 1000 C 440 840, 940 1200, 1490 1300" 
+            stroke="var(--primary-maroon)" stroke-width="0.6" fill="none" opacity="0.08" />
+
+      <!-- Architectural Elevation Circles & Compass Focal Points (Neutral Light Gray) -->
+      
+      <!-- Focal Point 1: Top-Left Behind About Media Frame -->
+      <g stroke="#000000" fill="none" opacity="0.06">
+        <circle cx="180" cy="360" r="140" stroke-width="0.8" stroke-dasharray="3 7" />
+        <circle cx="180" cy="360" r="90" stroke-width="0.75" />
+        <circle cx="180" cy="360" r="40" stroke-width="0.5" stroke-dasharray="2 4" />
+        <circle cx="180" cy="360" r="3" fill="#000000" opacity="0.08" />
+        <line x1="40" y1="360" x2="320" y2="360" stroke-width="0.5" stroke-dasharray="2 4" />
+        <line x1="180" y1="220" x2="180" y2="500" stroke-width="0.5" stroke-dasharray="2 4" />
+        <text x="190" y="235" fill="#000000" font-size="9" font-family="monospace" letter-spacing="1" opacity="0.2">ELEVATION 01 // 34° N</text>
+      </g>
+
+      <!-- Focal Point 2: Bottom-Right Behind Why Choose Us Bento Center Hub -->
+      <g stroke="#000000" fill="none" opacity="0.06">
+        <circle cx="1240" cy="1150" r="160" stroke-width="0.8" stroke-dasharray="4 8" />
+        <circle cx="1240" cy="1150" r="100" stroke-width="0.75" />
+        <circle cx="1240" cy="1150" r="50" stroke-width="0.6" stroke-dasharray="2 4" />
+        <circle cx="1240" cy="1150" r="3" fill="#000000" opacity="0.08" />
+        <line x1="1060" y1="1150" x2="1420" y2="1150" stroke-width="0.5" stroke-dasharray="3 5" />
+        <line x1="1240" y1="970" x2="1240" y2="1330" stroke-width="0.5" stroke-dasharray="3 5" />
+        <text x="1250" y="1000" fill="#000000" font-size="9" font-family="monospace" letter-spacing="1" opacity="0.2">BENCHMARK GRID // A-A'</text>
+      </g>
+
     </svg>
   </div>
 

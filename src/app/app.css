@@ -61,12 +61,15 @@ h6 {
   overflow-wrap: anywhere !important;
 }
 
-img, iframe, video {
+img,
+iframe,
+video {
   max-width: 100%;
   height: auto;
 }
 
 @media (max-width: 575.98px) {
+
   .container-fluid,
   .container {
     padding-left: 14px !important;

@@ -517,10 +517,11 @@
 .hero-bg-watermark {
   position: absolute;
   inset: 0;
-  background-image: url('/furniture-watermark.svg');
-  background-size: cover;
-  background-position: center;
-  opacity: 0.08;
+  background-image: url('/category-furniture-watermark.svg');
+  background-size: 100% 100%;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  opacity: 0.20;
   pointer-events: none;
 }
 

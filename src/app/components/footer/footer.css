@@ -34,15 +34,10 @@
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.2;
+  opacity: 0.18;
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
-  transition: opacity 0.4s ease;
-}
-
-.main-footer:hover .footer-single-home-watermark {
-  opacity: 0.35;
 }
 
 /* Architectural Building Skyline Blueprint Watermark Overlay */
@@ -52,17 +47,12 @@
   left: 0;
   right: 0;
   height: 180px;
-  color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.04);
   pointer-events: none;
   z-index: 1;
   overflow: hidden;
   mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 30%, transparent 100%);
   -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.85) 30%, transparent 100%);
-  transition: color 0.4s ease;
-}
-
-.main-footer:hover .footer-building-watermark {
-  color: rgba(255, 255, 255, 0.08);
 }
 
 .footer-logo-img {

@@ -97,15 +97,15 @@
 }
 
 .slide-1 {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.65) 100%), url('/bonado_hero_bg.png?v=3');
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.28) 0%, rgba(0, 0, 0, 0.15) 60%, rgba(0, 0, 0, 0.25) 100%), url('/bonado_hero_bg.png?v=3');
 }
 
 .slide-2 {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, rgba(0, 0, 0, 0.1) 100%), url('/hero_living_room.png?v=3');
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.18) 50%, rgba(0, 0, 0, 0.08) 100%), url('/hero_living_room.png?v=3');
 }
 
 .slide-3 {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0.35) 50%, rgba(0, 0, 0, 0.1) 100%), url('/eleganza_bedroom.png?v=3');
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.18) 50%, rgba(0, 0, 0, 0.08) 100%), url('/eleganza_bedroom.png?v=3');
 }
 
 /* Slideshow navigation dot indicators */
