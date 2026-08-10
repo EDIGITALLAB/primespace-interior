@@ -479,11 +479,11 @@
 .details-panel-container {
   position: absolute;
   bottom: 24px;
-  left: 24px;
+  left: 0;
   right: auto;
   width: 530px;
-  /* Compact width to make the card look like a light floating banner */
-  max-width: calc(100% - 48px);
+  /* Flush with left starting edge of the image card */
+  max-width: 100%;
   z-index: 5;
   filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.08));
   /* Shadow wraps around the clipped arrow point! */
@@ -498,20 +498,18 @@
 /* Glassmorphic Details Panel overlay (Clipped into a right-pointing arrow shape) */
 .preview-details-panel {
   width: 100%;
-  background: rgba(255, 255, 255, 0.94) !important;
-  /* Premium light glassmorphism */
+  background: linear-gradient(135deg, var(--primary-maroon) 0%, color-mix(in srgb, var(--primary-maroon) 50%, #000000) 100%) !important;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   /* Perfect right-pointing chevron/arrow polygon clip-path */
   clip-path: polygon(0% 0%, calc(100% - 24px) 0%, 100% 50%, calc(100% - 24px) 100%, 0% 100%);
   padding: 18px 48px 18px 24px;
-  /* Right-padding ensures text stays safe from the arrow tip */
-  transition: background 0.4s ease;
+  box-shadow: 0 12px 30px rgba(var(--primary-maroon-rgb), 0.4);
+  transition: all 0.4s ease;
 }
 
 .preview-details-panel:hover {
-  background: var(--white) !important;
-  /* Brighter background on hover */
+  box-shadow: 0 15px 35px rgba(var(--primary-maroon-rgb), 0.5);
 }
 
 .details-content-wrapper {
@@ -523,7 +521,7 @@
   font-size: 9.5px;
   font-weight: 800;
   letter-spacing: 2px;
-  color: var(--primary-maroon);
+  color: rgba(255, 255, 255, 0.75) !important;
   display: block;
 }
 
@@ -532,14 +530,14 @@
   font-size: 20px;
   font-weight: 800;
   letter-spacing: -0.5px;
-  color: var(--text-dark-black) !important;
+  color: var(--white) !important;
 }
 
 .details-desc {
   font-family: var(--font-body);
   font-size: 13px;
   line-height: 1.5;
-  color: var(--text-medium-grey) !important;
+  color: rgba(255, 255, 255, 0.88) !important;
 }
 
 /* Explore CTA button inside floating badge */
@@ -551,18 +549,19 @@
   font-size: 10.5px;
   font-weight: 800;
   letter-spacing: 1.5px;
-  color: var(--primary-maroon);
+  color: var(--white) !important;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btn-explore-cat .btn-arrow {
   font-size: 10px;
+  color: var(--white) !important;
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-explore-cat:hover {
-  color: var(--primary-maroon);
+  color: var(--white) !important;
 }
 
 .btn-explore-cat:hover .btn-arrow {
