@@ -146,8 +146,8 @@
 
 /* Slide 1 Styling (Unique Centered Presentation layout inside TV mockup) */
 .slide-1-container {
-  width: 90%;
-  max-width: 800px;
+  width: 92%;
+  max-width: 960px;
   margin: 0 auto !important;
   text-align: center;
   display: flex;
@@ -302,12 +302,14 @@
 
 .slide-2-subtitle {
   font-family: var(--font-headings);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--white) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 0, 0, 0.7);
   margin-left: 19px;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
+  display: inline-block;
 }
 
 @media (min-width: 768px) {
@@ -329,12 +331,13 @@
 .slide-2-title .text-accent-serif {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
-  font-weight: 400;
+  font-weight: 700;
   background: var(--theme-gradient);
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
   color: var(--primary-maroon, #96053E) !important;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.9));
   text-transform: none;
   display: inline-block;
 }
@@ -358,9 +361,9 @@
 
 .slide-1-wrap .slide-1-title {
   transform: translateY(20px);
-  letter-spacing: -3px;
+  letter-spacing: -1px;
   opacity: 0;
-  transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, letter-spacing 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, opacity 1.8s ease 0.2s;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.15s, opacity 1.2s ease 0.15s;
 }
 
 .slide-1-wrap .slide-1-divider-horizontal {
@@ -487,9 +490,10 @@
 .slide-3-tagline {
   font-family: var(--font-headings);
   font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 4px;
-  color: rgba(255, 255, 255, 0.7);
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--white) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
 .slide-3-title {

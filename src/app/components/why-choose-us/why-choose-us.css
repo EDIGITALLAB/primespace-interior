@@ -79,6 +79,10 @@
   max-width: 750px;
 }
 
+.max-w-950 {
+  max-width: 950px;
+}
+
 /* Header Badges */
 .why-bento-badge {
   display: inline-flex;
@@ -112,11 +116,11 @@
 
 .why-main-title {
   font-family: var(--font-headings);
-  font-size: clamp(24px, 3.5vw, 36px);
+  font-size: clamp(20px, 2.5vw, 36px);
   font-weight: 900;
   color: var(--text-dark-black);
   letter-spacing: -0.5px;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .why-title-accent {
@@ -125,6 +129,8 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: var(--primary-maroon);
+  display: inline-block;
+  white-space: nowrap;
 }
 
 .why-lead-text {
