@@ -1,7 +1,6 @@
 /* Global CSS custom styling variables and body setups */
 
 :root {
-
   --font-headings: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
   --primary-maroon: #96053E;
@@ -11,19 +10,16 @@
   --text-dark-grey: #444444;
   --text-medium-grey: #555555;
   --white: #ffffff;
-  --bg-light-white: #f2f6f9;
   --page-top-background: #fafbfc;
 
   --theme-gradient-end: #ff007a;
 
-  /* Global Theme Gradient Variable (Dynamically adapts fade to any selected theme color) */
+  /* Global Theme Gradient Variable */
   --theme-gradient: linear-gradient(to right, var(--primary-maroon) 0%, color-mix(in srgb, var(--primary-maroon) 45%, var(--theme-gradient-end, #ff007a)) 100%);
 }
 
 /* Global Text Accent & Gradient Utilities */
-.text-highlight,
-.text-gradient-fade,
-.theme-title-accent {
+.text-highlight {
   background: var(--theme-gradient) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
@@ -51,6 +47,21 @@ h6 {
   font-family: var(--font-headings);
 }
 
+/* GLOBAL INPUT & FOCUS STYLING OVERRIDE */
+/* When focused/clicked: theme maroon border, NO SHADOW */
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus,
+.form-select:focus,
+.input-group:focus-within,
+.search-input-group:focus-within,
+.filter-select:focus {
+  border-color: var(--primary-maroon, #96053E) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
 /* Global Responsive Helpers & Overflow Guards */
 .min-w-0 {
   min-width: 0 !important;
@@ -69,7 +80,6 @@ video {
 }
 
 @media (max-width: 575.98px) {
-
   .container-fluid,
   .container {
     padding-left: 14px !important;
@@ -79,33 +89,6 @@ video {
   .btn {
     white-space: normal !important;
     word-break: break-word !important;
-  }
-}
-
-/* Animations */
-.animate-slide-up {
-  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-.animate-slide-up-delay-1 {
-  opacity: 0;
-  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.18s forwards;
-}
-
-.animate-slide-up-delay-2 {
-  opacity: 0;
-  animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
-}
-
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
   }
 }
 
@@ -169,7 +152,7 @@ video {
 }
 
 .hero-bottom-breadcrumb-box .breadcrumb-home-icon {
-  color: #0284c7;
+  color: var(--primary-maroon);
   font-size: 14px;
 }
 
