@@ -26,74 +26,74 @@ export class WhyChooseUs {
     {
       id: '01',
       num: '01',
-      icon: 'fa-solid fa-compass-drafting',
-      title: 'Design First',
-      tag: 'Creative Planning',
-      description: 'Every project begins with thoughtful planning and creative design.',
-      badgeText: 'Design First'
+      icon: 'fa-solid fa-user-gear',
+      title: 'Customer-Centric Focus',
+      tag: 'Your Requirements First',
+      description: 'Your requirements come first. We understand your needs, lifestyle, space & budget—and design around them.',
+      badgeText: 'Customer First'
     },
     {
       id: '02',
       num: '02',
       icon: 'fa-solid fa-user-check',
       title: 'Experienced Execution',
-      tag: 'Expert Team',
-      description: 'Handled by professionals with years of industry expertise.',
+      tag: 'Hands-on Experience',
+      description: 'A new-age interior company backed by deep, hands-on execution experience to turn designs into reality.',
       badgeText: 'Expert Execution'
     },
     {
       id: '03',
       num: '03',
-      icon: 'fa-solid fa-receipt',
-      title: 'Transparent Pricing',
-      tag: 'Zero Hidden Costs',
-      description: 'Clear quotations with absolutely no hidden costs.',
-      badgeText: 'Clear Quote'
+      icon: 'fa-solid fa-handshake',
+      title: 'One Dedicated Partner',
+      tag: 'Sketch to Handover',
+      description: 'From first sketch to final handover. Design, materials, civil work, furniture, décor—all under one roof.',
+      badgeText: 'Single Partner'
     },
     {
       id: '04',
       num: '04',
-      icon: 'fa-solid fa-user-tie',
-      title: 'Dedicated Project Manager',
-      tag: 'Single Contact Lead',
-      description: 'A single point of contact throughout your project.',
-      badgeText: '1:1 Manager'
+      icon: 'fa-solid fa-sliders',
+      title: '100% Customized Solutions',
+      tag: 'Nothing Standard',
+      description: 'Customized dimensions, layouts, materials, finishes & furniture to suit your space, needs and budget.',
+      badgeText: 'Fully Customized'
     },
     {
       id: '05',
       num: '05',
       icon: 'fa-solid fa-gem',
-      title: 'Premium Quality',
-      tag: 'Trusted Brands',
-      description: 'Only trusted brands and premium-quality materials.',
-      badgeText: 'Grade-A Materials'
+      title: 'Curated Premium Finishes',
+      tag: 'Quality Materials',
+      description: 'From kitchen tiles and slabs to fittings, storage, and furniture—customized down to the smallest detail.',
+      badgeText: 'Grade-A Finishes'
     },
     {
       id: '06',
       num: '06',
       icon: 'fa-solid fa-calendar-check',
-      title: 'Timely Delivery',
-      tag: 'Committed Timelines',
-      description: 'Projects delivered according to committed timelines.',
-      badgeText: 'On-Time Handover'
+      title: 'Committed Timelines',
+      tag: 'On-Time Handover',
+      description: 'Design with confidence. Execute with experience. Projects delivered according to promised schedules.',
+      badgeText: 'On-Time Delivery'
     },
     {
       id: '07',
       num: '07',
       icon: 'fa-solid fa-chart-line',
-      title: 'Digital Project Tracking',
-      tag: 'Regular Progress',
-      description: 'Stay updated with regular project progress reports.',
-      badgeText: 'Live Reports'
+      title: 'Complete Coordination',
+      tag: 'Live Progress Tracking',
+      description: 'Everything coordinated seamlessly under one roof with regular updates and total transparency.',
+      badgeText: 'Live Tracking'
     },
     {
       id: '08',
       num: '08',
-      icon: 'fa-solid fa-headset',
-      title: 'After Sales Support',
-      tag: 'Warranty & Care',
-      description: 'Warranty and maintenance assistance even after project completion.',
-      badgeText: 'Lifetime Support'
+      icon: 'fa-solid fa-shield-halved',
+      title: 'Built to Last Guarantee',
+      tag: 'Warranty & Support',
+      description: 'Designed to fit. Built to last. Made for you—with continuous after-sales care and warranty assurance.',
+      badgeText: 'Built To Last'
     }
   ];
 
