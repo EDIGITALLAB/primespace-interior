@@ -210,8 +210,14 @@ export class ProjectDetails implements OnInit {
     ];
   }
 
-  setBlockFilter(filter: string) {
+  setBlockFilter(filter: string, event?: Event) {
     this.activeBlockFilter.set(filter);
+    if (event) {
+      const btn = event.currentTarget as HTMLElement;
+      if (btn) {
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
   }
 
   setBlockMainImage(blockId: string, imageIndex: number) {
@@ -247,10 +253,16 @@ export class ProjectDetails implements OnInit {
     this.stopSlideshow();
   }
 
-  setRoomCategory(catId: string) {
+  setRoomCategory(catId: string, event?: Event) {
     this.activeRoomCategory.set(catId);
     this.modalCurrentPage.set(1);
     this.activeModalPhotoIndex.set(-1);
+    if (event) {
+      const btn = event.currentTarget as HTMLElement;
+      if (btn) {
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
   }
 
   getCategoryPhotoCount(catId: string): number {

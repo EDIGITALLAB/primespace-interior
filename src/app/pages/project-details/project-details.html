@@ -13,12 +13,12 @@
         <div class="col-12 col-md-10 col-lg-8 text-center">
           
           <!-- Location & Status Badge Row -->
-          <div class="hero-glass-pill d-inline-flex align-items-center justify-content-center gap-2.5 mb-3 rounded-pill">
-            <div class="d-flex align-items-center gap-1.5">
-              <i class="fa-solid fa-location-dot font-size-xs text-purple"></i>
+          <div class="hero-glass-pill d-inline-flex align-items-center justify-content-center gap-3 mb-3 rounded-pill">
+            <div class="d-flex align-items-center">
+              <i class="fa-solid fa-location-dot font-size-xs text-purple me-1.5"></i>
               <span class="location-text text-uppercase">{{ p.location }}</span>
             </div>
-            <span class="status-badge badge rounded-pill d-inline-flex align-items-center gap-1 text-uppercase shadow-xs">
+            <span class="status-badge badge rounded-pill d-inline-flex align-items-center gap-1.5 text-uppercase shadow-xs">
               <i class="fa-solid" [ngClass]="p.status === 'completed' ? 'fa-circle-check' : 'fa-bolt'"></i>
               <span>{{ p.statusLabel }}</span>
             </span>
@@ -39,11 +39,11 @@
 
           <!-- Book Appointment CTA Centered -->
           <div class="d-flex justify-content-center pt-1">
-            <button type="button" class="btn btn-purple btn-glass-shimmer rounded-pill px-4 py-2.5 font-size-xs fw-extrabold text-uppercase shadow-lg d-inline-flex align-items-center gap-2"
+            <button type="button" class="btn btn-purple btn-glass-shimmer hero-cta-btn rounded-pill fw-extrabold text-uppercase shadow-lg d-inline-flex align-items-center justify-content-center"
               (click)="openConsultation($event)">
-              <i class="fa-solid fa-calendar-days me-1"></i>
-              <span>Book Site Visit Appointment</span>
-              <i class="fa-solid fa-arrow-right font-size-micro ms-1"></i>
+              <i class="fa-solid fa-calendar-check"></i>
+              <span class="cta-text">Book Site Visit Appointment</span>
+              <i class="fa-solid fa-arrow-right"></i>
             </button>
           </div>
 
@@ -51,7 +51,7 @@
       </div>
 
       <!-- BOTTOM-LEFT FLOATING BREADCRUMB CARD (FLUSH TO BOTTOM EDGE MATCHING SCREENSHOT) -->
-      <div class="d-flex justify-content-start align-items-end mt-auto">
+      <div class="d-none d-md-flex justify-content-start align-items-end mt-auto">
         <div class="hero-bottom-breadcrumb-box bg-white shadow-lg d-inline-flex align-items-center">
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb mb-0 d-inline-flex align-items-center gap-2 font-size-xs">
@@ -84,15 +84,15 @@
       <!-- Minimal Gallery Header & Filter Tabs -->
       <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between mb-4 gap-3">
         <div class="d-flex align-items-center gap-3">
-          <div class="gallery-head-icon rounded-3 bg-purple-tint text-purple d-flex align-items-center justify-content-center border border-purple-subtle shadow-xs p-2.5" style="width: 44px; height: 44px;">
-            <i class="fa-solid fa-layer-group font-size-base"></i>
+          <div class="gallery-head-icon bg-purple-tint text-purple d-flex align-items-center justify-content-center border border-purple-subtle shadow-xs">
+            <i class="fa-solid fa-layer-group"></i>
           </div>
           <div>
             <div class="d-flex align-items-center gap-2 mb-0.5">
-              <h5 class="gallery-main-title fw-black text-purple text-uppercase letter-spacing-1 m-0 font-size-lg">Project Gallery</h5>
-              <span class="badge rounded-pill bg-purple text-white font-size-micro px-2.5 py-1 text-uppercase fw-extrabold shadow-xs">All Blocks</span>
+              <h5 class="gallery-main-title fw-black text-purple text-uppercase letter-spacing-1 m-0">Project Gallery</h5>
+              <span class="badge rounded-pill bg-purple text-white font-size-micro px-2.5 py-1 text-uppercase fw-extrabold shadow-xs gallery-head-badge">All Blocks</span>
             </div>
-            <span class="text-muted font-size-xs fw-medium">Explore premium residences & interior suites across all blocks</span>
+            <span class="text-muted font-size-xs fw-medium gallery-head-desc">Explore premium residences & interior suites across all blocks</span>
           </div>
         </div>
 
@@ -101,28 +101,28 @@
           <button type="button" 
             class="btn minimal-tab-btn rounded-pill transition-all"
             [class.active]="activeBlockFilter() === 'all'"
-            (click)="setBlockFilter('all')">
+            (click)="setBlockFilter('all', $event)">
             All Homes
           </button>
 
           <button type="button" 
             class="btn minimal-tab-btn rounded-pill transition-all"
             [class.active]="activeBlockFilter() === 'block-a'"
-            (click)="setBlockFilter('block-a')">
+            (click)="setBlockFilter('block-a', $event)">
             Block A
           </button>
 
           <button type="button" 
             class="btn minimal-tab-btn rounded-pill transition-all"
             [class.active]="activeBlockFilter() === 'block-b'"
-            (click)="setBlockFilter('block-b')">
+            (click)="setBlockFilter('block-b', $event)">
             Block B
           </button>
 
           <button type="button" 
             class="btn minimal-tab-btn rounded-pill transition-all"
             [class.active]="activeBlockFilter() === 'block-c'"
-            (click)="setBlockFilter('block-c')">
+            (click)="setBlockFilter('block-c', $event)">
             Block C
           </button>
         </div>
@@ -157,9 +157,9 @@
                     <img [src]="thumb" [alt]="'Room thumbnail ' + (i + 1)" (error)="onImgError($event)" class="w-100 object-fit-cover minimal-thumb-img">
                     
                     <!-- OVERLAY FOR THE 3RD (RIGHT-MOST) THUMBNAIL -->
-                    <div *ngIf="i === 2" class="view-more-thumb-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white cursor-pointer z-2">
-                      <span class="fw-black font-size-xs line-height-1 mb-0.5">+{{ modalPhotosList.length - 3 }}</span>
-                      <span class="font-size-micro text-uppercase fw-extrabold letter-spacing-05">View More</span>
+                    <div *ngIf="i === 2" class="view-more-thumb-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white cursor-pointer z-2 text-center p-1">
+                      <span class="view-more-count fw-black line-height-1 mb-1">+{{ modalPhotosList.length - 3 }}</span>
+                      <span class="view-more-text text-uppercase fw-extrabold">View More</span>
                     </div>
 
                   </div>
@@ -181,54 +181,75 @@
     <div class="popup-modal-container bg-white rounded-4 border border-gray-200 text-dark w-100 max-w-1250 shadow-2xl overflow-hidden d-flex flex-column">
       
       <!-- Top Modal Header Strip -->
-      <div class="modal-top-header d-flex flex-wrap align-items-center justify-content-between p-3 px-md-4 border-bottom border-gray-200 gap-3">
-        <!-- Left: Icon + Block & Room Info -->
-        <div class="d-flex align-items-center gap-3">
-          <div class="block-head-icon rounded-3 bg-purple-tint text-purple d-flex align-items-center justify-content-center">
-            <i class="fa-solid fa-building-user font-size-md"></i>
+      <div class="modal-top-header p-3 px-md-4 border-bottom border-gray-200">
+        <div class="d-flex align-items-center justify-content-between w-100 gap-2">
+          <!-- Left: Icon + Block & Room Info -->
+          <div class="d-flex align-items-center gap-2.5 min-w-0 flex-grow-1">
+            <div class="block-head-icon rounded-3 bg-purple-tint text-purple d-flex align-items-center justify-content-center flex-shrink-0">
+              <i class="fa-solid fa-building-user"></i>
+            </div>
+            <div class="min-w-0">
+              <h6 class="m-0 fw-black text-dark font-size-base letter-spacing-tight text-truncate">{{ selectedModalBlock()?.name || 'Block A' }} – Home 12</h6>
+              <span class="text-muted font-size-micro fw-bold d-block">3 BHK Apartment</span>
+            </div>
           </div>
-          <div>
-            <h6 class="m-0 fw-black text-dark font-size-base letter-spacing-tight">{{ selectedModalBlock()?.name || 'Block A' }} – Home 12</h6>
-            <span class="text-muted font-size-micro fw-bold">3 BHK Apartment</span>
+
+          <!-- Middle: Photos & Rooms Counters (Desktop Only) -->
+          <div class="d-none d-lg-flex align-items-center gap-4 border-start border-end border-gray-200 px-4">
+            <div class="d-flex align-items-center gap-2.5">
+              <div class="stat-icon-box rounded-circle bg-purple-tint text-purple d-flex align-items-center justify-content-center border border-purple-subtle" style="width: 34px; height: 34px;">
+                <i class="fa-regular fa-images font-size-xs"></i>
+              </div>
+              <span class="fw-extrabold font-size-xs text-dark">{{ modalPhotosList.length }} Photos</span>
+            </div>
+            <div class="d-flex align-items-center gap-2.5">
+              <div class="stat-icon-box rounded-circle bg-purple-tint text-purple d-flex align-items-center justify-content-center border border-purple-subtle" style="width: 34px; height: 34px;">
+                <i class="fa-solid fa-door-open font-size-xs"></i>
+              </div>
+              <span class="fw-extrabold font-size-xs text-dark">{{ roomCategories.length - 1 }} Rooms</span>
+            </div>
+          </div>
+
+          <!-- Right Action Controls (Desktop) & Close Button -->
+          <div class="d-flex align-items-center gap-2 flex-shrink-0">
+            <!-- Desktop-only action buttons -->
+            <div class="d-none d-md-flex align-items-center gap-2">
+              <!-- Slideshow Button -->
+              <button type="button" 
+                class="btn btn-outline-light-custom rounded-pill px-3 py-1.5 font-size-xs fw-bold d-inline-flex align-items-center gap-2"
+                [class.active-btn]="isSlideshowPlaying()"
+                (click)="toggleSlideshow()">
+                <i class="fa-solid" [ngClass]="isSlideshowPlaying() ? 'fa-pause' : 'fa-circle-play'"></i>
+                <span>{{ isSlideshowPlaying() ? 'Pause' : 'Slideshow' }}</span>
+              </button>
+
+              <!-- Download All Button -->
+              <button type="button" class="btn btn-purple-cta rounded-pill px-3 py-1.5 font-size-xs fw-extrabold d-inline-flex align-items-center gap-2" (click)="downloadAllPhotos()">
+                <i class="fa-solid fa-download"></i>
+                <span>Download All</span>
+              </button>
+            </div>
+
+            <!-- Close Modal X Button (Aligned side-by-side with title on all devices) -->
+            <button type="button" class="btn-close-dark rounded-circle" (click)="closeBlockGalleryModal()" aria-label="Close modal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
           </div>
         </div>
 
-        <!-- Middle: Photos & Rooms Counters -->
-        <div class="d-none d-lg-flex align-items-center gap-4 border-start border-end border-gray-200 px-4">
-          <div class="d-flex align-items-center gap-2.5">
-            <div class="stat-icon-box rounded-circle bg-purple-tint text-purple d-flex align-items-center justify-content-center border border-purple-subtle" style="width: 34px; height: 34px;">
-              <i class="fa-regular fa-images font-size-xs"></i>
-            </div>
-            <span class="fw-extrabold font-size-xs text-dark">{{ modalPhotosList.length }} Photos</span>
-          </div>
-          <div class="d-flex align-items-center gap-2.5">
-            <div class="stat-icon-box rounded-circle bg-purple-tint text-purple d-flex align-items-center justify-content-center border border-purple-subtle" style="width: 34px; height: 34px;">
-              <i class="fa-solid fa-door-open font-size-xs"></i>
-            </div>
-            <span class="fw-extrabold font-size-xs text-dark">{{ roomCategories.length - 1 }} Rooms</span>
-          </div>
-        </div>
-
-        <!-- Right Action Controls -->
-        <div class="d-flex align-items-center gap-2">
-          <!-- Slideshow Button -->
+        <!-- Mobile Action Buttons Row (Slideshow & Download) -->
+        <div class="d-flex d-md-none align-items-center gap-2 pt-2 mt-2 border-top border-gray-100">
           <button type="button" 
-            class="btn btn-outline-light-custom rounded-pill px-3 py-1.5 font-size-xs fw-bold d-inline-flex align-items-center gap-2"
+            class="btn btn-outline-light-custom rounded-pill px-2.5 py-1 font-size-micro fw-bold d-inline-flex align-items-center gap-2 flex-fill justify-content-center"
             [class.active-btn]="isSlideshowPlaying()"
             (click)="toggleSlideshow()">
-            <i class="fa-solid" [ngClass]="isSlideshowPlaying() ? 'fa-pause' : 'fa-circle-play'"></i>
+            <i class="fa-solid me-1" [ngClass]="isSlideshowPlaying() ? 'fa-pause' : 'fa-circle-play'"></i>
             <span>{{ isSlideshowPlaying() ? 'Pause' : 'Slideshow' }}</span>
           </button>
 
-          <!-- Download All Button -->
-          <button type="button" class="btn btn-purple-cta rounded-pill px-3 py-1.5 font-size-xs fw-extrabold d-inline-flex align-items-center gap-2" (click)="downloadAllPhotos()">
-            <i class="fa-solid fa-download"></i>
+          <button type="button" class="btn btn-purple-cta rounded-pill px-2.5 py-1 font-size-micro fw-extrabold d-inline-flex align-items-center gap-2 flex-fill justify-content-center" (click)="downloadAllPhotos()">
+            <i class="fa-solid fa-download me-1"></i>
             <span>Download All</span>
-          </button>
-
-          <!-- Close Modal X Button -->
-          <button type="button" class="btn-close-dark rounded-circle ms-2" (click)="closeBlockGalleryModal()">
-            <i class="fa-solid fa-xmark font-size-md"></i>
           </button>
         </div>
       </div>
@@ -243,7 +264,7 @@
               *ngFor="let cat of roomCategories"
               class="sidebar-cat-btn text-start d-flex align-items-center justify-content-between transition-all"
               [class.active-cat]="activeRoomCategory() === cat.id"
-              (click)="setRoomCategory(cat.id)">
+              (click)="setRoomCategory(cat.id, $event)">
               <div class="d-flex align-items-center min-w-0 me-2 overflow-hidden">
                 <i [class]="cat.iconClass" class="cat-icon"></i>
                 <span class="sidebar-cat-name text-truncate">{{ cat.name }}</span>
@@ -260,15 +281,15 @@
           <div *ngIf="activeModalPhotoIndex() === -1" class="h-100 d-flex flex-column justify-content-between animate-fade-in">
             <div>
               <!-- Grid Header Row -->
-              <div class="d-flex align-items-center justify-content-between mb-3.5 pb-3 border-bottom border-gray-200">
-                <h6 class="m-0 fw-black text-dark font-size-base">
+              <div class="d-flex align-items-center justify-content-between mb-2.5 mb-md-3.5 pb-2 pb-md-3 border-bottom border-gray-200 gap-2">
+                <h6 class="m-0 fw-black text-dark modal-gallery-title text-nowrap">
                   All Photos <span class="text-muted font-size-xs">({{ activeCategoryPhotoCount }})</span>
                 </h6>
                 
                 <!-- Sort Dropdown -->
-                <div class="d-flex align-items-center gap-2">
-                  <span class="font-size-micro text-muted fw-bold">Sort by:</span>
-                  <select class="sort-select rounded-3 px-3 py-1 font-size-micro fw-bold">
+                <div class="d-flex align-items-center gap-1.5 flex-shrink-0">
+                  <span class="font-size-micro text-muted fw-bold text-nowrap sort-label">Sort:</span>
+                  <select class="sort-select rounded-3 px-2 py-1 font-size-micro fw-bold">
                     <option value="latest">Latest</option>
                     <option value="popular">Most Popular</option>
                     <option value="room">Room Order</option>
@@ -308,17 +329,17 @@
           <div *ngIf="activeModalPhotoIndex() !== -1 && currentModalPhoto as photo" class="popup-inline-preview-stage h-100 d-flex flex-column justify-content-between animate-zoom-in">
             
             <!-- Top Control Bar inside Preview -->
-            <div class="d-flex align-items-center justify-content-between mb-3 pb-2.5 border-bottom border-gray-200 gap-2">
-              <button type="button" class="btn btn-outline-purple-sm rounded-pill px-3 py-1 font-size-xs fw-bold d-inline-flex align-items-center gap-2" (click)="closeModalPhotoPreview()">
-                <i class="fa-solid fa-arrow-left font-size-xs"></i>
-                <span>Back to All Photos</span>
+            <div class="d-flex align-items-center justify-content-between mb-2.5 mb-md-3 pb-2 pb-md-2.5 border-bottom border-gray-200 gap-2">
+              <button type="button" class="btn btn-outline-purple-sm rounded-pill px-2.5 px-md-3 py-1 font-size-xs fw-bold d-inline-flex align-items-center gap-1.5 flex-shrink-0" (click)="closeModalPhotoPreview()">
+                <i class="fa-solid fa-arrow-left"></i>
+                <span>Back<span class="d-none d-sm-inline"> to All Photos</span></span>
               </button>
 
-              <div class="text-center px-2 min-w-0 flex-grow-1">
-                <h6 class="m-0 fw-black text-dark font-size-sm text-truncate">{{ photo.title }}</h6>
+              <div class="text-center px-1 min-w-0 flex-grow-1">
+                <h6 class="m-0 fw-black text-dark font-size-xs text-truncate">{{ photo.title }}</h6>
               </div>
 
-              <span class="badge rounded-pill bg-purple-tint text-purple fw-extrabold px-3 py-1.5 font-size-xs flex-shrink-0">
+              <span class="badge rounded-pill bg-purple-tint text-purple fw-extrabold px-2.5 px-md-3 py-1 font-size-xs flex-shrink-0">
                 {{ activeModalPhotoIndex() + 1 }} / {{ filteredModalPhotos.length }}
               </span>
             </div>

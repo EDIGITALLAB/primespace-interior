@@ -1,3 +1,13 @@
+.privacy-main-title {
+  font-size: 2.75rem;
+  letter-spacing: -0.5px;
+}
+
+.privacy-hero-desc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
 .privacy-page-wrapper {
   min-height: 100vh;
   font-family: var(--font-body, 'Inter', sans-serif);
@@ -109,4 +119,160 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* =========================================================
+   MOBILE RESPONSIVENESS (< 768px)
+   ========================================================= */
+
+@media (max-width: 767.98px) {
+  .privacy-hero {
+    padding-top: 80px !important;
+    padding-bottom: 0 !important;
+    min-height: auto !important;
+  }
+
+  .privacy-hero .hero-content-row {
+    padding-top: 0.75rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .privacy-main-title {
+    font-size: 1.75rem !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0.4rem !important;
+  }
+
+  .privacy-hero-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.75rem !important;
+    padding: 0 8px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+  }
+
+  .privacy-hero-badge {
+    font-size: 9.5px !important;
+    padding: 3px 9px !important;
+  }
+
+  .privacy-hero-badge i {
+    font-size: 9.5px !important;
+  }
+
+  /* Breadcrumb box flush at bottom */
+  .hero-bottom-breadcrumb-box {
+    padding: 4px 10px !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    margin-bottom: 0 !important;
+    transform: translateY(1px) !important;
+  }
+
+  .hero-bottom-breadcrumb-box .breadcrumb-link,
+  .hero-bottom-breadcrumb-box .breadcrumb-active-title {
+    font-size: 10px !important;
+  }
+
+  .hero-bottom-breadcrumb-box .breadcrumb-home-icon {
+    font-size: 9.5px !important;
+  }
+
+  .hero-bottom-breadcrumb-box .separator {
+    font-size: 9.5px !important;
+    margin: 0 1px !important;
+  }
+
+  /* Main body container */
+  .privacy-body-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 16px !important;
+  }
+
+  .privacy-section {
+    margin-bottom: 1.85rem !important;
+  }
+
+  .privacy-section h3.h4 {
+    font-size: 1.05rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .icon-box-sm {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 8px !important;
+  }
+
+  .icon-box-sm i {
+    font-size: 13px !important;
+  }
+
+  .privacy-section p {
+    font-size: 0.82rem !important;
+    line-height: 1.55 !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .privacy-section ul li {
+    padding: 0.75rem !important;
+    gap: 0.65rem !important;
+    border-radius: 10px !important;
+  }
+
+  .privacy-section ul li strong {
+    font-size: 0.82rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .privacy-section ul li span {
+    font-size: 0.74rem !important;
+    line-height: 1.35 !important;
+    display: block !important;
+  }
+
+  /* Section 3 grid cards */
+  .shadow-2xs {
+    padding: 0.75rem !important;
+    border-radius: 10px !important;
+  }
+
+  .shadow-2xs h6 {
+    font-size: 0.82rem !important;
+    margin-bottom: 4px !important;
+  }
+
+  .shadow-2xs p {
+    font-size: 0.74rem !important;
+    line-height: 1.35 !important;
+  }
+
+  /* Section 7 Contact Card */
+  .privacy-section .bg-purple-05 {
+    padding: 1rem !important;
+    border-radius: 12px !important;
+  }
+
+  .privacy-section .bg-purple-05 h4 {
+    font-size: 0.95rem !important;
+  }
+
+  .privacy-section .bg-purple-05 p {
+    font-size: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .btn-purple-solid {
+    width: 100% !important;
+    font-size: 11px !important;
+    padding: 7px 14px !important;
+    text-align: center !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
 }

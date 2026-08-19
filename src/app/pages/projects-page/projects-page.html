@@ -36,54 +36,58 @@
       </div>
 
       <!-- FILTER TOOLBAR ROW -->
-      <div class="filter-toolbar-row d-flex flex-wrap align-items-center gap-3 pt-1">
-        <!-- City Filter Select -->
-        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedCity()" (ngModelChange)="onCityChange($event)">
-          <option value="all">All Cities</option>
-          <option value="Bangalore">Bangalore</option>
-          <option value="Bhubaneswar">Bhubaneswar</option>
-        </select>
+      <div class="filter-toolbar-row d-flex flex-wrap align-items-center gap-2 gap-md-3 pt-1">
+        <div class="filter-selects-grid d-flex flex-wrap align-items-center gap-2 gap-md-3">
+          <!-- City Filter Select -->
+          <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+            [ngModel]="selectedCity()" (ngModelChange)="onCityChange($event)">
+            <option value="all">All Cities</option>
+            <option value="Bangalore">Bangalore</option>
+            <option value="Bhubaneswar">Bhubaneswar</option>
+          </select>
 
-        <!-- Apartment Filter Select -->
-        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedApartment()" (ngModelChange)="onApartmentChange($event)">
-          <option *ngFor="let opt of apartmentOptions" [value]="opt === 'All Apartments' ? 'all' : opt">{{ opt }}
-          </option>
-        </select>
+          <!-- Apartment Filter Select -->
+          <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+            [ngModel]="selectedApartment()" (ngModelChange)="onApartmentChange($event)">
+            <option *ngFor="let opt of apartmentOptions" [value]="opt === 'All Apartments' ? 'all' : opt">{{ opt }}
+            </option>
+          </select>
 
-        <!-- Status Filter Select -->
-        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedStatus()" (ngModelChange)="onStatusChange($event)">
-          <option value="all">Status</option>
-          <option value="completed">Completed Projects</option>
-          <option value="ongoing">Live Construction Sites</option>
-        </select>
+          <!-- Status Filter Select -->
+          <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+            [ngModel]="selectedStatus()" (ngModelChange)="onStatusChange($event)">
+            <option value="all">Status</option>
+            <option value="completed">Completed Projects</option>
+            <option value="ongoing">Live Construction Sites</option>
+          </select>
 
-        <!-- Project Type Filter Select -->
-        <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
-          [ngModel]="selectedProjectType()" (ngModelChange)="onProjectTypeChange($event)">
-          <option value="all">Project Type</option>
-          <option value="Villa">Villa</option>
-          <option value="Penthouse">Penthouse</option>
-          <option value="Duplex">Duplex</option>
-          <option value="Apartment">Apartment</option>
-        </select>
+          <!-- Project Type Filter Select -->
+          <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
+            [ngModel]="selectedProjectType()" (ngModelChange)="onProjectTypeChange($event)">
+            <option value="all">Project Type</option>
+            <option value="Villa">Villa</option>
+            <option value="Penthouse">Penthouse</option>
+            <option value="Duplex">Duplex</option>
+            <option value="Apartment">Apartment</option>
+          </select>
+        </div>
 
-        <!-- Filter Action Button -->
-        <button type="button"
-          class="btn btn-filter-submit rounded-3 px-4 fw-extrabold font-size-micro text-uppercase shadow-xs"
-          (click)="applyFilter()">
-          FILTER
-        </button>
+        <div class="filter-actions-group d-flex align-items-center gap-2">
+          <!-- Filter Action Button -->
+          <button type="button"
+            class="btn btn-filter-submit rounded-3 px-4 fw-extrabold font-size-micro text-uppercase shadow-xs"
+            (click)="applyFilter()">
+            FILTER
+          </button>
 
-        <!-- Reset Filter Action Button -->
-        <button type="button"
-          class="btn btn-filter-reset rounded-3 px-3.5 fw-bold font-size-micro text-uppercase shadow-xs d-inline-flex align-items-center gap-1.5"
-          *ngIf="hasActiveFilters()" (click)="resetFilter()">
-          <i class="fa-solid fa-rotate-left font-size-micro"></i>
-          <span>RESET</span>
-        </button>
+          <!-- Reset Filter Action Button -->
+          <button type="button"
+            class="btn btn-filter-reset rounded-3 px-3.5 fw-bold font-size-micro text-uppercase shadow-xs d-inline-flex align-items-center gap-1.5"
+            *ngIf="hasActiveFilters()" (click)="resetFilter()">
+            <i class="fa-solid fa-rotate-left font-size-micro"></i>
+            <span>RESET</span>
+          </button>
+        </div>
       </div>
     </div>
   </div>

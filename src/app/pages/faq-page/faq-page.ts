@@ -116,7 +116,13 @@ export class FaqPage implements OnInit {
     );
   }
 
-  setCategory(cat: string) {
+  setCategory(cat: string, event?: Event) {
     this.activeCategory.set(cat);
+    if (event) {
+      const btn = event.currentTarget as HTMLElement;
+      if (btn) {
+        btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
   }
 }

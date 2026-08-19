@@ -2,10 +2,10 @@
   <!-- Hero Header Banner -->
   <section class="faq-hero position-relative pt-5 pb-0 text-white">
     <div class="container position-relative z-1 h-100 d-flex flex-column justify-content-between pt-3">
-      <div class="row justify-content-center text-center my-auto py-3">
+      <div class="row justify-content-center text-center my-auto py-3 hero-content-row">
         <div class="col-lg-9">
-          <h1 class="display-4 fw-black text-uppercase tracking-tight mb-3">Frequently Asked Questions</h1>
-          <p class="lead text-white-50 mx-auto max-w-700 mb-4">
+          <h1 class="faq-main-title fw-black text-uppercase tracking-tight mb-2 mb-md-3">Frequently Asked Questions</h1>
+          <p class="faq-hero-desc text-white-50 mx-auto max-w-700 mb-3 mb-md-4">
             Everything you need to know about our interior design process, 3D consultations, factory manufacturing, pricing, and 10-year warranty.
           </p>
 
@@ -55,47 +55,47 @@
   </section>
 
   <!-- Main FAQ Section -->
-  <section class="py-5 bg-light">
-    <div class="container py-3">
+  <section class="py-4 py-md-5 bg-light">
+    <div class="container py-2 py-md-3">
 
       <!-- Category Filter Pills -->
-      <div class="row justify-content-center mb-4">
+      <div class="row justify-content-center mb-3 mb-md-4">
         <div class="col-lg-10">
-          <div class="d-flex flex-wrap align-items-center justify-content-center gap-2">
+          <div class="d-flex align-items-center justify-content-start justify-content-md-center gap-2 faq-categories-wrapper">
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'all'"
-              (click)="setCategory('all')">
+              (click)="setCategory('all', $event)">
               <i class="fa-solid fa-border-all me-1.5"></i> All Questions
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'general'"
-              (click)="setCategory('general')">
+              (click)="setCategory('general', $event)">
               <i class="fa-solid fa-circle-info me-1.5"></i> General & Studio
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'pricing'"
-              (click)="setCategory('pricing')">
+              (click)="setCategory('pricing', $event)">
               <i class="fa-solid fa-indian-rupee-sign me-1.5"></i> Pricing & Payment
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'timeline'"
-              (click)="setCategory('timeline')">
+              (click)="setCategory('timeline', $event)">
               <i class="fa-solid fa-clock me-1.5"></i> 45-Day Timeline
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'materials'"
-              (click)="setCategory('materials')">
+              (click)="setCategory('materials', $event)">
               <i class="fa-solid fa-layer-group me-1.5"></i> Materials & Hardware
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'warranty'"
-              (click)="setCategory('warranty')">
+              (click)="setCategory('warranty', $event)">
               <i class="fa-solid fa-shield-check me-1.5"></i> 10-Yr Warranty
             </button>
           </div>
