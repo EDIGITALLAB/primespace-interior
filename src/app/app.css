@@ -153,7 +153,8 @@ video {
 
 .hero-bottom-breadcrumb-box .breadcrumb-home-icon {
   color: var(--primary-maroon);
-  font-size: 14px;
+  font-size: 13px;
+  margin-right: 5px;
 }
 
 .hero-bottom-breadcrumb-box .separator {
@@ -166,4 +167,44 @@ video {
   color: var(--primary-maroon, #96053E) !important;
   font-size: 13.5px;
   font-weight: 700;
+}
+
+@media (max-width: 767.98px) {
+  .hero-bottom-breadcrumb-box {
+    padding: 4px 10px !important;
+    border-top-left-radius: 5px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    margin-bottom: 0 !important;
+    transform: translateY(1px) !important;
+    max-width: 100% !important;
+  }
+
+  .hero-bottom-breadcrumb-box .breadcrumb {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+    gap: 4px !important;
+  }
+
+  .hero-bottom-breadcrumb-box .breadcrumb::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hero-bottom-breadcrumb-box .breadcrumb-link,
+  .hero-bottom-breadcrumb-box .breadcrumb-active-title {
+    font-size: 10px !important;
+  }
+
+  .hero-bottom-breadcrumb-box .breadcrumb-home-icon {
+    font-size: 9.5px !important;
+    margin-right: 3.5px !important;
+  }
+
+  .hero-bottom-breadcrumb-box .separator {
+    font-size: 9.5px !important;
+    margin: 0 1px !important;
+  }
 }
