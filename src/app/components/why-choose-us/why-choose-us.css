@@ -272,14 +272,17 @@
   }
 
   .why-badge-pills-wrap {
-    gap: 6px !important;
+    gap: 4px !important;
+    flex-wrap: nowrap !important;
+    justify-content: center !important;
+    max-width: 100% !important;
   }
 
   .why-bento-badge,
   .why-count-chip {
-    font-size: 8px !important;
-    padding: 3.5px 8px !important;
-    letter-spacing: 0.5px !important;
+    font-size: clamp(7px, 2.1vw, 8.5px) !important;
+    padding: 3px 6px !important;
+    letter-spacing: 0.2px !important;
     white-space: nowrap !important;
   }
 

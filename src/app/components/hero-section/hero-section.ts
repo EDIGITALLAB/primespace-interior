@@ -22,7 +22,7 @@ export class HeroSection implements OnInit, OnDestroy {
     { name: "Architectural Bronze", hex: "#8D5B4C", gradientEnd: "#ff7733" }
   ];
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     this.startSlideshow();
@@ -36,7 +36,7 @@ export class HeroSection implements OnInit, OnDestroy {
   startSlideshow() {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 6000); // Cycles every 6 seconds
+    }, 11000);
   }
 
   stopSlideshow() {
@@ -110,7 +110,7 @@ export class HeroSection implements OnInit, OnDestroy {
 
   hexToRgb(hex: string) {
     var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+    hex = hex.replace(shorthandRegex, function (m, r, g, b) {
       return r + r + g + g + b + b;
     });
 

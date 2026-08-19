@@ -801,20 +801,39 @@
     max-width: 100% !important;
     clip-path: none !important;
     padding: 20px 18px !important;
-    background: var(--white) !important;
+    background: linear-gradient(135deg, var(--primary-maroon) 0%, color-mix(in srgb, var(--primary-maroon) 50%, #000000) 100%) !important;
     border: none !important;
-    border-top: 1px solid rgba(0, 0, 0, 0.06) !important;
-    box-shadow: none !important;
+    box-shadow: 0 8px 25px rgba(var(--primary-maroon-rgb), 0.25) !important;
     backdrop-filter: none !important;
+  }
+
+  .animate-entry .preview-details-panel {
+    animation: none !important;
+  }
+
+  .details-badge {
+    color: rgba(255, 255, 255, 0.8) !important;
   }
 
   .details-title {
     font-size: 1.2rem !important;
+    color: var(--white) !important;
   }
 
   .details-desc {
     font-size: 0.84rem !important;
     line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  .btn-explore-cat {
+    color: var(--white) !important;
+    font-weight: 800 !important;
+    padding-left: 0 !important;
+  }
+
+  .btn-explore-cat .btn-arrow {
+    color: var(--white) !important;
   }
 }
 
@@ -881,6 +900,7 @@
     font-size: 7.5px !important;
     letter-spacing: 1px !important;
     margin-bottom: 2px !important;
+    color: rgba(255, 255, 255, 0.8) !important;
   }
 
   .details-title {
@@ -888,6 +908,7 @@
     margin-bottom: 3px !important;
     line-height: 1.25 !important;
     word-break: break-word !important;
+    color: var(--white) !important;
   }
 
   .details-desc {
@@ -896,11 +917,18 @@
     margin-bottom: 8px !important;
     white-space: normal !important;
     word-wrap: break-word !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
 
   .btn-explore-cat {
     font-size: 0.68rem !important;
-    padding: 5px 12px !important;
+    padding: 4px 0 !important;
+    color: var(--white) !important;
+    font-weight: 800 !important;
+  }
+
+  .btn-explore-cat .btn-arrow {
+    color: var(--white) !important;
   }
 
   .preview-counter-badge {
@@ -940,6 +968,7 @@
   .details-title {
     font-size: 0.9rem !important;
     word-break: break-word !important;
+    color: var(--white) !important;
   }
 
   .details-desc {
@@ -948,5 +977,6 @@
     word-wrap: break-word !important;
     white-space: normal !important;
     overflow: hidden !important;
+    color: rgba(255, 255, 255, 0.9) !important;
   }
 }
