@@ -1,6 +1,5 @@
 import { Component, signal, ElementRef, ViewChild, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 export interface ServiceCardData {
@@ -18,7 +17,7 @@ export interface ServiceCardData {
 @Component({
   selector: 'app-featured-services',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './featured-services.html',
   styleUrl: './featured-services.css',
 })

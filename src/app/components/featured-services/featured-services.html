@@ -33,8 +33,7 @@
         @for (s of servicesList; track s.id; let i = $index) {
         <div class="col" [class.active-slide]="currentSlide() === i">
           <div
-            class="fs-exact-card bg-white rounded-4 h-100 d-flex flex-column justify-content-between position-relative shadow-sm border cursor-pointer overflow-hidden"
-            [routerLink]="['/service-details', s.slug]">
+            class="fs-exact-card bg-white rounded-4 h-100 d-flex flex-column justify-content-between position-relative shadow-sm border overflow-hidden">
 
             <!-- Card Header Image Banner -->
             <div class="fs-card-img-banner position-relative overflow-hidden">
@@ -78,11 +77,11 @@
             <!-- Bottom Explore Link & Full-Width Bottom Accent Bar -->
             <div class="fs-card-footer-wrapper">
               <div class="text-center py-3">
-                <a [routerLink]="['/service-details', s.slug]"
-                  class="fs-exact-explore-link font-size-xs fw-bold text-uppercase text-decoration-none d-inline-flex align-items-center gap-2">
+                <div
+                  class="fs-exact-explore-link font-size-xs fw-bold text-uppercase d-inline-flex align-items-center gap-2">
                   <span>Explore Solutions</span>
                   <i class="fa-solid fa-arrow-right font-size-xs"></i>
-                </a>
+                </div>
               </div>
 
               <!-- Full-Width Bottom Theme Accent Bar -->

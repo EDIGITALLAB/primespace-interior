@@ -18,18 +18,18 @@ import { ConsultationModalService } from '../../services/consultation-modal.serv
 })
 export class Landing implements OnInit, OnDestroy {
   private consultationModalService = inject(ConsultationModalService);
-  private autoPopupTimer: any;
+  private autoPopupInterval: any;
 
   ngOnInit() {
-    // Show the Consultation Modal popup automatically 15 seconds after opening the homepage
-    this.autoPopupTimer = setTimeout(() => {
+    // Show the Consultation Modal popup automatically every 20 seconds on the homepage
+    this.autoPopupInterval = setInterval(() => {
       this.consultationModalService.open();
-    }, 10000);
+    }, 30000);
   }
 
   ngOnDestroy() {
-    if (this.autoPopupTimer) {
-      clearTimeout(this.autoPopupTimer);
+    if (this.autoPopupInterval) {
+      clearInterval(this.autoPopupInterval);
     }
   }
 }
