@@ -286,6 +286,7 @@
   font-size: 12px;
   line-height: 1.4;
   color: var(--text-medium-grey) !important;
+  white-space: pre-line;
 }
 
 .studio-meta .meta-item {

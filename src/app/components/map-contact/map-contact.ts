@@ -10,6 +10,7 @@ export interface StudioLocation {
   address: string;
   hours: string;
   phone: string;
+  email?: string;
   mapEmbedUrl: string;
   directionsUrl: string;
   safeMapUrl?: SafeResourceUrl;
@@ -33,12 +34,13 @@ export class MapContact implements OnInit {
     {
       id: 'bengaluru',
       city: 'Bengaluru',
-      name: 'Indiranagar Flagship Studio',
-      address: '10th Main Rd, Indiranagar, Bengaluru, Karnataka 560038',
+      name: 'Medahalli Flagship Studio',
+      address: 'Palm Kingdom, House No. 15, Medahalli, Near Satsang Temple, KRPURAM, Avalahalli,\nBengaluru, Karnataka - 560049',
       hours: 'Mon - Sun: 10:00 AM - 8:00 PM',
-      phone: '+91 98765 43210',
-      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3887.925085300078!2d77.63842607604473!3d12.97662498733904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1716300000000!5m2!1sen!2sin',
-      directionsUrl: 'https://maps.google.com/?q=Indiranagar,Bengaluru'
+      phone: '+91 78997 45577',
+      email: 'support.primespaceinterior@gmail.com',
+      mapEmbedUrl: 'https://maps.google.com/maps?q=Sizzle+Palm+Kingdom,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=16&ie=UTF8&iwloc=&output=embed',
+      directionsUrl: 'https://maps.google.com/?q=Palm+Kingdom,+House+No.+15,+Medahalli,+Near+Satsang+Temple,+KRPURAM,+Avalahalli,+Bengaluru,+Karnataka+560049'
     },
     {
       id: 'bhubaneswar',
@@ -46,7 +48,8 @@ export class MapContact implements OnInit {
       name: 'Janpath Luxury Experience Studio',
       address: 'Plot No. 102, Janpath Rd, Saheed Nagar, Bhubaneswar, Odisha 751007',
       hours: 'Mon - Sun: 10:00 AM - 8:00 PM',
-      phone: '+91 98765 43211',
+      phone: '+91 78997 45577',
+      email: 'support.primespaceinterior@gmail.com',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3742.146816578912!2d85.83685437609204!3d20.294194981180296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1716300000000!5m2!1sen!2sin',
       directionsUrl: 'https://maps.google.com/?q=Saheed+Nagar,Bhubaneswar'
     }
@@ -112,11 +115,13 @@ export class MapContact implements OnInit {
     if (this.currentMapType === 'satellite') {
       if (url.includes('!5e0!')) {
         url = url.replace('!5e0!', '!5e1!');
-      } else if (!url.includes('!5e1!')) {
+      } else if (url.includes('&t=')) {
+        url = url.replace('&t=', '&t=k');
+      } else if (!url.includes('&t=k')) {
         url += '&t=k';
       }
     } else {
-      url = url.replace('!5e1!', '!5e0!');
+      url = url.replace('!5e1!', '!5e0!').replace('&t=k', '&t=');
     }
     this.activeLocation.safeMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }

@@ -20,6 +20,10 @@
   }
 }
 
+.studio-detail-address {
+  white-space: pre-line !important;
+}
+
 .hero-bg-watermark {
   position: absolute;
   inset: 0;
@@ -479,24 +483,26 @@
   .studio-detail-address {
     font-size: 0.78rem !important;
     line-height: 1.4 !important;
+    white-space: pre-line !important;
   }
 
   .studio-header-actions {
-    width: 100% !important;
-    flex-direction: column !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
     gap: 8px !important;
   }
 
   .studio-action-btn {
-    width: 100% !important;
-    font-size: 0.78rem !important;
-    padding: 10px 14px !important;
-    letter-spacing: 0.5px !important;
+    flex: 1 1 auto !important;
+    font-size: 0.75rem !important;
+    padding: 8px 12px !important;
+    letter-spacing: 0.3px !important;
     text-align: center !important;
     justify-content: center !important;
     display: inline-flex !important;
     align-items: center !important;
     white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
 
   .studio-action-btn i {

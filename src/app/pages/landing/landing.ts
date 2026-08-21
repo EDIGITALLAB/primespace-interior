@@ -21,9 +21,9 @@ export class Landing implements OnInit, OnDestroy {
   private autoPopupInterval: any;
 
   ngOnInit() {
-    // Show the Consultation Modal popup automatically every 20 seconds on the homepage
+    // Show the Consultation Modal popup automatically every 30 seconds on the homepage (only if user has not submitted yet)
     this.autoPopupInterval = setInterval(() => {
-      this.consultationModalService.open();
+      this.consultationModalService.openAuto();
     }, 30000);
   }
 

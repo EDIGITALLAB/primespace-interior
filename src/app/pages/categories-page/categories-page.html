@@ -121,11 +121,6 @@
                 {{ cat.num }}
               </span>
 
-              <!-- Top Right Price Badge -->
-              <span class="card-price-badge position-absolute top-0 end-0 m-3 rounded-pill px-3 py-1 fw-bold">
-                Starts at {{ cat.startingPrice }}
-              </span>
-
               <!-- Quick View Button Overlay -->
               <button
                 class="btn-quick-view position-absolute top-50 start-50 translate-middle rounded-pill px-3 py-1.5 fw-bold shadow-lg"
@@ -170,15 +165,10 @@
               </div>
 
               <!-- Card Action Buttons -->
-              <div class="card-actions pt-2 mt-auto d-flex gap-2">
+              <div class="card-actions pt-2 mt-auto">
                 <button (click)="openQuickView(cat, $event)"
-                  class="btn btn-card-details rounded-pill py-2 px-3 fw-bold flex-grow-1">
+                  class="btn btn-card-details rounded-pill py-2 px-3 fw-bold w-100">
                   <span>DETAILS</span>
-                </button>
-                <button (click)="openConsultation($event)"
-                  class="btn btn-card-consult rounded-pill py-2 px-3.5 d-flex align-items-center justify-content-center fw-bold flex-grow-1">
-                  <span>BOOK 3D</span>
-                  <i class="fa-solid fa-arrow-right ms-1.5 btn-arrow"></i>
                 </button>
               </div>
 
@@ -351,10 +341,6 @@
 
             <!-- Price & Delivery Badges -->
             <div class="d-flex flex-wrap gap-3 mb-4">
-              <div class="modal-spec-badge bg-purple-light border border-purple-20 flex-grow-1">
-                <span class="text-uppercase small text-muted fw-bold d-block mb-1">Starting Price</span>
-                <span class="fw-extrabold text-purple h5 m-0">{{ selectedCategoryModal()?.startingPrice }}</span>
-              </div>
               <div class="modal-spec-badge bg-light border flex-grow-1">
                 <span class="text-uppercase small text-muted fw-bold d-block mb-1">Delivery Time</span>
                 <span class="fw-extrabold text-dark h5 m-0">{{ selectedCategoryModal()?.turnaround }}</span>
@@ -377,7 +363,7 @@
             <div class="d-flex gap-2 pt-2 border-top">
               <button (click)="openConsultation($event)"
                 class="btn btn-purple rounded-pill py-2.5 px-4 fw-bold text-uppercase flex-grow-1 shadow d-flex align-items-center justify-content-center">
-                <span>BOOK 3D DESIGN <span class="d-none d-sm-inline">FOR THIS ROOM</span></span>
+                <span>BOOK FREE CONSULTATION</span>
                 <i class="fa-solid fa-arrow-right ms-2"></i>
               </button>
             </div>

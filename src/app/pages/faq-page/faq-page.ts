@@ -35,7 +35,7 @@ export class FaqPage implements OnInit {
       id: 'f2',
       category: 'general',
       question: 'Where are your physical experience centers located?',
-      answer: 'We currently operate flagship design studios in Indiranagar (Bengaluru) and Saheed Nagar (Bhubaneswar). You can visit our studios to touch raw HDMR samples, test soft-close hardware bays, and consult 1-on-1 with our principal interior architects.',
+      answer: 'We currently operate flagship design studios in Medahalli (Bengaluru) and Saheed Nagar (Bhubaneswar). You can visit our studios to touch raw HDMR samples, test soft-close hardware bays, and consult 1-on-1 with our principal interior architects.',
       isOpen: false
     },
     {
@@ -84,7 +84,7 @@ export class FaqPage implements OnInit {
       id: 'f9',
       category: 'warranty',
       question: 'How do I request site maintenance or warranty service?',
-      answer: 'Simply call our customer helpline (+91 98765 43210) or email support@primespaceinterior.com. A certified site technician will visit your home within 48 hours to inspect and replace any affected components.',
+      answer: 'Simply call our customer helpline (+91 78997 45577) or email support.primespaceinterior@gmail.com. A certified site technician will visit your home within 48 hours to inspect and replace any affected components.',
       isOpen: false
     }
   ]);
