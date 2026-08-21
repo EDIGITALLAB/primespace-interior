@@ -158,7 +158,7 @@
                           </span>
                           <select class="form-select border-0 shadow-none ps-1 pe-4 font-size-sm text-dark cursor-pointer fw-bold bg-cream-input"
                             [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event)" name="citySelect">
-                            <option value="Bangalore">Bangalore Studio (Indiranagar)</option>
+                            <option value="Bangalore">Bangalore Studio (Medahalli)</option>
                             <option value="Bhubaneswar">Bhubaneswar Studio (Saheed Nagar)</option>
                           </select>
                         </div>
@@ -166,7 +166,7 @@
                         <!-- Action CTA Button -->
                         <div class="pt-2">
                           <button type="submit" class="btn btn-mockup-cta w-100 rounded-3 py-3 px-3 fw-bold font-size-sm text-uppercase d-flex align-items-center justify-content-center gap-2 shadow-sm">
-                            <span>GET FREE 3D ESTIMATE & LAYOUT</span>
+                            <span>GET FREE ESTIMATE & LAYOUT</span>
                             <i class="fa-solid fa-arrow-right font-size-xs"></i>
                           </button>
                         </div>
@@ -175,8 +175,8 @@
                         <div class="text-center pt-2">
                           <p class="font-size-micro text-white-50 mb-0 opacity-80">
                             By submitting this form, you agree to our<br>
-                            <a href="#" class="text-white text-decoration-underline fw-semibold">Privacy Policy</a> &amp;
-                            <a href="#" class="text-white text-decoration-underline fw-semibold">Terms &amp; Conditions</a>.
+                            <a routerLink="/privacy-policy" class="text-white text-decoration-underline fw-semibold">Privacy Policy</a> &amp;
+                            <a routerLink="/terms-conditions" class="text-white text-decoration-underline fw-semibold">Terms &amp; Conditions</a>.
                           </p>
                         </div>
 

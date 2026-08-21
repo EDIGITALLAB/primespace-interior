@@ -51,7 +51,7 @@
           <i class="fa-solid fa-location-dot field-icon text-purple"></i>
           <select id="modalCitySelect" class="form-select modal-input with-icon" required #modalCity>
             <option value="" disabled selected>Select Location</option>
-            <option value="Bangalore Studio (Indiranagar)">Bangalore Studio (Indiranagar)</option>
+            <option value="Bangalore Studio (Medahalli)">Bangalore Studio (Medahalli)</option>
             <option value="Bhubaneswar Studio (Saheed Nagar)">Bhubaneswar Studio (Saheed Nagar)</option>
           </select>
         </div>
@@ -60,9 +60,11 @@
 
       <!-- Submit Button -->
       <div class="form-submit-container mb-0">
-        <button type="submit" class="btn btn-modal-submit w-100 py-3 fw-black text-uppercase d-flex align-items-center justify-content-center gap-2">
-          <span>SEND MESSAGE</span>
-          <i class="fa-solid fa-paper-plane"></i>
+        <button type="submit" class="btn btn-modal-submit w-100 py-3 fw-black text-uppercase d-flex align-items-center justify-content-center gap-2" [disabled]="isSubmitting()">
+          <span *ngIf="!isSubmitting()">SEND MESSAGE</span>
+          <i *ngIf="!isSubmitting()" class="fa-solid fa-paper-plane"></i>
+          <span *ngIf="isSubmitting()">SENDING...</span>
+          <i *ngIf="isSubmitting()" class="fa-solid fa-spinner fa-spin"></i>
         </button>
       </div>
 

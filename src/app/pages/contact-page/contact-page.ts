@@ -1,13 +1,14 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 import { MapContact } from '../../components/map-contact/map-contact';
 
 @Component({
   selector: 'app-contact-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, MapContact],
+  imports: [CommonModule, FormsModule, MapContact, RouterLink],
   templateUrl: './contact-page.html',
   styleUrl: './contact-page.css',
 })
@@ -59,7 +60,7 @@ export class ContactPage {
     this.phone.set(cleaned);
   }
 
-  submitContactForm(event: Event) {
+  async submitContactForm(event: Event) {
     event.preventDefault();
     if (!this.fullName() || !this.phone()) {
       alert('Please fill in your name and phone number so our designers can reach out to you.');
@@ -73,10 +74,32 @@ export class ContactPage {
 
     this.isSubmitting.set(true);
 
-    setTimeout(() => {
+    try {
+      const response = await fetch('https://formspree.io/f/moeabqjp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.fullName(),
+          email: this.email(),
+          phone: this.phone(),
+          location: this.selectedCity(),
+          formSource: 'Contact Page Form'
+        })
+      });
+
+      if (response.ok) {
+        this.isSubmitted.set(true);
+      } else {
+        alert('Oops! There was an issue submitting your message. Please try again.');
+      }
+    } catch (error) {
+      alert('Network error. Please check your connection and try again.');
+    } finally {
       this.isSubmitting.set(false);
-      this.isSubmitted.set(true);
-    }, 1000);
+    }
   }
 
   resetForm() {

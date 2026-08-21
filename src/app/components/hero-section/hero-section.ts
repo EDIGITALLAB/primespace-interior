@@ -36,7 +36,7 @@ export class HeroSection implements OnInit, OnDestroy {
   startSlideshow() {
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 11000);
+    }, 9000);
   }
 
   stopSlideshow() {
