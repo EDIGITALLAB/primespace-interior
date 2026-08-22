@@ -1,11 +1,11 @@
-<!-- Main Navbar component loaded globally -->
-<app-navbar></app-navbar>
+<!-- Main Navbar component loaded globally (hidden on admin pages) -->
+<app-navbar *ngIf="!isAdminRoute()"></app-navbar>
 
 <!-- Router Outlet to dynamically load pages -->
 <router-outlet></router-outlet>
 
-<!-- Global Footer component -->
-<app-footer></app-footer>
+<!-- Global Footer component (hidden on admin pages) -->
+<app-footer *ngIf="!isAdminRoute()"></app-footer>
 
-<!-- Global Consultation Modal component -->
-<app-consultation-modal></app-consultation-modal>
+<!-- Global Consultation Modal component (hidden on admin pages) -->
+<app-consultation-modal *ngIf="!isAdminRoute()"></app-consultation-modal>

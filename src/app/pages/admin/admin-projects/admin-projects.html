@@ -1,0 +1,206 @@
+<div class="admin-projects-wrapper">
+  
+  <!-- Header Bar -->
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+      <h3 class="fw-black text-dark mb-1">Projects Manager</h3>
+      <p class="text-muted mb-0 font-size-xs">Add, edit and organize Apartment Projects, Blocks, and Photo Galleries</p>
+    </div>
+
+    <button type="button" class="btn btn-maroon-primary rounded-3 px-3.5 py-2 font-size-xs font-weight-bold text-white shadow-xs d-inline-flex align-items-center gap-2" (click)="openAddModal()">
+      <i class="fa-solid fa-plus"></i>
+      <span>Add New Project</span>
+    </button>
+  </div>
+
+  <!-- Filter Toolbar -->
+  <div class="bg-white p-3 rounded-4 border border-gray-200 shadow-xs mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <!-- Search Bar -->
+    <div class="search-box position-relative flex-grow-1 max-w-400">
+      <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden border">
+        <span class="input-group-text bg-white border-0 text-muted ps-3">
+          <i class="fa-solid fa-magnifying-glass font-size-xs text-maroon"></i>
+        </span>
+        <input type="text" class="form-control border-0 shadow-none font-size-xs py-2" placeholder="Search project title, location..." [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)">
+      </div>
+    </div>
+
+    <!-- Filter Selects -->
+    <div class="d-flex align-items-center gap-2">
+      <select class="form-select form-select-sm rounded-3 font-size-xs border shadow-none" [ngModel]="selectedCityFilter()" (ngModelChange)="selectedCityFilter.set($event)">
+        <option value="all">All Cities</option>
+        <option value="Bangalore">Bangalore</option>
+        <option value="Bhubaneswar">Bhubaneswar</option>
+      </select>
+
+      <select class="form-select form-select-sm rounded-3 font-size-xs border shadow-none" [ngModel]="selectedStatusFilter()" (ngModelChange)="selectedStatusFilter.set($event)">
+        <option value="all">All Status</option>
+        <option value="completed">Completed</option>
+        <option value="ongoing">Live Site</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- PROJECTS TABLE CARD -->
+  <div class="bg-white rounded-4 border border-gray-200 shadow-xs overflow-hidden">
+    <div class="table-responsive" style="min-height: 250px;">
+      <table class="table table-hover align-middle mb-0 font-size-xs">
+        <thead class="bg-light text-muted font-size-micro text-uppercase font-weight-bold">
+          <tr>
+            <th class="ps-4 text-nowrap" style="min-width: 200px;">Project Preview</th>
+            <th class="text-nowrap" style="min-width: 140px;">Type & Location</th>
+            <th class="text-nowrap" style="min-width: 120px;">Blocks & Homes</th>
+            <th class="text-nowrap" style="min-width: 150px;">Status</th>
+            <th class="pe-4 text-end text-nowrap" style="min-width: 160px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of filteredProjects">
+            <!-- Cover & Title (Clickable to Gallery) -->
+            <td class="ps-4">
+              <a [routerLink]="['/admin/gallery']" [queryParams]="{ projectId: p.id }" class="d-flex align-items-center gap-3 text-decoration-none text-dark group" title="Click to view apartment gallery">
+                <img [src]="p.coverImage" (error)="$any($event.target).src = '/hero_living_room.png'" [alt]="p.title" class="rounded-3 object-fit-cover proj-thumb shadow-xs cursor-pointer" style="width: 56px; height: 42px;">
+                <div>
+                  <div class="fw-bold text-dark font-size-sm hover-maroon text-decoration-underline-hover transition-all">{{ p.title }}</div>
+                  <span class="text-muted font-size-micro d-block text-truncate max-w-260">{{ p.subtitle }}</span>
+                </div>
+              </a>
+            </td>
+
+            <!-- Type & City -->
+            <td>
+              <span class="badge rounded-1 bg-purple-tint text-maroon font-size-micro font-weight-bold px-2.5 py-1 mb-1 me-1 text-nowrap">
+                {{ p.projectType }}
+              </span>
+              <div class="text-muted font-size-micro text-nowrap">
+                <i class="fa-solid fa-location-dot me-1 text-maroon"></i>{{ p.location }}
+              </div>
+            </td>
+
+            <!-- Blocks & Homes -->
+            <td class="text-nowrap">
+              <div class="fw-bold text-dark">{{ p.homeCount }} Total Homes</div>
+              <span class="text-muted font-size-micro">{{ p.blocks.length }} Blocks</span>
+            </td>
+
+            <!-- Status -->
+            <td>
+              <span class="badge rounded-1 font-size-micro px-2.5 py-1 text-nowrap"
+                [ngClass]="p.status === 'completed' ? 'bg-success-tint text-success border border-success' : 'bg-danger-tint text-danger border border-danger'">
+                {{ p.statusLabel }}
+              </span>
+            </td>
+
+            <!-- Actions -->
+            <td class="pe-4 text-end text-nowrap">
+              <div class="d-inline-flex align-items-center gap-1">
+                <a [routerLink]="['/admin/gallery']" [queryParams]="{ projectId: p.id }" class="btn btn-sm btn-maroon-sm px-2.5 py-1 font-size-micro rounded-2 text-white text-decoration-none text-nowrap" title="Manage Block Photos">
+                  <i class="fa-solid fa-camera me-1"></i>Photos
+                </a>
+
+                <button type="button" class="btn btn-sm btn-outline-primary px-2 py-1 font-size-micro rounded-2 text-nowrap" (click)="openEditModal(p)" title="Edit Project">
+                  <i class="fa-solid fa-pen me-1"></i>Edit
+                </button>
+
+                <button type="button" class="btn btn-sm btn-outline-danger px-2 py-1 font-size-micro rounded-2" (click)="deleteProject(p.id)" title="Delete Project">
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredProjects.length === 0">
+            <td colspan="5" class="text-center py-5 text-muted">
+              No projects found matching your search.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADD / EDIT PROJECT MODAL -->
+  <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showModal()">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-650 overflow-hidden animate-zoom-in">
+      
+      <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 fw-black text-dark font-size-base">
+          <i class="fa-solid fa-building-user text-maroon me-2"></i>
+          {{ isEditing() ? 'Edit Apartment Project' : 'Add New Apartment Project' }}
+        </h6>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <form (submit)="saveProject($event)" class="p-4 overflow-y-auto" style="max-height: 80vh;">
+        
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Title</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Royale Villa" [ngModel]="title()" (ngModelChange)="title.set($event)" name="title" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Type</label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="projectType()" (ngModelChange)="projectType.set($event)" name="projectType">
+              <option value="Villa">Villa</option>
+              <option value="Penthouse">Penthouse</option>
+              <option value="Duplex">Duplex</option>
+              <option value="Apartment">Apartment</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Tagline</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Ultra-Luxury 4BHK Villa Interior" [ngModel]="subtitle()" (ngModelChange)="subtitle.set($event)" name="subtitle" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Location Address</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Indiranagar, Bangalore" [ngModel]="location()" (ngModelChange)="location.set($event)" name="location" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">City</label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="city()" (ngModelChange)="city.set($event)" name="city">
+              <option value="Bangalore">Bangalore</option>
+              <option value="Bhubaneswar">Bhubaneswar</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Status</label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="status()" (ngModelChange)="status.set($event)" name="status">
+              <option value="completed">Completed & Handed Over</option>
+              <option value="ongoing">Live Construction Site</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Total Homes Count</label>
+            <input type="number" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="homeCount()" (ngModelChange)="homeCount.set($event)" name="homeCount" required>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Cover Image URL</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="/luxury_living_room_1.png" [ngModel]="coverImage()" (ngModelChange)="coverImage.set($event)" name="coverImage" required>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Description</label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="3" placeholder="Describe the interior materials, ceiling paneling, modular fittings..." [ngModel]="description()" (ngModelChange)="description.set($event)" name="description"></textarea>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">
+          <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs">
+            Save Project Changes
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+</div>

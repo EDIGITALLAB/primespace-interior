@@ -1,0 +1,73 @@
+<div class="admin-login-wrapper min-vh-100 d-flex align-items-center justify-content-center p-3">
+  <div class="login-card bg-white rounded-4 shadow-2xl overflow-hidden border border-gray-200 w-100 max-w-440 position-relative z-1">
+    
+    <!-- Header Brand Banner -->
+    <div class="login-header p-4 text-center text-white position-relative">
+      <div class="brand-badge d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-2 bg-white-15">
+        <i class="fa-solid fa-crown text-amber"></i>
+        <span class="font-size-micro text-uppercase tracking-wider font-weight-bold">Control Center</span>
+      </div>
+      <h3 class="fw-black mb-1 text-white">PrimeSpace Interior Admin</h3>
+      <p class="font-size-xs text-white-80 mb-0">Sign in to manage projects, leads & studio content</p>
+    </div>
+
+    <!-- Form Container -->
+    <div class="p-4 p-md-4.5">
+
+      <div *ngIf="errorMessage()" class="alert alert-danger font-size-xs rounded-3 d-flex align-items-center gap-2 mb-3 py-2 px-3">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>{{ errorMessage() }}</span>
+      </div>
+
+      <form (submit)="onSubmit($event)">
+        <!-- Email Input -->
+        <div class="mb-3">
+          <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Admin Email Address</label>
+          <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden border">
+            <span class="input-group-text bg-light border-0 text-muted ps-3">
+              <i class="fa-solid fa-envelope font-size-xs"></i>
+            </span>
+            <input type="email" class="form-control border-0 shadow-none font-size-sm py-2" 
+              placeholder="admin@primespace.com" 
+              [ngModel]="email()" 
+              (ngModelChange)="email.set($event)"
+              name="email" required>
+          </div>
+        </div>
+
+        <!-- Password Input -->
+        <div class="mb-4">
+          <div class="d-flex align-items-center justify-content-between mb-1">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-0">Password</label>
+            <span class="font-size-micro text-maroon cursor-pointer font-weight-semibold" (click)="fillDemo()">Autofill Demo</span>
+          </div>
+          <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden border">
+            <span class="input-group-text bg-light border-0 text-muted ps-3">
+              <i class="fa-solid fa-lock font-size-xs"></i>
+            </span>
+            <input type="password" class="form-control border-0 shadow-none font-size-sm py-2" 
+              placeholder="••••••••" 
+              [ngModel]="password()" 
+              (ngModelChange)="password.set($event)"
+              name="password" required>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-maroon-submit w-100 rounded-3 py-2.5 font-size-xs font-weight-bold text-uppercase tracking-wider shadow-sm d-flex align-items-center justify-content-center gap-2" [disabled]="isLoading()">
+          <span *ngIf="isLoading()" class="spinner-border spinner-border-sm"></span>
+          <i *ngIf="!isLoading()" class="fa-solid fa-right-to-bracket"></i>
+          <span>{{ isLoading() ? 'Authenticating...' : 'Sign In To Admin Portal' }}</span>
+        </button>
+      </form>
+
+      <!-- Quick Demo Credentials Hint -->
+      <div class="demo-box mt-4 p-3 rounded-3 bg-light border border-gray-200 text-center">
+        <div class="font-size-micro text-uppercase font-weight-bold text-muted mb-1">Default Demo Credentials</div>
+        <div class="font-size-xs font-weight-bold text-dark mb-0">Email: <code>admin@primespace.com</code> | Pass: <code>admin123</code></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

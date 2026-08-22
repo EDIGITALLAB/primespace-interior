@@ -1,4 +1,5 @@
 import { Component, signal, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { Navbar } from './components/navbar/navbar';
@@ -8,7 +9,7 @@ import { ConsultationModal } from './components/consultation-modal/consultation-
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Navbar, Footer, ConsultationModal],
+  imports: [CommonModule, RouterOutlet, Navbar, Footer, ConsultationModal],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -16,10 +17,13 @@ export class App implements OnInit {
   protected readonly title = signal('prime_space_interior');
   private router = inject(Router);
 
+  readonly isAdminRoute = signal(false);
+
   constructor() {
     this.router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe(() => {
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+    ).subscribe((event: NavigationEnd) => {
+      this.isAdminRoute.set(event.urlAfterRedirects.startsWith('/admin') || event.url.startsWith('/admin'));
       window.scrollTo(0, 0);
       document.documentElement.scrollTop = 0;
       document.body.scrollTop = 0;

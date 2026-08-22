@@ -1,0 +1,191 @@
+<div class="admin-appointments-wrapper">
+  
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+      <h3 class="fw-black text-dark mb-1">Site Visit Appointments Manager</h3>
+      <p class="text-muted mb-0 font-size-xs">Manage client site visits, VR experience center consultation slots & follow-ups</p>
+    </div>
+
+    <button type="button" class="btn btn-maroon-primary rounded-3 px-3.5 py-2 font-size-xs font-weight-bold text-white shadow-xs d-inline-flex align-items-center gap-2 text-nowrap" (click)="openAddModal()">
+      <i class="fa-solid fa-calendar-plus"></i>
+      <span>Book New Appointment</span>
+    </button>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="bg-white p-3 rounded-4 border border-gray-200 shadow-xs mb-4 d-flex flex-wrap align-items-center justify-content-between gap-3">
+    <div class="search-box position-relative flex-grow-1 max-w-400 w-100">
+      <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden border">
+        <span class="input-group-text bg-white border-0 text-muted ps-3">
+          <i class="fa-solid fa-magnifying-glass font-size-xs text-maroon"></i>
+        </span>
+        <input type="text" class="form-control border-0 shadow-none font-size-xs py-2" placeholder="Search client name, phone, project..." [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)">
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center gap-2 w-100 w-sm-auto">
+      <select class="form-select form-select-sm rounded-3 font-size-xs border shadow-none w-100" [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)">
+        <option value="all">All Appointment Statuses</option>
+        <option value="Pending">Pending</option>
+        <option value="Confirmed">Confirmed</option>
+        <option value="Completed">Completed</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- APPOINTMENTS TABLE -->
+  <div class="bg-white rounded-4 border border-gray-200 shadow-xs overflow-hidden">
+    <div class="table-responsive" style="min-height: 250px;">
+      <table class="table table-hover align-middle mb-0 font-size-xs">
+        <thead class="bg-light text-muted font-size-micro text-uppercase font-weight-bold">
+          <tr>
+            <th class="ps-4 text-nowrap" style="min-width: 180px;">Client Details</th>
+            <th class="text-nowrap" style="min-width: 160px;">Project & Location</th>
+            <th class="text-nowrap" style="min-width: 150px;">Slot Date & Time</th>
+            <th class="text-nowrap" style="min-width: 180px;">Notes</th>
+            <th class="text-nowrap" style="min-width: 110px;">Status</th>
+            <th class="pe-4 text-end text-nowrap" style="min-width: 145px;">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let appt of filteredAppointments">
+            <!-- Client -->
+            <td class="ps-4">
+              <div class="fw-bold text-dark font-size-sm">{{ appt.clientName }}</div>
+              <div class="text-muted font-size-micro"><i class="fa-solid fa-phone me-1 text-maroon"></i>{{ appt.phone }}</div>
+              <div class="text-muted font-size-micro"><i class="fa-solid fa-envelope me-1"></i>{{ appt.email }}</div>
+            </td>
+
+            <!-- Project -->
+            <td>
+              <span class="fw-bold text-dark font-size-xs">{{ appt.project }}</span>
+              <div class="text-muted font-size-micro"><i class="fa-solid fa-location-dot me-1"></i>{{ appt.city }}</div>
+            </td>
+
+            <!-- Date & Time Slot -->
+            <td>
+              <div class="fw-bold text-dark"><i class="fa-solid fa-calendar me-1 text-maroon"></i>{{ appt.preferredDate }}</div>
+              <span class="badge rounded-pill bg-light text-dark font-size-micro font-weight-bold border px-2 py-0.5 mt-0.5">
+                <i class="fa-solid fa-clock me-1 text-muted"></i>{{ appt.preferredTime }}
+              </span>
+            </td>
+
+            <!-- Notes -->
+            <td>
+              <span class="font-size-micro text-secondary text-truncate max-w-260 d-block">{{ appt.notes || 'No extra notes' }}</span>
+            </td>
+
+            <!-- Status -->
+            <td>
+              <span class="badge rounded-pill font-size-micro px-2.5 py-1 text-nowrap"
+                [ngClass]="{
+                  'bg-warning-tint text-dark border border-warning': appt.status === 'Pending',
+                  'bg-success-tint text-success border border-success': appt.status === 'Confirmed',
+                  'bg-primary-tint text-primary border border-primary': appt.status === 'Completed',
+                  'bg-secondary-tint text-secondary': appt.status === 'Cancelled'
+                }">
+                {{ appt.status }}
+              </span>
+            </td>
+
+            <!-- Actions -->
+            <td class="pe-4 text-end text-nowrap">
+              <button type="button" class="btn btn-sm btn-outline-success me-1 px-2.5 py-1 font-size-micro rounded-2 text-nowrap" (click)="updateStatus(appt.id, 'Confirmed')" title="Confirm">
+                <i class="fa-solid fa-check me-1"></i>Confirm
+              </button>
+
+              <button type="button" class="btn btn-sm btn-outline-primary me-1 px-2 py-1 font-size-micro rounded-2" (click)="updateStatus(appt.id, 'Completed')" title="Complete">
+                <i class="fa-solid fa-flag-checkered"></i>
+              </button>
+
+              <button type="button" class="btn btn-sm btn-outline-danger px-2 py-1 font-size-micro rounded-2" (click)="deleteAppointment(appt.id)" title="Delete">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </td>
+          </tr>
+
+          <tr *ngIf="filteredAppointments.length === 0">
+            <td colspan="6" class="text-center py-5 text-muted">
+              No appointments found.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ADD APPOINTMENT MODAL -->
+  <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showModal()">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-550 overflow-hidden animate-zoom-in">
+      
+      <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 fw-black text-dark font-size-base">
+          <i class="fa-solid fa-calendar-plus text-maroon me-2"></i> Book New Site Visit Appointment
+        </h6>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <form (submit)="saveAppointment($event)" class="p-4">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Client Full Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Amitav & Smita Roy" [ngModel]="clientName()" (ngModelChange)="clientName.set($event)" name="clientName" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Phone Number</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="+91 98765 43210" [ngModel]="phone()" (ngModelChange)="phone.set($event)" name="phone" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Email Address</label>
+            <input type="email" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="client@example.com" [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Target Project</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="Royale Villa" [ngModel]="project()" (ngModelChange)="project.set($event)" name="project" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">City / Studio</label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="city()" (ngModelChange)="city.set($event)" name="city">
+              <option value="Bangalore">Bangalore (Indiranagar)</option>
+              <option value="Bhubaneswar">Bhubaneswar (Saheed Nagar)</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Preferred Date</label>
+            <input type="date" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="preferredDate()" (ngModelChange)="preferredDate.set($event)" name="preferredDate" required>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Preferred Time Slot</label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="preferredTime()" (ngModelChange)="preferredTime.set($event)" name="preferredTime">
+              <option value="10:30 AM">10:30 AM Slot</option>
+              <option value="11:30 AM">11:30 AM Slot</option>
+              <option value="02:30 PM">02:30 PM Slot</option>
+              <option value="04:00 PM">04:00 PM Slot</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Special Notes / Requests</label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="2" placeholder="e.g. Requires VR Studio walkthrough for 4BHK duplex design." [ngModel]="notes()" (ngModelChange)="notes.set($event)" name="notes"></textarea>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">
+          <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs">
+            Save Appointment
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>
