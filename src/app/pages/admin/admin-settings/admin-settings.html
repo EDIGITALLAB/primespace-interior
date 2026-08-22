@@ -1,0 +1,108 @@
+<div class="admin-settings-wrapper">
+  
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+      <h3 class="fw-black text-dark mb-1">Global Studio & Website Settings</h3>
+      <p class="text-muted mb-0 font-size-xs">Update studio contact numbers, addresses, social links and branding</p>
+    </div>
+  </div>
+
+  <div *ngIf="savedMessage()" class="alert alert-success font-size-xs rounded-3 d-flex align-items-center gap-2 mb-4 p-3 shadow-xs">
+    <i class="fa-solid fa-circle-check font-size-sm"></i>
+    <span class="fw-bold">Studio settings saved & updated successfully across website!</span>
+  </div>
+
+  <form (submit)="saveSettings($event)" class="bg-white rounded-4 border border-gray-200 p-4 p-md-4.5 shadow-xs">
+    
+    <!-- Section 1: Brand Info -->
+    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
+      <i class="fa-solid fa-crown text-maroon"></i> Brand Identity & Tagline
+    </h6>
+
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-md-6">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Company Name</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="companyName()" (ngModelChange)="companyName.set($event)" name="companyName" required>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Brand Tagline</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="tagline()" (ngModelChange)="tagline.set($event)" name="tagline" required>
+      </div>
+    </div>
+
+    <!-- Section 2: Contact Info -->
+    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
+      <i class="fa-solid fa-phone text-maroon"></i> Studio Phones & Support Email
+    </h6>
+
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-md-4">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bangalore Studio Phone</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="phoneBangalore()" (ngModelChange)="phoneBangalore.set($event)" name="phoneBangalore" required>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bhubaneswar Studio Phone</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="phoneBhubaneswar()" (ngModelChange)="phoneBhubaneswar.set($event)" name="phoneBhubaneswar" required>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">WhatsApp Hotline</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="whatsappNumber()" (ngModelChange)="whatsappNumber.set($event)" name="whatsappNumber" required>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Official Support Email</label>
+        <input type="email" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" required>
+      </div>
+    </div>
+
+    <!-- Section 3: Physical Experience Centers -->
+    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
+      <i class="fa-solid fa-location-dot text-maroon"></i> Physical Experience Studio Addresses
+    </h6>
+
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-md-6">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bangalore Flagship Studio</label>
+        <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="2" [ngModel]="bangaloreAddress()" (ngModelChange)="bangaloreAddress.set($event)" name="bangaloreAddress" required></textarea>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bhubaneswar Flagship Studio</label>
+        <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="2" [ngModel]="bhubaneswarAddress()" (ngModelChange)="bhubaneswarAddress.set($event)" name="bhubaneswarAddress" required></textarea>
+      </div>
+    </div>
+
+    <!-- Section 4: Social Links -->
+    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
+      <i class="fa-solid fa-share-nodes text-maroon"></i> Social Handles
+    </h6>
+
+    <div class="row g-3 mb-4">
+      <div class="col-12 col-md-4">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Instagram Profile</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="instagramUrl()" (ngModelChange)="instagramUrl.set($event)" name="instagramUrl">
+      </div>
+
+      <div class="col-12 col-md-4">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Facebook Page</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="facebookUrl()" (ngModelChange)="facebookUrl.set($event)" name="facebookUrl">
+      </div>
+
+      <div class="col-12 col-md-4">
+        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">YouTube Channel</label>
+        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="youtubeUrl()" (ngModelChange)="youtubeUrl.set($event)" name="youtubeUrl">
+      </div>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-end pt-3 border-top border-gray-200">
+      <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2.5 font-size-xs font-weight-bold text-white shadow-xs">
+        <i class="fa-solid fa-floppy-disk me-1"></i> Save Global Settings
+      </button>
+    </div>
+
+  </form>
+
+</div>

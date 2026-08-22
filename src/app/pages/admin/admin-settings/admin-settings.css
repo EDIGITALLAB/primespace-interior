@@ -1,0 +1,14 @@
+.btn-maroon-primary {
+  background: linear-gradient(135deg, var(--primary-maroon, #96053E) 0%, color-mix(in srgb, var(--primary-maroon, #96053E) 80%, #000) 100%);
+  color: #ffffff;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.btn-maroon-primary:hover {
+  background: color-mix(in srgb, var(--primary-maroon, #96053E) 85%, #000);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.text-maroon { color: var(--primary-maroon, #96053E) !important; }

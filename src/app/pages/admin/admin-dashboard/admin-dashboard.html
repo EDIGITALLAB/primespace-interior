@@ -1,0 +1,250 @@
+<div class="dashboard-wrapper">
+  
+  <!-- 1. TOP HERO WELCOME BANNER -->
+  <div class="dash-hero-banner rounded-4 p-4 p-md-4.5 mb-4 text-white position-relative">
+    <div class="hero-backdrop-glow"></div>
+    
+    <div class="row align-items-center g-3 position-relative z-1">
+      <div class="col-12 col-lg-8">
+        <div class="d-flex align-items-center gap-2 mb-2 flex-wrap">
+          <span class="badge bg-white text-dark font-size-micro font-weight-bold text-uppercase px-3 py-1.5 rounded-1 shadow-sm d-inline-flex align-items-center gap-1.5">
+            <i class="fa-solid fa-crown text-warning"></i>
+            <span>PrimeSpace Control Center</span>
+          </span>
+          <span class="badge bg-black bg-opacity-40 text-white font-size-micro font-weight-semibold px-3 py-1.5 rounded-1 d-inline-flex align-items-center gap-2 border border-white-10">
+            <span class="pulse-dot-active"></span> {{ currentDate }}
+          </span>
+        </div>
+
+        <h2 class="fw-black mb-1.5 text-white tracking-tight">Welcome Back, Administrator</h2>
+        <p class="text-white-70 mb-0 font-size-xs max-w-650">
+          Monitor your luxury interior execution pipelines, site walkthrough appointments, and turn-key apartment inquiries in real-time across Bangalore & Bhubaneswar.
+        </p>
+      </div>
+
+      <div class="col-12 col-lg-4 d-flex align-items-center justify-content-start justify-content-lg-end gap-2 flex-nowrap mt-2 mt-lg-0">
+        <a routerLink="/admin/projects" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold text-maroon shadow-sm d-inline-flex align-items-center gap-2 transition-all text-nowrap">
+          <i class="fa-solid fa-plus font-size-xs me-1"></i>
+          <span>Add New Project</span>
+        </a>
+        <a routerLink="/" target="_blank" class="btn btn-outline-light rounded-3 px-3 py-2 font-size-xs font-weight-semibold text-white d-inline-flex align-items-center gap-2 text-nowrap">
+          <i class="fa-solid fa-arrow-up-right-from-square font-size-micro me-1"></i>
+          <span>View Site</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. QUICK SHORTCUT TOOLBAR -->
+  <div class="d-flex align-items-center gap-2 mb-4 overflow-x-auto pb-1 scrollbar-none">
+    <span class="font-size-micro font-weight-bold text-uppercase text-muted me-1 flex-shrink-0">
+      <i class="fa-solid fa-bolt text-warning me-1"></i> Quick Jump:
+    </span>
+    <a routerLink="/admin/projects" class="quick-action-pill flex-shrink-0">
+      <i class="fa-solid fa-building-user text-maroon-bright"></i> Projects Radar ({{ stats.totalProjects }})
+    </a>
+    <a routerLink="/admin/categories" class="quick-action-pill flex-shrink-0">
+      <i class="fa-solid fa-layer-group text-primary"></i> Design Catalog
+    </a>
+    <a routerLink="/admin/gallery" class="quick-action-pill flex-shrink-0">
+      <i class="fa-solid fa-images text-danger"></i> VR Gallery ({{ stats.totalPhotos }})
+    </a>
+    <a routerLink="/admin/appointments" class="quick-action-pill flex-shrink-0">
+      <i class="fa-solid fa-calendar-check text-amber-dark"></i> Appointments ({{ stats.pendingAppointments }} Pending)
+    </a>
+    <a routerLink="/admin/leads" class="quick-action-pill flex-shrink-0">
+      <i class="fa-solid fa-envelope-open-text text-success"></i> Leads Stream ({{ stats.newLeads }} Unread)
+    </a>
+    <a routerLink="/admin/testimonials" class="quick-action-pill flex-shrink-0">
+      <i class="fa-solid fa-star text-warning"></i> Client Reviews
+    </a>
+    <a routerLink="/admin/settings" class="quick-action-pill flex-shrink-0">
+      <i class="fa-solid fa-gear text-secondary"></i> Studio Settings
+    </a>
+  </div>
+
+  <!-- 3. 4 KEY METRIC CARDS -->
+  <div class="row g-3 mb-4">
+    
+    <!-- Stat 1: Total Projects -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
+        <div class="stat-top-bar stat-top-maroon"></div>
+        <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
+          <div class="min-w-0 flex-grow-1">
+            <span class="font-size-micro text-uppercase font-weight-bold text-muted d-block mb-1 text-truncate" title="Total Projects">Total Projects</span>
+            <h2 class="fw-black text-dark mb-0 font-size-xl">{{ stats.totalProjects }}</h2>
+          </div>
+          <div class="stat-icon-wrapper bg-maroon-soft flex-shrink-0">
+            <i class="fa-solid fa-building-user"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between pt-2 border-top border-gray-100 font-size-micro">
+          <span class="text-success font-weight-bold text-truncate me-1">
+            <i class="fa-solid fa-circle-check me-1"></i>{{ stats.completedProjects }} Completed
+          </span>
+          <a routerLink="/admin/projects" class="text-muted text-decoration-none font-weight-semibold flex-shrink-0">Manage →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat 2: Ongoing Sites -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
+        <div class="stat-top-bar stat-top-danger"></div>
+        <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
+          <div class="min-w-0 flex-grow-1">
+            <span class="font-size-micro text-uppercase font-weight-bold text-muted d-block mb-1 text-truncate" title="Live Sites Radar">Live Sites Radar</span>
+            <h2 class="fw-black text-dark mb-0 font-size-xl">{{ stats.ongoingSites }}</h2>
+          </div>
+          <div class="stat-icon-wrapper bg-danger-soft flex-shrink-0">
+            <i class="fa-solid fa-helmet-safety"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between pt-2 border-top border-gray-100 font-size-micro">
+          <span class="text-danger font-weight-bold text-truncate me-1">
+            <i class="fa-solid fa-fire me-1"></i>Ongoing Execution
+          </span>
+          <a routerLink="/admin/projects" class="text-muted text-decoration-none font-weight-semibold flex-shrink-0">Radar →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat 3: Appointments -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
+        <div class="stat-top-bar stat-top-amber"></div>
+        <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
+          <div class="min-w-0 flex-grow-1">
+            <span class="font-size-micro text-uppercase font-weight-bold text-muted d-block mb-1 text-truncate" title="Site Appointments">Site Appointments</span>
+            <h2 class="fw-black text-dark mb-0 font-size-xl">{{ stats.totalAppointments }}</h2>
+          </div>
+          <div class="stat-icon-wrapper bg-amber-soft flex-shrink-0">
+            <i class="fa-solid fa-calendar-check"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between pt-2 border-top border-gray-100 font-size-micro">
+          <span class="text-amber-dark font-weight-bold text-truncate me-1">
+            <i class="fa-solid fa-clock me-1"></i>{{ stats.pendingAppointments }} Pending
+          </span>
+          <a routerLink="/admin/appointments" class="text-muted text-decoration-none font-weight-semibold flex-shrink-0">Schedule →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stat 4: Client Inquiries -->
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
+        <div class="stat-top-bar stat-top-primary"></div>
+        <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
+          <div class="min-w-0 flex-grow-1">
+            <span class="font-size-micro text-uppercase font-weight-bold text-muted d-block mb-1 text-truncate" title="Client Inquiries">Client Inquiries</span>
+            <h2 class="fw-black text-dark mb-0 font-size-xl">{{ stats.totalLeads }}</h2>
+          </div>
+          <div class="stat-icon-wrapper bg-primary-soft flex-shrink-0">
+            <i class="fa-solid fa-comments"></i>
+          </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between pt-2 border-top border-gray-100 font-size-micro">
+          <span class="text-primary font-weight-bold text-truncate me-1">
+            <i class="fa-solid fa-envelope me-1"></i>{{ stats.newLeads }} Unread
+          </span>
+          <a routerLink="/admin/leads" class="text-muted text-decoration-none font-weight-semibold flex-shrink-0">Inquiries →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- 5. RECENT APPOINTMENTS & LEADS TABLES ROW -->
+  <div class="row g-4">
+    
+    <!-- Table 2: Recent Client Leads -->
+    <div class="col-12">
+      <div class="table-card bg-white rounded-4 border border-gray-200 shadow-xs overflow-hidden h-100 d-flex flex-column">
+        <div class="dash-card-header d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-2">
+            <div class="stat-icon-wrapper bg-primary-soft text-primary me-1" style="width: 34px; height: 34px; font-size: 0.9rem;">
+              <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <div>
+              <h6 class="m-0 fw-black text-dark font-size-sm">Recent Inquiries</h6>
+              <span class="font-size-micro text-muted">Prospective client leads</span>
+            </div>
+          </div>
+          <a routerLink="/admin/leads" class="btn btn-sm btn-light font-size-micro font-weight-bold text-maroon rounded-pill px-3 py-1">
+            View All ({{ stats.totalLeads }}) →
+          </a>
+        </div>
+
+        <div class="p-3.5 flex-grow-1 overflow-y-auto" style="max-height: 420px;">
+          <div *ngFor="let lead of recentLeads" class="lead-card-item mb-2.5">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <div class="d-flex align-items-center gap-2">
+                <div class="avatar-circle-sm bg-gradient-navy">
+                  {{ lead.name.charAt(0) }}
+                </div>
+                <div>
+                  <div class="d-flex align-items-center gap-2 flex-wrap mb-0.5">
+                    <h6 class="fw-bold text-dark font-size-xs mb-0">{{ lead.name }}</h6>
+                    <span class="badge bg-light text-muted font-size-micro font-weight-semibold border border-gray-200 px-2 py-0.5">
+                      <i class="fa-regular fa-calendar text-maroon me-1"></i>{{ lead.date }}
+                    </span>
+                  </div>
+                  <span class="font-size-micro text-muted"><i class="fa-solid fa-location-dot me-1"></i>{{ lead.city }}</span>
+                </div>
+              </div>
+              <span class="badge rounded-pill font-size-micro px-2.5 py-1"
+                [ngClass]="lead.status === 'New' ? 'bg-danger text-white' : 'bg-secondary-tint text-secondary border'">
+                {{ lead.status }}
+              </span>
+            </div>
+
+            <div class="mb-2.5 font-size-sm d-flex align-items-center gap-3 flex-wrap">
+              <!-- Phone -->
+              <div class="d-inline-flex align-items-center gap-2 text-dark font-weight-bold ps-1">
+                <i class="fa-solid fa-phone text-maroon font-size-sm me-0.5"></i>
+                <span class="font-size-sm">{{ lead.phone }}</span>
+                <button type="button" class="btn btn-xs text-muted border-0 p-0 ms-1" (click)="copyToClipboard(lead.phone)" [title]="copiedText === lead.phone ? 'Copied!' : 'Copy Phone'">
+                  <i class="fa-solid fa-check text-success font-size-sm" *ngIf="copiedText === lead.phone"></i>
+                  <i class="fa-regular fa-copy font-size-sm" *ngIf="copiedText !== lead.phone"></i>
+                </button>
+              </div>
+
+              <span class="text-muted opacity-50 font-weight-bold" *ngIf="lead.email">•</span>
+
+              <!-- Email -->
+              <div class="d-inline-flex align-items-center gap-2 text-dark font-weight-bold" *ngIf="lead.email">
+                <i class="fa-solid fa-envelope text-muted font-size-sm me-0.5"></i>
+                <span class="text-truncate font-size-sm" style="max-width: 260px;" [title]="lead.email">{{ lead.email }}</span>
+                <button type="button" class="btn btn-xs text-muted border-0 p-0 ms-1" (click)="copyToClipboard(lead.email)" [title]="copiedText === lead.email ? 'Copied!' : 'Copy Email'">
+                  <i class="fa-solid fa-check text-success font-size-sm" *ngIf="copiedText === lead.email"></i>
+                  <i class="fa-regular fa-copy font-size-sm" *ngIf="copiedText !== lead.email"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-end gap-3 pt-2 border-top border-gray-100">
+              <button type="button" class="btn btn-xs btn-outline-success font-size-micro rounded-1 px-2.5 py-1 me-1" (click)="updateLeadStatus(lead.id, 'Contacted')" *ngIf="lead.status === 'New'">
+                Mark Contacted
+              </button>
+              <button type="button" class="btn btn-xs btn-outline-secondary font-size-micro rounded-1 px-2.5 py-1 me-1" (click)="updateLeadStatus(lead.id, 'Closed')" *ngIf="lead.status !== 'Closed'">
+                Close Inquiry
+              </button>
+              <button type="button" class="btn btn-xs btn-outline-danger font-size-micro rounded-1 px-2.5 py-1" (click)="deleteLead(lead.id)">
+                Delete
+              </button>
+            </div>
+          </div>
+
+          <div *ngIf="recentLeads.length === 0" class="text-center py-4 text-muted font-size-xs">
+            No inquiries received yet.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

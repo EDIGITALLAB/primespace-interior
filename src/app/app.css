@@ -208,3 +208,22 @@ video {
     margin: 0 1px !important;
   }
 }
+
+/* GLOBAL ADMIN BUTTON UTILITIES */
+.btn-maroon-primary,
+.btn-maroon-sm,
+.btn-maroon {
+  background: var(--primary-maroon, #96053E) !important;
+  color: #ffffff !important;
+  border: 1px solid var(--primary-maroon, #96053E) !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-maroon-primary:hover,
+.btn-maroon-sm:hover,
+.btn-maroon:hover {
+  background: #72032e !important;
+  color: #ffffff !important;
+  border-color: #72032e !important;
+  box-shadow: 0 4px 12px rgba(150, 5, 62, 0.3) !important;
+}

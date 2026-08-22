@@ -1,0 +1,105 @@
+<div class="admin-app-wrapper d-flex min-vh-100 bg-light">
+  
+  <!-- BACKDROP OVERLAY FOR MOBILE SIDEBAR -->
+  <div class="sidebar-backdrop d-lg-none" *ngIf="isMobileSidebarOpen()" (click)="closeMobileSidebar()"></div>
+
+  <!-- LEFT SIDEBAR STICKY NAVIGATION -->
+  <aside class="admin-sidebar bg-dark-maroon text-white d-flex flex-column transition-all" [class.mobile-open]="isMobileSidebarOpen()">
+    
+    <!-- Sidebar Header Brand -->
+    <div class="sidebar-header p-3 px-4 d-flex align-items-center justify-content-between border-bottom border-maroon-subtle">
+      <a routerLink="/" class="text-decoration-none text-white">
+        <h6 class="m-0 font-weight-black tracking-wide text-white text-uppercase font-size-sm">PrimeSpace</h6>
+        <span class="font-size-micro text-white-70 font-weight-bold uppercase d-block">Control Panel</span>
+      </a>
+      <button type="button" class="btn text-white-70 d-lg-none p-0 border-0" (click)="closeMobileSidebar()">
+        <i class="fa-solid fa-xmark font-size-base"></i>
+      </button>
+    </div>
+
+    <!-- Nav Items List -->
+    <div class="sidebar-nav flex-grow-1 p-3 overflow-y-auto">
+      <div class="font-size-micro text-uppercase font-weight-bold text-white-50 px-3 mb-2 tracking-wider">Navigation</div>
+
+      <nav class="nav flex-column gap-1">
+        <a *ngFor="let item of navItems" 
+          [routerLink]="item.route" 
+          routerLinkActive="active-nav-item"
+          [routerLinkActiveOptions]="{ exact: item.route === '/admin/dashboard' }"
+          (click)="closeMobileSidebar()"
+          class="nav-link font-size-xs font-weight-semibold d-flex align-items-center justify-content-between rounded-3 px-3 py-2.5 transition-all">
+          <div class="d-flex align-items-center">
+            <i [class]="item.icon" class="nav-icon me-3"></i>
+            <span>{{ item.label }}</span>
+          </div>
+          
+          <!-- Dynamic Count Badges -->
+          <span *ngIf="item.badgeKey === 'newLeads' && stats.newLeads > 0" class="badge rounded-pill bg-amber text-dark font-size-micro font-weight-bold px-2 py-0.5">
+            {{ stats.newLeads }} New
+          </span>
+
+          <span *ngIf="item.badgeKey === 'pendingAppointments' && stats.pendingAppointments > 0" class="badge rounded-pill bg-danger text-white font-size-micro font-weight-bold px-2 py-0.5">
+            {{ stats.pendingAppointments }}
+          </span>
+        </a>
+      </nav>
+    </div>
+
+    <!-- Sidebar Bottom Footer -->
+    <div class="sidebar-footer p-3 border-top border-maroon-subtle">
+      <a routerLink="/" target="_blank" class="btn btn-outline-light-subtle w-100 rounded-3 py-2 font-size-xs font-weight-semibold mb-2 d-flex align-items-center justify-content-center gap-2 text-decoration-none text-white">
+        <i class="fa-solid fa-arrow-up-right-from-square font-size-micro"></i>
+        <span>View Live Site</span>
+      </a>
+
+      <button type="button" class="btn btn-logout w-100 rounded-3 py-2 font-size-xs font-weight-semibold d-flex align-items-center justify-content-center gap-2 text-white" (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket font-size-micro"></i>
+        <span>Logout</span>
+      </button>
+    </div>
+
+  </aside>
+
+  <!-- RIGHT MAIN CONTENT AREA -->
+  <main class="admin-main-wrapper flex-grow-1 d-flex flex-column min-w-0">
+    
+    <!-- Top Header Bar -->
+    <header class="admin-topbar bg-white border-bottom border-gray-200 px-3 px-md-4 py-3.5 d-flex align-items-center justify-content-between sticky-top z-100">
+      <div class="d-flex align-items-center gap-3">
+        <!-- Mobile Sidebar Toggle -->
+        <button type="button" class="btn btn-light d-lg-none rounded-3 px-2.5 py-1.5" (click)="toggleMobileSidebar()">
+          <i class="fa-solid fa-bars font-size-sm"></i>
+        </button>
+
+        <span class="font-size-xs font-weight-bold text-muted d-none d-sm-inline">
+          <i class="fa-solid fa-shield-check text-success me-1"></i> Admin Portal Active
+        </span>
+      </div>
+
+      <div class="d-flex align-items-center gap-2 gap-md-3">
+        <!-- Quick Action "+ New Project" -->
+        <a routerLink="/admin/projects" class="btn btn-maroon-sm rounded-pill text-uppercase tracking-wider shadow-xs d-inline-flex align-items-center gap-1.5">
+          <i class="fa-solid fa-plus font-size-micro"></i>
+          <span>New Project</span>
+        </a>
+
+        <!-- Admin Profile Dropdown Badge -->
+        <div class="dropdown">
+          <div class="d-flex align-items-center gap-2 bg-light ps-1.5 pe-3.5 py-1.5 rounded-pill border border-gray-200 cursor-pointer">
+            <div class="admin-avatar rounded-circle bg-maroon text-white font-size-xs font-weight-bold d-flex align-items-center justify-content-center flex-shrink-0">
+              A
+            </div>
+            <span class="font-size-xs font-weight-bold text-dark d-none d-md-inline me-1">Administrator</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- ROUTER OUTLET FOR ADMIN MODULES -->
+    <div class="admin-page-content flex-grow-1 p-3 p-md-4">
+      <router-outlet></router-outlet>
+    </div>
+
+  </main>
+
+</div>

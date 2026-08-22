@@ -1,0 +1,102 @@
+<div class="admin-categories-wrapper">
+  
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+      <h3 class="fw-black text-dark mb-1">Design Categories & Packages</h3>
+      <p class="text-muted mb-0 font-size-xs">Manage Living Room, Kitchen, Wardrobe design collections and starting price packages</p>
+    </div>
+
+    <button type="button" class="btn btn-maroon-primary rounded-3 px-3.5 py-2 font-size-xs font-weight-bold text-white shadow-xs d-inline-flex align-items-center gap-2" (click)="openAddModal()">
+      <i class="fa-solid fa-plus"></i>
+      <span>Add Design Category</span>
+    </button>
+  </div>
+
+  <!-- CATEGORIES GRID CARDS -->
+  <div class="row g-4 mb-4">
+    <div *ngFor="let cat of categories" class="col-12 col-md-6 col-lg-4">
+      <div class="cat-card bg-white rounded-1 border border-gray-200 overflow-hidden shadow-xs h-100 d-flex flex-column justify-content-between">
+        <div>
+          <div class="cat-img-box position-relative overflow-hidden" style="height: 185px;">
+            <img [src]="cat.image" (error)="$any($event.target).src = '/hero_kitchen.png'" [alt]="cat.name" class="w-100 h-100 object-fit-cover">
+          </div>
+
+          <div class="p-3 px-4 pt-3 pb-1">
+            <span class="badge bg-purple-tint text-maroon font-size-micro font-weight-bold text-uppercase px-2.5 py-1 rounded-1 mb-2 border border-maroon-subtle">
+              {{ cat.type }}
+            </span>
+            <h5 class="fw-black text-dark font-size-base mb-1">{{ cat.name }}</h5>
+            <p class="text-muted font-size-xs mb-0 line-clamp-2">{{ cat.subtitle }}</p>
+          </div>
+        </div>
+
+        <div class="p-3 bg-light border-top border-gray-200 d-flex align-items-center justify-content-between">
+          <span class="font-size-micro text-muted font-weight-bold">
+            <i class="fa-solid fa-layer-group me-1 text-maroon"></i>{{ cat.itemCount }} Showcase Items
+          </span>
+          <div class="d-flex align-items-center gap-3">
+            <button type="button" class="btn btn-sm btn-outline-primary px-2.5 py-1 font-size-micro rounded-1" (click)="openEditModal(cat)">
+              <i class="fa-solid fa-pen me-1"></i>Edit
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-danger px-2.5 py-1 font-size-micro rounded-1" (click)="deleteCategory(cat.id)">
+              <i class="fa-solid fa-trash me-1"></i>Delete
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showModal()">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-550 overflow-hidden animate-zoom-in">
+      
+      <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 fw-black text-dark font-size-base">
+          {{ isEditing() ? 'Edit Category' : 'Add New Design Category' }}
+        </h6>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <form (submit)="saveCategory($event)" class="p-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Living Room Masterpieces" [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" required>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Type</label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="type()" (ngModelChange)="type.set($event)" name="type">
+              <option value="Living Room">Living Room</option>
+              <option value="Kitchen">Kitchen</option>
+              <option value="Bedroom">Bedroom</option>
+              <option value="Bathroom">Bathroom</option>
+              <option value="Balcony">Balcony</option>
+            </select>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Highlights</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. TV Unit Paneling, Fluted Louvers & Ambient Ceilings" [ngModel]="subtitle()" (ngModelChange)="subtitle.set($event)" name="subtitle" required>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Cover Image URL</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="/luxury_living_room_1.png" [ngModel]="image()" (ngModelChange)="image.set($event)" name="image" required>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">
+          <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs">
+            Save Category
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>

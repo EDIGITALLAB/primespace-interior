@@ -1,0 +1,115 @@
+<div class="admin-testimonials-wrapper">
+  
+  <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
+    <div>
+      <h3 class="fw-black text-dark mb-1">Client Reviews & Testimonials</h3>
+      <p class="text-muted mb-0 font-size-xs">Manage client feedback, star ratings and verified review badges shown on homepage & landing pages</p>
+    </div>
+
+    <button type="button" class="btn btn-maroon-primary rounded-3 px-3.5 py-2 font-size-xs font-weight-bold text-white shadow-xs d-inline-flex align-items-center gap-2" (click)="openAddModal()">
+      <i class="fa-solid fa-plus"></i>
+      <span>Add New Client Review</span>
+    </button>
+  </div>
+
+  <div class="row g-4">
+    <div *ngFor="let t of testimonials" class="col-12 col-md-6">
+      <div class="testi-card bg-white rounded-4 border border-gray-200 p-4 shadow-xs h-100 d-flex flex-column justify-content-between">
+        <div>
+          <div class="d-flex align-items-center justify-content-between mb-3">
+            <div class="d-flex align-items-center gap-3">
+              <img [src]="t.avatar" [alt]="t.name" class="rounded-circle object-fit-cover border shadow-xs" style="width: 44px; height: 44px;">
+              <div>
+                <h6 class="m-0 fw-black text-dark font-size-sm d-flex align-items-center gap-1.5">
+                  <span>{{ t.name }}</span>
+                  <i *ngIf="t.isVerified" class="fa-solid fa-circle-check text-primary font-size-xs" title="Verified Homeowner"></i>
+                </h6>
+                <span class="text-muted font-size-micro">{{ t.role }} • {{ t.project }}</span>
+              </div>
+            </div>
+
+            <div class="text-amber">
+              <i *ngFor="let s of [1,2,3,4,5]" class="fa-solid fa-star font-size-xs ms-0.5"></i>
+            </div>
+          </div>
+
+          <p class="font-size-xs text-secondary leading-relaxed mb-3">"{{ t.comment }}"</p>
+        </div>
+
+        <div class="pt-3 border-top border-gray-200 d-flex align-items-center justify-content-between">
+          <span class="font-size-micro text-muted"><i class="fa-solid fa-location-dot me-1"></i>{{ t.location }}</span>
+          <div>
+            <button type="button" class="btn btn-sm btn-outline-primary me-1 px-2.5 py-1 font-size-micro rounded-2" (click)="openEditModal(t)">Edit</button>
+            <button type="button" class="btn btn-sm btn-outline-danger px-2.5 py-1 font-size-micro rounded-2" (click)="deleteTestimonial(t.id)">Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showModal()">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-550 overflow-hidden animate-zoom-in">
+      
+      <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 fw-black text-dark font-size-base">
+          {{ isEditing() ? 'Edit Testimonial' : 'Add Client Review' }}
+        </h6>
+        <button type="button" class="btn-close" (click)="closeModal()"></button>
+      </div>
+
+      <form (submit)="saveTestimonial($event)" class="p-4">
+        <div class="row g-3">
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Client Full Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Vikram & Swati Rao" [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Role / Property Type</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Villa Owner" [ngModel]="role()" (ngModelChange)="role.set($event)" name="role" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Royale Villa, Bangalore" [ngModel]="project()" (ngModelChange)="project.set($event)" name="project" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Location City/Area</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Indiranagar" [ngModel]="location()" (ngModelChange)="location.set($event)" name="location" required>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Review Comment</label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="3" placeholder="Client quote about 45-day delivery, 3D VR precision..." [ngModel]="comment()" (ngModelChange)="comment.set($event)" name="comment" required></textarea>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Client Photo URL</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="/about_living_room_masterpiece.png" [ngModel]="avatar()" (ngModelChange)="avatar.set($event)" name="avatar" required>
+          </div>
+
+          <div class="col-12">
+            <div class="form-check font-size-xs font-weight-semibold">
+              <input class="form-check-input" type="checkbox" id="verifiedCheck" [ngModel]="isVerified()" (ngModelChange)="isVerified.set($event)" name="isVerified">
+              <label class="form-check-label" for="verifiedCheck">
+                Mark as Verified Client Badge
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">
+          <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeModal()">Cancel</button>
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs">
+            Save Review
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+</div>

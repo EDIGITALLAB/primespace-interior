@@ -1,0 +1,41 @@
+.max-w-400 { max-width: 400px; }
+.max-w-300 { max-width: 300px; }
+
+.bg-purple-tint { background-color: rgba(var(--primary-maroon-rgb, 150, 5, 62), 0.08) !important; }
+.text-maroon { color: var(--primary-maroon, #96053E) !important; }
+
+.bg-primary-tint { background-color: rgba(37, 99, 235, 0.12) !important; }
+.bg-success-tint { background-color: rgba(22, 163, 74, 0.12) !important; }
+.bg-secondary-tint { background-color: rgba(100, 116, 139, 0.15) !important; }
+
+.cursor-pointer { cursor: pointer; }
+
+.table-responsive {
+  min-height: 250px;
+}
+
+.table select.form-select-sm {
+  font-size: 11px;
+  color: #334155;
+  background-color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.table select.form-select-sm:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8 !important;
+}
+
+.admin-leads-wrapper .border-gray-200 {
+  border-color: #e2e8f0 !important;
+}
+
+.admin-leads-wrapper .btn-xs {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.admin-leads-wrapper .btn-xs:hover {
+  color: var(--primary-maroon, #96053E) !important;
+}
