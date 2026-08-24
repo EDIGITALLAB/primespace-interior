@@ -28,6 +28,12 @@
   display: inline-block;
 }
 
+.text-purple {
+  color: var(--primary-maroon, #96053E) !important;
+}
+
+
+
 html,
 body {
   font-family: var(--font-body);

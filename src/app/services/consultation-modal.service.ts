@@ -6,16 +6,21 @@ import { Injectable, signal } from '@angular/core';
 export class ConsultationModalService {
   readonly isOpen = signal<boolean>(false);
   readonly isSubmitted = signal<boolean>(false);
+  readonly isDismissed = signal<boolean>(false);
 
   constructor() {
-    this.checkSubmissionStatus();
+    this.checkStatus();
   }
 
-  private checkSubmissionStatus() {
+  private checkStatus() {
     if (typeof window !== 'undefined' && window.localStorage) {
       const submitted = localStorage.getItem('primespace_consultation_submitted');
       if (submitted === 'true') {
         this.isSubmitted.set(true);
+      }
+      const dismissed = localStorage.getItem('primespace_consultation_dismissed');
+      if (dismissed === 'true') {
+        this.isDismissed.set(true);
       }
     }
   }
@@ -25,19 +30,31 @@ export class ConsultationModalService {
     this.isOpen.set(true);
   }
 
-  // Opens modal automatically (only if form has not been submitted yet)
+  // Opens modal automatically (only if form has not been submitted or dismissed by closing)
   openAuto() {
-    if (!this.isSubmitted()) {
+    if (!this.isSubmitted() && !this.isDismissed()) {
       this.isOpen.set(true);
     }
   }
 
   close() {
     this.isOpen.set(false);
+    this.markDismissed();
   }
 
   toggle() {
-    this.isOpen.set(!this.isOpen());
+    if (this.isOpen()) {
+      this.close();
+    } else {
+      this.open();
+    }
+  }
+
+  markDismissed() {
+    this.isDismissed.set(true);
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem('primespace_consultation_dismissed', 'true');
+    }
   }
 
   markSubmitted() {
@@ -49,8 +66,10 @@ export class ConsultationModalService {
 
   resetSubmissionStatus() {
     this.isSubmitted.set(false);
+    this.isDismissed.set(false);
     if (typeof window !== 'undefined' && window.localStorage) {
       localStorage.removeItem('primespace_consultation_submitted');
+      localStorage.removeItem('primespace_consultation_dismissed');
     }
   }
 }

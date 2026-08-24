@@ -14,7 +14,7 @@ export class ConsultationModal {
 
   constructor(public consultationModalService: ConsultationModalService) {}
 
-  async onModalFormSubmit(event: Event, name: string, email: string, phone: string, city: string) {
+  async onModalFormSubmit(event: Event, name: string, email: string, phone: string, city: string, description?: string) {
     event.preventDefault();
     if (!name || !email || !phone || !city) return;
 
@@ -32,6 +32,7 @@ export class ConsultationModal {
           email: email,
           phone: phone,
           location: city,
+          description: description || '',
           formSource: 'Book Free Consultation Popup'
         })
       });

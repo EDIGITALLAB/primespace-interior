@@ -67,25 +67,15 @@
           </button>
         </div>
 
-        <!-- Budget & Sort Selectors -->
+        <!-- Sort Selector -->
         <div class="d-flex align-items-center gap-2 flex-wrap">
-          <!-- Budget Selector -->
-          <select class="form-select form-select-sm rounded-pill border shadow-none text-dark fw-bold w-auto"
-            [ngModel]="budgetFilter()" (ngModelChange)="budgetFilter.set($event)">
-            <option value="all">All Budgets</option>
-            <option value="under1l">Under ₹1 Lakh</option>
-            <option value="1l-1.5l">₹1L - ₹1.5 Lakhs</option>
-            <option value="above1.5l">Above ₹1.5 Lakhs</option>
-          </select>
-
-          <!-- Sort Selector -->
           <select class="form-select form-select-sm rounded-pill border shadow-none text-dark fw-bold w-auto"
             [ngModel]="sortBy()" (ngModelChange)="sortBy.set($event)">
             <option value="recommended">Sort: Recommended</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
-            <option value="turnaround">Fastest Delivery</option>
             <option value="rating">Highest Rated ⭐</option>
+            <option value="popular">Most Popular 🔥</option>
+            <option value="turnaround">Fastest Delivery ⚡</option>
+            <option value="name-az">Name: A to Z</option>
           </select>
         </div>
       </div>
@@ -154,14 +144,23 @@
               </div>
 
               <!-- Feature Bullet Points -->
-              <div class="card-features-list mt-auto pt-3 border-top mb-4">
-                <span class="features-header text-uppercase text-muted fw-bold d-block mb-2">Key Highlights:</span>
-                <ul class="list-unstyled mb-0 row g-2">
-                  <li *ngFor="let f of cat.features" class="col-12 d-flex align-items-center small text-dark">
-                    <i class="fa-solid fa-circle-check text-purple me-2"></i>
-                    <span>{{ f }}</span>
-                  </li>
-                </ul>
+              <div class="card-features-list pt-3 border-top mb-3 d-flex flex-column justify-content-between">
+                <div>
+                  <span class="features-header text-uppercase text-muted fw-bold d-block mb-2">Key Highlights:</span>
+                  <ul class="list-unstyled mb-1 row g-2">
+                    <li *ngFor="let f of cat.features.slice(0, 8)" class="col-6 d-flex align-items-center small text-dark feature-item">
+                      <i class="fa-solid fa-circle-check text-purple me-2 flex-shrink-0"></i>
+                      <span class="feature-text text-truncate" [title]="f">{{ f }}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="more-highlights-wrapper text-end mt-1.5">
+                  <span *ngIf="cat.features.length > 8" class="more-highlights-badge d-inline-flex align-items-center rounded-pill cursor-pointer"
+                    (click)="openQuickView(cat, $event)">
+                    +{{ cat.features.length - 8 }} More
+                    <i class="fa-solid fa-chevron-right ms-1"></i>
+                  </span>
+                </div>
               </div>
 
               <!-- Card Action Buttons -->
@@ -318,6 +317,7 @@
       <!-- Modal Body -->
       <div class="modal-body-custom p-4 p-md-5 overflow-y-auto max-vh-75">
         <div class="row gy-4">
+          <!-- Left Column: Image, Thumbnails, Text, Delivery Time & Action Button -->
           <div class="col-lg-6">
             <!-- Modal Large Image -->
             <div class="modal-img-box rounded-4 overflow-hidden shadow-sm border mb-3">
@@ -326,48 +326,60 @@
             </div>
 
             <!-- Modal Image Gallery Thumbnails -->
-            <div *ngIf="selectedCategoryModal()!.images.length > 1" class="d-flex gap-2">
+            <div *ngIf="selectedCategoryModal()!.images.length > 1" class="d-flex gap-2 mb-3">
               <img *ngFor="let img of selectedCategoryModal()!.images; let idx = index" [src]="img"
                 class="modal-thumb-img rounded-3 border cursor-pointer"
                 [class.active]="(activeCardImageMap()[selectedCategoryModal()!.id] || 0) === idx"
                 (click)="setImageIndex(selectedCategoryModal()!.id, idx, $event)">
             </div>
-          </div>
 
-          <div class="col-lg-6">
-            <span class="text-purple fw-bold d-block mb-1 text-uppercase small">{{ selectedCategoryModal()?.tagline
-              }}</span>
-            <p class="text-muted mb-4">{{ selectedCategoryModal()?.desc }}</p>
+            <!-- Tagline Heading (Single Line) & Description -->
+            <h6 class="text-purple fw-extrabold text-uppercase mb-2 text-nowrap text-truncate" style="font-size: 0.92rem; letter-spacing: 0.3px;">{{ selectedCategoryModal()?.tagline }}</h6>
+            <p class="text-muted mb-3 small" style="font-size: 0.85rem; line-height: 1.5;">{{ selectedCategoryModal()?.desc }}</p>
 
-            <!-- Price & Delivery Badges -->
-            <div class="d-flex flex-wrap gap-3 mb-4">
-              <div class="modal-spec-badge bg-light border flex-grow-1">
-                <span class="text-uppercase small text-muted fw-bold d-block mb-1">Delivery Time</span>
-                <span class="fw-extrabold text-dark h5 m-0">{{ selectedCategoryModal()?.turnaround }}</span>
+            <!-- Delivery Time Badge (Sleek & Compact) -->
+            <div class="mb-3">
+              <div class="modal-spec-badge bg-light border d-inline-block w-auto rounded-3" style="padding: 8px 14px !important;">
+                <span class="text-uppercase text-muted fw-bold d-block mb-0.5" style="font-size: 9.5px !important; letter-spacing: 0.5px;">Delivery Time</span>
+                <span class="fw-extrabold text-dark m-0 d-block" style="font-size: 15px !important; line-height: 1.2;">{{ selectedCategoryModal()?.turnaround }}</span>
               </div>
             </div>
 
-            <!-- Detailed Scope of Work List -->
-            <div class="mb-4">
-              <h6 class="fw-bold text-dark text-uppercase mb-2">Included Scope of Work:</h6>
-              <ul class="list-unstyled mb-0 row g-2">
-                <li *ngFor="let scope of selectedCategoryModal()?.scopeOfWork"
-                  class="col-12 d-flex align-items-center small text-dark">
-                  <i class="fa-solid fa-circle-check text-purple me-2"></i>
-                  <span>{{ scope }}</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Modal Action Buttons -->
-            <div class="d-flex gap-2 pt-2 border-top">
+            <!-- Modal Action Button (Left side me 45 days ke niche) -->
+            <div class="pt-1 mb-3 mb-lg-0">
               <button (click)="openConsultation($event)"
-                class="btn btn-purple rounded-pill py-2.5 px-4 fw-bold text-uppercase flex-grow-1 shadow d-flex align-items-center justify-content-center">
+                class="btn btn-purple rounded-pill py-2.5 px-4 fw-bold text-uppercase w-100 shadow d-flex align-items-center justify-content-center">
                 <span>BOOK FREE CONSULTATION</span>
                 <i class="fa-solid fa-arrow-right ms-2"></i>
               </button>
             </div>
+          </div>
 
+          <!-- Right Column: Key Highlights & Scope of Work -->
+          <div class="col-lg-6">
+            <!-- All Key Highlights List in Modal -->
+            <div class="mb-4" *ngIf="selectedCategoryModal()?.features?.length">
+              <h6 class="fw-bold text-dark text-uppercase mb-3">Key Highlights ({{ selectedCategoryModal()?.features?.length }}):</h6>
+              <ul class="list-unstyled mb-0 key-highlights-grid">
+                <li *ngFor="let f of selectedCategoryModal()?.features"
+                  class="d-flex align-items-start text-dark">
+                  <i class="fa-solid fa-circle-check text-purple me-2 mt-1 flex-shrink-0"></i>
+                  <span class="fw-medium" style="line-height: 1.35; font-size: 0.83rem;">{{ f }}</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Detailed Scope of Work List -->
+            <div class="mb-4" *ngIf="selectedCategoryModal()?.scopeOfWork?.length">
+              <h6 class="fw-bold text-dark text-uppercase mb-3">Included Scope of Work:</h6>
+              <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                <li *ngFor="let scope of selectedCategoryModal()?.scopeOfWork"
+                  class="d-flex align-items-start text-dark">
+                  <i class="fa-solid fa-circle-check text-purple me-2 mt-1 flex-shrink-0"></i>
+                  <span class="fw-medium" style="line-height: 1.35; font-size: 0.83rem;">{{ scope }}</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
