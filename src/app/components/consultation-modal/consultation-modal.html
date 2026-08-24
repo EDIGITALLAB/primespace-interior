@@ -9,17 +9,17 @@
 
     <!-- Header Block -->
     <div class="consultation-header-block mb-3 text-center px-1">
-      <h3 class="consultation-title fw-black m-0 text-uppercase">
+      <h3 class="consultation-title m-0 text-uppercase">
         Book Free Consultation
       </h3>
     </div>
 
     <!-- Form -->
-    <form class="consultation-modal-form" (submit)="onModalFormSubmit($event, modalName.value, modalEmail.value, modalPhone.value, modalCity.value)">
+    <form class="consultation-modal-form" (submit)="onModalFormSubmit($event, modalName.value, modalEmail.value, modalPhone.value, modalCity.value, modalDescription.value)">
 
       <!-- Full Name -->
       <div class="form-group mb-3">
-        <label for="modalFullName" class="form-label font-size-xs fw-extrabold text-uppercase">Full Name</label>
+        <label for="modalFullName" class="form-label font-size-xs text-uppercase">Full Name</label>
         <div class="input-icon-wrapper">
           <i class="fa-regular fa-user field-icon text-purple"></i>
           <input type="text" id="modalFullName" placeholder="Enter your full name" class="form-control modal-input with-icon" required #modalName>
@@ -28,32 +28,44 @@
 
       <!-- Email -->
       <div class="form-group mb-3">
-        <label for="modalEmailAddr" class="form-label font-size-xs fw-extrabold text-uppercase">Email Address</label>
+        <label for="modalEmailAddr" class="form-label font-size-xs text-uppercase">Email Address</label>
         <div class="input-icon-wrapper">
           <i class="fa-regular fa-envelope field-icon text-purple"></i>
           <input type="email" id="modalEmailAddr" placeholder="Enter your email address" class="form-control modal-input with-icon" required #modalEmail>
         </div>
       </div>
 
-      <!-- Phone -->
-      <div class="form-group mb-3">
-        <label for="modalPhoneNum" class="form-label font-size-xs fw-extrabold text-uppercase">Phone Number</label>
-        <div class="input-icon-wrapper">
-          <i class="fa-solid fa-phone field-icon text-purple"></i>
-          <input type="tel" id="modalPhoneNum" placeholder="Enter your 10-digit phone number" class="form-control modal-input with-icon" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" required #modalPhone>
+      <!-- Phone & Location (Side-by-Side in 1 Line) -->
+      <div class="row g-2 mb-3">
+        <!-- Phone -->
+        <div class="col-6 form-group mb-0">
+          <label for="modalPhoneNum" class="form-label font-size-xs text-uppercase">Phone Number</label>
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-phone field-icon text-purple"></i>
+            <input type="tel" id="modalPhoneNum" placeholder="10-digit number" class="form-control modal-input with-icon" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" required #modalPhone>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="col-6 form-group mb-0">
+          <label for="modalCitySelect" class="form-label font-size-xs text-uppercase">Location</label>
+          <div class="input-icon-wrapper">
+            <i class="fa-solid fa-location-dot field-icon text-purple"></i>
+            <select id="modalCitySelect" class="form-select modal-input with-icon text-truncate" required #modalCity>
+              <option value="" disabled selected>Select Location</option>
+              <option value="Bangalore Studio (Medahalli)">Bangalore Studio (Medahalli)</option>
+              <option value="Bhubaneswar Studio (Saheed Nagar)">Bhubaneswar Studio (Saheed Nagar)</option>
+            </select>
+          </div>
         </div>
       </div>
 
-      <!-- Location -->
+      <!-- Message / Details -->
       <div class="form-group mb-3">
-        <label for="modalCitySelect" class="form-label font-size-xs fw-extrabold text-uppercase">Location</label>
+        <label for="modalDescription" class="form-label font-size-xs text-uppercase">Message</label>
         <div class="input-icon-wrapper">
-          <i class="fa-solid fa-location-dot field-icon text-purple"></i>
-          <select id="modalCitySelect" class="form-select modal-input with-icon" required #modalCity>
-            <option value="" disabled selected>Select Location</option>
-            <option value="Bangalore Studio (Medahalli)">Bangalore Studio (Medahalli)</option>
-            <option value="Bhubaneswar Studio (Saheed Nagar)">Bhubaneswar Studio (Saheed Nagar)</option>
-          </select>
+          <i class="fa-regular fa-comment-dots field-icon textarea-icon text-purple"></i>
+          <textarea id="modalDescription" rows="3" placeholder="Tell us about your space type (e.g. 3BHK, Villa), timeline, or budget..." class="form-control modal-input with-icon" #modalDescription></textarea>
         </div>
       </div>
 

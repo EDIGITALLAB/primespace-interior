@@ -85,7 +85,24 @@ export class CategoriesPage {
       filterTag: 'kitchen',
       rating: 4.9,
       reviewsCount: 184,
-      features: ['Premium Soft-Close Fittings', 'Quartz & Granite Countertops', 'Profile LED Cabinets', 'Pantry & Spice Pullouts'],
+      features: [
+        'Modular Kitchen Solutions',
+        'Custom-Size Cabinets & Units',
+        'Premium Plywood & Durable Materials',
+        'Tall Units & Utility Storage',
+        'Corner & Smart Space Solutions',
+        'Drawer & Basket Organizers',
+        'Cutlery & Thali Organizers',
+        'Bottle & Oil Pullouts',
+        'Waste Bin Integration',
+        'Under-Sink Storage Solutions',
+        'Overhead & Loft Cabinets',
+        'Custom Kitchen Island & Breakfast Counters',
+        'Integrated Appliance Solutions',
+        'Hob, Chimney & Microwave Integration',
+        'Water-Resistant & Easy-to-Maintain Options',
+        'End-to-End Design & Installation'
+      ],
       scopeOfWork: ['Base & Wall Cabinets', 'Tandem Drawer Units', 'Tall Appliance Unit', 'Quartz Countertop with Sink Cutout', 'Under-Cabinet Sensor LEDs']
     },
     {
@@ -102,7 +119,20 @@ export class CategoriesPage {
       filterTag: 'living',
       rating: 4.9,
       reviewsCount: 210,
-      features: ['Custom Fluted TV Panels', 'Hidden Ambient LED Lighting', 'Plush Sectional Sofas', 'Designer Accent Wall Rafters'],
+      features: [
+        'Custom Fluted TV Panels',
+        'Made-to-Measure TV Units',
+        'Hidden Ambient LED Lighting',
+        'Designer Accent Walls',
+        'Premium Wall Paneling',
+        'Built-in Display & Storage',
+        'Floating Cabinets & Shelves',
+        'Designer False Ceilings',
+        'Plush Custom Seating',
+        'Statement Lighting',
+        'Smart Home Integration',
+        'Custom Furniture & Finishes'
+      ],
       scopeOfWork: ['Full-Wall Floating TV Console', 'Charcoal Rafters & Paneling', 'Foyer Shoe Rack with Seating', 'Cove Profile Lighting Layout']
     },
     {
@@ -271,14 +301,14 @@ export class CategoriesPage {
     });
 
     // Sorting
-    if (sort === 'price-low') {
-      list = [...list].sort((a, b) => a.priceNumeric - b.priceNumeric);
-    } else if (sort === 'price-high') {
-      list = [...list].sort((a, b) => b.priceNumeric - a.priceNumeric);
+    if (sort === 'rating') {
+      list = [...list].sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+    } else if (sort === 'popular') {
+      list = [...list].sort((a, b) => (b.reviewsCount ?? 0) - (a.reviewsCount ?? 0));
     } else if (sort === 'turnaround') {
       list = [...list].sort((a, b) => a.daysNumeric - b.daysNumeric);
-    } else if (sort === 'rating') {
-      list = [...list].sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
+    } else if (sort === 'name-az') {
+      list = [...list].sort((a, b) => a.name.localeCompare(b.name));
     }
 
     return list;

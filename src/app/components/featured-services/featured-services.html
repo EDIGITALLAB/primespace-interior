@@ -66,27 +66,18 @@
               <!-- Pill Grid for List Items -->
               <div class="fs-items-pill-grid d-flex flex-wrap gap-2 justify-content-center mb-4">
                 @for (item of s.items; track item) {
-                <div class="fs-item-pill d-flex align-items-center gap-1.5 px-3 py-1.5 rounded-pill">
-                  <i class="fa-solid fa-circle-check text-purple font-size-micro"></i>
+                <div class="fs-item-pill d-flex align-items-center gap-2 px-3 py-1.5 rounded-pill">
+                  <span class="fs-pill-check-icon d-inline-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-check"></i>
+                  </span>
                   <span class="fs-exact-item-text">{{ item }}</span>
                 </div>
                 }
               </div>
             </div>
 
-            <!-- Bottom Explore Link & Full-Width Bottom Accent Bar -->
-            <div class="fs-card-footer-wrapper">
-              <div class="text-center py-3">
-                <div
-                  class="fs-exact-explore-link font-size-xs fw-bold text-uppercase d-inline-flex align-items-center gap-2">
-                  <span>Explore Solutions</span>
-                  <i class="fa-solid fa-arrow-right font-size-xs"></i>
-                </div>
-              </div>
-
-              <!-- Full-Width Bottom Theme Accent Bar -->
-              <div class="fs-exact-bottom-bar"></div>
-            </div>
+            <!-- Full-Width Bottom Theme Accent Bar -->
+            <div class="fs-exact-bottom-bar"></div>
 
           </div>
         </div>
