@@ -2,7 +2,6 @@ import { Component, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
-import { BeforeAfterSlider } from '../../components/before-after-slider/before-after-slider';
 
 export interface CategoryDetail {
   id: string;
@@ -35,7 +34,7 @@ export interface MaterialDetail {
 @Component({
   selector: 'app-categories-page',
   standalone: true,
-  imports: [CommonModule, FormsModule, BeforeAfterSlider],
+  imports: [CommonModule, FormsModule],
   templateUrl: './categories-page.html',
   styleUrl: './categories-page.css',
 })
