@@ -816,13 +816,13 @@
 }
 
 .more-highlights-badge {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.3px;
   background: rgba(var(--primary-maroon-rgb), 0.06);
   color: var(--primary-maroon);
   border: 1px dashed rgba(var(--primary-maroon-rgb), 0.35);
-  padding: 3px 10px !important;
+  padding: 2.5px 8px !important;
   border-radius: 20px;
   cursor: pointer !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
@@ -837,7 +837,7 @@
 }
 
 .more-highlights-badge i {
-  font-size: 8.5px;
+  font-size: 8px;
   transition: transform 0.25s ease;
 }
 
