@@ -51,6 +51,7 @@ export class CategoriesPage {
 
   // Selected Category for Quick View Modal
   readonly selectedCategoryModal = signal<CategoryDetail | null>(null);
+  readonly showAllModalHighlights = signal<boolean>(false);
 
   // Budget Calculator Signals
   readonly calcRoomType = signal<string>('2bhk');
@@ -363,11 +364,17 @@ export class CategoriesPage {
   openQuickView(cat: CategoryDetail, event: Event) {
     event.preventDefault();
     event.stopPropagation();
+    this.showAllModalHighlights.set(false);
     this.selectedCategoryModal.set(cat);
   }
 
   closeQuickView() {
+    this.showAllModalHighlights.set(false);
     this.selectedCategoryModal.set(null);
+  }
+
+  toggleModalHighlights() {
+    this.showAllModalHighlights.update(v => !v);
   }
 
   openConsultation(event: Event) {

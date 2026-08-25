@@ -51,12 +51,14 @@
     <div class="container position-relative z-2">
 
       <!-- Controls & Ticker Bar -->
-      <div class="controls-bar d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 border-bottom pb-3">
+      <div
+        class="controls-bar d-flex align-items-center justify-content-between flex-wrap gap-3 mb-4 border-bottom pb-3">
         <div class="d-flex align-items-center gap-2 min-w-0 flex-wrap">
           <span class="grid-counter-badge rounded-pill px-3 py-1.5 text-uppercase fw-bold text-nowrap flex-shrink-0">
             Showing {{ filteredCategories().length }} {{ filteredCategories().length === 1 ? 'Space' : 'Spaces' }}
           </span>
-          <span *ngIf="searchQuery()" class="text-muted small text-truncate d-inline-block">for "{{ searchQuery() }}"</span>
+          <span *ngIf="searchQuery()" class="text-muted small text-truncate d-inline-block">for "{{ searchQuery()
+            }}"</span>
 
           <!-- Reset Button -->
           <button
@@ -144,23 +146,24 @@
               </div>
 
               <!-- Feature Bullet Points -->
-              <div class="card-features-list pt-3 border-top mb-3 d-flex flex-column justify-content-between">
-                <div>
-                  <span class="features-header text-uppercase text-muted fw-bold d-block mb-2">Key Highlights:</span>
-                  <ul class="list-unstyled mb-1 row g-2">
-                    <li *ngFor="let f of cat.features.slice(0, 8)" class="col-6 d-flex align-items-center small text-dark feature-item">
-                      <i class="fa-solid fa-circle-check text-purple me-2 flex-shrink-0"></i>
-                      <span class="feature-text text-truncate" [title]="f">{{ f }}</span>
-                    </li>
-                  </ul>
-                </div>
-                <div class="more-highlights-wrapper text-end mt-1.5">
-                  <span *ngIf="cat.features.length > 8" class="more-highlights-badge d-inline-flex align-items-center rounded-pill cursor-pointer"
-                    (click)="openQuickView(cat, $event)">
-                    +{{ cat.features.length - 8 }} More
-                    <i class="fa-solid fa-chevron-right ms-1"></i>
-                  </span>
-                </div>
+              <div class="card-features-list pt-3 border-top mb-3">
+                <span class="features-header text-uppercase text-muted fw-bold d-block mb-2">Key Highlights:</span>
+                <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
+                  <li *ngFor="let f of cat.features.slice(0, 5); let isLast = last"
+                    class="d-flex align-items-center justify-content-between text-dark feature-item">
+                    <div class="d-flex align-items-center min-w-0 me-2">
+                      <i class="fa-solid fa-circle-check text-purple me-2 flex-shrink-0" style="font-size: 1rem;"></i>
+                      <span class="feature-text text-truncate fw-medium" style="font-size: 0.95rem;" [title]="f">{{ f
+                        }}</span>
+                    </div>
+                    <span *ngIf="isLast && cat.features.length > 5"
+                      class="more-highlights-badge d-inline-flex align-items-center rounded-pill cursor-pointer flex-shrink-0 ms-2"
+                      (click)="openQuickView(cat, $event)">
+                      +{{ cat.features.length - 5 }} More
+                      <i class="fa-solid fa-chevron-right ms-1"></i>
+                    </span>
+                  </li>
+                </ul>
               </div>
 
               <!-- Card Action Buttons -->
@@ -334,14 +337,19 @@
             </div>
 
             <!-- Tagline Heading (Single Line) & Description -->
-            <h6 class="text-purple fw-extrabold text-uppercase mb-2 text-nowrap text-truncate" style="font-size: 0.92rem; letter-spacing: 0.3px;">{{ selectedCategoryModal()?.tagline }}</h6>
-            <p class="text-muted mb-3 small" style="font-size: 0.85rem; line-height: 1.5;">{{ selectedCategoryModal()?.desc }}</p>
+            <h6 class="text-purple fw-extrabold text-uppercase mb-2 text-nowrap text-truncate"
+              style="font-size: 0.92rem; letter-spacing: 0.3px;">{{ selectedCategoryModal()?.tagline }}</h6>
+            <p class="text-muted mb-3 small" style="font-size: 0.85rem; line-height: 1.5;">{{
+              selectedCategoryModal()?.desc }}</p>
 
             <!-- Delivery Time Badge (Sleek & Compact) -->
             <div class="mb-3">
-              <div class="modal-spec-badge bg-light border d-inline-block w-auto rounded-3" style="padding: 8px 14px !important;">
-                <span class="text-uppercase text-muted fw-bold d-block mb-0.5" style="font-size: 9.5px !important; letter-spacing: 0.5px;">Delivery Time</span>
-                <span class="fw-extrabold text-dark m-0 d-block" style="font-size: 15px !important; line-height: 1.2;">{{ selectedCategoryModal()?.turnaround }}</span>
+              <div class="modal-spec-badge bg-light border d-inline-block w-auto rounded-3"
+                style="padding: 8px 14px !important;">
+                <span class="text-uppercase text-muted fw-bold d-block mb-0.5"
+                  style="font-size: 9.5px !important; letter-spacing: 0.5px;">Delivery Time</span>
+                <span class="fw-extrabold text-dark m-0 d-block"
+                  style="font-size: 15px !important; line-height: 1.2;">{{ selectedCategoryModal()?.turnaround }}</span>
               </div>
             </div>
 
@@ -355,28 +363,16 @@
             </div>
           </div>
 
-          <!-- Right Column: Key Highlights & Scope of Work -->
+          <!-- Right Column: Key Highlights -->
           <div class="col-lg-6">
-            <!-- All Key Highlights List in Modal -->
+            <!-- Key Highlights List in Modal (Single Line Items) -->
             <div class="mb-4" *ngIf="selectedCategoryModal()?.features?.length">
-              <h6 class="fw-bold text-dark text-uppercase mb-3">Key Highlights ({{ selectedCategoryModal()?.features?.length }}):</h6>
-              <ul class="list-unstyled mb-0 key-highlights-grid">
-                <li *ngFor="let f of selectedCategoryModal()?.features"
-                  class="d-flex align-items-start text-dark">
-                  <i class="fa-solid fa-circle-check text-purple me-2 mt-1 flex-shrink-0"></i>
-                  <span class="fw-medium" style="line-height: 1.35; font-size: 0.83rem;">{{ f }}</span>
-                </li>
-              </ul>
-            </div>
-
-            <!-- Detailed Scope of Work List -->
-            <div class="mb-4" *ngIf="selectedCategoryModal()?.scopeOfWork?.length">
-              <h6 class="fw-bold text-dark text-uppercase mb-3">Included Scope of Work:</h6>
+              <h6 class="fw-bold text-dark text-uppercase mb-3 modal-highlights-heading">Key Highlights ({{ selectedCategoryModal()?.features?.length }}):</h6>
               <ul class="list-unstyled mb-0 d-flex flex-column gap-2">
-                <li *ngFor="let scope of selectedCategoryModal()?.scopeOfWork"
-                  class="d-flex align-items-start text-dark">
-                  <i class="fa-solid fa-circle-check text-purple me-2 mt-1 flex-shrink-0"></i>
-                  <span class="fw-medium" style="line-height: 1.35; font-size: 0.83rem;">{{ scope }}</span>
+                <li *ngFor="let f of selectedCategoryModal()?.features"
+                  class="d-flex align-items-center text-dark py-0.5">
+                  <i class="fa-solid fa-circle-check text-purple me-2 flex-shrink-0 modal-highlight-icon" style="font-size: 1.08rem;"></i>
+                  <span class="fw-medium text-dark text-nowrap text-truncate modal-highlight-text" style="font-size: 0.98rem;" [title]="f">{{ f }}</span>
                 </li>
               </ul>
             </div>

@@ -506,7 +506,15 @@
   }
 
   .modal-body-custom ul li {
-    font-size: 11px !important;
+    font-size: 12.5px !important;
+  }
+
+  .modal-highlight-text {
+    font-size: 12.5px !important;
+  }
+
+  .modal-highlight-icon {
+    font-size: 0.95rem !important;
   }
 
   .modal-body-custom .btn-purple {
@@ -1100,6 +1108,15 @@
   opacity: 1;
   border-color: var(--primary-maroon) !important;
   transform: scale(1.05);
+}
+
+.modal-highlight-text {
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+.modal-highlight-icon {
+  font-size: 1.08rem;
 }
 
 .key-highlights-grid {
