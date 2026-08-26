@@ -16,6 +16,7 @@ export interface StudioLocationDetail {
   mapEmbedUrl: string;
   directionsUrl: string;
   safeMapUrl?: SafeResourceUrl;
+  whatsappMessage?: string;
   highlights: string[];
   headArchitect: {
     name: string;
@@ -54,6 +55,7 @@ export class LocationsPage implements OnInit {
       email: 'support.primespaceinterior@gmail.com',
       mapEmbedUrl: 'https://maps.google.com/maps?q=Sizzle+Palm+Kingdom,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=16&ie=UTF8&iwloc=&output=embed',
       directionsUrl: 'https://maps.google.com/?q=Palm+Kingdom,+House+No.+15,+Medahalli,+Near+Satsang+Temple,+KRPURAM,+Avalahalli,+Bengaluru,+Karnataka+560049',
+      whatsappMessage: 'Hello Primespace Interior team, I am interested in your interior design services and would like to schedule a consultation with your design expert.',
       highlights: [
         'Full-Scale 1:1 Modular Kitchen Live Display',
         '200+ Premium Hardware & Soft-Close Testing Bay',
@@ -100,6 +102,7 @@ export class LocationsPage implements OnInit {
       email: 'support.primespaceinterior@gmail.com',
       mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.146816578912!2d85.83685437609204!3d20.294194981180296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1909e20a9a1175%3A0x673934336c1c876!2sSaheed%20Nagar%2C%20Bhubaneswar%2C%20Odisha%20751007!5e0!3m2!1sen!2sin!4v1716300000000!5m2!1sen!2sin',
       directionsUrl: 'https://maps.google.com/?q=Saheed+Nagar,Bhubaneswar',
+      whatsappMessage: 'Hello Primespace Interior team, I am interested in your interior design services and would like to schedule a consultation with your design expert.',
       highlights: [
         'Smart Lighting & Automation Mockup Zone',
         'Modular Sliding Wardrobe & Glass Closet Gallery',
@@ -165,6 +168,12 @@ export class LocationsPage implements OnInit {
       this.locationsList.find(l => l.id === this.activeLocationId()) ||
       this.locationsList[0]
     );
+  }
+
+  get whatsappLink(): string {
+    const cleanPhone = (this.activeLocation.phone || '').replace(/[^0-9]/g, '');
+    const msg = this.activeLocation.whatsappMessage || 'Hello Primespace Interior team, I am interested in your interior design services and would like to schedule a consultation with your design expert.';
+    return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
   }
 
   openGallery(photoIdx: number = 0) {

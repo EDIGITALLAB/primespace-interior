@@ -116,6 +116,14 @@
                   
                   <div *ngIf="!isSubmitted(); else successState">
                     <form (submit)="submitContactForm($event)">
+
+                      <!-- Bootstrap Alert Banner -->
+                      <div *ngIf="errorMessage()" class="alert alert-danger alert-dismissible fade show mb-3 p-3 rounded-3 shadow-xs d-flex align-items-center gap-2 font-size-xs text-dark" role="alert">
+                        <i class="fa-solid fa-circle-exclamation text-danger font-size-sm"></i>
+                        <span class="flex-grow-1 fw-bold">{{ errorMessage() }}</span>
+                        <button type="button" class="btn-close p-2 font-size-micro ms-auto" (click)="errorMessage.set(null)" aria-label="Close"></button>
+                      </div>
+
                       <div class="d-flex flex-column gap-3.5">
 
                         <!-- Full Name * -->
@@ -158,8 +166,8 @@
                           </span>
                           <select class="form-select border-0 shadow-none ps-1 pe-4 font-size-sm text-dark cursor-pointer fw-bold bg-cream-input"
                             [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event)" name="citySelect">
-                            <option value="Bangalore">Bangalore Studio (Medahalli)</option>
-                            <option value="Bhubaneswar">Bhubaneswar Studio (Saheed Nagar)</option>
+                            <option value="Bangalore">Bangalore Studio</option>
+                            <option value="Bhubaneswar">Bhubaneswar Studio</option>
                           </select>
                         </div>
 

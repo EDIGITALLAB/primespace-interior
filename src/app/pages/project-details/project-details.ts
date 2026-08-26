@@ -284,6 +284,12 @@ export class ProjectDetails implements OnInit {
     return this.filteredModalPhotos.length;
   }
 
+  get activeCategoryName(): string {
+    const catId = this.activeRoomCategory();
+    const found = this.roomCategories.find(c => c.id === catId);
+    return found ? found.name : 'All Photos';
+  }
+
   // INLINE POPUP PHOTO PREVIEW METHODS
   openModalPhotoPreview(index: number) {
     this.activeModalPhotoIndex.set(index);

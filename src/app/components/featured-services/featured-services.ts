@@ -2,6 +2,11 @@ import { Component, signal, ElementRef, ViewChild, OnInit, OnDestroy, Inject, PL
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
+export interface ServiceItem {
+  name: string;
+  icon: string;
+}
+
 export interface ServiceCardData {
   id: string;
   slug: string;
@@ -11,7 +16,7 @@ export interface ServiceCardData {
   badge: string;
   icon: string;
   image: string;
-  items: string[];
+  items: ServiceItem[];
 }
 
 @Component({
@@ -68,15 +73,15 @@ export class FeaturedServices implements OnInit, OnDestroy {
       icon: 'fa-solid fa-house-chimney-window',
       image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop',
       items: [
-        'Complete Home Interiors',
-        'Modular Kitchen',
-        'Wardrobes',
-        'TV Units',
-        'False Ceiling',
-        'Wall Paneling',
-        'Painting',
-        'Lighting Design',
-        'Space Planning'
+        { name: 'Complete Home Interiors', icon: 'fa-solid fa-house' },
+        { name: 'Modular Kitchen', icon: 'fa-solid fa-kitchen-set' },
+        { name: 'Wardrobes', icon: 'fa-solid fa-door-closed' },
+        { name: 'TV Units', icon: 'fa-solid fa-tv' },
+        { name: 'False Ceiling', icon: 'fa-solid fa-layer-group' },
+        { name: 'Wall Paneling', icon: 'fa-solid fa-border-all' },
+        { name: 'Painting', icon: 'fa-solid fa-paint-roller' },
+        { name: 'Lighting Design', icon: 'fa-solid fa-lightbulb' },
+        { name: 'Space Planning', icon: 'fa-solid fa-compass-drafting' }
       ]
     },
     {
@@ -89,11 +94,11 @@ export class FeaturedServices implements OnInit, OnDestroy {
       icon: 'fa-solid fa-cubes-stacked',
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=800&auto=format&fit=crop',
       items: [
-        'Masonry & Brickwork',
-        'Laser Tile Leveling',
-        'Concealed Electrical',
-        'Gypsum & POP Works',
-        'Multi-Coat Painting'
+        { name: 'Masonry & Brickwork', icon: 'fa-solid fa-trowel-bricks' },
+        { name: 'Laser Tile Leveling', icon: 'fa-solid fa-vector-square' },
+        { name: 'Concealed Electrical', icon: 'fa-solid fa-plug' },
+        { name: 'Gypsum & POP Works', icon: 'fa-solid fa-shapes' },
+        { name: 'Multi-Coat Painting', icon: 'fa-solid fa-brush' }
       ]
     },
     {
@@ -101,18 +106,18 @@ export class FeaturedServices implements OnInit, OnDestroy {
       slug: 'wood-works',
       num: '03',
       title: 'Wood Works',
-      tagline: 'German CNC precision joinery & handcrafted wooden masterwork.',
+      tagline: 'Custom CNC precision joinery & handcrafted wooden masterwork.',
       badge: '7 Craft Options',
       icon: 'fa-solid fa-couch',
       image: 'https://images.unsplash.com/photo-1538688525198-9b88f6f53126?q=80&w=800&auto=format&fit=crop',
       items: [
-        'Modular Furniture',
-        'Bespoke Hardwood',
-        'BWP Marine Plywood',
-        'Natural Veneers',
-        'Anti-Scratch Laminates',
-        'Mirror Acrylic Finish',
-        'Dust-Free PU Polish'
+        { name: 'Modular Furniture', icon: 'fa-solid fa-couch' },
+        { name: 'Bespoke Hardwood', icon: 'fa-solid fa-tree' },
+        { name: 'BWP Marine Plywood', icon: 'fa-solid fa-shield-halved' },
+        { name: 'Natural Veneers', icon: 'fa-solid fa-leaf' },
+        { name: 'Anti-Scratch Laminates', icon: 'fa-solid fa-gem' },
+        { name: 'Mirror Acrylic Finish', icon: 'fa-solid fa-wand-magic-sparkles' },
+        { name: 'Dust-Free PU Polish', icon: 'fa-solid fa-spray-can' }
       ]
     }
   ];
