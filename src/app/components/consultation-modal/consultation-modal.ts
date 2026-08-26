@@ -11,12 +11,26 @@ import { ConsultationModalService } from '../../services/consultation-modal.serv
 })
 export class ConsultationModal {
   readonly isSubmitting = signal<boolean>(false);
+  readonly isSuccess = signal<boolean>(false);
+  readonly successMessage = signal<string>('');
+  readonly errorMessage = signal<string | null>(null);
 
   constructor(public consultationModalService: ConsultationModalService) {}
 
+  closeModal() {
+    this.isSuccess.set(false);
+    this.errorMessage.set(null);
+    this.consultationModalService.close();
+  }
+
   async onModalFormSubmit(event: Event, name: string, email: string, phone: string, city: string, description?: string) {
     event.preventDefault();
-    if (!name || !email || !phone || !city) return;
+    this.errorMessage.set(null);
+
+    if (!name || !email || !phone || !city) {
+      this.errorMessage.set('Please fill in all required fields (Name, Email, Phone, and Location).');
+      return;
+    }
 
     this.isSubmitting.set(true);
 
@@ -38,16 +52,16 @@ export class ConsultationModal {
       });
 
       if (response.ok) {
-        alert(`Thank you, ${name}! Your consultation request for ${city} has been received. Our lead architect will reach out to you within 24 hours.`);
+        this.successMessage.set(`Thank you, ${name}! Your consultation request for ${city} has been received. Our lead architect will reach out to you within 24 hours.`);
+        this.isSuccess.set(true);
         const form = event.target as HTMLFormElement;
         form.reset();
         this.consultationModalService.markSubmitted();
-        this.consultationModalService.close();
       } else {
-        alert('Oops! There was an issue submitting your request. Please try again.');
+        this.errorMessage.set('Oops! There was an issue submitting your request. Please try again.');
       }
     } catch (error) {
-      alert('Network connection error. Please try again later.');
+      this.errorMessage.set('Network connection error. Please check your internet connection and try again.');
     } finally {
       this.isSubmitting.set(false);
     }

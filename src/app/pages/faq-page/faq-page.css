@@ -39,12 +39,45 @@
   max-width: 600px;
 }
 
+.faq-categories-wrapper {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  overflow-x: auto !important;
+  padding-top: 8px !important;
+  padding-bottom: 12px !important;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+@media (min-width: 1200px) {
+  .faq-categories-wrapper {
+    justify-content: center !important;
+  }
+}
+
+.faq-categories-wrapper::-webkit-scrollbar {
+  display: none !important;
+}
+
 .btn-category-pill {
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex-shrink: 0 !important;
   background-color: #ffffff;
   color: var(--text-dark-black, #1a1a1a);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: none !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-category-pill i {
+  margin-right: 7px !important;
+  font-size: 13px !important;
 }
 
 .btn-category-pill:hover {
@@ -57,7 +90,7 @@
   background-color: var(--primary-maroon) !important;
   color: #ffffff !important;
   border-color: var(--primary-maroon) !important;
-  box-shadow: 0 4px 14px rgba(var(--primary-maroon-rgb), 0.35) !important;
+  box-shadow: none !important;
 }
 
 .faq-card {
@@ -191,10 +224,12 @@
   /* Category Filter Pills (Horizontal Scroll Strip on Mobile) */
   .faq-categories-wrapper {
     flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
     overflow-x: auto !important;
-    padding-bottom: 6px !important;
-    padding-left: 2px !important;
-    padding-right: 2px !important;
+    padding-top: 6px !important;
+    padding-bottom: 10px !important;
+    padding-left: 10px !important;
+    padding-right: 10px !important;
     scrollbar-width: none !important;
     -webkit-overflow-scrolling: touch !important;
   }

@@ -26,6 +26,7 @@ export class ContactPage {
   // Form State
   readonly isSubmitted = signal<boolean>(false);
   readonly isSubmitting = signal<boolean>(false);
+  readonly errorMessage = signal<string | null>(null);
 
   // Active FAQ Index
   readonly activeFaqIndex = signal<number | null>(0);
@@ -62,13 +63,15 @@ export class ContactPage {
 
   async submitContactForm(event: Event) {
     event.preventDefault();
+    this.errorMessage.set(null);
+
     if (!this.fullName() || !this.phone()) {
-      alert('Please fill in your name and phone number so our designers can reach out to you.');
+      this.errorMessage.set('Please fill in your name and phone number so our designers can reach out to you.');
       return;
     }
 
     if (this.phone().length !== 10) {
-      alert('Please enter a valid 10-digit phone number.');
+      this.errorMessage.set('Please enter a valid 10-digit phone number.');
       return;
     }
 
@@ -93,10 +96,10 @@ export class ContactPage {
       if (response.ok) {
         this.isSubmitted.set(true);
       } else {
-        alert('Oops! There was an issue submitting your message. Please try again.');
+        this.errorMessage.set('Oops! There was an issue submitting your message. Please try again.');
       }
     } catch (error) {
-      alert('Network error. Please check your connection and try again.');
+      this.errorMessage.set('Network error. Please check your connection and try again.');
     } finally {
       this.isSubmitting.set(false);
     }

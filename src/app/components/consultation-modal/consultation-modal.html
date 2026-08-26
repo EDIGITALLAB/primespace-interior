@@ -1,86 +1,141 @@
 <!-- Global Consultation Booking Popup Modal -->
-<div class="consultation-modal-overlay d-flex align-items-center justify-content-center" *ngIf="consultationModalService.isOpen()" (click)="consultationModalService.close()">
-  <div class="consultation-modal-card position-relative p-4 p-md-5 overflow-hidden rounded-4 shadow-lg" (click)="$event.stopPropagation()">
-    
+<div class="consultation-modal-overlay d-flex align-items-center justify-content-center"
+  *ngIf="consultationModalService.isOpen()" (click)="closeModal()">
+  <div class="consultation-modal-card position-relative p-4 p-md-5 overflow-hidden rounded-4 shadow-lg"
+    (click)="$event.stopPropagation()">
+
     <!-- Close Button -->
-    <button type="button" class="btn-close-consultation d-flex align-items-center justify-content-center" (click)="consultationModalService.close()" aria-label="Close modal">
+    <button type="button" class="btn-close-consultation d-flex align-items-center justify-content-center"
+      (click)="closeModal()" aria-label="Close modal">
       <i class="fa-solid fa-xmark"></i>
     </button>
 
-    <!-- Header Block -->
-    <div class="consultation-header-block mb-3 text-center px-1">
-      <h3 class="consultation-title m-0 text-uppercase">
-        Book Free Consultation
+    <!-- SUCCESS STATE VIEW (Shown ONLY when form is submitted successfully) -->
+    <div *ngIf="isSuccess()" class="text-center py-4 px-2 d-flex flex-column align-items-center justify-content-center">
+      <div
+        class="modal-success-icon-wrapper mt-2 mb-4 d-inline-flex align-items-center justify-content-center rounded-circle position-relative">
+        <span class="success-ripple-ring"></span>
+        <span class="success-ripple-ring ring-delay"></span>
+        <svg class="modal-success-svg-check" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+          <path class="checkmark-path" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round"
+            stroke-linejoin="round" d="M14 27l9 9 16-17" />
+        </svg>
+      </div>
+
+      <h3 class="fw-black text-uppercase text-dark mb-3 font-size-lg">
+        Request Received!
       </h3>
+
+      <p class="text-muted font-size-xs max-w-400 mx-auto mb-4.5 lh-base">
+        {{ successMessage() }}
+      </p>
+
+      <button type="button"
+        class="btn btn-modal-submit px-4 py-2.5 rounded-pill fw-extrabold text-uppercase font-size-xs my-1"
+        (click)="closeModal()">
+        Done &amp; Close
+      </button>
     </div>
 
-    <!-- Form -->
-    <form class="consultation-modal-form" (submit)="onModalFormSubmit($event, modalName.value, modalEmail.value, modalPhone.value, modalCity.value, modalDescription.value)">
+    <!-- FORM INPUT VIEW (Hidden when form is submitted successfully) -->
+    <div *ngIf="!isSuccess()">
 
-      <!-- Full Name -->
-      <div class="form-group mb-3">
-        <label for="modalFullName" class="form-label font-size-xs text-uppercase">Full Name</label>
-        <div class="input-icon-wrapper">
-          <i class="fa-regular fa-user field-icon text-purple"></i>
-          <input type="text" id="modalFullName" placeholder="Enter your full name" class="form-control modal-input with-icon" required #modalName>
-        </div>
+      <!-- Header Block -->
+      <div class="consultation-header-block mb-3 text-center px-1">
+        <h3 class="consultation-title m-0 text-uppercase">
+          Book Free Consultation
+        </h3>
       </div>
 
-      <!-- Email -->
-      <div class="form-group mb-3">
-        <label for="modalEmailAddr" class="form-label font-size-xs text-uppercase">Email Address</label>
-        <div class="input-icon-wrapper">
-          <i class="fa-regular fa-envelope field-icon text-purple"></i>
-          <input type="email" id="modalEmailAddr" placeholder="Enter your email address" class="form-control modal-input with-icon" required #modalEmail>
-        </div>
-      </div>
+      <!-- Form -->
+      <form class="consultation-modal-form"
+        (submit)="onModalFormSubmit($event, modalName.value, modalEmail.value, modalPhone.value, modalCity.value, modalDescription.value)">
 
-      <!-- Phone & Location (Side-by-Side in 1 Line) -->
-      <div class="row g-2 mb-3">
-        <!-- Phone -->
-        <div class="col-6 form-group mb-0">
-          <label for="modalPhoneNum" class="form-label font-size-xs text-uppercase">Phone Number</label>
+        <!-- Error Alert Message Banner -->
+        <div *ngIf="errorMessage()"
+          class="alert alert-danger alert-dismissible fade show mb-3 p-3 rounded-3 shadow-xs d-flex align-items-start gap-2 text-start font-size-xs"
+          role="alert">
+          <i class="fa-solid fa-circle-exclamation text-danger font-size-sm flex-shrink-0 mt-0.5"></i>
+          <div class="flex-grow-1 fw-semibold">
+            {{ errorMessage() }}
+          </div>
+          <button type="button" class="btn-close p-2 font-size-micro ms-auto" (click)="errorMessage.set(null)"
+            aria-label="Close"></button>
+        </div>
+
+        <!-- Full Name -->
+        <div class="form-group mb-3">
+          <label for="modalFullName" class="form-label font-size-xs text-uppercase">Full Name</label>
           <div class="input-icon-wrapper">
-            <i class="fa-solid fa-phone field-icon text-purple"></i>
-            <input type="tel" id="modalPhoneNum" placeholder="10-digit number" class="form-control modal-input with-icon" maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" required #modalPhone>
+            <i class="fa-regular fa-user field-icon text-purple"></i>
+            <input type="text" id="modalFullName" placeholder="Enter your full name"
+              class="form-control modal-input with-icon" required #modalName>
           </div>
         </div>
 
-        <!-- Location -->
-        <div class="col-6 form-group mb-0">
-          <label for="modalCitySelect" class="form-label font-size-xs text-uppercase">Location</label>
+        <!-- Email -->
+        <div class="form-group mb-3">
+          <label for="modalEmailAddr" class="form-label font-size-xs text-uppercase">Email Address</label>
           <div class="input-icon-wrapper">
-            <i class="fa-solid fa-location-dot field-icon text-purple"></i>
-            <select id="modalCitySelect" class="form-select modal-input with-icon text-truncate" required #modalCity>
-              <option value="" disabled selected>Select Location</option>
-              <option value="Bangalore Studio (Medahalli)">Bangalore Studio (Medahalli)</option>
-              <option value="Bhubaneswar Studio (Saheed Nagar)">Bhubaneswar Studio (Saheed Nagar)</option>
-            </select>
+            <i class="fa-regular fa-envelope field-icon text-purple"></i>
+            <input type="email" id="modalEmailAddr" placeholder="Enter your email address"
+              class="form-control modal-input with-icon" required #modalEmail>
           </div>
         </div>
-      </div>
 
-      <!-- Message / Details -->
-      <div class="form-group mb-3">
-        <label for="modalDescription" class="form-label font-size-xs text-uppercase">Message</label>
-        <div class="input-icon-wrapper">
-          <i class="fa-regular fa-comment-dots field-icon textarea-icon text-purple"></i>
-          <textarea id="modalDescription" rows="3" placeholder="Tell us about your space type (e.g. 3BHK, Villa), timeline, or budget..." class="form-control modal-input with-icon" #modalDescription></textarea>
+        <!-- Phone & Location (Side-by-Side in 1 Line) -->
+        <div class="row g-2 mb-3">
+          <!-- Phone -->
+          <div class="col-6 form-group mb-0">
+            <label for="modalPhoneNum" class="form-label font-size-xs text-uppercase">Phone Number</label>
+            <div class="input-icon-wrapper">
+              <i class="fa-solid fa-phone field-icon text-purple"></i>
+              <input type="tel" id="modalPhoneNum" placeholder="10-digit number"
+                class="form-control modal-input with-icon" maxlength="10" minlength="10" pattern="[0-9]{10}"
+                inputmode="numeric" required #modalPhone>
+            </div>
+          </div>
+
+          <!-- Location -->
+          <div class="col-6 form-group mb-0">
+            <label for="modalCitySelect" class="form-label font-size-xs text-uppercase">Location</label>
+            <div class="input-icon-wrapper">
+              <i class="fa-solid fa-location-dot field-icon text-purple"></i>
+              <select id="modalCitySelect" class="form-select modal-input with-icon text-truncate" required #modalCity>
+                <option value="" disabled selected>Select Location</option>
+                <option value="Bangalore Studio">Bangalore</option>
+                <option value="Bhubaneswar Studio">Bhubaneswar</option>
+              </select>
+            </div>
+          </div>
         </div>
-      </div>
 
+        <!-- Message / Details -->
+        <div class="form-group mb-3">
+          <label for="modalDescription" class="form-label font-size-xs text-uppercase">Message</label>
+          <div class="input-icon-wrapper">
+            <i class="fa-regular fa-comment-dots field-icon textarea-icon text-purple"></i>
+            <textarea id="modalDescription" rows="3"
+              placeholder="Tell us about your space type (e.g. 3BHK, Villa), timeline, or budget..."
+              class="form-control modal-input with-icon" #modalDescription></textarea>
+          </div>
+        </div>
 
-      <!-- Submit Button -->
-      <div class="form-submit-container mb-0">
-        <button type="submit" class="btn btn-modal-submit w-100 py-3 fw-black text-uppercase d-flex align-items-center justify-content-center gap-2" [disabled]="isSubmitting()">
-          <span *ngIf="!isSubmitting()">SEND MESSAGE</span>
-          <i *ngIf="!isSubmitting()" class="fa-solid fa-paper-plane"></i>
-          <span *ngIf="isSubmitting()">SENDING...</span>
-          <i *ngIf="isSubmitting()" class="fa-solid fa-spinner fa-spin"></i>
-        </button>
-      </div>
+        <!-- Submit Button -->
+        <div class="form-submit-container mb-0">
+          <button type="submit"
+            class="btn btn-modal-submit w-100 py-3 fw-black text-uppercase d-flex align-items-center justify-content-center gap-2"
+            [disabled]="isSubmitting()">
+            <span *ngIf="!isSubmitting()">SEND MESSAGE</span>
+            <i *ngIf="!isSubmitting()" class="fa-solid fa-paper-plane"></i>
+            <span *ngIf="isSubmitting()">SENDING...</span>
+            <i *ngIf="isSubmitting()" class="fa-solid fa-spinner fa-spin"></i>
+          </button>
+        </div>
 
-    </form>
+      </form>
+
+    </div>
 
   </div>
 </div>

@@ -100,14 +100,14 @@
         <div *ngFor="let p of filteredCompletedProjects(); let idx = index" class="col-12 col-sm-6 col-md-4 col-lg-3">
           <div
             class="apt-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all cursor-pointer"
-            [class.card-active-highlight]="idx === 0" (click)="openProjectModal(p, $event)">
+            (click)="openProjectModal(p, $event)">
 
-            <!-- Media Banner with Top Right Badge -->
+            <!-- Media Banner -->
             <div class="apt-media-box position-relative overflow-hidden">
               <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover apt-card-img">
-              <span
+              <span *ngIf="p.blocksCount"
                 class="apt-homes-badge position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-bold text-white shadow-xs">
-                {{ p.homesCount }}
+                {{ p.blocksCount }}
               </span>
             </div>
 
@@ -116,24 +116,11 @@
               <div>
                 <h3 class="apt-title fw-black text-dark font-size-md mb-1.5">{{ p.title }}</h3>
                 <p class="apt-loc text-muted font-size-xs mb-3.5 fw-medium">{{ p.location }}</p>
-
-                <!-- Details Icons Line -->
-                <div class="apt-info-row d-flex align-items-center gap-4 text-muted font-size-xs fw-medium mb-4">
-                  <span class="apt-info-item d-inline-flex align-items-center">
-                    <i class="fa-regular fa-building text-muted me-1.5"></i>
-                    <span>{{ p.blocksCount }}</span>
-                  </span>
-                  <span class="apt-info-item d-inline-flex align-items-center">
-                    <i class="fa-solid fa-house-chimney text-muted me-1.5"></i>
-                    <span>{{ p.homesCount }}</span>
-                  </span>
-                </div>
               </div>
 
               <!-- Action Button -->
               <button type="button"
-                class="btn btn-apt-action w-100 rounded-3 py-2.5 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-2 transition-all"
-                [class.btn-apt-solid]="p.buttonStyle === 'solid'" [class.btn-apt-outline]="p.buttonStyle === 'outline'"
+                class="btn btn-apt-action btn-apt-solid w-100 rounded-3 py-2.5 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-2 transition-all"
                 (click)="openProjectModal(p, $event)">
                 <span>VIEW DETAILS</span>
                 <i class="fa-solid fa-arrow-right font-size-micro"></i>

@@ -60,43 +60,43 @@
 
       <!-- Category Filter Pills -->
       <div class="row justify-content-center mb-3 mb-md-4">
-        <div class="col-lg-10">
-          <div class="d-flex align-items-center justify-content-start justify-content-md-center gap-2 faq-categories-wrapper">
+        <div class="col-12">
+          <div class="d-flex align-items-center justify-content-start justify-content-xl-center gap-2 faq-categories-wrapper">
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'all'"
               (click)="setCategory('all', $event)">
-              <i class="fa-solid fa-border-all me-1.5"></i> All Questions
+              <i class="fa-solid fa-border-all me-2"></i> All Questions
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'general'"
               (click)="setCategory('general', $event)">
-              <i class="fa-solid fa-circle-info me-1.5"></i> General & Studio
+              <i class="fa-solid fa-circle-info me-2"></i> General & Studio
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'pricing'"
               (click)="setCategory('pricing', $event)">
-              <i class="fa-solid fa-indian-rupee-sign me-1.5"></i> Pricing & Payment
+              <i class="fa-solid fa-indian-rupee-sign me-2"></i> Pricing & Payment
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'timeline'"
               (click)="setCategory('timeline', $event)">
-              <i class="fa-solid fa-clock me-1.5"></i> 45-Day Timeline
+              <i class="fa-solid fa-clock me-2"></i> 45-Day Timeline
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'materials'"
               (click)="setCategory('materials', $event)">
-              <i class="fa-solid fa-layer-group me-1.5"></i> Materials & Hardware
+              <i class="fa-solid fa-layer-group me-2"></i> Materials & Hardware
             </button>
             <button 
               class="btn btn-category-pill text-uppercase font-size-xs fw-extrabold rounded-pill px-3.5 py-2"
               [class.active]="activeCategory() === 'warranty'"
               (click)="setCategory('warranty', $event)">
-              <i class="fa-solid fa-shield-check me-1.5"></i> 10-Yr Warranty
+              <i class="fa-solid fa-shield-check me-2"></i> 10-Yr Warranty
             </button>
           </div>
         </div>

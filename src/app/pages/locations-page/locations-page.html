@@ -118,15 +118,26 @@
 
           </div>
 
-          <!-- Studio Experience Highlights -->
-          <div class="highlights-box p-3 p-md-4 rounded-4 bg-light border">
-            <h6 class="fw-bold text-dark text-uppercase mb-2 mb-md-3 highlight-box-title">Studio Features & Testing Bays:</h6>
-            <ul class="list-unstyled mb-0 d-flex flex-column gap-2.5">
-              <li *ngFor="let h of activeLocation.highlights" class="d-flex align-items-start gap-2 py-0.5 highlight-item">
-                <i class="fa-solid fa-circle-check text-purple flex-shrink-0 mt-1 highlight-icon"></i>
-                <span class="fw-bold text-dark highlight-text">{{ h }}</span>
-              </li>
-            </ul>
+          <!-- Instant WhatsApp Support Card -->
+          <div class="whatsapp-contact-box p-3 p-md-4 rounded-4 border shadow-sm">
+            <div class="d-flex align-items-center gap-3 mb-2.5">
+              <div class="whatsapp-icon-circle rounded-circle d-flex align-items-center justify-content-center flex-shrink-0">
+                <i class="fa-brands fa-whatsapp"></i>
+              </div>
+              <div class="overflow-hidden">
+                <span class="badge bg-success-subtle text-success text-uppercase rounded-pill px-2.5 py-1 font-size-micro fw-bold mb-1 d-inline-block">Instant Support</span>
+                <h6 class="fw-extrabold text-dark m-0 text-uppercase highlight-box-title">Connect on WhatsApp</h6>
+              </div>
+            </div>
+            <p class="small text-muted mb-3 studio-whatsapp-desc">
+              Have questions about floor plans, pricing, or material samples? Chat live with our <strong>{{ activeLocation.city }} Studio</strong> design team on WhatsApp.
+            </p>
+            
+            <a [href]="whatsappLink" target="_blank" rel="noopener noreferrer" 
+               class="btn btn-whatsapp-chat w-100 rounded-pill py-2.5 px-3 fw-bold text-uppercase d-flex align-items-center justify-content-center gap-2 shadow-sm text-decoration-none">
+              <i class="fa-brands fa-whatsapp font-size-lg"></i>
+              <span>Chat on WhatsApp</span>
+            </a>
           </div>
 
         </div>
