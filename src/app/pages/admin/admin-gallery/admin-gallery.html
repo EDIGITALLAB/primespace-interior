@@ -108,11 +108,11 @@
 
   <!-- ADD PHOTO TO BLOCK MODAL -->
   <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showAddPhotoModal()">
-    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-500 overflow-hidden animate-zoom-in">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-600 overflow-hidden animate-zoom-in">
       
       <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
         <h6 class="m-0 fw-black text-dark font-size-base">
-          <i class="fa-solid fa-cloud-arrow-up text-maroon me-2"></i> Add Photo to {{ selectedBlock ? selectedBlock.name : '' }}
+          <i class="fa-solid fa-cloud-arrow-up text-maroon me-2"></i> Add Photos to {{ selectedBlock ? selectedBlock.name : '' }}
         </h6>
         <button type="button" class="btn-close" (click)="closeAddPhotoModal()"></button>
       </div>
@@ -133,19 +133,60 @@
 
           <div class="col-12">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Photo Caption / Title</label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Master Bedroom High-Gloss Wardrobe" [ngModel]="photoCaption()" (ngModelChange)="photoCaption.set($event)" name="photoCaption" required>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Master Bedroom High-Gloss Wardrobe" [ngModel]="photoCaption()" (ngModelChange)="photoCaption.set($event)" name="photoCaption">
+            <small class="text-muted font-size-micro">Title will be assigned to uploaded photos (auto-numbered if multiple images uploaded).</small>
           </div>
 
+          <!-- MULTIPLE FILE UPLOAD FIELD -->
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Image Asset URL / Path</label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="/luxury_living_room_1.png" [ngModel]="photoUrl()" (ngModelChange)="photoUrl.set($event)" name="photoUrl" required>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Upload Multiple Images</label>
+            <div class="border border-dashed border-2 border-maroon-subtle rounded-3 p-3 text-center bg-light-subtle cursor-pointer hover-bg-light transition-all position-relative" (click)="fileInput.click()">
+              <input #fileInput type="file" accept="image/*" multiple (change)="onMultipleFilesSelected($event)" class="d-none">
+              <i class="fa-solid fa-cloud-arrow-up text-maroon font-size-xl mb-1"></i>
+              <div class="font-size-xs fw-bold text-dark">Click or Drag & Drop Multiple Images Here</div>
+              <div class="font-size-micro text-muted">Supports PNG, JPG, WEBP (Select multiple photos at once)</div>
+            </div>
           </div>
+
+          <!-- OR ADD IMAGE URL / PATH -->
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Or Add Image Asset URL / Path</label>
+            <div class="input-group">
+              <input type="text" class="form-control font-size-xs rounded-start-3 border shadow-none" placeholder="e.g. /hero_living_room.png or https://..." [ngModel]="photoUrlInput()" (ngModelChange)="photoUrlInput.set($event)" name="photoUrlInput">
+              <button type="button" class="btn btn-outline-dark font-size-xs rounded-end-3 px-3 fw-bold" (click)="addUrlImage()">
+                <i class="fa-solid fa-plus me-1"></i> Add URL
+              </button>
+            </div>
+          </div>
+
+          <!-- SELECTED IMAGES PREVIEW GRID -->
+          <div class="col-12" *ngIf="selectedImagesList().length > 0">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="font-size-xs font-weight-bold text-dark">
+                Selected Images ({{ selectedImagesList().length }})
+              </span>
+              <button type="button" class="btn btn-link text-danger font-size-micro p-0 text-decoration-none fw-bold" (click)="clearAllImages()">
+                <i class="fa-solid fa-trash-can me-1"></i> Clear All
+              </button>
+            </div>
+            
+            <div class="d-flex flex-wrap gap-2 p-2.5 bg-light rounded-3 border max-h-200 overflow-y-auto">
+              <div *ngFor="let img of selectedImagesList(); let i = index" class="position-relative rounded-2 overflow-hidden border border-gray-300 bg-white shadow-xs" style="width: 84px; height: 84px;">
+                <img [src]="img" class="w-100 h-100 object-fit-cover">
+                <button type="button" class="btn btn-danger btn-sm p-0 position-absolute top-0 end-0 rounded-circle m-1 d-flex align-items-center justify-content-center shadow-xs" style="width: 20px; height: 20px; font-size: 10px;" (click)="removeImage(i)" title="Remove Image">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <span class="badge bg-dark-glass position-absolute bottom-0 start-0 w-100 text-truncate font-size-micro px-1 py-0.5 text-center rounded-0">#{{ i + 1 }}</span>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">
           <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeAddPhotoModal()">Cancel</button>
-          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs">
-            Save Photo to Block
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs" [disabled]="selectedImagesList().length === 0 && !photoUrlInput().trim()">
+            <i class="fa-solid fa-check me-1"></i> Save {{ selectedImagesList().length > 1 ? selectedImagesList().length + ' Photos' : 'Photo' }} to Block
           </button>
         </div>
       </form>

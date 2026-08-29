@@ -49,7 +49,7 @@
           <tr>
             <th class="ps-4 text-nowrap" style="min-width: 200px;">Project Preview</th>
             <th class="text-nowrap" style="min-width: 140px;">Type & Location</th>
-            <th class="text-nowrap" style="min-width: 120px;">Blocks & Homes</th>
+            <th class="text-nowrap" style="min-width: 120px;">Blocks</th>
             <th class="text-nowrap" style="min-width: 150px;">Status</th>
             <th class="pe-4 text-end text-nowrap" style="min-width: 160px;">Actions</th>
           </tr>
@@ -77,10 +77,9 @@
               </div>
             </td>
 
-            <!-- Blocks & Homes -->
+            <!-- Blocks -->
             <td class="text-nowrap">
-              <div class="fw-bold text-dark">{{ p.homeCount }} Total Homes</div>
-              <span class="text-muted font-size-micro">{{ p.blocks.length }} Blocks</span>
+              <div class="fw-bold text-dark">{{ p.blocks.length }} Blocks</div>
             </td>
 
             <!-- Status -->
@@ -167,17 +166,12 @@
             </select>
           </div>
 
-          <div class="col-12 col-md-6">
+          <div class="col-12">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Status</label>
             <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="status()" (ngModelChange)="status.set($event)" name="status">
               <option value="completed">Completed & Handed Over</option>
               <option value="ongoing">Live Construction Site</option>
             </select>
-          </div>
-
-          <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Total Homes Count</label>
-            <input type="number" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="homeCount()" (ngModelChange)="homeCount.set($event)" name="homeCount" required>
           </div>
 
           <div class="col-12">

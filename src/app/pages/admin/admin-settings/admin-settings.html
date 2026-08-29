@@ -14,23 +14,6 @@
 
   <form (submit)="saveSettings($event)" class="bg-white rounded-4 border border-gray-200 p-4 p-md-4.5 shadow-xs">
     
-    <!-- Section 1: Brand Info -->
-    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
-      <i class="fa-solid fa-crown text-maroon"></i> Brand Identity & Tagline
-    </h6>
-
-    <div class="row g-3 mb-4">
-      <div class="col-12 col-md-6">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Company Name</label>
-        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="companyName()" (ngModelChange)="companyName.set($event)" name="companyName" required>
-      </div>
-
-      <div class="col-12 col-md-6">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Brand Tagline</label>
-        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="tagline()" (ngModelChange)="tagline.set($event)" name="tagline" required>
-      </div>
-    </div>
-
     <!-- Section 2: Contact Info -->
     <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
       <i class="fa-solid fa-phone text-maroon"></i> Studio Phones & Support Email

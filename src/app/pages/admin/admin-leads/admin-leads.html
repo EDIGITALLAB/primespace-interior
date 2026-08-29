@@ -26,10 +26,11 @@
     <div class="d-flex align-items-center gap-2">
       <select class="form-select form-select-sm rounded-3 font-size-xs border shadow-none" [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)">
         <option value="all">All Lead Statuses</option>
-        <option value="New">New</option>
-        <option value="In Progress">In Progress</option>
-        <option value="Contacted">Contacted</option>
-        <option value="Closed">Closed</option>
+        <option value="NEW">New</option>
+        <option value="CONTACTED">Contacted</option>
+        <option value="IN_PROGRESS">In Progress</option>
+        <option value="COMPLETED">Completed</option>
+        <option value="CLOSED">Closed</option>
       </select>
     </div>
   </div>
@@ -40,80 +41,106 @@
       <table class="table table-hover align-middle mb-0 font-size-xs">
         <thead class="bg-light text-muted font-size-micro text-uppercase font-weight-bold">
           <tr>
-            <th class="ps-4" style="min-width: 280px;">Client Contact</th>
-            <th style="min-width: 260px;">Location & Requirements</th>
-            <th style="width: 130px;">Inquiry Date</th>
-            <th style="width: 130px;">Status</th>
-            <th class="pe-4 text-end" style="width: 170px;">Actions</th>
+            <th class="ps-4 pe-3" style="min-width: 250px;">Client Contact</th>
+            <th class="pe-3" style="min-width: 300px;">Location & Requirements</th>
+            <th class="px-3 text-nowrap" style="min-width: 140px;">Inquiry Date</th>
+            <th class="px-3" style="width: 140px; min-width: 130px;">Status</th>
+            <th class="pe-4 ps-3 text-end" style="width: 180px; min-width: 160px;">Actions</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let lead of filteredLeads">
             <!-- Contact -->
-            <td class="ps-4 py-3">
+            <td class="ps-4 pe-3 py-3">
               <div class="fw-bold text-dark font-size-sm mb-1">{{ lead.name }}</div>
-              <div class="d-flex align-items-center gap-2 text-dark font-size-sm font-weight-semibold flex-wrap">
-                <span class="d-inline-flex align-items-center gap-1.5">
-                  <i class="fa-solid fa-phone me-0.5 text-maroon font-size-sm"></i>{{ lead.phone }}
-                  <button type="button" class="btn btn-xs text-muted border-0 p-0 ms-0.5" (click)="copyToClipboard(lead.phone)" [title]="copiedText === lead.phone ? 'Copied!' : 'Copy Phone'">
+              <div class="d-flex flex-column gap-1 text-dark font-size-xs fw-medium">
+                <div class="d-inline-flex align-items-center">
+                  <i class="fa-solid fa-phone me-1.5 text-maroon font-size-xs"></i>
+                  <span>{{ lead.phone }}</span>
+                  <button type="button" class="btn btn-xs text-muted border-0 p-0 ms-2" (click)="copyToClipboard(lead.phone)" [title]="copiedText === lead.phone ? 'Copied!' : 'Copy Phone'">
                     <i class="fa-solid fa-check text-success font-size-sm" *ngIf="copiedText === lead.phone"></i>
                     <i class="fa-regular fa-copy font-size-sm" *ngIf="copiedText !== lead.phone"></i>
                   </button>
-                </span>
-                <span class="text-muted opacity-50" *ngIf="lead.email">•</span>
-                <span class="d-inline-flex align-items-center gap-1.5" *ngIf="lead.email">
-                  <i class="fa-solid fa-envelope me-0.5 text-muted font-size-sm"></i>{{ lead.email }}
-                  <button type="button" class="btn btn-xs text-muted border-0 p-0 ms-0.5" (click)="copyToClipboard(lead.email)" [title]="copiedText === lead.email ? 'Copied!' : 'Copy Email'">
+                </div>
+                <div class="d-inline-flex align-items-center" *ngIf="lead.email">
+                  <i class="fa-solid fa-envelope me-1.5 text-muted font-size-xs"></i>
+                  <span>{{ lead.email }}</span>
+                  <button type="button" class="btn btn-xs text-muted border-0 p-0 ms-2" (click)="copyToClipboard(lead.email)" [title]="copiedText === lead.email ? 'Copied!' : 'Copy Email'">
                     <i class="fa-solid fa-check text-success font-size-sm" *ngIf="copiedText === lead.email"></i>
                     <i class="fa-regular fa-copy font-size-sm" *ngIf="copiedText !== lead.email"></i>
                   </button>
-                </span>
+                </div>
               </div>
             </td>
 
             <!-- Requirement -->
-            <td class="py-3">
-              <div class="d-flex align-items-center gap-2 flex-wrap font-size-micro">
-                <span class="badge rounded-pill bg-purple-tint text-maroon font-weight-bold px-2 py-0.5">
-                  {{ lead.projectType }}
-                </span>
-                <span class="text-muted fw-medium"><i class="fa-solid fa-location-dot me-1 text-maroon"></i>{{ lead.city }}</span>
-                <span class="text-muted opacity-50" *ngIf="lead.message">•</span>
-                <span class="text-secondary text-truncate max-w-260" *ngIf="lead.message" [title]="lead.message">{{ lead.message }}</span>
+            <td class="py-3 pe-3">
+              <div class="d-flex flex-column gap-1 font-size-xs">
+                <div class="text-dark fw-bold">
+                  <i class="fa-solid fa-location-dot me-1 text-maroon"></i>{{ lead.city }}
+                </div>
+                <div class="text-muted max-w-600" *ngIf="lead.message" [title]="lead.message">
+                  {{ lead.message }}
+                </div>
+
+                <!-- Internal Lead Note Preview Badge -->
+                <div *ngIf="lead.notes" class="d-inline-flex align-items-center gap-1.5 bg-sky-soft text-sky-dark font-size-micro rounded-2 px-2 py-0.5 mt-1 border border-sky-subtle w-auto max-w-500">
+                  <i class="fa-solid fa-note-sticky font-size-micro"></i>
+                  <span class="fw-bold me-1">Note:</span>
+                  <span class="text-truncate" [title]="lead.notes">{{ lead.notes }}</span>
+                </div>
               </div>
             </td>
 
             <!-- Date -->
-            <td class="py-3">
-              <span class="text-muted font-size-xs fw-medium">{{ lead.date }}</span>
+            <td class="py-3 px-3">
+              <span class="text-muted font-size-xs fw-medium text-nowrap">{{ lead.date }}</span>
             </td>
 
             <!-- Status -->
-            <td class="py-3">
-              <span class="badge rounded-pill font-size-micro px-2.5 py-1"
+            <td class="py-3 px-3">
+              <span class="badge rounded-pill font-weight-bold px-2.5 py-1 text-nowrap"
+                style="font-size: 11px;"
                 [ngClass]="{
-                  'bg-danger text-white': lead.status === 'New',
-                  'bg-primary-tint text-primary border border-primary': lead.status === 'In Progress',
-                  'bg-success-tint text-success border border-success': lead.status === 'Contacted',
-                  'bg-secondary-tint text-secondary': lead.status === 'Closed'
+                  'bg-danger text-white': lead.status === 'NEW' || lead.status === 'New',
+                  'bg-success-tint text-success border border-success': lead.status === 'CONTACTED' || lead.status === 'Contacted',
+                  'bg-primary-tint text-primary border border-primary': lead.status === 'IN_PROGRESS' || lead.status === 'In Progress',
+                  'bg-purple-tint text-maroon border border-maroon-subtle': lead.status === 'COMPLETED' || lead.status === 'Completed',
+                  'bg-secondary-tint text-secondary': lead.status === 'CLOSED' || lead.status === 'Closed'
                 }">
-                {{ lead.status }}
+                {{ formatStatus(lead.status) }}
               </span>
             </td>
 
             <!-- Actions -->
-            <td class="pe-4 text-end py-3">
+            <td class="pe-4 ps-3 text-end py-3">
               <div class="d-inline-flex align-items-center justify-content-end gap-2">
-                <select class="form-select form-select-sm font-size-micro rounded-2 border shadow-none w-auto py-1"
+                <select class="form-select form-select-sm font-size-micro rounded-2 border shadow-none w-auto py-0"
+                        style="height: 32px; font-size: 11.5px;"
                         [ngModel]="lead.status"
                         (ngModelChange)="updateStatus(lead.id, $event)">
-                  <option value="New">Mark New</option>
-                  <option value="In Progress">Mark In Progress</option>
-                  <option value="Contacted">Mark Contacted</option>
-                  <option value="Closed">Mark Closed</option>
+                  <option value="NEW">New</option>
+                  <option value="CONTACTED">Contacted</option>
+                  <option value="IN_PROGRESS">In Progress</option>
+                  <option value="COMPLETED">Completed</option>
+                  <option value="CLOSED">Closed</option>
                 </select>
 
-                <button type="button" class="btn btn-sm btn-outline-danger px-2 py-1 font-size-micro rounded-2" (click)="deleteLead(lead.id)" title="Delete Lead">
+                <button type="button" 
+                        class="btn btn-sm px-2.5 rounded-2 border btn-action-note d-inline-flex align-items-center justify-content-center"
+                        style="height: 32px; font-size: 11.5px;"
+                        [ngClass]="lead.notes ? 'btn-action-note-active font-weight-bold shadow-xs' : 'btn-action-note-empty'"
+                        (click)="openNoteModal(lead)" 
+                        [title]="lead.notes ? 'View / Edit Note' : 'Add Internal Note'">
+                  <i class="fa-regular fa-note-sticky transition-all" [ngClass]="lead.notes ? 'text-sky-dark me-1' : ''"></i>
+                  <span *ngIf="lead.notes">Note</span>
+                </button>
+
+                <button type="button" 
+                        class="btn btn-sm btn-outline-danger rounded-2 d-inline-flex align-items-center justify-content-center" 
+                        style="height: 32px; width: 32px; font-size: 12px;"
+                        (click)="deleteLead(lead.id)" 
+                        title="Delete Lead">
                   <i class="fa-solid fa-trash"></i>
                 </button>
               </div>
@@ -127,6 +154,38 @@
           </tr>
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Internal Lead Note Modal -->
+  <div *ngIf="showNoteModal()" class="admin-modal-overlay d-flex align-items-center justify-content-center bg-dark-glass p-3">
+    <div class="bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-550 overflow-hidden animation-fade-in">
+      <div class="d-flex align-items-center justify-content-between px-4 py-3 border-bottom border-gray-200 bg-light">
+        <div class="d-flex align-items-center gap-3">
+          <div class="stat-icon-wrapper bg-purple-tint rounded-3 d-flex align-items-center justify-content-center" style="width: 34px; height: 34px;">
+            <i class="fa-regular fa-note-sticky text-maroon font-size-sm"></i>
+          </div>
+          <div>
+            <h6 class="fw-bold text-dark mb-0 font-size-xs">Lead Note & Internal Remarks</h6>
+            <span class="text-maroon font-weight-bold font-size-micro"><i class="fa-solid fa-user me-1"></i>{{ activeNoteLeadName() }}</span>
+          </div>
+        </div>
+        <button type="button" class="btn-close me-1 font-size-xs shadow-none" (click)="closeNoteModal()" title="Close"></button>
+      </div>
+
+      <form (submit)="saveNote()" class="p-4">
+        <div class="mb-3">
+          <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Add Lead Note / Client Follow-up Remark</label>
+          <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="4" placeholder="e.g. Called client on 20 Aug. Interested in 3BHK turnkey interior, requested site visit slot on Saturday..." [ngModel]="noteInput()" (ngModelChange)="noteInput.set($event)" name="noteInput"></textarea>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end gap-2 pt-3 border-top border-gray-200">
+          <button type="button" class="btn btn-light rounded-3 px-3 py-1.5 font-size-xs font-weight-bold" (click)="closeNoteModal()">Cancel</button>
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-3.5 py-1.5 font-size-xs font-weight-bold text-white shadow-xs">
+            <i class="fa-solid fa-floppy-disk me-1"></i>Save Note
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 

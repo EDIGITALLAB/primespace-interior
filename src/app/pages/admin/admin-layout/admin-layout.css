@@ -9,14 +9,16 @@
 }
 
 .bg-dark-maroon {
-  background: #800433 !important;
+  background: var(--primary-maroon, #800433) !important;
 }
 
 .admin-sidebar {
   width: 250px;
   min-width: 250px;
-  position: sticky;
+  position: fixed;
   top: 0;
+  bottom: 0;
+  left: 0;
   height: 100vh;
   z-index: 1050;
   border-right: 1px solid rgba(255, 255, 255, 0.12);
@@ -27,7 +29,7 @@
   height: 36px;
   min-width: 36px;
   background-color: #ffffff !important;
-  color: #800433 !important;
+  color: var(--primary-maroon, #800433) !important;
   font-size: 18px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
 }
@@ -53,7 +55,7 @@
 }
 
 .bg-maroon {
-  background-color: #800433 !important;
+  background-color: var(--primary-maroon, #800433) !important;
 }
 
 .admin-avatar {
@@ -70,23 +72,56 @@
   padding: 10px 14px !important;
 }
 
-.nav-link:hover {
+.nav-link:not(.active-nav-item):hover {
   background: rgba(255, 255, 255, 0.15) !important;
   color: #ffffff !important;
   transform: translateX(3px);
 }
 
-.active-nav-item {
+.active-nav-item,
+.active-nav-item:hover,
+.active-nav-item:focus {
   background: #ffffff !important;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
   transform: translateX(0) !important;
 }
 
 .active-nav-item,
-.active-nav-item span,
+.active-nav-item:hover,
+.active-nav-item:hover > div > span,
+.active-nav-item:hover i,
+.active-nav-item > div > span,
 .active-nav-item i {
-  color: #800433 !important;
+  color: var(--primary-maroon, #800433) !important;
   font-weight: 800 !important;
+}
+
+/* Compact Premium Nav Badge */
+.nav-badge-pill {
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  padding: 3px 8px !important;
+  border-radius: 50rem !important;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.nav-link:not(.active-nav-item) .nav-badge-pill,
+.nav-link:not(.active-nav-item):hover .nav-badge-pill {
+  background-color: #fbbf24 !important;
+  color: #78350f !important;
+  box-shadow: none !important;
+}
+
+.active-nav-item .nav-badge-pill,
+.active-nav-item:hover .nav-badge-pill,
+.active-nav-item:focus .nav-badge-pill {
+  background-color: var(--primary-maroon, #800433) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
 }
 
 .nav-icon {
@@ -112,7 +147,7 @@
 .btn-outline-light-subtle:hover {
   background: #ffffff !important;
   border-color: #ffffff !important;
-  color: #800433 !important;
+  color: var(--primary-maroon, #800433) !important;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
@@ -191,5 +226,22 @@
   .admin-modal-card {
     max-width: 95vw !important;
     margin: 10px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .admin-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 250px !important;
+    height: 100vh !important;
+    transform: none !important;
+  }
+
+  .admin-main-wrapper {
+    margin-left: 250px;
+    min-height: 100vh;
   }
 }

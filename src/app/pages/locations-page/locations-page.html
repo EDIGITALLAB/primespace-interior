@@ -146,7 +146,8 @@
     </div>
   </section>
 
-  <!-- STUDIO PHOTO GALLERY SHOWCASE -->
+  <!-- STUDIO PHOTO GALLERY SHOWCASE (COMMENTED OUT) -->
+  <!--
   <section class="studio-gallery-section py-4 py-md-5 bg-light border-top border-bottom">
     <div class="container">
 
@@ -160,7 +161,6 @@
         </button>
       </div>
 
-      <!-- Photo Cards Grid / Mobile Horizontal Snap Slider -->
       <div class="row g-3 g-md-4 gallery-slider-row">
         <div *ngFor="let photo of activeLocation.photos; let photoIdx = index" class="col-10 col-sm-6 col-lg-3 gallery-slider-col">
           <div
@@ -170,7 +170,6 @@
             <div class="photo-img-wrapper position-relative overflow-hidden flex-grow-1">
               <img [src]="photo.imageUrl" [alt]="photo.title" class="w-100 h-100 object-fit-cover">
               
-              <!-- Hover Zoom Overlay -->
               <div class="img-overlay d-flex align-items-center justify-content-center">
                 <span class="btn-expand-preview bg-white text-purple rounded-circle shadow-lg d-flex align-items-center justify-content-center">
                   <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -178,7 +177,6 @@
               </div>
             </div>
 
-            <!-- Sleek Card Title Footer Bar -->
             <div class="photo-title-bar p-3 bg-white border-top d-flex align-items-center justify-content-between gap-2">
               <div class="d-flex align-items-center gap-2 overflow-hidden">
                 <span class="title-indicator-dot rounded-circle bg-purple"></span>
@@ -195,6 +193,7 @@
 
     </div>
   </section>
+  -->
 
   <!-- LIGHTBOX GALLERY MODAL -->
   <div *ngIf="isGalleryOpen()"

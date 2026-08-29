@@ -33,7 +33,6 @@ export class AdminLayout {
     { label: 'Categories', route: '/admin/categories', icon: 'fa-solid fa-layer-group' },
     { label: 'Gallery', route: '/admin/gallery', icon: 'fa-regular fa-images' },
     { label: 'Leads / Inquiry', route: '/admin/leads', icon: 'fa-solid fa-envelope-open-text', badgeKey: 'newLeads' },
-    { label: 'Appointments', route: '/admin/appointments', icon: 'fa-solid fa-calendar-check', badgeKey: 'pendingAppointments' },
     { label: 'Testimonials', route: '/admin/testimonials', icon: 'fa-solid fa-star' },
     { label: 'Team', route: '/admin/team', icon: 'fa-solid fa-user-tie' },
     { label: 'Settings', route: '/admin/settings', icon: 'fa-solid fa-gear' }

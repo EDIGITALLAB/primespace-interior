@@ -16,6 +16,27 @@ export class AdminLeads {
   searchQuery = signal('');
   statusFilter = signal('all');
 
+  showNoteModal = signal(false);
+  activeNoteLeadId = signal('');
+  activeNoteLeadName = signal('');
+  noteInput = signal('');
+
+  openNoteModal(lead: AdminLead) {
+    this.activeNoteLeadId.set(lead.id);
+    this.activeNoteLeadName.set(lead.name);
+    this.noteInput.set(lead.notes || '');
+    this.showNoteModal.set(true);
+  }
+
+  closeNoteModal() {
+    this.showNoteModal.set(false);
+  }
+
+  saveNote() {
+    this.adminData.updateLeadNotes(this.activeNoteLeadId(), this.noteInput());
+    this.closeNoteModal();
+  }
+
   get filteredLeads(): AdminLead[] {
     const query = this.searchQuery().toLowerCase().trim();
     const status = this.statusFilter();
@@ -41,6 +62,16 @@ export class AdminLeads {
         }
       }, 2000);
     }
+  }
+
+  formatStatus(status: string): string {
+    if (!status) return '';
+    if (status === 'IN_PROGRESS' || status === 'In Progress') return 'In Progress';
+    if (status === 'NEW' || status === 'New') return 'New';
+    if (status === 'CONTACTED' || status === 'Contacted') return 'Contacted';
+    if (status === 'COMPLETED' || status === 'Completed') return 'Completed';
+    if (status === 'CLOSED' || status === 'Closed') return 'Closed';
+    return status.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
   }
 
   updateStatus(id: string, status: AdminLead['status']) {
