@@ -30,7 +30,7 @@ export class AdminProjects {
   city = signal('Bangalore');
   status = signal<'completed' | 'ongoing'>('completed');
   projectType = signal('Villa');
-  homeCount = signal(12);
+  homeCount = signal(0);
   coverImage = signal('/hero_living_room.png');
   description = signal('');
 
@@ -56,7 +56,7 @@ export class AdminProjects {
     this.city.set('Bangalore');
     this.status.set('completed');
     this.projectType.set('Villa');
-    this.homeCount.set(12);
+    this.homeCount.set(0);
     this.coverImage.set('/luxury_living_room_1.png');
     this.description.set('');
     this.showModal.set(true);
@@ -71,7 +71,7 @@ export class AdminProjects {
     this.city.set(p.city);
     this.status.set(p.status);
     this.projectType.set(p.projectType);
-    this.homeCount.set(p.homeCount);
+    this.homeCount.set(p.homeCount || 0);
     this.coverImage.set(p.coverImage);
     this.description.set(p.description);
     this.showModal.set(true);
@@ -94,7 +94,6 @@ export class AdminProjects {
         status: this.status(),
         statusLabel,
         projectType: this.projectType(),
-        homeCount: this.homeCount(),
         coverImage: this.coverImage(),
         description: this.description()
       });
@@ -108,12 +107,12 @@ export class AdminProjects {
         status: this.status(),
         statusLabel,
         projectType: this.projectType(),
-        homeCount: this.homeCount(),
+        homeCount: 0,
         coverImage: this.coverImage(),
         description: this.description(),
         blocks: [
-          { id: 'b1', name: 'Block A (Main Wing)', homeCount: Math.floor(this.homeCount() / 2), completionPercentage: 100, selectedImageIndex: 0, gallery: [this.coverImage()], photos: [{ id: 'p1', url: this.coverImage(), caption: 'Main Wing Suite', category: 'Living Room' }] },
-          { id: 'b2', name: 'Block B (Penthouse Suite)', homeCount: Math.ceil(this.homeCount() / 2), completionPercentage: 100, selectedImageIndex: 0, gallery: [this.coverImage()], photos: [{ id: 'p2', url: this.coverImage(), caption: 'Penthouse View', category: 'Living Room' }] }
+          { id: 'b1', name: 'Block A (Main Wing)', homeCount: 0, completionPercentage: 100, selectedImageIndex: 0, gallery: [this.coverImage()], photos: [{ id: 'p1', url: this.coverImage(), caption: 'Main Wing Suite', category: 'Living Room' }] },
+          { id: 'b2', name: 'Block B (Penthouse Suite)', homeCount: 0, completionPercentage: 100, selectedImageIndex: 0, gallery: [this.coverImage()], photos: [{ id: 'p2', url: this.coverImage(), caption: 'Penthouse View', category: 'Living Room' }] }
         ]
       });
     }

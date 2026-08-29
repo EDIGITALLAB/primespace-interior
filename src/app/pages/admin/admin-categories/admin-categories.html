@@ -15,30 +15,40 @@
   <!-- CATEGORIES GRID CARDS -->
   <div class="row g-4 mb-4">
     <div *ngFor="let cat of categories" class="col-12 col-md-6 col-lg-4">
-      <div class="cat-card bg-white rounded-1 border border-gray-200 overflow-hidden shadow-xs h-100 d-flex flex-column justify-content-between">
+      <div class="cat-card bg-white rounded-3 border border-gray-200 overflow-hidden shadow-xs h-100 d-flex flex-column justify-content-between">
         <div>
           <div class="cat-img-box position-relative overflow-hidden" style="height: 185px;">
             <img [src]="cat.image" (error)="$any($event.target).src = '/hero_kitchen.png'" [alt]="cat.name" class="w-100 h-100 object-fit-cover">
+
+            <span *ngIf="cat.deliveryTime" class="position-absolute top-0 end-0 m-3 badge bg-dark text-white font-size-micro font-weight-bold px-2.5 py-1 rounded-pill opacity-90">
+              <i class="fa-solid fa-clock me-1"></i>{{ cat.deliveryTime }}
+            </span>
           </div>
 
           <div class="p-3 px-4 pt-3 pb-1">
-            <span class="badge bg-purple-tint text-maroon font-size-micro font-weight-bold text-uppercase px-2.5 py-1 rounded-1 mb-2 border border-maroon-subtle">
-              {{ cat.type }}
-            </span>
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <span class="badge bg-purple-tint text-maroon font-size-micro font-weight-bold text-uppercase px-2.5 py-1 rounded-1 border border-maroon-subtle">
+                {{ cat.type }}
+              </span>
+            </div>
             <h5 class="fw-black text-dark font-size-base mb-1">{{ cat.name }}</h5>
-            <p class="text-muted font-size-xs mb-0 line-clamp-2">{{ cat.subtitle }}</p>
+            <p class="text-muted font-size-xs mb-2 line-clamp-2">{{ cat.subtitle }}</p>
+
+            <div *ngIf="cat.features && cat.features.length" class="text-muted font-size-micro mb-2">
+              <i class="fa-solid fa-list-check text-maroon me-1"></i>{{ cat.features.length }} Key Highlights
+            </div>
           </div>
         </div>
 
         <div class="p-3 bg-light border-top border-gray-200 d-flex align-items-center justify-content-between">
           <span class="font-size-micro text-muted font-weight-bold">
-            <i class="fa-solid fa-layer-group me-1 text-maroon"></i>{{ cat.itemCount }} Showcase Items
+            <i class="fa-solid fa-images me-1 text-maroon"></i>{{ (cat.galleryImages?.length || 1) }} Gallery Photos
           </span>
-          <div class="d-flex align-items-center gap-3">
-            <button type="button" class="btn btn-sm btn-outline-primary px-2.5 py-1 font-size-micro rounded-1" (click)="openEditModal(cat)">
+          <div class="d-flex align-items-center gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary px-2.5 py-1 font-size-micro rounded-2" (click)="openEditModal(cat)">
               <i class="fa-solid fa-pen me-1"></i>Edit
             </button>
-            <button type="button" class="btn btn-sm btn-outline-danger px-2.5 py-1 font-size-micro rounded-1" (click)="deleteCategory(cat.id)">
+            <button type="button" class="btn btn-sm btn-outline-danger px-2.5 py-1 font-size-micro rounded-2" (click)="deleteCategory(cat.id)">
               <i class="fa-solid fa-trash me-1"></i>Delete
             </button>
           </div>
@@ -50,42 +60,153 @@
 
   <!-- MODAL -->
   <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showModal()">
-    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-550 overflow-hidden animate-zoom-in">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-650 overflow-hidden animate-zoom-in">
       
       <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
         <h6 class="m-0 fw-black text-dark font-size-base">
-          {{ isEditing() ? 'Edit Category' : 'Add New Design Category' }}
+          <i class="fa-solid fa-layer-group text-maroon me-2"></i>
+          {{ isEditing() ? 'Edit Category Specifications' : 'Add New Design Category' }}
         </h6>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
 
-      <form (submit)="saveCategory($event)" class="p-4">
+      <form (submit)="saveCategory($event)" class="p-4 overflow-y-auto" style="max-height: 80vh;">
         <div class="row g-3">
-          <div class="col-12">
+
+          <div class="col-12 col-md-6">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Name</label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Living Room Masterpieces" [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" required>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Kitchen Units" [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" required>
           </div>
 
-          <div class="col-12">
+          <div class="col-12 col-md-6">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Type</label>
             <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="type()" (ngModelChange)="type.set($event)" name="type">
-              <option value="Living Room">Living Room</option>
               <option value="Kitchen">Kitchen</option>
+              <option value="Living Room">Living Room</option>
               <option value="Bedroom">Bedroom</option>
-              <option value="Bathroom">Bathroom</option>
-              <option value="Balcony">Balcony</option>
+              <option value="Dining">Dining</option>
+              <option value="Wardrobes">Modular Wardrobes</option>
+              <option value="Kids Room">Kids Bedroom</option>
+              <option value="Bathroom">Luxury Bathrooms</option>
+              <option value="Balcony">Balcony Decks</option>
             </select>
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Highlights</label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. TV Unit Paneling, Fluted Louvers & Ambient Ceilings" [ngModel]="subtitle()" (ngModelChange)="subtitle.set($event)" name="subtitle" required>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Tagline</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Culinary Excellence & Modular Utility" [ngModel]="subtitle()" (ngModelChange)="subtitle.set($event)" name="subtitle" required>
+          </div>
+
+          <div class="col-12 col-md-7">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Cover Image</label>
+            <div class="d-flex gap-2 align-items-center">
+              <div class="thumb-box position-relative rounded-3 border overflow-hidden flex-shrink-0" style="width: 38px; height: 38px;" *ngIf="image()">
+                <img [src]="image()" (error)="$any($event.target).src = '/hero_kitchen.png'" class="w-100 h-100 object-fit-cover">
+              </div>
+              <input type="text" class="form-control font-size-xs rounded-3 border shadow-none bg-light text-muted cursor-not-allowed" style="height: 38px;" placeholder="No cover image selected" [value]="image()" readonly name="image">
+            </div>
+          </div>
+
+          <div class="col-12 col-md-5">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Delivery Time</label>
+            <div class="input-group shadow-none" style="height: 38px;">
+              <span class="input-group-text bg-light border-end-0 rounded-start-3 font-size-xs text-muted">
+                <i class="fa-solid fa-clock text-maroon"></i>
+              </span>
+              <input type="text" class="form-control font-size-xs rounded-end-3 border border-start-0 shadow-none h-100" placeholder="e.g. 45 Days" [ngModel]="deliveryTime()" (ngModelChange)="deliveryTime.set($event)" name="deliveryTime">
+            </div>
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Cover Image URL</label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="/luxury_living_room_1.png" [ngModel]="image()" (ngModelChange)="image.set($event)" name="image" required>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1 d-flex align-items-center justify-content-between gap-2">
+              <span class="text-nowrap">
+                <i class="fa-solid fa-images text-maroon me-1"></i>Gallery Images
+              </span>
+              <span class="font-size-micro font-weight-bold text-nowrap" [class.text-danger]="galleryImagesList().length >= 5" [class.text-muted]="galleryImagesList().length < 5">
+                {{ galleryImagesList().length }}/5 Images {{ galleryImagesList().length >= 5 ? '(Max Reached)' : '' }}
+              </span>
+            </label>
+            
+            <!-- Live Visual Gallery Thumbnail Boxes Grid (Chota Box) -->
+            <div class="bg-light rounded-3 border p-3 mb-3">
+              <div class="d-flex flex-wrap gap-3 align-items-center" style="gap: 12px; min-height: 85px;">
+                
+                <div *ngFor="let imgUrl of galleryImagesList(); let i = index" 
+                     class="thumb-box position-relative rounded-3 border shadow-xs overflow-hidden" 
+                     [class.is-cover]="isCoverImage(imgUrl)">
+                  
+                  <img [src]="imgUrl" (error)="$any($event.target).src = '/hero_kitchen.png'" class="w-100 h-100 object-fit-cover">
+
+                  <!-- Cover Star Badge -->
+                  <span *ngIf="isCoverImage(imgUrl)" class="cover-badge">
+                    <i class="fa-solid fa-star me-0.5"></i>Cover
+                  </span>
+
+                  <!-- Hover Action Overlay -->
+                  <div class="thumb-box-overlay">
+                    <button type="button" 
+                            class="btn btn-sm btn-light rounded-circle shadow-xs flex-shrink-0 d-inline-flex align-items-center justify-content-center" 
+                            style="width: 30px; height: 30px; padding: 0;"
+                            (click)="setAsCover(imgUrl, $event)" 
+                            [title]="isCoverImage(imgUrl) ? 'Current Cover Image' : 'Set as Cover Image'">
+                      <i class="fa-solid fa-star font-size-xs" [class.text-warning]="isCoverImage(imgUrl)" [class.text-muted]="!isCoverImage(imgUrl)"></i>
+                    </button>
+                    
+                    <button type="button" 
+                            class="btn btn-sm btn-danger rounded-circle text-white shadow-xs flex-shrink-0 d-inline-flex align-items-center justify-content-center" 
+                            style="width: 30px; height: 30px; padding: 0;"
+                            (click)="removeGalleryImage(i)" 
+                            title="Remove Image">
+                      <i class="fa-solid fa-trash font-size-xs"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div *ngIf="galleryImagesList().length === 0" class="text-muted font-size-xs p-2 text-center w-100">
+                  <i class="fa-solid fa-photo-film text-muted me-1 mb-1 font-size-base d-block"></i>
+                  No gallery images added yet. Click "Upload Image from Device" or paste image URL below.
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Action Toolbar: Upload New Image File & Custom URL Input -->
+            <div class="d-flex flex-column flex-sm-row gap-2 align-items-center mb-3">
+              <label class="btn btn-outline-maroon font-size-xs rounded-3 px-3 font-weight-bold d-inline-flex align-items-center justify-content-center gap-2 shadow-xs border-maroon-subtle text-nowrap m-0 flex-shrink-0"
+                     [class.disabled]="galleryImagesList().length >= 5"
+                     [class.opacity-50]="galleryImagesList().length >= 5"
+                     [class.cursor-not-allowed]="galleryImagesList().length >= 5"
+                     [class.cursor-pointer]="galleryImagesList().length < 5"
+                     style="height: 38px;">
+                <i class="fa-solid fa-cloud-arrow-up text-maroon font-size-xs"></i>
+                <span class="text-maroon">Upload Image</span>
+                <input type="file" accept="image/*" multiple (change)="onFileUpload($event)" [disabled]="galleryImagesList().length >= 5" class="d-none">
+              </label>
+
+              <div class="input-group shadow-none flex-grow-1" style="height: 38px;">
+                <input type="text" class="form-control font-size-xs rounded-start-3 border shadow-none h-100" 
+                       [placeholder]="galleryImagesList().length >= 5 ? 'Max 5 images limit reached' : 'Or paste image URL (e.g. /kitchen_cat.png)'" 
+                       [disabled]="galleryImagesList().length >= 5"
+                       [ngModel]="newGalleryInput()" (ngModelChange)="newGalleryInput.set($event)" (keyup.enter)="addGalleryImage()" name="newGalleryInput">
+                <button type="button" class="btn btn-maroon-primary font-size-xs rounded-end-3 px-3 fw-bold h-100 d-inline-flex align-items-center justify-content-center gap-1 text-nowrap" 
+                        [disabled]="galleryImagesList().length >= 5"
+                        (click)="addGalleryImage()">
+                  <i class="fa-solid fa-plus font-size-micro me-0.5"></i>Add URL
+                </button>
+              </div>
+            </div>
           </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Description</label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="3" placeholder="Bespoke modular kitchens designed for culinary excellence..." [ngModel]="description()" (ngModelChange)="description.set($event)" name="description"></textarea>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Key Highlights (Enter one per line)</label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="6" placeholder="Modular Kitchen Solutions&#10;Custom-Size Cabinets & Units&#10;Premium Plywood & Durable Materials&#10;Tall Units & Utility Storage..." [ngModel]="featuresStr()" (ngModelChange)="featuresStr.set($event)" name="featuresStr"></textarea>
+          </div>
+
         </div>
 
         <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">

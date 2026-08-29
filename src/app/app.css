@@ -3,8 +3,8 @@
 :root {
   --font-headings: 'Plus Jakarta Sans', sans-serif;
   --font-body: 'Inter', sans-serif;
-  --primary-maroon: #0b5735;
-  --primary-maroon-rgb: 11, 87, 53;
+  --primary-maroon: #800433;
+  --primary-maroon-rgb: 128, 4, 51;
   --primary-black: #000000;
   --text-dark-black: #111111;
   --text-dark-grey: #444444;
@@ -215,7 +215,7 @@ video {
   }
 }
 
-/* GLOBAL ADMIN BUTTON UTILITIES */
+/* GLOBAL ADMIN BUTTON & MODAL UTILITIES */
 .btn-maroon-primary,
 .btn-maroon-sm,
 .btn-maroon {
@@ -232,4 +232,34 @@ video {
   color: #ffffff !important;
   border-color: #72032e !important;
   box-shadow: 0 4px 12px rgba(150, 5, 62, 0.3) !important;
+}
+
+/* GLOBAL MAX WIDTH HELPERS */
+.max-w-350 { max-width: 350px !important; }
+.max-w-400 { max-width: 400px !important; }
+.max-w-450 { max-width: 450px !important; }
+.max-w-500 { max-width: 500px !important; }
+.max-w-550 { max-width: 550px !important; }
+.max-w-600 { max-width: 600px !important; }
+.max-w-650 { max-width: 650px !important; }
+.max-w-700 { max-width: 700px !important; }
+.max-w-800 { max-width: 800px !important; }
+.max-w-900 { max-width: 900px !important; }
+
+/* GLOBAL ADMIN MODAL OVERLAY Z-INDEX FIX */
+.admin-modal-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 9999 !important;
+}
+
+.bg-dark-glass {
+  background-color: rgba(15, 23, 42, 0.68) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
 }

@@ -35,12 +35,17 @@ export interface AdminProject {
 
 export interface AdminCategory {
   id: string;
+  num?: string;
   name: string;
   slug: string;
   subtitle: string;
   type: string;
   priceStarting: string;
+  deliveryTime?: string;
   image: string;
+  galleryImages?: string[];
+  description?: string;
+  features?: string[];
   itemCount: number;
 }
 
@@ -54,7 +59,8 @@ export interface AdminLead {
   budget: string;
   message: string;
   date: string;
-  status: 'New' | 'Contacted' | 'In Progress' | 'Closed';
+  status: 'NEW' | 'CONTACTED' | 'IN_PROGRESS' | 'COMPLETED' | 'CLOSED' | string;
+  notes?: string;
 }
 
 export interface AdminAppointment {
@@ -176,7 +182,7 @@ export class AdminDataService {
       totalAppointments: appts.length,
       pendingAppointments: appts.filter(a => a.status === 'Pending').length,
       totalLeads: lds.length,
-      newLeads: lds.filter(l => l.status === 'New').length
+      newLeads: lds.filter(l => l.status === 'NEW' || l.status === 'New').length
     };
   });
 
@@ -216,7 +222,15 @@ export class AdminDataService {
         .replace(/Tower 2 – Flat 501/g, 'Tower 2')
         .replace(/When Valluvan began planting[^\"]*/g, 'Vertical Gardens, Weatherproof Seating & Outdoor Decking');
 
-      return JSON.parse(sanitized);
+      const parsed = JSON.parse(sanitized);
+
+      if (key === 'categories' && Array.isArray(parsed)) {
+        if (parsed.some(c => c.id === 'c1' || c.id === 'c2' || c.id === 'c3' || c.id === 'c4')) {
+          return fallback;
+        }
+      }
+
+      return parsed;
     } catch {
       return fallback;
     }
@@ -289,6 +303,26 @@ export class AdminDataService {
     }));
   }
 
+  addMultiplePhotosToBlock(projectId: string, blockId: string, photos: Omit<BlockPhoto, 'id'>[]) {
+    const newPhotos: BlockPhoto[] = photos.map((p, idx) => ({
+      ...p,
+      id: 'img_' + Date.now() + '_' + idx
+    }));
+
+    this.projects.update(list => list.map(p => {
+      if (p.id === projectId) {
+        const updatedBlocks = p.blocks.map(b => {
+          if (b.id === blockId) {
+            return { ...b, photos: [...newPhotos, ...(b.photos || [])] };
+          }
+          return b;
+        });
+        return { ...p, blocks: updatedBlocks };
+      }
+      return p;
+    }));
+  }
+
   deletePhotoFromBlock(projectId: string, blockId: string, photoId: string) {
     this.projects.update(list => list.map(p => {
       if (p.id === projectId) {
@@ -330,6 +364,10 @@ export class AdminDataService {
   // Leads Methods
   updateLeadStatus(id: string, status: AdminLead['status']) {
     this.leads.update(list => list.map(l => l.id === id ? { ...l, status } : l));
+  }
+
+  updateLeadNotes(id: string, notes: string) {
+    this.leads.update(list => list.map(l => l.id === id ? { ...l, notes } : l));
   }
 
   deleteLead(id: string) {
@@ -481,17 +519,193 @@ export class AdminDataService {
 
   private getInitialCategories(): AdminCategory[] {
     return [
-      { id: 'c1', name: 'Living Room Masterpieces', slug: 'living-room', subtitle: 'TV Unit Paneling, Fluted Louvers & Ambient Ceilings', type: 'Living Room', priceStarting: '₹2.85 Lakhs', image: '/hero_living_room.png', itemCount: 42 },
-      { id: 'c2', name: 'Modular German Kitchens', slug: 'modular-kitchen', subtitle: 'Acrylic & Quartz Countertops with Blum Hardware', type: 'Kitchen', priceStarting: '₹3.40 Lakhs', image: '/hero_kitchen.png', itemCount: 38 },
-      { id: 'c3', name: 'Master Bed Suites & Wardrobes', slug: 'master-bedroom', subtitle: 'Floor-to-Ceiling Tinted Glass Sliding Wardrobes', type: 'Bedroom', priceStarting: '₹2.90 Lakhs', image: '/bedroom_cat.png', itemCount: 35 },
-      { id: 'c4', name: 'Balcony & Terrace Lounges', slug: 'balcony-design', subtitle: 'Vertical Gardens, Weatherproof Seating & Outdoor Decking', type: 'Balcony', priceStarting: '₹1.50 Lakhs', image: '/balcony_cat.png', itemCount: 15 }
+      {
+        id: 'kitchen',
+        num: '01',
+        name: 'Kitchen Units',
+        slug: 'kitchen-units',
+        subtitle: 'Culinary Excellence & Modular Utility',
+        type: 'kitchen',
+        priceStarting: '₹1.4 Lakhs',
+        deliveryTime: '45 Days',
+        image: '/kitchen_cat.png',
+        galleryImages: ['/kitchen_cat.png', '/hero_kitchen.png', '/eleganza_plus_kitchen.png', '/essential_kitchen.png'],
+        description: 'Bespoke modular kitchens designed for culinary excellence, featuring intelligent space utilization, island counters, and precision-engineered soft-close fittings.',
+        features: [
+          'Modular Kitchen Solutions',
+          'Custom-Size Cabinets & Units',
+          'Premium Plywood & Durable Materials',
+          'Tall Units & Utility Storage',
+          'Corner & Smart Space Solutions',
+          'Drawer & Basket Organizers',
+          'Cutlery & Thali Organizers',
+          'Bottle & Oil Pullouts',
+          'Waste Bin Integration',
+          'Under-Sink Storage Solutions',
+          'Overhead & Loft Cabinets',
+          'Custom Kitchen Island & Breakfast Counters',
+          'Integrated Appliance Solutions',
+          'Hob, Chimney & Microwave Integration',
+          'Water-Resistant & Easy-to-Maintain Options',
+          'End-to-End Design & Installation'
+        ],
+        itemCount: 38
+      },
+      {
+        id: 'living',
+        num: '02',
+        name: 'Living Room',
+        slug: 'living-room',
+        subtitle: 'Entertainment & Luxury Lounging',
+        type: 'living',
+        priceStarting: '₹1.8 Lakhs',
+        deliveryTime: '40 Days',
+        image: '/living_cat.png',
+        galleryImages: ['/living_cat.png', '/hero_living_room.png', '/after_living_room.png'],
+        description: 'Sophisticated living rooms crafted for entertainment and luxury relaxation, combining plush seating with custom TV wall panels and ambient lighting.',
+        features: [
+          'Custom Fluted TV Panels',
+          'Made-to-Measure TV Units',
+          'Hidden Ambient LED Lighting',
+          'Designer Accent Walls',
+          'Premium Wall Paneling',
+          'Built-in Display & Storage',
+          'Floating Cabinets & Shelves',
+          'Designer False Ceilings',
+          'Plush Custom Seating',
+          'Statement Lighting',
+          'Smart Home Integration',
+          'Custom Furniture & Finishes'
+        ],
+        itemCount: 42
+      },
+      {
+        id: 'bedroom',
+        num: '03',
+        name: 'Bedroom Sanctuaries',
+        slug: 'bedroom-sanctuaries',
+        subtitle: 'Tranquil Retreats & Custom Bedding',
+        type: 'bedroom',
+        priceStarting: '₹1.2 Lakhs',
+        deliveryTime: '35 Days',
+        image: '/bedroom_cat.png',
+        galleryImages: ['/bedroom_cat.png', '/eleganza_bedroom.png'],
+        description: 'Bespoke bedroom sanctuaries crafted to foster tranquil sleep. Includes custom upholstered headboards, side panels, and integrated accent lighting.',
+        features: [
+          'Full-Height Fabric Headboards',
+          'Integrated Side Tables',
+          'Study Nooks & Reading Lights',
+          'Mood Lighting Profiles'
+        ],
+        itemCount: 35
+      },
+      {
+        id: 'dining',
+        num: '04',
+        name: 'Dining Room',
+        slug: 'dining-room',
+        subtitle: 'Elegant Gathering & Feast Spaces',
+        type: 'dining',
+        priceStarting: '₹95,000',
+        deliveryTime: '30 Days',
+        image: '/dining_cat.png',
+        galleryImages: ['/dining_cat.png', '/living_cat.png'],
+        description: 'Exquisite dining spaces built for memorable gatherings. Features custom marble table installations, designer pendant lights, and crockery bars.',
+        features: [
+          'Italian Marble Dining Tops',
+          'Custom Crockery Display Units',
+          'Designer Chandelier Lighting',
+          'Wine & Bar Cabinets'
+        ],
+        itemCount: 28
+      },
+      {
+        id: 'wardrobe',
+        num: '05',
+        name: 'Modular Wardrobes',
+        slug: 'modular-wardrobes',
+        subtitle: 'Precision Organization & Glass Closets',
+        type: 'wardrobe',
+        priceStarting: '₹1.1 Lakhs',
+        deliveryTime: '35 Days',
+        image: '/wardrobe_cat.png',
+        galleryImages: ['/wardrobe_cat.png', '/bedroom_cat.png'],
+        description: 'Luxury sliding and walk-in wardrobes with premium leather finishes, smoked glass doors, sensor lighting, and smart modular organizers.',
+        features: [
+          'Smoked Glass & Aluminum Profiles',
+          'Auto-Sensor LED Hanger Rods',
+          'Soft-Touch Drawers with Locks',
+          'Integrated Vanity Mirrors'
+        ],
+        itemCount: 30
+      },
+      {
+        id: 'kids',
+        num: '06',
+        name: 'Kids Bedroom',
+        slug: 'kids-bedroom',
+        subtitle: 'Vibrant, Safe & Modular Playrooms',
+        type: 'kids',
+        priceStarting: '₹85,000',
+        deliveryTime: '30 Days',
+        image: '/kids_cat.png',
+        galleryImages: ['/kids_cat.png', '/bedroom_cat.png'],
+        description: 'Vibrant, safe, and modular children bedrooms incorporating smart study tables, playful bunk beds, and non-toxic soft-edge storage walls.',
+        features: [
+          'Rounded Soft-Edge Finishes',
+          'Bunk Beds with Drawer Storage',
+          'Ergonomic Study Desks',
+          'Magnetic Activity Walls'
+        ],
+        itemCount: 20
+      },
+      {
+        id: 'bathroom',
+        num: '07',
+        name: 'Luxury Bathrooms',
+        slug: 'luxury-bathrooms',
+        subtitle: 'Spa-Inspired Vanities & Marble Counters',
+        type: 'bathroom',
+        priceStarting: '₹65,000',
+        deliveryTime: '25 Days',
+        image: '/bathroom_cat.png',
+        galleryImages: ['/bathroom_cat.png', '/kitchen_cat.png'],
+        description: 'Spa-like vanity units and bathroom transformations featuring gold brass fittings, storage cabinets, LED mirrors, and clean marble slab counters.',
+        features: [
+          'Anti-Fungus Moisture HDMR',
+          'Touch-Sensor Defogger Mirrors',
+          'Brushed Gold/Rose Hardware',
+          'Under-Sink Storage Shelves'
+        ],
+        itemCount: 18
+      },
+      {
+        id: 'balcony',
+        num: '08',
+        name: 'Balcony Decks',
+        slug: 'balcony-decks',
+        subtitle: 'Green Urban Escapes & Coffee Lounges',
+        type: 'balcony',
+        priceStarting: '₹45,000',
+        deliveryTime: '20 Days',
+        image: '/balcony_cat.png',
+        galleryImages: ['/balcony_cat.png', '/living_cat.png'],
+        description: 'Charming green escape spaces with vertical wooden rafters, fake grass flooring, weather-proof swing chairs, and storage coffee decks.',
+        features: [
+          'All-Weather WPC Decking',
+          'Vertical Hydroponic Green Walls',
+          'Built-in Seating with Drawers',
+          'Ambient String & Solar Lights'
+        ],
+        itemCount: 15
+      }
     ];
   }
 
   private getInitialLeads(): AdminLead[] {
     return [
-      { id: 'ld_1', name: 'Rohan Sharma', email: 'rohan.sharma@example.com', phone: '+91 98765 43210', city: 'Bangalore', projectType: '3BHK Apartment', budget: '₹12 - 15 Lakhs', message: 'Looking for turnkey interior design for my new flat in HSR Layout.', date: '19 Aug 2026', status: 'New' },
-      { id: 'ld_2', name: 'Priyanka Mohanty', email: 'p.mohanty@example.com', phone: '+91 94370 11223', city: 'Bhubaneswar', projectType: '4BHK Villa', budget: '₹20+ Lakhs', message: 'Interested in full duplex interior with modular kitchen & VR design.', date: '18 Aug 2026', status: 'In Progress' }
+      { id: 'ld_1', name: 'Rohan Sharma', email: 'rohan.sharma@example.com', phone: '+91 98765 43210', city: 'Bangalore', projectType: '3BHK Apartment', budget: '₹12 - 15 Lakhs', message: 'Looking for turnkey interior design for my new flat in HSR Layout.', date: '19 Aug 2026', status: 'NEW' },
+      { id: 'ld_2', name: 'Priyanka Mohanty', email: 'p.mohanty@example.com', phone: '+91 94370 11223', city: 'Bhubaneswar', projectType: '4BHK Villa', budget: '₹20+ Lakhs', message: 'Interested in full duplex interior with modular kitchen & VR design.', date: '18 Aug 2026', status: 'IN_PROGRESS' }
     ];
   }
 

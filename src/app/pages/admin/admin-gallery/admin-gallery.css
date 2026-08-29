@@ -10,6 +10,13 @@
 }
 
 .max-w-500 { max-width: 500px; }
+.max-w-600 { max-width: 600px; }
+.max-h-200 { max-height: 200px; }
+.border-dashed { border-style: dashed !important; }
+.cursor-pointer { cursor: pointer; }
+.border-maroon-subtle { border-color: rgba(150, 5, 62, 0.3) !important; }
+.bg-light-subtle { background-color: rgba(150, 5, 62, 0.03); }
+.hover-bg-light:hover { background-color: rgba(150, 5, 62, 0.07) !important; }
 
 .bg-dark-glass {
   background: rgba(15, 15, 20, 0.65);

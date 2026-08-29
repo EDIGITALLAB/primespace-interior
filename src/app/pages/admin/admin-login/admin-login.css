@@ -22,7 +22,7 @@
 }
 
 .login-header {
-  background: #800433 !important;
+  background: var(--primary-maroon, #800433) !important;
 }
 
 .btn-maroon-submit {

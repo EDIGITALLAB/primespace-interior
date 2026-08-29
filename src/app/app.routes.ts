@@ -53,7 +53,7 @@ export const routes: Routes = [
       { path: 'categories', component: AdminCategories },
       { path: 'gallery', component: AdminGallery },
       { path: 'leads', component: AdminLeads },
-      { path: 'appointments', component: AdminAppointments },
+      { path: 'appointments', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'testimonials', component: AdminTestimonials },
       { path: 'team', component: AdminTeam },
       { path: 'settings', component: AdminSettings }

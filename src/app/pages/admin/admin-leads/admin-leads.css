@@ -39,3 +39,58 @@
 .admin-leads-wrapper .btn-xs:hover {
   color: var(--primary-maroon, #96053E) !important;
 }
+
+/* Sky Blue Soft Utility Classes for Notes */
+.bg-sky-soft {
+  background-color: #f0f9ff !important;
+}
+.text-sky-dark {
+  color: #0369a1 !important;
+}
+.border-sky-subtle {
+  border-color: #bae6fd !important;
+}
+
+/* Action Note Button Hover Effects - Smooth Sky Blue Theme */
+.btn-action-note {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-action-note-empty {
+  background-color: #f8fafc !important;
+  color: #64748b !important;
+  border-color: #cbd5e1 !important;
+}
+
+.btn-action-note-empty i {
+  color: #64748b !important;
+}
+
+.btn-action-note-empty:hover {
+  background-color: #e0f2fe !important;
+  color: #0284c7 !important;
+  border-color: #7dd3fc !important;
+  box-shadow: 0 2px 8px rgba(14, 165, 233, 0.15) !important;
+}
+
+.btn-action-note-empty:hover i {
+  color: #0284c7 !important;
+}
+
+/* Active note state - Smooth Soft Sky Blue Badge */
+.btn-action-note-active {
+  background-color: #e0f2fe !important;
+  color: #0369a1 !important;
+  border-color: #7dd3fc !important;
+}
+
+.btn-action-note-active i {
+  color: #0284c7 !important;
+}
+
+.btn-action-note-active:hover {
+  background-color: #bae6fd !important;
+  color: #0284c7 !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 3px 10px rgba(14, 165, 233, 0.2) !important;
+}

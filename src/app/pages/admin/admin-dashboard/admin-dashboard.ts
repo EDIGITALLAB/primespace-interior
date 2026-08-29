@@ -54,6 +54,16 @@ export class AdminDashboard {
     }
   }
 
+  formatStatus(status: string): string {
+    if (!status) return '';
+    if (status === 'IN_PROGRESS' || status === 'In Progress') return 'In Progress';
+    if (status === 'NEW' || status === 'New') return 'New';
+    if (status === 'CONTACTED' || status === 'Contacted') return 'Contacted';
+    if (status === 'COMPLETED' || status === 'Completed') return 'Completed';
+    if (status === 'CLOSED' || status === 'Closed') return 'Closed';
+    return status.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  }
+
   updateLeadStatus(id: string, status: AdminLead['status']) {
     this.adminData.updateLeadStatus(id, status);
   }

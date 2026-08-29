@@ -1,7 +1,8 @@
-import { Component, signal, computed } from '@angular/core';
+import { Component, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
+import { AdminDataService } from '../../services/admin-data.service';
 
 export interface CategoryDetail {
   id: string;
@@ -278,6 +279,36 @@ export class CategoriesPage {
     }
   ];
 
+  adminData = inject(AdminDataService);
+
+  get allCategoriesList(): CategoryDetail[] {
+    const adminCats = this.adminData.categories();
+    if (adminCats && adminCats.length > 0) {
+      return adminCats.map((ac, index) => {
+        const defaultCat = this.categories.find(c => c.id === ac.id || c.filterTag.toLowerCase() === ac.type.toLowerCase() || c.id === ac.type.toLowerCase()) || this.categories[0];
+        const filterTag = defaultCat ? defaultCat.filterTag : (ac.type || ac.id || 'kitchen').toLowerCase().replace(/[^a-z]+/g, '');
+        return {
+          id: ac.id,
+          num: ac.num || String(index + 1).padStart(2, '0'),
+          name: ac.name,
+          tagline: ac.subtitle || defaultCat.tagline,
+          images: (ac.galleryImages && ac.galleryImages.length) ? ac.galleryImages : (ac.image ? [ac.image] : defaultCat.images),
+          desc: ac.description || defaultCat.desc,
+          startingPrice: ac.priceStarting || defaultCat.startingPrice,
+          priceNumeric: defaultCat.priceNumeric || 140000,
+          turnaround: ac.deliveryTime || defaultCat.turnaround,
+          daysNumeric: parseInt(ac.deliveryTime || '45') || 45,
+          filterTag: filterTag,
+          rating: defaultCat.rating || 4.9,
+          reviewsCount: defaultCat.reviewsCount || 150,
+          features: (ac.features && ac.features.length) ? ac.features : defaultCat.features,
+          scopeOfWork: defaultCat.scopeOfWork
+        };
+      });
+    }
+    return this.categories;
+  }
+
   // Dynamic Filtering & Sorting
   readonly filteredCategories = computed(() => {
     const filter = this.activeFilter();
@@ -285,7 +316,7 @@ export class CategoriesPage {
     const budget = this.budgetFilter();
     const sort = this.sortBy();
 
-    let list = this.categories.filter((cat) => {
+    let list = this.allCategoriesList.filter((cat) => {
       const matchesFilter = filter === 'all' || cat.filterTag === filter;
       const matchesQuery = !query ||
         cat.name.toLowerCase().includes(query) ||

@@ -24,9 +24,10 @@ export class AdminGallery {
 
   // Add Photo Modal
   showAddPhotoModal = signal(false);
-  photoUrl = signal('/hero_living_room.png');
+  photoUrlInput = signal('');
   photoCaption = signal('');
   photoCategory = signal<'Living Room' | 'Kitchen' | 'Bedroom' | 'Bathroom' | 'Balcony' | 'Foyer'>('Living Room');
+  selectedImagesList = signal<string[]>([]);
 
   // Add Block Modal
   showAddBlockModal = signal(false);
@@ -83,14 +84,54 @@ export class AdminGallery {
   }
 
   openAddPhotoModal() {
-    this.photoUrl.set('/luxury_living_room_1.png');
+    this.photoUrlInput.set('');
     this.photoCaption.set('');
     this.photoCategory.set('Living Room');
+    this.selectedImagesList.set([]);
     this.showAddPhotoModal.set(true);
   }
 
   closeAddPhotoModal() {
     this.showAddPhotoModal.set(false);
+  }
+
+  onMultipleFilesSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const files = Array.from(input.files);
+      const readPromises = files.map(file => {
+        return new Promise<string>((resolve) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            if (e.target?.result) {
+              resolve(e.target.result as string);
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+      });
+
+      Promise.all(readPromises).then(base64Urls => {
+        this.selectedImagesList.update(list => [...list, ...base64Urls]);
+        input.value = '';
+      });
+    }
+  }
+
+  addUrlImage() {
+    const url = this.photoUrlInput().trim();
+    if (url) {
+      this.selectedImagesList.update(list => [...list, url]);
+      this.photoUrlInput.set('');
+    }
+  }
+
+  removeImage(index: number) {
+    this.selectedImagesList.update(list => list.filter((_, i) => i !== index));
+  }
+
+  clearAllImages() {
+    this.selectedImagesList.set([]);
   }
 
   savePhoto(e: Event) {
@@ -99,12 +140,26 @@ export class AdminGallery {
     const bId = this.selectedBlockId();
     if (!pId || !bId) return;
 
-    this.adminData.addPhotoToBlock(pId, bId, {
-      url: this.photoUrl(),
-      caption: this.photoCaption() || 'Interior Room Design',
-      category: this.photoCategory()
-    });
+    let imagesToSave = [...this.selectedImagesList()];
 
+    if (this.photoUrlInput().trim()) {
+      imagesToSave.push(this.photoUrlInput().trim());
+    }
+
+    if (imagesToSave.length === 0) {
+      imagesToSave.push('/hero_living_room.png');
+    }
+
+    const baseCaption = this.photoCaption().trim() || 'Interior Room Design';
+    const category = this.photoCategory();
+
+    const photosToSave = imagesToSave.map((url, idx) => ({
+      url,
+      caption: imagesToSave.length > 1 ? `${baseCaption} - ${idx + 1}` : baseCaption,
+      category
+    }));
+
+    this.adminData.addMultiplePhotosToBlock(pId, bId, photosToSave);
     this.closeAddPhotoModal();
   }
 
