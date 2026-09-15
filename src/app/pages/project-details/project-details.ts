@@ -4,6 +4,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProjectsDataService, ProjectItem } from '../../services/projects-data.service';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
+import { toTitleCase } from '../../utils/string.utils';
+
 export interface ProjectBlockItem {
   id: string;
   name: string;
@@ -150,7 +152,7 @@ export class ProjectDetails implements OnInit {
               if (!blockCategoryCountMap.has(catSlug)) {
                 blockCategoryCountMap.set(catSlug, {
                   id: catSlug,
-                  name: cat.name,
+                  name: toTitleCase(cat.name),
                   count: 0,
                   iconClass: iconClass
                 });
@@ -373,7 +375,7 @@ export class ProjectDetails implements OnInit {
   get activeCategoryName(): string {
     const catId = this.activeRoomCategory();
     const found = this.roomCategories.find(c => c.id === catId);
-    return found ? found.name : 'All Photos';
+    return found ? toTitleCase(found.name) : 'All Photos';
   }
 
   // INLINE POPUP PHOTO PREVIEW METHODS

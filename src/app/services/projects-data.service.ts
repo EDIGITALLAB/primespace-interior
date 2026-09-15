@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of, map, throwError } from 'rxjs';
 import { getApiBaseUrl, API_CONFIG } from '../config/api.config';
+import { toTitleCase } from '../utils/string.utils';
 
 export interface Milestone {
   name: string;
@@ -194,8 +195,8 @@ export class ProjectsDataService {
       id: bp.slug || bp.projectId.toString(),
       projectId: bp.projectId,
       slug: bp.slug,
-      title: bp.name,
-      subtitle: bp.subtitle || '',
+      title: toTitleCase(bp.name),
+      subtitle: toTitleCase(bp.subtitle || ''),
       category: bp.propertyType || 'Apartment',
       propertyType: bp.propertyType || 'Apartment',
       status: isCompleted ? 'completed' : 'ongoing',
