@@ -1,85 +1,87 @@
-<section class="testimonials-section bg-white position-relative" (mouseenter)="stopAutoSlide()" (mouseleave)="startAutoSlide()">
-  <div class="container cards-container">
+<section *ngIf="list.length > 0" class="testimonials-section bg-white position-relative py-4 py-md-5">
+  <div class="container cards-container position-relative">
 
-    <!-- Section Title -->
-    <div class="w-100">
-      <div class="text-center mb-2 mb-md-4 position-relative">
-        <span class="section-subtitle text-uppercase mb-1">Client Stories</span>
-        <h2 class="section-title fw-medium text-uppercase m-0">Voices of Satisfaction</h2>
-      </div>
+    <!-- Section Title (Centered) -->
+    <div class="text-center mb-4 pb-2">
+      <span class="section-subtitle text-uppercase mb-1 d-block font-size-xs fw-extrabold text-maroon tracking-wider">Client Stories</span>
+      <h2 class="section-title fw-black text-uppercase m-0 text-dark">Voices of Satisfaction</h2>
     </div>
 
-    <!-- Testimonials Slider Wrapper -->
-    <div class="testimonials-wrapper position-relative">
-      
-      <!-- Viewport container for mobile touch & slider -->
-      <div class="testimonials-slider-viewport" 
-           (touchstart)="onTouchStart($event)" 
-           (touchend)="onTouchEnd($event)">
+    <!-- Testimonials Slider Wrapper with Side Navigation Arrows -->
+    <div class="testimonials-wrapper position-relative px-3 px-sm-4 px-md-5">
 
-        <!-- Track container: 3 columns grid on desktop (>=992px), CSS transform slider on mobile/tablet (<992px) -->
-        <div class="testimonials-slider-track row g-4 justify-content-center"
-             [class.no-transition]="!isAnimating()"
-             [style.transform]="'translateX(' + (-activeIndex() * 100) + '%)'">
-
-          <div class="col-lg-4 col-md-6 card-col-item" 
-               *ngFor="let item of displayList; let i = index" 
-               [class.active-slide]="activeDotIndex === (i % list.length)"
-               [class.is-clone]="item.isClone">
-
-            <div class="testimonial-card p-4 p-xl-4 text-center h-100 d-flex flex-column position-relative">
-
-              <!-- Quote Icon Watermark -->
-              <div class="quote-watermark"><i class="fa-solid fa-quote-right"></i></div>
-
-              <!-- Rating Stars -->
-              <div class="stars-wrapper mb-3">
-                <i class="fa-solid fa-star me-1" *ngFor="let s of [1,2,3,4,5]"></i>
-              </div>
-
-              <!-- Review Text -->
-              <p class="review-text mb-4 flex-grow-1">
-                "{{ item.review }}"
-              </p>
-
-              <div class="card-footer-info mt-auto">
-                <!-- Divider line -->
-                <div class="card-divider mx-auto mb-3"></div>
-
-                <!-- Client Profile Avatar Image -->
-                <div class="client-avatar-wrap mx-auto mb-3">
-                  <img [src]="item.avatar" [alt]="item.name" class="client-avatar-img w-100 h-100 object-fit-cover rounded-circle shadow-sm">
-                </div>
-
-                <!-- Client details -->
-                <h5 class="client-name mb-1 text-uppercase">{{ item.name }}</h5>
-                <span class="client-location d-block mb-2">{{ item.location }}</span>
-                <span class="client-service text-uppercase font-size-micro">{{ item.service }}</span>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Mobile Navigation Arrow Controls -->
-      <button class="slider-arrow arrow-prev d-lg-none" (click)="prevIndex()" aria-label="Previous Testimonial">
+      <!-- Left Side Navigation Arrow (<) -->
+      <button *ngIf="list.length > 3" 
+              type="button" 
+              class="btn btn-side-arrow arrow-prev rounded-circle shadow-md d-flex align-items-center justify-content-center position-absolute top-50 start-0 translate-middle-y z-3" 
+              (click)="prevPage()" 
+              aria-label="Previous Testimonial">
         <i class="fa-solid fa-chevron-left"></i>
       </button>
-      <button class="slider-arrow arrow-next d-lg-none" (click)="nextIndex()" aria-label="Next Testimonial">
+
+      <!-- Right Side Navigation Arrow (>) -->
+      <button *ngIf="list.length > 3" 
+              type="button" 
+              class="btn btn-side-arrow arrow-next rounded-circle shadow-md d-flex align-items-center justify-content-center position-absolute top-50 end-0 translate-middle-y z-3" 
+              (click)="nextPage()" 
+              aria-label="Next Testimonial">
         <i class="fa-solid fa-chevron-right"></i>
       </button>
 
-      <!-- Mobile Pagination Dots (3 dots for 3 unique testimonials) -->
-      <div class="slider-dots-wrapper d-flex justify-content-center align-items-center gap-2 mt-3 d-lg-none">
-        <button *ngFor="let item of list; let i = index" 
-                class="slider-dot-btn" 
-                [class.active]="activeDotIndex === i"
-                (click)="setIndex(i)"
-                [attr.aria-label]="'Go to testimonial slide ' + (i + 1)">
-        </button>
+      <!-- Testimonials Slider Viewport -->
+      <div class="testimonials-slider-viewport overflow-hidden position-relative" 
+           (touchstart)="onTouchStart($event)" 
+           (touchend)="onTouchEnd($event)">
+
+        <div class="testimonials-slider-track d-flex">
+
+          <!-- 3 Cards ALWAYS Displayed Side-by-Side -->
+          <div class="testimonial-page-slide w-100 flex-shrink-0">
+            <div class="row g-4 justify-content-center align-items-stretch">
+              <div *ngFor="let item of visibleCards" class="col-12 col-md-6 col-lg-4 d-flex">
+                
+                <div class="testimonial-card p-4 text-center w-100 h-100 d-flex flex-column position-relative bg-white rounded-4 border shadow-xs">
+                  
+                  <!-- Quote Icon Watermark -->
+                  <div class="quote-watermark"><i class="fa-solid fa-quote-right"></i></div>
+
+                  <!-- Rating Stars (Supports Full, Half & Empty Stars) -->
+                  <div class="stars-wrapper mb-3 d-flex align-items-center justify-content-center">
+                    <ng-container *ngFor="let s of [1, 2, 3, 4, 5]">
+                      <i *ngIf="s <= (item.rating || 5)" class="fa-solid fa-star me-1" style="color: #f59e0b;"></i>
+                      <i *ngIf="s > (item.rating || 5) && (s - 0.5) <= (item.rating || 5)" class="fa-solid fa-star-half-stroke me-1" style="color: #f59e0b;"></i>
+                      <i *ngIf="(s - 0.5) > (item.rating || 5)" class="fa-solid fa-star me-1" style="color: #e2e8f0; opacity: 0.4;"></i>
+                    </ng-container>
+                  </div>
+
+                  <!-- Review Text -->
+                  <div class="review-text-wrap flex-grow-1 d-flex align-items-center justify-content-center mb-4">
+                    <p class="review-text m-0">
+                      "{{ item.review }}"
+                    </p>
+                  </div>
+
+                  <!-- Card Footer Info -->
+                  <div class="card-footer-info mt-auto">
+                    <div class="card-divider mx-auto mb-3"></div>
+
+                    <div class="client-avatar-wrap mx-auto mb-3">
+                      <img [src]="item.avatar" [alt]="item.name" class="client-avatar-img w-100 h-100 object-fit-cover rounded-circle shadow-sm">
+                    </div>
+
+                    <h5 class="client-name mb-1 text-uppercase text-truncate">{{ item.name }}</h5>
+                    <span class="client-location d-block mb-3 text-truncate">{{ item.location }}</span>
+                    <span class="client-service text-uppercase text-truncate max-w-100">{{ item.service }}</span>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
       </div>
 
     </div>

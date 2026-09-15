@@ -65,3 +65,33 @@
   color: #ffffff;
   transform: scale(1.1);
 }
+
+/* Center Video Play/Pause Overlay Button */
+.center-video-play-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: rgba(128, 0, 32, 0.9);
+  color: #ffffff;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  z-index: 15;
+}
+
+.center-video-play-btn:hover {
+  background-color: #96053e !important;
+  transform: translate(-50%, -50%) scale(1.12) !important;
+  box-shadow: 0 8px 24px rgba(150, 5, 62, 0.5) !important;
+}
+
+.group-video.is-playing .center-video-play-btn {
+  opacity: 0;
+}
+
+.group-video.is-playing:hover .center-video-play-btn {
+  opacity: 1;
+}

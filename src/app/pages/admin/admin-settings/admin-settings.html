@@ -14,49 +14,66 @@
 
   <form (submit)="saveSettings($event)" class="bg-white rounded-4 border border-gray-200 p-4 p-md-4.5 shadow-xs">
     
-    <!-- Section 2: Contact Info -->
-    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
-      <i class="fa-solid fa-phone text-maroon"></i> Studio Phones & Support Email
-    </h6>
 
-    <div class="row g-3 mb-4">
-      <div class="col-12 col-md-4">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bangalore Studio Phone</label>
-        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="phoneBangalore()" (ngModelChange)="phoneBangalore.set($event)" name="phoneBangalore" required>
-      </div>
 
-      <div class="col-12 col-md-4">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bhubaneswar Studio Phone</label>
-        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="phoneBhubaneswar()" (ngModelChange)="phoneBhubaneswar.set($event)" name="phoneBhubaneswar" required>
-      </div>
+    <!-- Section 3: Office Locations (Live DB Table office_locations) -->
+    <div class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom border-gray-200">
+      <h6 class="fw-black text-dark font-size-sm m-0 d-flex align-items-center gap-2">
+        <i class="fa-solid fa-location-dot text-maroon"></i> Experience Studio Locations (office_locations DB)
+      </h6>
+      <button type="button" class="btn btn-outline-dark rounded-3 px-3 py-1.5 font-size-xs font-weight-bold shadow-xs d-inline-flex align-items-center gap-1.5" (click)="openAddLocationModal()">
+        <i class="fa-solid fa-plus text-maroon"></i> + Add Location
+      </button>
+    </div>
 
-      <div class="col-12 col-md-4">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">WhatsApp Hotline</label>
-        <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="whatsappNumber()" (ngModelChange)="whatsappNumber.set($event)" name="whatsappNumber" required>
-      </div>
+    <!-- Office Locations List -->
+    <div class="row g-3 mb-4" *ngIf="officeLocations.length > 0; else noLocations">
+      <div *ngFor="let loc of officeLocations" class="col-12 col-lg-6">
+        <div class="card h-100 rounded-3 border border-gray-200 p-3 shadow-2xs position-relative hover-shadow transition-all bg-light-subtle">
+          <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
+            <div>
+              <span class="badge bg-maroon text-white font-size-micro mb-1 me-1" *ngIf="loc.isHeadOffice">Head Office</span>
+              <span class="badge font-size-micro mb-1" [ngClass]="loc.status === 'ACTIVE' ? 'bg-success' : 'bg-danger'">{{ loc.status }}</span>
+              <h6 class="fw-bold text-dark font-size-sm mb-0">{{ loc.branchName }}</h6>
+              <small class="text-muted font-size-micro">{{ loc.city }}, {{ loc.state }}</small>
+            </div>
 
-      <div class="col-12">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Official Support Email</label>
-        <input type="email" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" required>
+            <div class="d-flex align-items-center gap-1">
+              <button type="button" class="btn btn-sm btn-light rounded-2 px-2 py-1 text-primary" (click)="editLocation(loc)" title="Edit Location">
+                <i class="fa-solid fa-pen-to-square font-size-micro"></i>
+              </button>
+              <button type="button" class="btn btn-sm btn-light rounded-2 px-2 py-1 text-danger" (click)="deleteLocation(loc.locationId)" title="Delete Location">
+                <i class="fa-solid fa-trash font-size-micro"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="font-size-xs text-dark mb-2">
+            <i class="fa-solid fa-map-pin text-muted me-1.5"></i> {{ loc.address }}
+          </div>
+
+          <div class="row g-2 font-size-micro text-muted pt-2 border-top border-gray-200">
+            <div class="col-6"><i class="fa-solid fa-phone me-1"></i> Phone: <strong>{{ loc.phone }}</strong></div>
+            <div class="col-6"><i class="fa-solid fa-envelope me-1"></i> Email: <strong>{{ loc.email }}</strong></div>
+            <div class="col-6" *ngIf="loc.whatsapp"><i class="fa-brands fa-whatsapp text-success me-1"></i> WhatsApp: <strong>{{ loc.whatsapp }}</strong></div>
+            <div class="col-6" *ngIf="loc.openingTime || loc.closingTime"><i class="fa-solid fa-clock me-1"></i> Hours: <strong>{{ loc.openingTime }} - {{ loc.closingTime }}</strong></div>
+            <div class="col-12" *ngIf="loc.workingDays"><i class="fa-solid fa-calendar-days me-1"></i> Days: <strong>{{ loc.workingDays }}</strong></div>
+            <div class="col-12 text-truncate" *ngIf="loc.googleMapUrl">
+              <i class="fa-solid fa-map-location-dot text-maroon me-1"></i> Map: <a [href]="loc.googleMapUrl" target="_blank" class="text-maroon text-decoration-underline">{{ loc.googleMapUrl }}</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Section 3: Physical Experience Centers -->
-    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
-      <i class="fa-solid fa-location-dot text-maroon"></i> Physical Experience Studio Addresses
-    </h6>
-
-    <div class="row g-3 mb-4">
-      <div class="col-12 col-md-6">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bangalore Flagship Studio</label>
-        <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="2" [ngModel]="bangaloreAddress()" (ngModelChange)="bangaloreAddress.set($event)" name="bangaloreAddress" required></textarea>
+    <ng-template #noLocations>
+      <div class="p-4 text-center border border-dashed rounded-3 bg-light mb-4">
+        <p class="text-muted font-size-xs mb-2">No office locations added in DB yet.</p>
+        <button type="button" class="btn btn-maroon-primary btn-sm font-size-xs px-3" (click)="openAddLocationModal()">
+          + Add First Office Location
+        </button>
       </div>
-
-      <div class="col-12 col-md-6">
-        <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Bhubaneswar Flagship Studio</label>
-        <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="2" [ngModel]="bhubaneswarAddress()" (ngModelChange)="bhubaneswarAddress.set($event)" name="bhubaneswarAddress" required></textarea>
-      </div>
-    </div>
+    </ng-template>
 
     <!-- Section 4: Social Links -->
     <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
@@ -87,5 +104,162 @@
     </div>
 
   </form>
+
+  <!-- Section 5: Change Account Password (Live DB Endpoint PUT /api/auth/change-password) -->
+  <div class="bg-white rounded-4 border border-gray-200 p-4 p-md-4.5 shadow-xs mt-4">
+    <h6 class="fw-black text-dark font-size-sm mb-3 pb-2 border-bottom border-gray-200 d-flex align-items-center gap-2">
+      <i class="fa-solid fa-key text-maroon"></i> Change Account Password
+    </h6>
+
+    <div *ngIf="passwordSuccessMsg()" class="alert alert-success font-size-xs rounded-3 d-flex align-items-center justify-content-between gap-2 mb-3 p-3 shadow-xs">
+      <div class="d-flex align-items-center gap-2">
+        <i class="fa-solid fa-circle-check font-size-sm"></i>
+        <span class="fw-bold">{{ passwordSuccessMsg() }}</span>
+      </div>
+      <button type="button" class="btn-close ms-auto font-size-micro" (click)="passwordSuccessMsg.set('')"></button>
+    </div>
+
+    <div *ngIf="passwordErrorMsg()" class="alert alert-danger font-size-xs rounded-3 d-flex align-items-center justify-content-between gap-2 mb-3 p-3 shadow-xs">
+      <div class="d-flex align-items-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation font-size-sm"></i>
+        <span class="fw-bold">{{ passwordErrorMsg() }}</span>
+      </div>
+      <button type="button" class="btn-close ms-auto font-size-micro" (click)="passwordErrorMsg.set('')"></button>
+    </div>
+
+    <form (submit)="changePasswordForm($event)">
+      <div class="row g-3 mb-4">
+        <div class="col-12 col-md-4">
+          <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Current Password</label>
+          <input type="password" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="Enter current password" [ngModel]="oldPassword()" (ngModelChange)="oldPassword.set($event)" name="oldPassword" required>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <label class="form-label font-size-xs font-weight-bold text-dark mb-1">New Password</label>
+          <input type="password" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="Min 6 characters" [ngModel]="newPassword()" (ngModelChange)="newPassword.set($event)" name="newPassword" required>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Confirm New Password</label>
+          <input type="password" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="Re-type new password" [ngModel]="confirmPassword()" (ngModelChange)="confirmPassword.set($event)" name="confirmPassword" required>
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-end pt-3 border-top border-gray-200">
+        <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2.5 font-size-xs font-weight-bold text-white shadow-xs" [disabled]="isSubmittingPassword()">
+          <i class="fa-solid fa-lock me-1"></i> Update Password
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ADD / EDIT OFFICE LOCATION MODAL (ALL DB FIELDS) -->
+  <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showLocationModal()">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-700 overflow-hidden animate-zoom-in">
+      
+      <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 fw-black text-dark font-size-base">
+          <i class="fa-solid fa-location-dot text-maroon me-2"></i> {{ editingLocationId() ? 'Edit Office Location' : 'Add New Office Location' }}
+        </h6>
+        <button type="button" class="btn-close" (click)="closeLocationModal()"></button>
+      </div>
+
+      <form (submit)="saveLocation($event)" class="p-4 max-h-80vh overflow-y-auto">
+        <div class="row g-3">
+          
+          <!-- Branch Name & Is Head Office -->
+          <div class="col-12 col-md-8">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Branch Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Indiranagar Flagship Studio" [ngModel]="locBranchName()" (ngModelChange)="locBranchName.set($event)" name="locBranchName" required>
+          </div>
+
+          <div class="col-12 col-md-4 d-flex align-items-end mb-1">
+            <div class="form-check form-switch font-size-xs fw-bold">
+              <input class="form-check-input" type="checkbox" role="switch" id="isHeadOfficeSwitch" [ngModel]="locIsHeadOffice()" (ngModelChange)="locIsHeadOffice.set($event)" name="locIsHeadOffice">
+              <label class="form-check-input-label text-dark" for="isHeadOfficeSwitch">Is Head Office?</label>
+            </div>
+          </div>
+
+          <!-- City & State -->
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">City</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Bangalore" [ngModel]="locCity()" (ngModelChange)="locCity.set($event)" name="locCity" required>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">State</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Karnataka" [ngModel]="locState()" (ngModelChange)="locState.set($event)" name="locState" required>
+          </div>
+
+          <!-- Full Address -->
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Full Street Address</label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="2" placeholder="e.g. 100 Feet Road, Indiranagar, Bengaluru, Karnataka 560038" [ngModel]="locAddress()" (ngModelChange)="locAddress.set($event)" name="locAddress" required></textarea>
+          </div>
+
+          <!-- Phone, Email, WhatsApp -->
+          <div class="col-12 col-md-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Phone Number</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. +91 98765 43210" [ngModel]="locPhone()" (ngModelChange)="locPhone.set($event)" name="locPhone" required>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Email Address</label>
+            <input type="email" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. bangalore@primespace.com" [ngModel]="locEmail()" (ngModelChange)="locEmail.set($event)" name="locEmail" required>
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">WhatsApp Hotline</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. +91 98765 43210" [ngModel]="locWhatsapp()" (ngModelChange)="locWhatsapp.set($event)" name="locWhatsapp">
+          </div>
+
+          <!-- Opening Time, Closing Time, Working Days -->
+          <div class="col-12 col-md-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Opening Time</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. 09:30 AM" [ngModel]="locOpeningTime()" (ngModelChange)="locOpeningTime.set($event)" name="locOpeningTime">
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Closing Time</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. 07:30 PM" [ngModel]="locClosingTime()" (ngModelChange)="locClosingTime.set($event)" name="locClosingTime">
+          </div>
+
+          <div class="col-12 col-md-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Working Days</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Monday - Saturday" [ngModel]="locWorkingDays()" (ngModelChange)="locWorkingDays.set($event)" name="locWorkingDays">
+          </div>
+
+          <!-- Google Maps URL -->
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Google Maps Link / URL</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. https://maps.google.com/..." [ngModel]="locGoogleMapUrl()" (ngModelChange)="locGoogleMapUrl.set($event)" name="locGoogleMapUrl">
+          </div>
+
+          <!-- Status & Display Order -->
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Status</label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none fw-bold" [ngModel]="locStatus()" (ngModelChange)="locStatus.set($event)" name="locStatus">
+              <option value="ACTIVE">ACTIVE</option>
+              <option value="INACTIVE">INACTIVE</option>
+            </select>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Display Order</label>
+            <input type="number" class="form-control font-size-xs rounded-3 border shadow-none" [ngModel]="locDisplayOrder()" (ngModelChange)="locDisplayOrder.set($event)" name="locDisplayOrder">
+          </div>
+
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">
+          <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeLocationModal()">Cancel</button>
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs">
+            <i class="fa-solid fa-floppy-disk me-1"></i> Save Location to DB
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
 
 </div>

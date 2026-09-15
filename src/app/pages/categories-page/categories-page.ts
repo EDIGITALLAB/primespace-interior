@@ -1,8 +1,11 @@
-import { Component, signal, computed, inject } from '@angular/core';
+import { Component, signal, computed, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 import { AdminDataService } from '../../services/admin-data.service';
+import { ProjectsDataService, BackendDetailCategory } from '../../services/projects-data.service';
+import { getApiBaseUrl, API_CONFIG } from '../../config/api.config';
 
 export interface CategoryDetail {
   id: string;
@@ -39,7 +42,7 @@ export interface MaterialDetail {
   templateUrl: './categories-page.html',
   styleUrl: './categories-page.css',
 })
-export class CategoriesPage {
+export class CategoriesPage implements OnInit {
   readonly activeFilter = signal<string>('all');
   readonly searchQuery = signal<string>('');
   readonly activeMaterialTab = signal<string>('hdmr');
@@ -71,174 +74,7 @@ export class CategoriesPage {
     { label: 'Balcony', value: 'balcony' }
   ];
 
-  readonly categories: CategoryDetail[] = [
-    {
-      id: 'kitchen',
-      num: '01',
-      name: 'Kitchen Units',
-      tagline: 'Culinary Excellence & Modular Utility',
-      images: ['/kitchen_cat.png', '/hero_kitchen.png', '/eleganza_plus_kitchen.png', '/essential_kitchen.png'],
-      desc: 'Bespoke modular kitchens designed for culinary excellence, featuring intelligent space utilization, island counters, and precision-engineered soft-close fittings.',
-      startingPrice: '₹1.4 Lakhs',
-      priceNumeric: 140000,
-      turnaround: '45 Days',
-      daysNumeric: 45,
-      filterTag: 'kitchen',
-      rating: 4.9,
-      reviewsCount: 184,
-      features: [
-        'Modular Kitchen Solutions',
-        'Custom-Size Cabinets & Units',
-        'Premium Plywood & Durable Materials',
-        'Tall Units & Utility Storage',
-        'Corner & Smart Space Solutions',
-        'Drawer & Basket Organizers',
-        'Cutlery & Thali Organizers',
-        'Bottle & Oil Pullouts',
-        'Waste Bin Integration',
-        'Under-Sink Storage Solutions',
-        'Overhead & Loft Cabinets',
-        'Custom Kitchen Island & Breakfast Counters',
-        'Integrated Appliance Solutions',
-        'Hob, Chimney & Microwave Integration',
-        'Water-Resistant & Easy-to-Maintain Options',
-        'End-to-End Design & Installation'
-      ],
-      scopeOfWork: ['Base & Wall Cabinets', 'Tandem Drawer Units', 'Tall Appliance Unit', 'Quartz Countertop with Sink Cutout', 'Under-Cabinet Sensor LEDs']
-    },
-    {
-      id: 'living',
-      num: '02',
-      name: 'Living Room',
-      tagline: 'Entertainment & Luxury Lounging',
-      images: ['/living_cat.png', '/hero_living_room.png', '/after_living_room.png'],
-      desc: 'Sophisticated living rooms crafted for entertainment and luxury relaxation, combining plush seating with custom TV wall panels and ambient lighting.',
-      startingPrice: '₹1.8 Lakhs',
-      priceNumeric: 180000,
-      turnaround: '40 Days',
-      daysNumeric: 40,
-      filterTag: 'living',
-      rating: 4.9,
-      reviewsCount: 210,
-      features: [
-        'Custom Fluted TV Panels',
-        'Made-to-Measure TV Units',
-        'Hidden Ambient LED Lighting',
-        'Designer Accent Walls',
-        'Premium Wall Paneling',
-        'Built-in Display & Storage',
-        'Floating Cabinets & Shelves',
-        'Designer False Ceilings',
-        'Plush Custom Seating',
-        'Statement Lighting',
-        'Smart Home Integration',
-        'Custom Furniture & Finishes'
-      ],
-      scopeOfWork: ['Full-Wall Floating TV Console', 'Charcoal Rafters & Paneling', 'Foyer Shoe Rack with Seating', 'Cove Profile Lighting Layout']
-    },
-    {
-      id: 'bedroom',
-      num: '03',
-      name: 'Bedroom Sanctuaries',
-      tagline: 'Tranquil Retreats & Custom Bedding',
-      images: ['/bedroom_cat.png', '/eleganza_bedroom.png'],
-      desc: 'Bespoke bedroom sanctuaries crafted to foster tranquil sleep. Includes custom upholstered headboards, side panels, and integrated accent lighting.',
-      startingPrice: '₹1.2 Lakhs',
-      priceNumeric: 120000,
-      turnaround: '35 Days',
-      daysNumeric: 35,
-      filterTag: 'bedroom',
-      rating: 4.8,
-      reviewsCount: 156,
-      features: ['Full-Height Fabric Headboards', 'Integrated Side Tables', 'Study Nooks & Reading Lights', 'Mood Lighting Profiles'],
-      scopeOfWork: ['King-Size Platform Bed Frame', 'Upholstered Wall Panel Headboard', 'Twin Floating Nightstands', 'Compact Wall-Mounted Study Desk']
-    },
-    {
-      id: 'dining',
-      num: '04',
-      name: 'Dining Room',
-      tagline: 'Elegant Gathering & Feast Spaces',
-      images: ['/dining_cat.png', '/living_cat.png'],
-      desc: 'Exquisite dining spaces built for memorable gatherings. Features custom marble table installations, designer pendant lights, and crockery bars.',
-      startingPrice: '₹95,000',
-      priceNumeric: 95000,
-      turnaround: '30 Days',
-      daysNumeric: 30,
-      filterTag: 'dining',
-      rating: 4.7,
-      reviewsCount: 112,
-      features: ['Italian Marble Dining Tops', 'Custom Crockery Display Units', 'Designer Chandelier Lighting', 'Wine & Bar Cabinets'],
-      scopeOfWork: ['Glass-Front Crockery Cabinet', 'Marble-Top 6-Seater Dining Table', 'Accent Mirror Wall Paneling', 'Pendant Light Drop Ceiling']
-    },
-    {
-      id: 'wardrobe',
-      num: '05',
-      name: 'Modular Wardrobes',
-      tagline: 'Precision Organization & Glass Closets',
-      images: ['/wardrobe_cat.png', '/bedroom_cat.png'],
-      desc: 'Luxury sliding and walk-in wardrobes with premium leather finishes, smoked glass doors, sensor lighting, and smart modular organizers.',
-      startingPrice: '₹1.1 Lakhs',
-      priceNumeric: 110000,
-      turnaround: '35 Days',
-      daysNumeric: 35,
-      filterTag: 'wardrobe',
-      rating: 4.9,
-      reviewsCount: 198,
-      features: ['Smoked Glass & Aluminum Profiles', 'Auto-Sensor LED Hanger Rods', 'Soft-Touch Drawers with Locks', 'Integrated Vanity Mirrors'],
-      scopeOfWork: ['Floor-to-Ceiling Loft Storage', 'Internal Drawer Dividers & Safe', 'Sensor Light Strip Profiles', 'Integrated Dressing Unit']
-    },
-    {
-      id: 'kids',
-      num: '06',
-      name: 'Kids Bedroom',
-      tagline: 'Vibrant, Safe & Modular Playrooms',
-      images: ['/kids_cat.png', '/bedroom_cat.png'],
-      desc: 'Vibrant, safe, and modular children bedrooms incorporating smart study tables, playful bunk beds, and non-toxic soft-edge storage walls.',
-      startingPrice: '₹85,000',
-      priceNumeric: 85000,
-      turnaround: '30 Days',
-      daysNumeric: 30,
-      filterTag: 'kids',
-      rating: 4.8,
-      reviewsCount: 135,
-      features: ['Rounded Soft-Edge Finishes', 'Bunk Beds with Drawer Storage', 'Ergonomic Study Desks', 'Magnetic Activity Walls'],
-      scopeOfWork: ['Modular Storage Wardrobe', 'Ergonomic Height-Adjustable Desk', 'Bookcase & Toy Cubbies', 'Safety Corner Guarded Bed']
-    },
-    {
-      id: 'bathroom',
-      num: '07',
-      name: 'Luxury Bathrooms',
-      tagline: 'Spa-Inspired Vanities & Marble Counters',
-      images: ['/bathroom_cat.png', '/kitchen_cat.png'],
-      desc: 'Spa-like vanity units and bathroom transformations featuring gold brass fittings, storage cabinets, LED mirrors, and clean marble slab counters.',
-      startingPrice: '₹65,000',
-      priceNumeric: 65000,
-      turnaround: '25 Days',
-      daysNumeric: 25,
-      filterTag: 'bathroom',
-      rating: 4.8,
-      reviewsCount: 89,
-      features: ['Anti-Fungus Moisture HDMR', 'Touch-Sensor Defogger Mirrors', 'Brushed Gold/Rose Hardware', 'Under-Sink Storage Shelves'],
-      scopeOfWork: ['Wall-Hung Vanity Storage', 'Backlit Touch Defogger Mirror', 'Tall Storage Linen Column', 'Waterproof WPC Shelving']
-    },
-    {
-      id: 'balcony',
-      num: '08',
-      name: 'Balcony Decks',
-      tagline: 'Green Urban Escapes & Coffee Lounges',
-      images: ['/balcony_cat.png', '/living_cat.png'],
-      desc: 'Charming green escape spaces with vertical wooden rafters, fake grass flooring, weather-proof swing chairs, and storage coffee decks.',
-      startingPrice: '₹45,000',
-      priceNumeric: 45000,
-      turnaround: '20 Days',
-      daysNumeric: 20,
-      filterTag: 'balcony',
-      rating: 4.9,
-      reviewsCount: 140,
-      features: ['All-Weather WPC Decking', 'Vertical Hydroponic Green Walls', 'Built-in Seating with Drawers', 'Ambient String & Solar Lights'],
-      scopeOfWork: ['WPC Wooden Deck Tile Flooring', 'Vertical Wooden Rafter Ceiling', 'Storage Bench Deck Seating', 'Weather-Resistant Wall Paneling']
-    }
-  ];
+  readonly categories: CategoryDetail[] = [];
 
   readonly materials: MaterialDetail[] = [
     {
@@ -279,34 +115,95 @@ export class CategoriesPage {
     }
   ];
 
+  projectsDataService = inject(ProjectsDataService);
   adminData = inject(AdminDataService);
+  private route = inject(ActivatedRoute);
+
+  readonly apiCategories = signal<CategoryDetail[]>([]);
+  readonly isBackendLoaded = signal<boolean>(false);
+  readonly errorMessage = signal<string | null>(null);
+
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const selectedType = params['type'] || params['filter'] || params['category'];
+      if (selectedType) {
+        const lower = selectedType.toLowerCase();
+        const match = this.filterOptions.find(opt => opt.value === lower);
+        if (match) {
+          this.activeFilter.set(match.value);
+        }
+      }
+    });
+
+    this.loadCategoriesFromBackend();
+  }
+
+  loadCategoriesFromBackend() {
+    this.isBackendLoaded.set(false);
+    this.errorMessage.set(null);
+
+    this.projectsDataService.getDetailCategoriesFromApi().subscribe({
+      next: (backendList) => {
+        const mapped = (backendList || []).map((b, idx) => this.mapBackendDetailCategoryToCategoryDetail(b, idx));
+        this.apiCategories.set(mapped);
+        this.isBackendLoaded.set(true);
+      },
+      error: (err) => {
+        console.error('Backend detail categories fetch error:', err);
+        this.apiCategories.set([]);
+        this.errorMessage.set('We are currently unable to reach our server to load design categories. Please check your network connection and try again.');
+        this.isBackendLoaded.set(true);
+      }
+    });
+  }
+
+  onImgError(event: Event) {
+    const img = event.target as HTMLImageElement;
+    if (img) {
+      // Fallback to real uploaded image from Spring Boot backend
+      img.src = `${API_CONFIG.baseUrl}/uploads/1340a24a-882e-4f3f-9cfe-9aa64c59d36f.avif`;
+    }
+  }
+
+  private mapBackendDetailCategoryToCategoryDetail(b: BackendDetailCategory, idx: number): CategoryDetail {
+    const defaultBackendImage = `${API_CONFIG.baseUrl}/uploads/1340a24a-882e-4f3f-9cfe-9aa64c59d36f.avif`;
+
+    const images = (b.images && b.images.length > 0)
+      ? b.images.map(img => this.projectsDataService.formatImageUrl(img))
+      : [defaultBackendImage];
+
+    const catType = (b.categoryType || 'all').toLowerCase();
+    let filterTag = catType;
+    if (catType.includes('kitchen')) filterTag = 'kitchen';
+    else if (catType.includes('living')) filterTag = 'living';
+    else if (catType.includes('kid') || catType.includes('child')) filterTag = 'kids';
+    else if (catType.includes('bedroom') || catType.includes('bed')) filterTag = 'bedroom';
+    else if (catType.includes('dining')) filterTag = 'dining';
+    else if (catType.includes('wardrobe')) filterTag = 'wardrobe';
+    else if (catType.includes('bath')) filterTag = 'bathroom';
+    else if (catType.includes('balcony')) filterTag = 'balcony';
+
+    return {
+      id: b.slug || `cat-${b.detailCategoryId}`,
+      num: String(b.displayOrder || (idx + 1)).padStart(2, '0'),
+      name: b.title || 'Interior Category',
+      tagline: b.subtitle || 'Bespoke Luxury & Modular Architecture',
+      images: images,
+      desc: b.description || '',
+      startingPrice: '₹1.4 Lakhs',
+      priceNumeric: 140000,
+      turnaround: b.duration || '15-20 Days',
+      daysNumeric: parseInt(b.duration || '20') || 20,
+      filterTag: filterTag,
+      rating: 4.9,
+      reviewsCount: 184,
+      features: (b.keyHighlights && b.keyHighlights.length > 0) ? b.keyHighlights : [],
+      scopeOfWork: ['Turnkey Design', 'Material Selection', 'On-Site Execution', 'Quality Testing']
+    };
+  }
 
   get allCategoriesList(): CategoryDetail[] {
-    const adminCats = this.adminData.categories();
-    if (adminCats && adminCats.length > 0) {
-      return adminCats.map((ac, index) => {
-        const defaultCat = this.categories.find(c => c.id === ac.id || c.filterTag.toLowerCase() === ac.type.toLowerCase() || c.id === ac.type.toLowerCase()) || this.categories[0];
-        const filterTag = defaultCat ? defaultCat.filterTag : (ac.type || ac.id || 'kitchen').toLowerCase().replace(/[^a-z]+/g, '');
-        return {
-          id: ac.id,
-          num: ac.num || String(index + 1).padStart(2, '0'),
-          name: ac.name,
-          tagline: ac.subtitle || defaultCat.tagline,
-          images: (ac.galleryImages && ac.galleryImages.length) ? ac.galleryImages : (ac.image ? [ac.image] : defaultCat.images),
-          desc: ac.description || defaultCat.desc,
-          startingPrice: ac.priceStarting || defaultCat.startingPrice,
-          priceNumeric: defaultCat.priceNumeric || 140000,
-          turnaround: ac.deliveryTime || defaultCat.turnaround,
-          daysNumeric: parseInt(ac.deliveryTime || '45') || 45,
-          filterTag: filterTag,
-          rating: defaultCat.rating || 4.9,
-          reviewsCount: defaultCat.reviewsCount || 150,
-          features: (ac.features && ac.features.length) ? ac.features : defaultCat.features,
-          scopeOfWork: defaultCat.scopeOfWork
-        };
-      });
-    }
-    return this.categories;
+    return this.apiCategories();
   }
 
   // Dynamic Filtering & Sorting
@@ -386,7 +283,10 @@ export class CategoriesPage {
     this.activeCardImageMap.update((map) => ({ ...map, [catId]: idx }));
   }
 
-  getActiveImage(cat: CategoryDetail): string {
+  getActiveImage(cat: CategoryDetail | null): string {
+    if (!cat || !cat.images || cat.images.length === 0) {
+      return `${API_CONFIG.baseUrl}/uploads/1340a24a-882e-4f3f-9cfe-9aa64c59d36f.avif`;
+    }
     const idx = this.activeCardImageMap()[cat.id] || 0;
     return cat.images[idx] || cat.images[0];
   }

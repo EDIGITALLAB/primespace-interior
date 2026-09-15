@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
+import { getApiBaseUrl } from '../../config/api.config';
 
 export interface StudioLocation {
   id: string;
@@ -30,28 +32,21 @@ export interface GalleryPhoto {
   styleUrl: './map-contact.css'
 })
 export class MapContact implements OnInit {
+  private http = inject(HttpClient);
+  private sanitizer = inject(DomSanitizer);
+  public consultationModalService = inject(ConsultationModalService);
+
   locations: StudioLocation[] = [
     {
       id: 'bengaluru',
       city: 'Bengaluru',
       name: 'Medahalli Flagship Studio',
       address: 'Palm Kingdom, House No. 15, Medahalli, Near Satsang Temple, KRPURAM, Avalahalli,\nBengaluru, Karnataka - 560049',
-      hours: 'Mon - Sun: 10:00 AM - 8:00 PM',
+      hours: 'Mon - Sun: 09:30 AM - 07:30 PM',
       phone: '+91 78997 45577',
       email: 'support.primespaceinterior@gmail.com',
-      mapEmbedUrl: 'https://maps.google.com/maps?q=Sizzle+Palm+Kingdom,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=16&ie=UTF8&iwloc=&output=embed',
-      directionsUrl: 'https://maps.google.com/?q=Palm+Kingdom,+House+No.+15,+Medahalli,+Near+Satsang+Temple,+KRPURAM,+Avalahalli,+Bengaluru,+Karnataka+560049'
-    },
-    {
-      id: 'bhubaneswar',
-      city: 'Bhubaneswar',
-      name: 'Janpath Luxury Experience Studio',
-      address: 'Plot No. 102, Janpath Rd, Saheed Nagar, Bhubaneswar, Odisha 751007',
-      hours: 'Mon - Sun: 10:00 AM - 8:00 PM',
-      phone: '+91 78997 45577',
-      email: 'support.primespaceinterior@gmail.com',
-      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3742.146816578912!2d85.83685437609204!3d20.294194981180296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1716300000000!5m2!1sen!2sin',
-      directionsUrl: 'https://maps.google.com/?q=Saheed+Nagar,Bhubaneswar'
+      mapEmbedUrl: 'https://maps.google.com/maps?q=Palm+Kingdom+Layout+Rd,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=17&ie=UTF8&iwloc=&output=embed',
+      directionsUrl: 'https://www.google.com/maps/place/Palm+Kingdom+Layout+Rd,+Medahalli,+Bengaluru,+Karnataka+560049/@13.0297809,77.7192436,18.75z/data=!4m6!3m5!1s0x3bae10489dbfe4f5:0x990d235cf9e5f3d3!8m2!3d13.0295397!4d77.7190998'
     }
   ];
 
@@ -59,7 +54,6 @@ export class MapContact implements OnInit {
   activeLocation!: StudioLocation;
   currentMapType: 'roadmap' | 'satellite' = 'roadmap';
 
-  // Studio Photos Modal State
   showGalleryModal: boolean = false;
   activePhotoIndex: number = 0;
   galleryPhotos: GalleryPhoto[] = [
@@ -85,14 +79,82 @@ export class MapContact implements OnInit {
     }
   ];
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    public consultationModalService: ConsultationModalService
-  ) { }
+  private buildEmbedMapUrl(urlStr?: string, addressStr?: string, cityStr?: string): string {
+    const raw = (urlStr || '').trim();
+
+    if (raw.includes('output=embed') || raw.includes('/embed')) {
+      return raw;
+    }
+
+    const coordMatch3d4d = raw.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/);
+    if (coordMatch3d4d) {
+      return `https://maps.google.com/maps?q=${coordMatch3d4d[1]},${coordMatch3d4d[2]}&hl=en&z=17&output=embed`;
+    }
+
+    const coordMatchAt = raw.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (coordMatchAt) {
+      return `https://maps.google.com/maps?q=${coordMatchAt[1]},${coordMatchAt[2]}&hl=en&z=17&output=embed`;
+    }
+
+    const placeMatch = raw.match(/\/place\/([^\/@]+)/);
+    if (placeMatch) {
+      const placeName = decodeURIComponent(placeMatch[1].replace(/\+/g, ' '));
+      return `https://maps.google.com/maps?q=${encodeURIComponent(placeName)}&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+    }
+
+    const fullAddr = (addressStr || '').trim();
+    if (fullAddr.toLowerCase().includes('medahalli') || fullAddr.toLowerCase().includes('palm kingdom')) {
+      return `https://maps.google.com/maps?q=Palm+Kingdom+Layout+Rd,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+    }
+
+    return `https://maps.google.com/maps?q=${encodeURIComponent(fullAddr + ' ' + (cityStr || ''))}&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+  }
 
   ngOnInit() {
     this.activeLocation = this.locations[0];
     this.updateActiveMapUrl();
+
+    this.http.get<any[]>(`${getApiBaseUrl()}/locations?activeOnly=true`).subscribe({
+      next: (data) => {
+        if (data && data.length > 0) {
+          const mapped: StudioLocation[] = data.map((loc) => {
+            const cityClean = (loc.city || 'Studio').trim();
+            const id = loc.locationId ? `loc_${loc.locationId}` : cityClean.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            const directions = loc.googleMapUrl && loc.googleMapUrl.trim()
+              ? loc.googleMapUrl.trim()
+              : `https://maps.google.com/?q=${encodeURIComponent(loc.address || loc.branchName)}`;
+
+            const mapEmbed = this.buildEmbedMapUrl(loc.googleMapUrl, loc.address, loc.city);
+
+            const hoursStr = (loc.workingDays ? loc.workingDays + ': ' : 'Mon - Sun: ') +
+              (loc.openingTime || '09:30 AM') + ' - ' + (loc.closingTime || '07:30 PM');
+
+            return {
+              id,
+              city: cityClean,
+              name: loc.branchName || `${cityClean} Experience Studio`,
+              address: loc.address || '',
+              hours: hoursStr,
+              phone: loc.phone || '+91 78997 45577',
+              email: loc.email || 'support.primespaceinterior@gmail.com',
+              mapEmbedUrl: mapEmbed,
+              directionsUrl: directions
+            };
+          });
+
+          this.locations = mapped;
+          if (this.locations.length > 0) {
+            this.activeLocationId = this.locations[0].id;
+            this.activeLocation = this.locations[0];
+            this.updateActiveMapUrl();
+          }
+        }
+      },
+      error: (err) => {
+        console.warn('Could not fetch home map locations from backend, using fallback:', err);
+      }
+    });
   }
 
   selectLocation(id: string) {

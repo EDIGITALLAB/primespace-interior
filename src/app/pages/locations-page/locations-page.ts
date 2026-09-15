@@ -1,8 +1,10 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
+import { getApiBaseUrl } from '../../config/api.config';
 
 export interface StudioLocationDetail {
   id: string;
@@ -39,22 +41,27 @@ export interface StudioLocationDetail {
   styleUrl: './locations-page.css',
 })
 export class LocationsPage implements OnInit {
+  private http = inject(HttpClient);
+  private sanitizer = inject(DomSanitizer);
+  private route = inject(ActivatedRoute);
+  public consultationModalService = inject(ConsultationModalService);
+
   readonly activeLocationId = signal<string>('bengaluru');
   readonly selectedPhotoIndex = signal<number>(0);
   readonly isGalleryOpen = signal<boolean>(false);
 
-  readonly locationsList: StudioLocationDetail[] = [
+  locationsList: StudioLocationDetail[] = [
     {
       id: 'bengaluru',
       city: 'Bengaluru',
       name: 'Medahalli Flagship Studio',
       tagline: 'Silicon Valley Luxury Experience Hub',
       address: 'Palm Kingdom, House No. 15, Medahalli, Near Satsang Temple, KRPURAM, Avalahalli,\nBengaluru, Karnataka - 560049',
-      hours: 'Mon - Sun: 10:00 AM - 8:00 PM',
+      hours: 'Mon - Sun: 09:30 AM - 07:30 PM',
       phone: '+91 78997 45577',
       email: 'support.primespaceinterior@gmail.com',
-      mapEmbedUrl: 'https://maps.google.com/maps?q=Sizzle+Palm+Kingdom,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=16&ie=UTF8&iwloc=&output=embed',
-      directionsUrl: 'https://maps.google.com/?q=Palm+Kingdom,+House+No.+15,+Medahalli,+Near+Satsang+Temple,+KRPURAM,+Avalahalli,+Bengaluru,+Karnataka+560049',
+      mapEmbedUrl: 'https://maps.google.com/maps?q=Palm+Kingdom+Layout+Rd,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=17&ie=UTF8&iwloc=&output=embed',
+      directionsUrl: 'https://www.google.com/maps/place/Palm+Kingdom+Layout+Rd,+Medahalli,+Bengaluru,+Karnataka+560049/@13.0297809,77.7192436,18.75z/data=!4m6!3m5!1s0x3bae10489dbfe4f5:0x990d235cf9e5f3d3!8m2!3d13.0295397!4d77.7190998',
       whatsappMessage: 'Hello Primespace Interior team, I am interested in your interior design services and would like to schedule a consultation with your design expert.',
       highlights: [
         'Full-Scale 1:1 Modular Kitchen Live Display',
@@ -90,72 +97,136 @@ export class LocationsPage implements OnInit {
           imageUrl: '/eleganza_plus_kitchen.png'
         }
       ]
-    },
-    {
-      id: 'bhubaneswar',
-      city: 'Bhubaneswar',
-      name: 'Janpath Luxury Experience Studio',
-      tagline: 'Smart City Design & Architecture Center',
-      address: 'Plot No. 102, Janpath Rd, Saheed Nagar, Bhubaneswar, Odisha 751007',
-      hours: 'Mon - Sun: 10:00 AM - 8:00 PM',
-      phone: '+91 78997 45577',
-      email: 'support.primespaceinterior@gmail.com',
-      mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.146816578912!2d85.83685437609204!3d20.294194981180296!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1909e20a9a1175%3A0x673934336c1c876!2sSaheed%20Nagar%2C%20Bhubaneswar%2C%20Odisha%20751007!5e0!3m2!1sen!2sin!4v1716300000000!5m2!1sen!2sin',
-      directionsUrl: 'https://maps.google.com/?q=Saheed+Nagar,Bhubaneswar',
-      whatsappMessage: 'Hello Primespace Interior team, I am interested in your interior design services and would like to schedule a consultation with your design expert.',
-      highlights: [
-        'Smart Lighting & Automation Mockup Zone',
-        'Modular Sliding Wardrobe & Glass Closet Gallery',
-        'Custom Dining Table & Italian Slab Gallery',
-        'Private Client Consultation Suites'
-      ],
-      headArchitect: {
-        name: 'Ar. Sourav Mohanty',
-        role: 'Senior Architectural Director - Bhubaneswar',
-        exp: '12+ Years in Commercial & Luxury Residential',
-        avatarUrl: '/dining_cat.png'
-      },
-      photos: [
-        {
-          title: 'Janpath Experience Studio Entry',
-          subtitle: 'Welcome lounge featuring fluted panelling and warm ambient LED profiles.',
-          imageUrl: '/hero_kitchen.png'
-        },
-        {
-          title: 'Smart Wardrobe & Glass Closet Display',
-          subtitle: 'Sensor lighting rods and smoked glass sliding closet doors.',
-          imageUrl: '/wardrobe_cat.png'
-        },
-        {
-          title: 'Dining & Crockery Unit Setup',
-          subtitle: 'Marble-top dining tables with custom crockery bars.',
-          imageUrl: '/dining_cat.png'
-        },
-        {
-          title: 'Material Finishing Board Display',
-          subtitle: 'Explore 100% boiling waterproof HDMR samples & edge banding.',
-          imageUrl: '/essential_kitchen.png'
-        }
-      ]
     }
   ];
 
-  constructor(
-    private route: ActivatedRoute,
-    private sanitizer: DomSanitizer,
-    public consultationModalService: ConsultationModalService
-  ) {}
+  private buildEmbedMapUrl(urlStr?: string, addressStr?: string, cityStr?: string): string {
+    const raw = (urlStr || '').trim();
+
+    if (raw.includes('output=embed') || raw.includes('/embed')) {
+      return raw;
+    }
+
+    const coordMatch3d4d = raw.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/);
+    if (coordMatch3d4d) {
+      return `https://maps.google.com/maps?q=${coordMatch3d4d[1]},${coordMatch3d4d[2]}&hl=en&z=17&output=embed`;
+    }
+
+    const coordMatchAt = raw.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+    if (coordMatchAt) {
+      return `https://maps.google.com/maps?q=${coordMatchAt[1]},${coordMatchAt[2]}&hl=en&z=17&output=embed`;
+    }
+
+    const placeMatch = raw.match(/\/place\/([^\/@]+)/);
+    if (placeMatch) {
+      const placeName = decodeURIComponent(placeMatch[1].replace(/\+/g, ' '));
+      return `https://maps.google.com/maps?q=${encodeURIComponent(placeName)}&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+    }
+
+    const fullAddr = (addressStr || '').trim();
+    if (fullAddr.toLowerCase().includes('medahalli') || fullAddr.toLowerCase().includes('palm kingdom')) {
+      return `https://maps.google.com/maps?q=Palm+Kingdom+Layout+Rd,+Medahalli,+Bengaluru,+Karnataka+560049&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+    }
+
+    return `https://maps.google.com/maps?q=${encodeURIComponent(fullAddr + ' ' + (cityStr || ''))}&t=&z=17&ie=UTF8&iwloc=&output=embed`;
+  }
 
   ngOnInit() {
-    this.locationsList.forEach(loc => {
-      loc.safeMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(loc.mapEmbedUrl);
+    this.sanitizeMapUrls();
+
+    this.http.get<any[]>(`${getApiBaseUrl()}/locations?activeOnly=true`).subscribe({
+      next: (data) => {
+        if (data && data.length > 0) {
+          const mapped: StudioLocationDetail[] = data.map((loc) => {
+            const cityClean = (loc.city || 'Studio').trim();
+            const id = cityClean.toLowerCase().replace(/[^a-z0-9]/g, '');
+
+            const directions = loc.googleMapUrl && loc.googleMapUrl.trim()
+              ? loc.googleMapUrl.trim()
+              : `https://maps.google.com/?q=${encodeURIComponent(loc.address || loc.branchName)}`;
+
+            const mapEmbed = this.buildEmbedMapUrl(loc.googleMapUrl, loc.address, loc.city);
+
+            const hoursStr = (loc.workingDays ? loc.workingDays + ': ' : 'Mon - Sun: ') +
+              (loc.openingTime || '09:30 AM') + ' - ' + (loc.closingTime || '07:30 PM');
+
+            return {
+              id,
+              city: cityClean,
+              name: loc.branchName || `${cityClean} Experience Studio`,
+              tagline: loc.isHeadOffice ? 'Principal Head Office & Experience Hub' : 'Luxury Interior Design Studio',
+              address: loc.address || '',
+              hours: hoursStr,
+              phone: loc.phone || '+91 78997 45577',
+              email: loc.email || 'support.primespaceinterior@gmail.com',
+              mapEmbedUrl: mapEmbed,
+              directionsUrl: directions,
+              whatsappMessage: 'Hello Primespace Interior team, I am interested in your interior design services and would like to schedule a consultation with your design expert.',
+              highlights: [
+                'Full-Scale 1:1 Modular Kitchen Live Display',
+                '200+ Premium Hardware & Soft-Close Testing Bay',
+                '500+ Natural Veneer, Acrylic & Marble Swatches',
+                'Dedicated 3D VR Walkthrough Lounge'
+              ],
+              headArchitect: {
+                name: 'Ar. Ananya Deshmukh',
+                role: `Chief Design Principal - ${cityClean}`,
+                exp: '14+ Years in Luxury Villa Planning',
+                avatarUrl: '/hero_living_room.png'
+              },
+              photos: [
+                {
+                  title: 'Luxury Living & Lounge Display',
+                  subtitle: 'Experience our bespoke living room layouts with premium Italian upholstery & lighting.',
+                  imageUrl: '/living_cat.png'
+                },
+                {
+                  title: 'Bespoke Modular Kitchen Unit',
+                  subtitle: 'Soft-close acrylic cabinetry with quartz countertops and built-in appliances.',
+                  imageUrl: '/kitchen_cat.png'
+                },
+                {
+                  title: 'Bespoke Master Suite Showcase',
+                  subtitle: 'Plush velvet headboards, integrated warm lighting & walk-in closet mockups.',
+                  imageUrl: '/bedroom_cat.png'
+                },
+                {
+                  title: 'Material & Texture Sample Lounge',
+                  subtitle: 'Touch & feel hundreds of veneer, marble, acrylic, and fabric swatches in person.',
+                  imageUrl: '/eleganza_plus_kitchen.png'
+                }
+              ]
+            };
+          });
+
+          this.locationsList = mapped;
+          this.sanitizeMapUrls();
+
+          const activeLocExists = this.locationsList.some(l => l.id === this.activeLocationId());
+          if (!activeLocExists && this.locationsList.length > 0) {
+            this.activeLocationId.set(this.locationsList[0].id);
+          }
+        }
+      },
+      error: (err) => {
+        console.warn('Could not fetch office locations from backend, using fallback:', err);
+      }
     });
 
     this.route.paramMap.subscribe(params => {
       const cityParam = params.get('city')?.toLowerCase();
-      if (cityParam && (cityParam === 'bengaluru' || cityParam === 'bhubaneswar')) {
-        this.activeLocationId.set(cityParam);
+      if (cityParam) {
+        const found = this.locationsList.find(l => l.city.toLowerCase().includes(cityParam) || l.id.toLowerCase().includes(cityParam));
+        if (found) {
+          this.activeLocationId.set(found.id);
+        }
       }
+    });
+  }
+
+  private sanitizeMapUrls() {
+    this.locationsList.forEach(loc => {
+      loc.safeMapUrl = this.sanitizer.bypassSecurityTrustResourceUrl(loc.mapEmbedUrl);
     });
   }
 

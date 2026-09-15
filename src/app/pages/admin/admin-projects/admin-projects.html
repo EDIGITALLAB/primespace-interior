@@ -58,8 +58,15 @@
           <tr *ngFor="let p of filteredProjects">
             <!-- Cover & Title (Clickable to Gallery) -->
             <td class="ps-4">
-              <a [routerLink]="['/admin/gallery']" [queryParams]="{ projectId: p.id }" class="d-flex align-items-center gap-3 text-decoration-none text-dark group" title="Click to view apartment gallery">
-                <img [src]="p.coverImage" (error)="$any($event.target).src = '/hero_living_room.png'" [alt]="p.title" class="rounded-3 object-fit-cover proj-thumb shadow-xs cursor-pointer" style="width: 56px; height: 42px;">
+              <a [routerLink]="['/admin/photo-and-gallery']" [queryParams]="{ projectId: p.id }" class="d-flex align-items-center gap-3 text-decoration-none text-dark group" title="Click to view apartment gallery">
+                <ng-container *ngIf="p.coverImage; else tableNoImg">
+                  <img [src]="p.coverImage" [alt]="p.title" class="rounded-3 object-fit-cover proj-thumb shadow-xs cursor-pointer" style="width: 56px; height: 42px;">
+                </ng-container>
+                <ng-template #tableNoImg>
+                  <div class="rounded-3 bg-light border text-muted d-flex align-items-center justify-content-center flex-shrink-0 font-size-micro fw-bold" style="width: 56px; height: 42px; font-size: 10px;">
+                    No Image
+                  </div>
+                </ng-template>
                 <div>
                   <div class="fw-bold text-dark font-size-sm hover-maroon text-decoration-underline-hover transition-all">{{ p.title }}</div>
                   <span class="text-muted font-size-micro d-block text-truncate max-w-260">{{ p.subtitle }}</span>
@@ -93,8 +100,8 @@
             <!-- Actions -->
             <td class="pe-4 text-end text-nowrap">
               <div class="d-inline-flex align-items-center gap-1">
-                <a [routerLink]="['/admin/gallery']" [queryParams]="{ projectId: p.id }" class="btn btn-sm btn-maroon-sm px-2.5 py-1 font-size-micro rounded-2 text-white text-decoration-none text-nowrap" title="Manage Block Photos">
-                  <i class="fa-solid fa-camera me-1"></i>Photos
+                <a [routerLink]="['/admin/photo-and-gallery']" [queryParams]="{ projectId: p.id }" class="btn btn-sm btn-maroon-sm px-2.5 py-1 font-size-micro rounded-2 text-white text-decoration-none text-nowrap" title="Manage Block Photos & Videos">
+                  <i class="fa-solid fa-camera me-1"></i>Photo / Video
                 </a>
 
                 <button type="button" class="btn btn-sm btn-outline-primary px-2 py-1 font-size-micro rounded-2 text-nowrap" (click)="openEditModal(p)" title="Edit Project">
@@ -130,17 +137,17 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
 
-      <form (submit)="saveProject($event)" class="p-4 overflow-y-auto" style="max-height: 80vh;">
+      <form ngNativeValidate (submit)="saveProject($event)" class="p-4 overflow-y-auto" style="max-height: 80vh;">
         
         <div class="row g-3">
           <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Title</label>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Title <span class="text-danger">*</span></label>
             <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Royale Villa" [ngModel]="title()" (ngModelChange)="title.set($event)" name="title" required>
           </div>
 
           <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Type</label>
-            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="projectType()" (ngModelChange)="projectType.set($event)" name="projectType">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Type <span class="text-danger">*</span></label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="projectType()" (ngModelChange)="projectType.set($event)" name="projectType" required>
               <option value="Villa">Villa</option>
               <option value="Penthouse">Penthouse</option>
               <option value="Duplex">Duplex</option>
@@ -149,39 +156,120 @@
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Tagline</label>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Tagline <span class="text-danger">*</span></label>
             <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Ultra-Luxury 4BHK Villa Interior" [ngModel]="subtitle()" (ngModelChange)="subtitle.set($event)" name="subtitle" required>
           </div>
 
           <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Location Address</label>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Location Address <span class="text-danger">*</span></label>
             <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Indiranagar, Bangalore" [ngModel]="location()" (ngModelChange)="location.set($event)" name="location" required>
           </div>
 
           <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">City</label>
-            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="city()" (ngModelChange)="city.set($event)" name="city">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">City <span class="text-danger">*</span></label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="city()" (ngModelChange)="city.set($event)" name="city" required>
               <option value="Bangalore">Bangalore</option>
               <option value="Bhubaneswar">Bhubaneswar</option>
             </select>
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Status</label>
-            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="status()" (ngModelChange)="status.set($event)" name="status">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Status <span class="text-danger">*</span></label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="status()" (ngModelChange)="status.set($event)" name="status" required>
               <option value="completed">Completed & Handed Over</option>
               <option value="ongoing">Live Construction Site</option>
             </select>
           </div>
 
+          <!-- Cover Image File Upload & URL Input -->
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Cover Image URL</label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="/luxury_living_room_1.png" [ngModel]="coverImage()" (ngModelChange)="coverImage.set($event)" name="coverImage" required>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Cover Image <span class="text-danger">*</span></label>
+            <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center gap-3 p-3 bg-light rounded-3 border border-dashed transition-all"
+                 [ngClass]="isDragging() ? 'border-maroon bg-purple-tint shadow-sm' : 'border-gray-300'"
+                 (dragover)="onDragOver($event)"
+                 (dragleave)="onDragLeave($event)"
+                 (drop)="onFileDrop($event)">
+              <!-- Live Image Thumbnail Preview or No Image Box -->
+              <div class="position-relative overflow-hidden rounded-3 border bg-white flex-shrink-0 shadow-xs d-flex align-items-center justify-content-center" style="width: 84px; height: 62px;">
+                <ng-container *ngIf="coverImage(); else modalNoCover">
+                  <img [src]="coverImage()" alt="Cover Preview" class="w-100 h-100 object-fit-cover">
+                </ng-container>
+                <ng-template #modalNoCover>
+                  <span class="text-muted font-size-micro fw-bold text-center px-1">No Image</span>
+                </ng-template>
+              </div>
+
+              <!-- Upload Button & File Input -->
+              <div class="flex-grow-1 w-100">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <button type="button" class="btn btn-sm btn-maroon-primary font-size-xs rounded-2 px-3 py-1.5 d-inline-flex align-items-center gap-2 shadow-xs" (click)="coverFileInput.click()">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <span>Click or Drag & Drop Image File</span>
+                  </button>
+                  <input #coverFileInput type="file" accept="image/*" class="d-none" (change)="onCoverImageUpload($event)">
+                  <span class="text-muted font-size-micro">or enter image URL / path below</span>
+                </div>
+
+                <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. /hero_living_room.png or https://..." [ngModel]="coverImage()" (ngModelChange)="coverImage.set($event)" name="coverImage" required>
+              </div>
+            </div>
+          </div>
+
+          <!-- Walkthrough Video (Multiple MP4 Files or Video URLs with Drag & Drop) -->
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Walkthrough Videos (Drag & Drop or Multi-Upload)</label>
+            <div class="p-3 bg-light rounded-3 border border-dashed transition-all"
+                 [ngClass]="isVideoDragging() ? 'border-maroon bg-purple-tint shadow-sm' : 'border-gray-300'"
+                 (dragover)="onVideoDragOver($event)"
+                 (dragleave)="onVideoDragLeave($event)"
+                 (drop)="onVideoDrop($event)">
+              
+              <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center justify-content-between gap-2 mb-3">
+                <div class="d-flex align-items-center gap-2">
+                  <button type="button" class="btn btn-sm btn-outline-dark font-size-xs rounded-2 px-3 py-1.5 d-inline-flex align-items-center gap-2" (click)="triggerVideoPicker($event, videoFileInput)">
+                    <i class="fa-solid fa-file-video text-emerald"></i>
+                    <span>Click or Drag & Drop MP4 Video Files</span>
+                  </button>
+                  <input #videoFileInput type="file" accept="video/mp4,video/webm,video/quicktime" multiple class="d-none" (change)="onVideoFileUpload($event)">
+                </div>
+                <span class="text-muted font-size-micro">Supports multiple MP4 files & YouTube links</span>
+              </div>
+
+              <!-- Paste Video URL row -->
+              <div class="input-group input-group-sm mb-3">
+                <input type="text" class="form-control font-size-xs rounded-start-3 border shadow-none" placeholder="Paste YouTube link or MP4 URL (e.g. https://youtu.be/...)" [ngModel]="videoInputUrl()" (ngModelChange)="videoInputUrl.set($event)" (keyup.enter)="addVideoUrlFromInput($event)" name="videoInputUrl">
+                <button type="button" class="btn btn-maroon-primary font-size-xs px-3 rounded-end-3" (click)="addVideoUrlFromInput($event)">
+                  <i class="fa-solid fa-plus me-1"></i>Add Video URL
+                </button>
+              </div>
+
+              <!-- Added Video List / Badges -->
+              <div *ngIf="videoUrls().length > 0" class="d-flex flex-column gap-2 mt-2">
+                <div *ngFor="let vid of videoUrls(); let idx = index" class="d-flex align-items-center justify-content-between p-2 bg-white rounded-3 border shadow-xs">
+                  <div class="d-flex align-items-center gap-2 text-truncate me-2">
+                    <span class="badge bg-emerald text-white rounded-circle p-1.5 d-inline-flex align-items-center justify-content-center" style="width: 24px; height: 24px;">
+                      <i class="fa-solid fa-play font-size-micro"></i>
+                    </span>
+                    <span class="font-size-xs text-dark fw-medium text-truncate max-w-360" [title]="vid">
+                      {{ vid.startsWith('data:video/') ? 'Uploaded MP4 Video #' + (idx + 1) : vid }}
+                    </span>
+                  </div>
+                  <button type="button" class="btn btn-sm btn-link text-danger p-0 px-2 text-decoration-none" (click)="removeVideoUrl(idx)" title="Remove video">
+                    <i class="fa-solid fa-xmark font-size-sm"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div *ngIf="videoUrls().length === 0" class="text-center py-2 text-muted font-size-micro">
+                No videos added yet. Drag & drop video files above or paste a video URL.
+              </div>
+
+            </div>
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Description</label>
-            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="3" placeholder="Describe the interior materials, ceiling paneling, modular fittings..." [ngModel]="description()" (ngModelChange)="description.set($event)" name="description"></textarea>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Description <span class="text-danger">*</span></label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="3" placeholder="Describe the interior materials, ceiling paneling, modular fittings..." [ngModel]="description()" (ngModelChange)="description.set($event)" name="description" required></textarea>
           </div>
         </div>
 
@@ -196,5 +284,18 @@
 
     </div>
   </div>
+
+  <!-- REUSABLE DELETE CONFIRMATION MODAL -->
+  <app-confirm-modal
+    [isOpen]="showDeleteModal()"
+    title="Delete Project?"
+    message="Are you sure you want to delete the project"
+    [itemName]="deletingItemName()"
+    confirmText="Delete Project"
+    cancelText="Cancel"
+    type="danger"
+    (confirm)="confirmDelete()"
+    (cancel)="closeDeleteModal()">
+  </app-confirm-modal>
 
 </div>

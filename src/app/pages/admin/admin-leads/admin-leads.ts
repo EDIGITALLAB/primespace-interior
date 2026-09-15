@@ -1,17 +1,22 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdminDataService, AdminLead } from '../../../services/admin-data.service';
+import { ConfirmModal } from '../../../components/confirm-modal/confirm-modal';
 
 @Component({
   selector: 'app-admin-leads',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ConfirmModal],
   templateUrl: './admin-leads.html',
   styleUrl: './admin-leads.css'
 })
-export class AdminLeads {
+export class AdminLeads implements OnInit {
   adminData = inject(AdminDataService);
+
+  ngOnInit() {
+    this.adminData.loadLeadsFromBackend().subscribe();
+  }
 
   searchQuery = signal('');
   statusFilter = signal('all');
@@ -20,6 +25,11 @@ export class AdminLeads {
   activeNoteLeadId = signal('');
   activeNoteLeadName = signal('');
   noteInput = signal('');
+
+  // Delete Modal State
+  showDeleteModal = signal(false);
+  deletingId = signal('');
+  deletingItemName = signal('');
 
   openNoteModal(lead: AdminLead) {
     this.activeNoteLeadId.set(lead.id);
@@ -34,7 +44,28 @@ export class AdminLeads {
 
   saveNote() {
     this.adminData.updateLeadNotes(this.activeNoteLeadId(), this.noteInput());
+    this.adminData.showToast('Lead follow-up note saved successfully!', 'success');
     this.closeNoteModal();
+  }
+
+  openDeleteModal(lead: AdminLead) {
+    this.deletingId.set(lead.id);
+    this.deletingItemName.set(lead.name);
+    this.showDeleteModal.set(true);
+  }
+
+  closeDeleteModal() {
+    this.showDeleteModal.set(false);
+    this.deletingId.set('');
+    this.deletingItemName.set('');
+  }
+
+  confirmDelete() {
+    if (this.deletingId()) {
+      this.adminData.deleteLead(this.deletingId());
+      this.adminData.showToast('Lead inquiry deleted successfully!', 'danger');
+    }
+    this.closeDeleteModal();
   }
 
   get filteredLeads(): AdminLead[] {
@@ -76,11 +107,13 @@ export class AdminLeads {
 
   updateStatus(id: string, status: AdminLead['status']) {
     this.adminData.updateLeadStatus(id, status);
+    this.adminData.showToast('Lead status updated successfully!', 'info');
   }
 
   deleteLead(id: string) {
-    if (confirm('Delete this inquiry record?')) {
-      this.adminData.deleteLead(id);
+    const l = this.adminData.leads().find(item => item.id === id);
+    if (l) {
+      this.openDeleteModal(l);
     }
   }
 

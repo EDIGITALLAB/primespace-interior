@@ -38,8 +38,10 @@
         <!-- Password Input -->
         <div class="mb-4">
           <div class="d-flex align-items-center justify-content-between mb-1">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-0">Password</label>
-            <span class="font-size-micro text-maroon cursor-pointer font-weight-semibold" (click)="fillDemo()">Autofill Demo</span>
+            <label class="form-label font-size-xs font-weight-bold text-dark m-0">Password</label>
+            <button type="button" class="btn btn-link p-0 font-size-micro text-maroon text-decoration-none fw-bold shadow-none" (click)="openForgotPassword()">
+              Forgot Password?
+            </button>
           </div>
           <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden border">
             <span class="input-group-text bg-light border-0 text-muted ps-3">
@@ -61,13 +63,100 @@
         </button>
       </form>
 
-      <!-- Quick Demo Credentials Hint -->
-      <div class="demo-box mt-4 p-3 rounded-3 bg-light border border-gray-200 text-center">
-        <div class="font-size-micro text-uppercase font-weight-bold text-muted mb-1">Default Demo Credentials</div>
-        <div class="font-size-xs font-weight-bold text-dark mb-0">Email: <code>admin@primespace.com</code> | Pass: <code>admin123</code></div>
-      </div>
-
     </div>
 
   </div>
+
+  <!-- FORGOT PASSWORD MODAL (CONNECTED TO BACKEND OTP RESET API) -->
+  <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showForgotPasswordModal()">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-440 overflow-hidden animate-zoom-in">
+      
+      <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 fw-black text-dark font-size-base d-flex align-items-center gap-2">
+          <i class="fa-solid fa-key text-maroon"></i> Reset Admin Password
+        </h6>
+        <button type="button" class="btn-close" (click)="closeForgotPassword()"></button>
+      </div>
+
+      <div class="p-4">
+
+        <!-- Error & Success Alerts -->
+        <div *ngIf="forgotError()" class="alert alert-danger font-size-xs rounded-3 d-flex align-items-center gap-2 mb-3 py-2 px-3">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>{{ forgotError() }}</span>
+        </div>
+
+        <div *ngIf="forgotSuccess()" class="alert alert-success font-size-xs rounded-3 d-flex align-items-center gap-2 mb-3 py-2 px-3">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>{{ forgotSuccess() }}</span>
+        </div>
+
+        <!-- Step 1: Request OTP -->
+        <form *ngIf="forgotStep() === 1" (submit)="requestOtp($event)">
+          <p class="font-size-xs text-muted mb-3">Enter your registered Admin Email address to receive a 6-digit verification OTP.</p>
+
+          <div class="mb-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Admin Email Address</label>
+            <div class="input-group search-input-group shadow-xs rounded-3 overflow-hidden border">
+              <span class="input-group-text bg-light border-0 text-muted ps-3">
+                <i class="fa-solid fa-envelope font-size-xs"></i>
+              </span>
+              <input type="email" class="form-control border-0 shadow-none font-size-sm py-2" placeholder="admin@primespace.com" [ngModel]="forgotEmail()" (ngModelChange)="forgotEmail.set($event)" name="forgotEmail" required>
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-end gap-2">
+            <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeForgotPassword()">Cancel</button>
+            <button type="submit" class="btn btn-maroon-submit rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white" [disabled]="isForgotLoading()">
+              <span *ngIf="isForgotLoading()" class="spinner-border spinner-border-sm me-1"></span>
+              <i *ngIf="!isForgotLoading()" class="fa-solid fa-paper-plane me-1"></i> Send OTP
+            </button>
+          </div>
+        </form>
+
+        <!-- Step 2: Verify OTP & Enter New Password -->
+        <form *ngIf="forgotStep() === 2" (submit)="submitResetPassword($event)">
+          <p class="font-size-xs text-muted mb-3">Enter the 6-digit OTP sent to <strong>{{ forgotEmail() }}</strong> and set your new password.</p>
+
+          <div class="mb-3">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">6-Digit Verification OTP</label>
+            <input type="text" class="form-control font-size-sm rounded-3 border shadow-none text-center fw-extrabold tracking-widest" placeholder="123456" maxlength="6" [ngModel]="forgotOtp()" (ngModelChange)="forgotOtp.set($event)" name="forgotOtp" required>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">New Password</label>
+            <input type="password" class="form-control font-size-sm rounded-3 border shadow-none" placeholder="Min 6 characters" [ngModel]="forgotNewPassword()" (ngModelChange)="forgotNewPassword.set($event)" name="forgotNewPassword" required>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Confirm New Password</label>
+            <input type="password" class="form-control font-size-sm rounded-3 border shadow-none" placeholder="Re-type new password" [ngModel]="forgotConfirmPassword()" (ngModelChange)="forgotConfirmPassword.set($event)" name="forgotConfirmPassword" required>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-end gap-2">
+            <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeForgotPassword()">Cancel</button>
+            <button type="submit" class="btn btn-maroon-submit rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white" [disabled]="isForgotLoading()">
+              <span *ngIf="isForgotLoading()" class="spinner-border spinner-border-sm me-1"></span>
+              <i *ngIf="!isForgotLoading()" class="fa-solid fa-lock me-1"></i> Reset Password
+            </button>
+          </div>
+        </form>
+
+        <!-- Step 3: Success Confirmation -->
+        <div *ngIf="forgotStep() === 3" class="text-center py-3">
+          <div class="mb-3 text-success">
+            <i class="fa-solid fa-circle-check font-size-3xl"></i>
+          </div>
+          <h5 class="fw-bold text-dark mb-2">Password Reset Successful!</h5>
+          <p class="font-size-xs text-muted mb-4">Your admin password has been updated in database. You can now sign in using your new password.</p>
+          <button type="button" class="btn btn-maroon-submit rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white w-100" (click)="closeForgotPassword()">
+            Back To Sign In
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
 </div>
