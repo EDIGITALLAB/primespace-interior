@@ -1,14 +1,17 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
+import { AdminDataService, OfficeLocation } from '../../services/admin-data.service';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css',
 })
 export class Navbar {
+  adminData = inject(AdminDataService);
   isScrolled = false;
   isSideMenuOpen = false;
   isMobileMenuOpen = false;
@@ -22,6 +25,18 @@ export class Navbar {
   };
 
   constructor(public consultationModalService: ConsultationModalService) {}
+
+  get navLocations(): OfficeLocation[] {
+    const locs = this.adminData.officeLocations();
+    return locs.filter(loc => loc.status !== 'INACTIVE');
+  }
+
+  getCitySlug(city: string): string {
+    if (!city) return 'bengaluru';
+    const clean = city.trim().toLowerCase();
+    if (clean === 'bangalore' || clean === 'bengaluru') return 'bengaluru';
+    return clean.replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  }
 
   @HostListener('window:scroll', [])
   onWindowScroll() {

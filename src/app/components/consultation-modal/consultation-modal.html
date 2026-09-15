@@ -103,8 +103,9 @@
               <i class="fa-solid fa-location-dot field-icon text-purple"></i>
               <select id="modalCitySelect" class="form-select modal-input with-icon text-truncate" required #modalCity>
                 <option value="" disabled selected>Select Location</option>
-                <option value="Bangalore Studio">Bangalore</option>
-                <option value="Bhubaneswar Studio">Bhubaneswar</option>
+                @for (loc of consultationLocations; track loc.locationId || loc.city) {
+                  <option [value]="loc.city + ' Studio'">{{ loc.city }}</option>
+                }
               </select>
             </div>
           </div>

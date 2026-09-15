@@ -153,16 +153,16 @@
 }
 
 .btn-logout {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: #dc2626 !important;
+  border: 1px solid #dc2626 !important;
   color: #ffffff !important;
   font-weight: 700;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .btn-logout:hover {
-  background: #dc2626 !important;
-  border-color: #dc2626 !important;
+  background: #b91c1c !important;
+  border-color: #b91c1c !important;
   color: #ffffff !important;
   transform: translateY(-1px);
   box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
@@ -243,5 +243,25 @@
   .admin-main-wrapper {
     margin-left: 250px;
     min-height: 100vh;
+  }
+}
+
+.animate-slide-down {
+  animation: slideDownToast 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.admin-toast-notification,
+.admin-toast-notification * {
+  color: #ffffff !important;
+}
+
+@keyframes slideDownToast {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }

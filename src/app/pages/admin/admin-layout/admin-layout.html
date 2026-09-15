@@ -37,10 +37,6 @@
           <span *ngIf="item.badgeKey === 'newLeads' && stats.newLeads > 0" class="nav-badge-pill">
             {{ stats.newLeads }} New
           </span>
-
-          <span *ngIf="item.badgeKey === 'pendingAppointments' && stats.pendingAppointments > 0" class="badge rounded-pill bg-danger text-white font-size-micro font-weight-bold px-2 py-0.5">
-            {{ stats.pendingAppointments }}
-          </span>
         </a>
       </nav>
     </div>
@@ -96,7 +92,27 @@
     </header>
 
     <!-- ROUTER OUTLET FOR ADMIN MODULES -->
-    <div class="admin-page-content flex-grow-1 p-3 p-md-4">
+    <div class="admin-page-content flex-grow-1 p-3 p-md-4 position-relative">
+      
+      <!-- GLOBAL ADMIN TOAST NOTIFICATION CONTAINER -->
+      <div *ngIf="adminData.toast() as toast" 
+           class="admin-toast-notification position-fixed top-0 end-0 m-3 m-md-4 shadow-2xl rounded-3 p-3 px-4 d-flex align-items-center gap-3 animate-slide-down border text-white"
+           [ngClass]="{
+             'bg-success text-white border-success': toast.type === 'success',
+             'bg-danger text-white border-danger': toast.type === 'danger',
+             'bg-info text-white border-info': toast.type === 'info'
+           }"
+           style="min-width: 320px; max-width: 440px; z-index: 9999; color: #ffffff !important;">
+        <i class="fa-solid font-size-base flex-shrink-0 text-white"
+           [ngClass]="{
+             'fa-circle-check': toast.type === 'success',
+             'fa-circle-exclamation': toast.type === 'danger',
+             'fa-circle-info': toast.type === 'info'
+           }"></i>
+        <div class="flex-grow-1 font-size-xs font-weight-bold text-white" style="color: #ffffff !important;">{{ toast.message }}</div>
+        <button type="button" class="btn-close btn-close-white font-size-micro ms-auto shadow-none cursor-pointer" (click)="adminData.closeToast()"></button>
+      </div>
+
       <router-outlet></router-outlet>
     </div>
 

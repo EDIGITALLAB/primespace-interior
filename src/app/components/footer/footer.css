@@ -67,7 +67,12 @@
   font-size: 13.5px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.6);
-  max-width: 260px;
+  max-width: 340px;
+}
+
+.footer-brand-text strong {
+  white-space: nowrap;
+  display: inline-block;
 }
 
 /* Social link buttons */
@@ -226,6 +231,7 @@
 
 .location-badge i {
   color: var(--primary-maroon);
+  margin-right: 7px;
 }
 
 .location-badge:hover {

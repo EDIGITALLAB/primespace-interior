@@ -269,7 +269,10 @@
 }
 
 .dropdown-menu-locations {
-  min-width: 520px !important;
+  min-width: 260px !important;
+  max-width: 520px !important;
+  width: max-content !important;
+  padding: 14px !important;
 }
 
 /* Desktop dropdown hover transition */
@@ -291,8 +294,8 @@
 
 .dropdown-grid-locations {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 10px;
 }
 
 /* Dropdown Item styling */

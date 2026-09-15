@@ -1,6 +1,6 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 export interface Category {
   id: string;
@@ -18,6 +18,7 @@ export interface Category {
   styleUrl: './design-categories.css',
 })
 export class DesignCategories {
+  private router = inject(Router);
   readonly activeIndex = signal(0);
 
   readonly categories: Category[] = [
@@ -80,6 +81,10 @@ export class DesignCategories {
   ];
 
   setActiveCategory(index: number, event?: Event) {
+    if (this.activeIndex() === index && event && event.type === 'click') {
+      this.router.navigate(['/categories'], { queryParams: { type: this.categories[index].id } });
+      return;
+    }
     this.activeIndex.set(index);
     if (event && event.currentTarget) {
       const el = event.currentTarget as HTMLElement;

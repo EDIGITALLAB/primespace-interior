@@ -13,6 +13,8 @@ export interface ProjectBlockItem {
   iconClass: string;
   selectedImageIndex: number;
   mainImages: string[];
+  blockPhotos?: PopupGalleryPhoto[];
+  blockCategories?: PopupRoomCategory[];
 }
 
 export interface PopupRoomCategory {
@@ -38,6 +40,7 @@ export interface PopupGalleryPhoto {
 })
 export class ProjectDetails implements OnInit {
   project = signal<ProjectItem | null>(null);
+  isLoading = signal<boolean>(true);
   activeImageIndex = signal<number>(0);
   showLightbox = signal<boolean>(false);
 
@@ -54,53 +57,7 @@ export class ProjectDetails implements OnInit {
   // INLINE EXPANDED PHOTO PREVIEW SIGNAL inside Popup Modal
   activeModalPhotoIndex = signal<number>(-1);
 
-  blocks = signal<ProjectBlockItem[]>([
-    {
-      id: 'block-a',
-      name: 'Block A',
-      tag: 'Luxury Villa Suites',
-      specs: '4 Residences • 3,500 Sq.Ft',
-      homeCount: 4,
-      iconClass: 'fa-solid fa-building-user',
-      selectedImageIndex: 0,
-      mainImages: [
-        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=1000&auto=format&fit=crop'
-      ]
-    },
-    {
-      id: 'block-b',
-      name: 'Block B',
-      tag: 'Chef Kitchen & Dining',
-      specs: '3 Residences • Modern German Modular',
-      homeCount: 3,
-      iconClass: 'fa-solid fa-utensils',
-      selectedImageIndex: 0,
-      mainImages: [
-        'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1600573472591-ee6c563aaec9?q=80&w=1000&auto=format&fit=crop'
-      ]
-    },
-    {
-      id: 'block-c',
-      name: 'Block C',
-      tag: 'Penthouse & Bed Suites',
-      specs: '3 Residences • Italian Marble Finishes',
-      homeCount: 3,
-      iconClass: 'fa-solid fa-bed',
-      selectedImageIndex: 0,
-      mainImages: [
-        'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1000&auto=format&fit=crop'
-      ]
-    }
-  ]);
+  blocks = signal<ProjectBlockItem[]>([]);
 
   roomCategories: PopupRoomCategory[] = [
     { id: 'all', name: 'All Photos', count: 12, iconClass: 'fa-regular fa-images' },
@@ -138,20 +95,146 @@ export class ProjectDetails implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id') || 'royale-villa';
-      const found = this.projectsDataService.getProjectById(id) || this.projectsDataService.projects[0];
-      this.project.set(found);
-      this.activeImageIndex.set(0);
+      this.isLoading.set(true);
+      this.projectsDataService.getProjectBySlugFromApi(id).subscribe({
+        next: (foundApi) => {
+          this.project.set(foundApi || null);
+          this.activeImageIndex.set(0);
 
-      if (found) {
-        this.updateProjectBlocksAndPhotos(found);
-      }
+          if (foundApi) {
+            this.updateProjectBlocksAndPhotos(foundApi);
+          }
+          this.isLoading.set(false);
+        },
+        error: (err) => {
+          console.error('Error fetching project by slug:', err);
+          this.project.set(null);
+          this.isLoading.set(false);
+        }
+      });
     });
   }
 
-  private updateProjectBlocksAndPhotos(proj: ProjectItem) {
-    const gallery = proj.gallery && proj.gallery.length > 0 ? proj.gallery : [proj.heroImage];
-    const hero = proj.heroImage;
 
+  private getCategoryIconClass(catName: string): string {
+    const lower = (catName || '').toLowerCase();
+    if (lower.includes('living')) return 'fa-solid fa-couch';
+    if (lower.includes('kitchen')) return 'fa-solid fa-utensils';
+    if (lower.includes('bed')) return 'fa-solid fa-bed';
+    if (lower.includes('dining')) return 'fa-solid fa-chair';
+    if (lower.includes('balcony')) return 'fa-solid fa-city';
+    if (lower.includes('bath')) return 'fa-solid fa-bath';
+    if (lower.includes('foyer')) return 'fa-solid fa-door-open';
+    return 'fa-solid fa-border-all';
+  }
+
+  private updateProjectBlocksAndPhotos(proj: ProjectItem) {
+    const hero = proj.heroImage;
+    const gallery = proj.gallery && proj.gallery.length > 0 ? proj.gallery : [hero];
+
+    if (proj.blocks && proj.blocks.length > 0) {
+      const dynamicBlocks: ProjectBlockItem[] = [];
+      let globalPhotoId = 1;
+
+      proj.blocks.forEach((b, bIdx) => {
+        const blockImages: string[] = [];
+        const blockPhotos: PopupGalleryPhoto[] = [];
+        const blockCategoryCountMap = new Map<string, { id: string; name: string; count: number; iconClass: string }>();
+
+        if (b.categories && b.categories.length > 0) {
+          b.categories.forEach(cat => {
+            const catSlug = (cat.name || 'other').toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            const iconClass = this.getCategoryIconClass(cat.name);
+
+            if (cat.images && cat.images.length > 0) {
+              if (!blockCategoryCountMap.has(catSlug)) {
+                blockCategoryCountMap.set(catSlug, {
+                  id: catSlug,
+                  name: cat.name,
+                  count: 0,
+                  iconClass: iconClass
+                });
+              }
+
+              cat.images.forEach(img => {
+                const formattedUrl = this.projectsDataService.formatImageUrl(img.imageUrl);
+                blockImages.push(formattedUrl);
+
+                const categoryItem = blockCategoryCountMap.get(catSlug)!;
+                categoryItem.count++;
+
+                blockPhotos.push({
+                  id: globalPhotoId++,
+                  title: img.caption || `${b.name} - ${cat.name}`,
+                  category: catSlug,
+                  url: formattedUrl
+                });
+              });
+            }
+          });
+        }
+
+        const blockCategories: PopupRoomCategory[] = [
+          { id: 'all', name: 'All Photos', count: blockPhotos.length, iconClass: 'fa-regular fa-images' }
+        ];
+
+        blockCategoryCountMap.forEach(val => {
+          if (val.count > 0) {
+            blockCategories.push(val);
+          }
+        });
+
+        dynamicBlocks.push({
+          id: `block-${b.blockId || bIdx}`,
+          name: b.name ? (b.name.toLowerCase().includes('block') ? b.name : `Block ${b.name}`) : `Block ${String.fromCharCode(65 + bIdx)}`,
+          tag: blockImages.length > 0 ? `${blockImages.length} Photo${blockImages.length > 1 ? 's' : ''} Uploaded` : 'No Photos Uploaded',
+          specs: `Categories: ${b.categories?.length || 0}`,
+          homeCount: 1,
+          iconClass: bIdx % 2 === 0 ? 'fa-solid fa-building-user' : 'fa-solid fa-utensils',
+          selectedImageIndex: 0,
+          mainImages: blockImages,
+          blockPhotos: blockPhotos,
+          blockCategories: blockCategories
+        });
+      });
+
+      this.blocks.set(dynamicBlocks);
+
+      const firstBlockWithPhotos = dynamicBlocks.find(db => db.blockPhotos && db.blockPhotos.length > 0);
+      if (firstBlockWithPhotos) {
+        this.modalPhotosList = firstBlockWithPhotos.blockPhotos || [];
+        this.roomCategories = firstBlockWithPhotos.blockCategories || [];
+      } else {
+        this.modalPhotosList = [];
+        this.roomCategories = [
+          { id: 'all', name: 'All Photos', count: 0, iconClass: 'fa-regular fa-images' }
+        ];
+      }
+    } else if (proj.projectId !== undefined) {
+      // Backend project loaded, but it has 0 blocks configured
+      this.blocks.set([]);
+      this.modalPhotosList = [];
+      this.roomCategories = [
+        { id: 'all', name: 'All Photos', count: 0, iconClass: 'fa-regular fa-images' }
+      ];
+    } else {
+      this.setDefaultBlocksAndPhotos(proj, hero, gallery);
+    }
+  }
+
+
+  private setDefaultPhotosList(proj: ProjectItem, hero: string, gallery: string[]) {
+    this.modalPhotosList = [
+      { id: 1, title: proj.title + ' - Open Concept Living Lounge', category: 'living', url: hero },
+      { id: 2, title: proj.title + ' - Modular Kitchen & Dining', category: 'kitchen', url: gallery[0] || hero },
+      { id: 3, title: proj.title + ' - Master Bed Suite & Ambient Ceiling', category: 'master-bed', url: gallery[1] || hero },
+      { id: 4, title: proj.title + ' - Custom Accent TV Wall', category: 'living', url: gallery[2] || hero },
+      { id: 5, title: proj.title + ' - Outdoor Balcony & Terrace', category: 'balcony', url: gallery[3] || hero },
+      { id: 6, title: proj.title + ' - Designer Bathroom Fixtures', category: 'bathrooms', url: gallery[0] || hero }
+    ];
+  }
+
+  private setDefaultBlocksAndPhotos(proj: ProjectItem, hero: string, gallery: string[]) {
     this.blocks.set([
       {
         id: 'block-a',
@@ -200,15 +283,9 @@ export class ProjectDetails implements OnInit {
       }
     ]);
 
-    this.modalPhotosList = [
-      { id: 1, title: proj.title + ' - Open Concept Living Lounge', category: 'living', url: hero },
-      { id: 2, title: proj.title + ' - Modular Kitchen & Dining', category: 'kitchen', url: gallery[0] || hero },
-      { id: 3, title: proj.title + ' - Master Bed Suite & Ambient Ceiling', category: 'master-bed', url: gallery[1] || hero },
-      { id: 4, title: proj.title + ' - Custom Accent TV Wall', category: 'living', url: gallery[2] || hero },
-      { id: 5, title: proj.title + ' - Outdoor Balcony & Terrace', category: 'balcony', url: gallery[3] || hero },
-      { id: 6, title: proj.title + ' - Designer Bathroom Fixtures', category: 'bathrooms', url: gallery[0] || hero }
-    ];
+    this.setDefaultPhotosList(proj, hero, gallery);
   }
+
 
   setBlockFilter(filter: string, event?: Event) {
     this.activeBlockFilter.set(filter);
@@ -241,6 +318,15 @@ export class ProjectDetails implements OnInit {
   // POPUP MODAL HANDLERS
   openBlockGalleryModal(block: ProjectBlockItem) {
     this.selectedModalBlock.set(block);
+    if (block.blockPhotos && block.blockPhotos.length > 0) {
+      this.modalPhotosList = block.blockPhotos;
+      this.roomCategories = block.blockCategories || [];
+    } else {
+      this.modalPhotosList = [];
+      this.roomCategories = [
+        { id: 'all', name: 'All Photos', count: 0, iconClass: 'fa-regular fa-images' }
+      ];
+    }
     this.activeRoomCategory.set('all');
     this.modalCurrentPage.set(1);
     this.activeModalPhotoIndex.set(-1);

@@ -49,7 +49,7 @@
           <!-- Apartment Filter Select -->
           <select class="form-select filter-select rounded-3 font-size-xs fw-semibold border shadow-none bg-white"
             [ngModel]="selectedApartment()" (ngModelChange)="onApartmentChange($event)">
-            <option *ngFor="let opt of apartmentOptions" [value]="opt === 'All Apartments' ? 'all' : opt">{{ opt }}
+            <option *ngFor="let opt of apartmentOptions()" [value]="opt === 'All Apartments' ? 'all' : opt">{{ opt }}
             </option>
           </select>
 
@@ -94,105 +94,162 @@
 
   <div class="container">
 
-    <!-- SECTION 1: COMPLETED APARTMENT PROJECTS GRID -->
-    <div *ngIf="filteredCompletedProjects().length > 0" class="mb-5 pb-3">
+    <!-- SKELETON SHIMMER LOADER (Shown while backend API is loading) -->
+    <div *ngIf="isLoading()" class="mb-5 pb-3">
       <div class="row g-4 align-items-stretch">
-        <div *ngFor="let p of filteredCompletedProjects(); let idx = index" class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div
-            class="apt-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all cursor-pointer"
-            (click)="openProjectModal(p, $event)">
-
-            <!-- Media Banner -->
-            <div class="apt-media-box position-relative overflow-hidden">
-              <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover apt-card-img">
-              <span *ngIf="p.blocksCount"
-                class="apt-homes-badge position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-bold text-white shadow-xs">
-                {{ p.blocksCount }}
-              </span>
+        <div *ngFor="let s of [1, 2, 3, 4]" class="col-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="apt-card skeleton-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between">
+            <div class="skeleton-img-box position-relative" style="height: 200px;">
+              <div class="skeleton-shimmer"></div>
             </div>
-
-            <!-- Card Content Body -->
-            <div class="apt-card-body p-4 d-flex flex-column flex-grow-1 justify-content-between">
+            <div class="apt-card-body p-4 d-flex flex-column flex-grow-1 justify-content-between gap-3">
               <div>
-                <h3 class="apt-title fw-black text-dark font-size-md mb-1.5">{{ p.title }}</h3>
-                <p class="apt-loc text-muted font-size-xs mb-3.5 fw-medium">{{ p.location }}</p>
+                <div class="skeleton-line skeleton-title rounded-pill mb-2" style="width: 75%;"></div>
+                <div class="skeleton-line skeleton-tagline rounded-pill" style="width: 50%;"></div>
               </div>
-
-              <!-- Action Button -->
-              <button type="button"
-                class="btn btn-apt-action btn-apt-solid w-100 rounded-3 py-2.5 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-2 transition-all"
-                (click)="openProjectModal(p, $event)">
-                <span>VIEW DETAILS</span>
-                <i class="fa-solid fa-arrow-right font-size-micro"></i>
-              </button>
-
+              <div class="pt-2">
+                <div class="skeleton-line skeleton-btn rounded-3" style="height: 38px;"></div>
+              </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SECTION 2: ACTIVE LIVE CONSTRUCTION SITES -->
-    <div *ngIf="filteredLiveSiteProjects().length > 0" class="mt-5 pt-3">
-      <!-- Live Sites Section Header -->
-      <div class="mb-4">
-        <h2 class="live-sites-heading fw-black text-dark mb-1.5 d-flex align-items-center gap-2">
-          <i class="fa-solid fa-bolt text-maroon"></i>
-          <span>Active Live Construction Sites</span>
-        </h2>
-        <p class="live-sites-subtext text-muted font-size-xs mb-0">Track our ongoing construction and live progress</p>
+    <!-- USER-FRIENDLY ERROR / CONNECTION CARD -->
+    <div *ngIf="errorMessage()" class="text-center py-5 my-4 bg-white rounded-4 border shadow-xs px-4 card-fade-in">
+      <div class="d-inline-flex align-items-center justify-content-center bg-maroon-tint text-maroon rounded-circle mb-3 p-3" style="width: 70px; height: 70px;">
+        <i class="fa-solid fa-cloud-bolt font-size-xl"></i>
       </div>
+      <h4 class="fw-black text-dark mb-2">Service Temporarily Unavailable</h4>
+      <p class="text-muted font-size-sm mb-4 mx-auto" style="max-width: 520px;">
+        {{ errorMessage() }}
+      </p>
+      <div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+        <button class="btn btn-filter-submit rounded-pill px-4 py-2.5 font-size-xs fw-extrabold shadow-xs" (click)="loadProjectsFromBackend()">
+          <i class="fa-solid fa-arrows-rotate me-1.5"></i> Try Again
+        </button>
+      </div>
+    </div>
 
-      <!-- Live Sites Grid -->
-      <div class="row g-4 align-items-stretch">
-        <div *ngFor="let ls of filteredLiveSiteProjects()" class="col-12 col-sm-6 col-md-4 col-lg-3">
-          <div
-            class="live-site-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all cursor-pointer"
-            (click)="openProjectModal(ls, $event)">
+    <!-- REAL CONTENT SECTION (Shown after backend API finishes loading without error) -->
+    <ng-container *ngIf="!isLoading() && !errorMessage()">
+      <!-- SECTION 1: COMPLETED APARTMENT PROJECTS GRID -->
+      <div *ngIf="filteredCompletedProjects().length > 0" class="mb-5 pb-3 card-fade-in">
+        <div class="row g-4 align-items-stretch">
+          <div *ngFor="let p of filteredCompletedProjects(); let idx = index" class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div
+              class="apt-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all cursor-pointer"
+              (click)="openProjectModal(p, $event)">
 
-            <!-- Media Banner with Top Left Red Badge -->
-            <div class="live-media-box position-relative overflow-hidden">
-              <img [src]="ls.heroImage" [alt]="ls.title" class="w-100 h-100 object-fit-cover live-card-img">
-              <span
-                class="live-status-badge position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-black text-white text-uppercase shadow-xs">
-                LIVE SITE
-              </span>
-            </div>
-
-            <!-- Card Content Body -->
-            <div class="live-card-body p-4 d-flex flex-column flex-grow-1 justify-content-between">
-              <div>
-                <h3 class="live-title fw-black text-dark font-size-sm mb-1.5 text-truncate">{{ ls.title }}</h3>
-                <p class="live-loc text-muted font-size-xs mb-3.5 fw-medium">{{ ls.location }}</p>
+              <!-- Media Banner -->
+              <div class="apt-media-box position-relative overflow-hidden bg-light d-flex align-items-center justify-content-center">
+                <ng-container *ngIf="p.heroImage; else completedNoImg">
+                  <img [src]="p.heroImage" [alt]="p.title" class="w-100 h-100 object-fit-cover apt-card-img">
+                </ng-container>
+                <ng-template #completedNoImg>
+                  <div class="d-flex flex-column align-items-center justify-content-center text-muted p-4 text-center h-100 w-100 bg-gray-100">
+                    <i class="fa-solid fa-image font-size-lg mb-1 opacity-50"></i>
+                    <span class="font-size-micro fw-bold text-uppercase tracking-wider">No Cover Image</span>
+                  </div>
+                </ng-template>
+                <span *ngIf="p.blocksCount"
+                  class="apt-homes-badge position-absolute top-0 end-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-bold text-white shadow-xs">
+                  {{ p.blocksCount }}
+                </span>
               </div>
 
-              <!-- Progress Button -->
-              <button type="button"
-                class="btn btn-apt-outline w-100 rounded-3 py-2 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-1.5 transition-all"
-                (click)="openProjectModal(ls, $event)">
-                <span>VIEW PROGRESS</span>
-                <i class="fa-solid fa-arrow-right font-size-micro"></i>
-              </button>
+              <!-- Card Content Body -->
+              <div class="apt-card-body p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                <div>
+                  <h3 class="apt-title fw-black text-dark font-size-md mb-1.5">{{ p.title }}</h3>
+                  <p class="apt-loc text-muted font-size-xs mb-3.5 fw-medium">{{ p.location }}</p>
+                </div>
+
+                <!-- Action Button -->
+                <button type="button"
+                  class="btn btn-apt-action btn-apt-solid w-100 rounded-3 py-2.5 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-2 transition-all"
+                  (click)="openProjectModal(p, $event)">
+                  <span>VIEW DETAILS</span>
+                  <i class="fa-solid fa-arrow-right font-size-micro"></i>
+                </button>
+
+              </div>
 
             </div>
-
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- No Results Empty State -->
-    <div *ngIf="filteredCompletedProjects().length === 0 && filteredLiveSiteProjects().length === 0"
-      class="text-center py-5 my-4 bg-light rounded-4 border px-3">
-      <i class="fa-solid fa-building-circle-xmark text-maroon mb-3 display-5"></i>
-      <h4 class="fw-black text-dark mb-2">No Apartment Projects Found</h4>
-      <p class="text-muted font-size-sm mb-4">We couldn't find any projects matching your selected filters.</p>
-      <button class="btn btn-filter-submit rounded-pill px-4 py-2 font-size-xs fw-extrabold"
-        (click)="searchQuery.set(''); selectedCity.set('all'); selectedApartment.set('all'); selectedStatus.set('all'); selectedProjectType.set('all')">
-        Reset All Filters
-      </button>
-    </div>
+      <!-- SECTION 2: ACTIVE LIVE CONSTRUCTION SITES -->
+      <div *ngIf="filteredLiveSiteProjects().length > 0" class="mt-5 pt-3 card-fade-in">
+        <!-- Live Sites Section Header -->
+        <div class="mb-4">
+          <h2 class="live-sites-heading fw-black text-dark mb-1.5 d-flex align-items-center gap-2">
+            <i class="fa-solid fa-bolt text-maroon"></i>
+            <span>Active Live Construction Sites</span>
+          </h2>
+          <p class="live-sites-subtext text-muted font-size-xs mb-0">Track our ongoing construction and live progress</p>
+        </div>
+
+        <!-- Live Sites Grid -->
+        <div class="row g-4 align-items-stretch">
+          <div *ngFor="let ls of filteredLiveSiteProjects()" class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <div
+              class="live-site-card bg-white rounded-3.5 border overflow-hidden h-100 d-flex flex-column justify-content-between transition-all cursor-pointer"
+              (click)="openProjectModal(ls, $event)">
+
+              <!-- Media Banner with Top Left Red Badge -->
+              <div class="live-media-box position-relative overflow-hidden bg-light d-flex align-items-center justify-content-center">
+                <ng-container *ngIf="ls.heroImage; else liveNoImg">
+                  <img [src]="ls.heroImage" [alt]="ls.title" class="w-100 h-100 object-fit-cover live-card-img">
+                </ng-container>
+                <ng-template #liveNoImg>
+                  <div class="d-flex flex-column align-items-center justify-content-center text-muted p-4 text-center h-100 w-100 bg-gray-100">
+                    <i class="fa-solid fa-image font-size-lg mb-1 opacity-50"></i>
+                    <span class="font-size-micro fw-bold text-uppercase tracking-wider">No Cover Image</span>
+                  </div>
+                </ng-template>
+                <span
+                  class="live-status-badge position-absolute top-0 start-0 m-3 px-3 py-1 rounded-pill font-size-micro fw-black text-white text-uppercase shadow-xs">
+                  LIVE SITE
+                </span>
+              </div>
+
+              <!-- Card Content Body -->
+              <div class="live-card-body p-4 d-flex flex-column flex-grow-1 justify-content-between">
+                <div>
+                  <h3 class="live-title fw-black text-dark font-size-sm mb-1.5 text-truncate">{{ ls.title }}</h3>
+                  <p class="live-loc text-muted font-size-xs mb-3.5 fw-medium">{{ ls.location }}</p>
+                </div>
+
+                <!-- Progress Button -->
+                <button type="button"
+                  class="btn btn-apt-outline w-100 rounded-3 py-2 px-3 font-size-micro fw-black text-uppercase d-flex align-items-center justify-content-center gap-1.5 transition-all"
+                  (click)="openProjectModal(ls, $event)">
+                  <span>VIEW PROGRESS</span>
+                  <i class="fa-solid fa-arrow-right font-size-micro"></i>
+                </button>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Results Empty State (Only shown when not loading AND no projects match filters) -->
+      <div *ngIf="filteredCompletedProjects().length === 0 && filteredLiveSiteProjects().length === 0"
+        class="text-center py-5 my-4 bg-light rounded-4 border px-3 card-fade-in">
+        <i class="fa-solid fa-building-circle-xmark text-maroon mb-3 display-5"></i>
+        <h4 class="fw-black text-dark mb-2">No Apartment Projects Found</h4>
+        <p class="text-muted font-size-sm mb-4">We couldn't find any projects matching your selected filters.</p>
+        <button class="btn btn-filter-submit rounded-pill px-4 py-2 font-size-xs fw-extrabold"
+          (click)="searchQuery.set(''); selectedCity.set('all'); selectedApartment.set('all'); selectedStatus.set('all'); selectedProjectType.set('all')">
+          Reset All Filters
+        </button>
+      </div>
+    </ng-container>
 
   </div>
 </div>

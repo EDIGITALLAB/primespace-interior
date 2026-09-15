@@ -5,6 +5,7 @@ import { CategoriesPage } from './pages/categories-page/categories-page';
 import { ContactPage } from './pages/contact-page/contact-page';
 import { LocationsPage } from './pages/locations-page/locations-page';
 import { ProjectsPage } from './pages/projects-page/projects-page';
+import { GalleryPage } from './pages/gallery-page/gallery-page';
 import { ProjectDetails } from './pages/project-details/project-details';
 import { PrivacyPolicyPage } from './pages/privacy-policy-page/privacy-policy-page';
 import { TermsConditionsPage } from './pages/terms-conditions-page/terms-conditions-page';
@@ -17,17 +18,17 @@ import { AdminProjects } from './pages/admin/admin-projects/admin-projects';
 import { AdminCategories } from './pages/admin/admin-categories/admin-categories';
 import { AdminGallery } from './pages/admin/admin-gallery/admin-gallery';
 import { AdminLeads } from './pages/admin/admin-leads/admin-leads';
-import { AdminAppointments } from './pages/admin/admin-appointments/admin-appointments';
 import { AdminTestimonials } from './pages/admin/admin-testimonials/admin-testimonials';
-import { AdminTeam } from './pages/admin/admin-team/admin-team';
 import { AdminSettings } from './pages/admin/admin-settings/admin-settings';
+import { NotFoundPage } from './pages/not-found-page/not-found-page';
 
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'categories', component: CategoriesPage },
   { path: 'projects', component: ProjectsPage },
+  { path: 'gallery', component: GalleryPage },
   { path: 'projects/:id', component: ProjectDetails },
-  { path: 'project-details', component: ProjectDetails },
+  // { path: 'project-details', component: ProjectDetails },
   { path: 'project-details/:id', component: ProjectDetails },
   { path: 'contact', component: ContactPage },
   { path: 'locations', component: LocationsPage },
@@ -51,14 +52,13 @@ export const routes: Routes = [
       { path: 'dashboard', component: AdminDashboard },
       { path: 'projects', component: AdminProjects },
       { path: 'categories', component: AdminCategories },
-      { path: 'gallery', component: AdminGallery },
+      { path: 'photo-and-gallery', component: AdminGallery },
+      { path: 'gallery', redirectTo: 'photo-and-gallery', pathMatch: 'full' },
       { path: 'leads', component: AdminLeads },
-      { path: 'appointments', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'testimonials', component: AdminTestimonials },
-      { path: 'team', component: AdminTeam },
       { path: 'settings', component: AdminSettings }
     ]
   },
 
-  { path: '**', redirectTo: '' }
+  { path: '**', component: NotFoundPage }
 ];

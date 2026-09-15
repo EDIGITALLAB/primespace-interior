@@ -8,6 +8,11 @@
     </div>
 
     <div class="d-flex align-items-center gap-2 flex-wrap">
+      <button type="button" class="btn btn-outline-dark rounded-3 px-3 py-2 font-size-xs font-weight-bold shadow-xs d-inline-flex align-items-center gap-1.5 text-nowrap" [disabled]="!selectedBlock" (click)="openAddCategoryModal()">
+        <i class="fa-solid fa-folder-plus text-maroon me-0.5"></i>
+        <span>+ Add Category</span>
+      </button>
+
       <button type="button" class="btn btn-outline-dark rounded-3 px-3 py-2 font-size-xs font-weight-bold shadow-xs d-inline-flex align-items-center gap-1.5 text-nowrap" (click)="openAddBlockModal()">
         <i class="fa-solid fa-square-plus text-maroon me-0.5"></i>
         <span>+ Add New Block</span>
@@ -32,6 +37,7 @@
             <i class="fa-solid fa-building-user font-size-xs"></i>
           </span>
           <select class="form-select border-0 shadow-none font-size-xs py-2 fw-bold text-dark" [ngModel]="selectedProjectId()" (ngModelChange)="onProjectChange($event)">
+            <option value="" disabled [selected]="!selectedProjectId()">-- Select Apartment Project --</option>
             <option *ngFor="let p of projectsList" [value]="p.id">
               {{ p.title }} ({{ p.location }})
             </option>
@@ -52,7 +58,10 @@
             </option>
           </select>
         </div>
-        <div *ngIf="!selectedProject || selectedProject.blocks.length === 0" class="text-muted font-size-xs py-2">
+        <div *ngIf="!selectedProjectId()" class="text-muted font-size-xs py-2 fw-medium">
+          <i class="fa-solid fa-arrow-left text-maroon me-1"></i>Please select an apartment project first.
+        </div>
+        <div *ngIf="selectedProjectId() && (!selectedProject || selectedProject.blocks.length === 0)" class="text-muted font-size-xs py-2">
           No blocks created yet for this project.
         </div>
       </div>
@@ -60,11 +69,95 @@
     </div>
   </div>
 
+  <!-- UNSELECTED PROJECT PROMPT -->
+  <div *ngIf="!selectedProjectId()" class="col-12 text-center py-5 bg-white rounded-4 border border-gray-200 shadow-xs p-4 my-2">
+    <div class="stat-icon-wrapper mx-auto mb-3 bg-purple-tint rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+      <i class="fa-solid fa-building-user text-maroon font-size-xl"></i>
+    </div>
+    <h6 class="fw-black text-dark mb-1 font-size-sm">No Apartment Project Selected</h6>
+    <p class="text-muted font-size-xs mb-0">Please select an apartment project from the dropdown list above to view and manage its block photos.</p>
+  </div>
+
+  <!-- APARTMENT WALKTHROUGH VIDEOS SECTION (INDIVIDUAL CARDS) -->
+  <div *ngIf="selectedProject && projectVideos.length > 0" class="mb-4">
+    
+    <!-- Premium Header Strip -->
+    <div class="d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-2 p-3 bg-white rounded-3 border border-gray-200 shadow-xs mb-3">
+      <div class="d-flex align-items-center gap-2.5">
+        <div class="stat-icon-wrapper bg-purple-tint rounded-circle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 36px; height: 36px;">
+          <i class="fa-solid fa-film text-maroon font-size-sm"></i>
+        </div>
+        <div>
+          <div class="d-flex align-items-center gap-2">
+            <h6 class="fw-black text-dark mb-0 font-size-sm">Project Walkthrough Videos</h6>
+            <span class="badge bg-dark text-white font-size-micro font-weight-bold px-2.5 py-0.5 rounded-pill">
+              {{ projectVideos.length }} Video{{ projectVideos.length > 1 ? 's' : '' }}
+            </span>
+          </div>
+          <p class="text-muted font-size-micro mb-0">3D Virtual Tours & Video Walkthroughs for <strong class="text-dark">{{ selectedProject.title }}</strong></p>
+        </div>
+      </div>
+
+      <a routerLink="/admin/projects" class="btn btn-sm btn-maroon-primary rounded-2 px-3 py-1.5 font-size-micro font-weight-bold text-white shadow-xs d-inline-flex align-items-center gap-1.5 align-self-start align-self-sm-center text-nowrap">
+        <i class="fa-solid fa-video me-0.5"></i>
+        <span>Manage / Add Videos</span>
+      </a>
+    </div>
+
+    <!-- Video Cards Grid -->
+    <div class="row g-3">
+      <div *ngFor="let vid of projectVideos; let idx = index" class="col-12 col-sm-6 col-md-4 col-xl-3">
+        <div class="gallery-media-card bg-white rounded-1 border border-gray-200 overflow-hidden shadow-xs h-100 d-flex flex-column justify-content-between position-relative">
+          
+          <div class="media-box position-relative overflow-hidden bg-dark" style="height: 180px;">
+            <!-- YouTube Iframe Embed -->
+            <ng-container *ngIf="isYouTubeUrl(vid); else localVideo">
+              <iframe [src]="getSafeYouTubeUrl(vid)" class="w-100 h-100 border-0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </ng-container>
+
+            <!-- Native MP4 Video Player -->
+            <ng-template #localVideo>
+              <div class="position-relative w-100 h-100 group-video" [ngClass]="{'is-playing': isPlaying(vidPlayer)}">
+                <video #vidPlayer [src]="vid" controls preload="metadata" class="w-100 h-100 object-fit-cover" (play)="onVideoPlay($event)"></video>
+                
+                <!-- Center Play/Pause Button Overlay -->
+                <button type="button" class="position-absolute top-50 start-50 translate-middle center-video-play-btn shadow-lg" (click)="toggleVideoPlay(vidPlayer)" [title]="isPlaying(vidPlayer) ? 'Pause Walkthrough Video' : 'Play Walkthrough Video'">
+                  <i class="fa-solid text-white font-size-base" [ngClass]="isPlaying(vidPlayer) ? 'fa-pause' : 'fa-play ms-0.5'"></i>
+                </button>
+              </div>
+            </ng-template>
+
+            <span class="badge rounded-1 bg-dark-glass text-white font-size-micro font-weight-bold position-absolute top-0 start-0 m-2.5 px-2 py-1 shadow-sm pointer-events-none z-10">
+              <i class="fa-solid fa-play me-1 text-emerald"></i>Video #{{ idx + 1 }}
+            </span>
+
+            <!-- Delete Video Button (matching photo cards) -->
+            <button type="button" class="btn-delete-photo position-absolute top-0 end-0 m-2.5 shadow-sm z-10" (click)="deleteVideo(idx)" title="Delete Walkthrough Video">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </div>
+
+          <div class="p-3 bg-white border-top border-gray-100">
+            <div class="fw-bold text-dark font-size-xs text-truncate mb-1" [title]="selectedProject.title + ' • Walkthrough Video #' + (idx + 1)">
+              {{ selectedProject.title }} Video #{{ idx + 1 }}
+            </div>
+            <div class="d-flex align-items-center justify-content-between font-size-micro text-muted">
+              <span class="text-truncate me-2"><i class="fa-solid fa-circle-play me-1 text-emerald"></i>Walkthrough Tour</span>
+              <span class="badge bg-light text-muted border border-gray-200 font-size-micro px-2 py-0.5 rounded-1">HD Video</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
   <!-- ROOM CATEGORY TABS -->
   <div class="d-flex align-items-center gap-2 mb-4 overflow-x-auto pb-2 scrollbar-none" *ngIf="selectedBlock">
-    <button type="button" *ngFor="let tag of ['All', 'Living Room', 'Kitchen', 'Bedroom', 'Bathroom', 'Balcony', 'Foyer']" 
+    <button type="button" *ngFor="let tag of availableCategories" 
       class="btn rounded-1 font-size-xs font-weight-bold px-3 py-1.5 transition-all text-nowrap flex-shrink-0"
-      [ngClass]="activeRoomTag() === tag ? 'btn-maroon' : 'btn-outline-secondary'"
+      [ngClass]="activeRoomTag().toLowerCase() === tag.toLowerCase() ? 'btn-maroon' : 'btn-outline-secondary'"
       (click)="activeRoomTag.set(tag)">
       {{ tag }}
     </button>
@@ -81,7 +174,7 @@
             {{ item.category }}
           </span>
 
-          <button type="button" class="btn-delete-photo position-absolute top-0 end-0 m-2.5 shadow-sm" (click)="deletePhoto(item.id)" title="Delete Photo">
+          <button type="button" class="btn-delete-photo position-absolute top-0 end-0 m-2.5 shadow-sm" (click)="openDeletePhotoModal(item)" title="Delete Photo">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
@@ -121,13 +214,8 @@
         <div class="row g-3">
           <div class="col-12">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Room Category</label>
-            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="photoCategory()" (ngModelChange)="photoCategory.set($event)" name="photoCategory">
-              <option value="Living Room">Living Room</option>
-              <option value="Kitchen">Kitchen</option>
-              <option value="Bedroom">Bedroom</option>
-              <option value="Bathroom">Bathroom</option>
-              <option value="Balcony">Balcony</option>
-              <option value="Foyer">Foyer</option>
+            <select class="form-select font-size-xs rounded-3 border shadow-none bg-white fw-bold" [ngModel]="photoCategory()" (ngModelChange)="photoCategory.set($event)" name="photoCategory">
+              <option *ngFor="let cat of modalCategoriesList" [value]="cat">{{ cat }}</option>
             </select>
           </div>
 
@@ -140,11 +228,18 @@
           <!-- MULTIPLE FILE UPLOAD FIELD -->
           <div class="col-12">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Upload Multiple Images</label>
-            <div class="border border-dashed border-2 border-maroon-subtle rounded-3 p-3 text-center bg-light-subtle cursor-pointer hover-bg-light transition-all position-relative" (click)="fileInput.click()">
+            <div class="border border-dashed border-2 rounded-3 p-3.5 text-center bg-light-subtle cursor-pointer hover-bg-light transition-all position-relative"
+                 [ngClass]="isDragging() ? 'border-maroon bg-purple-tint scale-102 shadow-sm' : 'border-maroon-subtle'"
+                 (dragover)="onDragOver($event)"
+                 (dragleave)="onDragLeave($event)"
+                 (drop)="onFileDrop($event)"
+                 (click)="fileInput.click()">
               <input #fileInput type="file" accept="image/*" multiple (change)="onMultipleFilesSelected($event)" class="d-none">
               <i class="fa-solid fa-cloud-arrow-up text-maroon font-size-xl mb-1"></i>
-              <div class="font-size-xs fw-bold text-dark">Click or Drag & Drop Multiple Images Here</div>
-              <div class="font-size-micro text-muted">Supports PNG, JPG, WEBP (Select multiple photos at once)</div>
+              <div class="font-size-xs fw-bold text-dark mb-0.5">
+                {{ isDragging() ? 'Drop Images Here to Upload' : 'Click or Drag & Drop Multiple Images Here' }}
+              </div>
+              <div class="font-size-micro text-muted">Supports PNG, JPG, WEBP (Select or drop multiple photos at once)</div>
             </div>
           </div>
 
@@ -207,14 +302,23 @@
 
       <form (submit)="saveBlock($event)" class="p-4">
         <div class="row g-3">
+          <!-- Target Apartment Project Selection -->
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Block Name</label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Block A, Tower 1" [ngModel]="newBlockName()" (ngModelChange)="newBlockName.set($event)" name="newBlockName" required>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Target Apartment Project</label>
+            <div class="input-group">
+              <span class="input-group-text bg-light border text-maroon font-size-xs">
+                <i class="fa-solid fa-building"></i>
+              </span>
+              <select class="form-select font-size-xs rounded-end-3 border shadow-none bg-white fw-bold" [ngModel]="selectedProjectId()" (ngModelChange)="onProjectChange($event)" name="selectedProjectId">
+                <option *ngFor="let p of projectsList" [value]="p.id">{{ p.title }} ({{ p.city }})</option>
+              </select>
+            </div>
+            <span class="text-muted font-size-micro mt-1 d-block">Block will be created inside <strong class="text-maroon">{{ selectedProject?.title }}</strong>.</span>
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Total Homes / Units</label>
-            <input type="number" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="4" [ngModel]="newBlockHomes()" (ngModelChange)="newBlockHomes.set($event)" name="newBlockHomes" required>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Block Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Block A, Tower 1" [ngModel]="newBlockName()" (ngModelChange)="newBlockName.set($event)" name="newBlockName" required>
           </div>
         </div>
 
@@ -228,5 +332,54 @@
 
     </div>
   </div>
+
+  <!-- ADD ROOM CATEGORY MODAL -->
+  <div class="admin-modal-overlay position-fixed top-0 start-0 w-100 h-100 z-1050 d-flex align-items-center justify-content-center p-3 bg-dark-glass" *ngIf="showAddCategoryModal()">
+    <div class="admin-modal-card bg-white rounded-4 border border-gray-200 shadow-2xl w-100 max-w-500 overflow-hidden animate-zoom-in">
+      
+      <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
+        <h6 class="m-0 fw-black text-dark font-size-base">
+          <i class="fa-solid fa-folder-plus text-maroon me-2"></i> Add Room Category to {{ selectedBlock ? selectedBlock.name : 'Block' }}
+        </h6>
+        <button type="button" class="btn-close" (click)="closeAddCategoryModal()"></button>
+      </div>
+
+      <form (submit)="saveCategory($event)" class="p-4">
+        <div class="row g-3">
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Target Apartment & Block</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border bg-light shadow-none fw-bold" [value]="selectedProject?.title + ' → ' + selectedBlock?.name" readonly>
+          </div>
+
+          <div class="col-12">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Balcony, Pooja Room, Kids Bedroom, Dining" [ngModel]="newCategoryName()" (ngModelChange)="newCategoryName.set($event)" name="newCategoryName" required>
+            <small class="text-muted font-size-micro">New room category tab will be created immediately in database for this block.</small>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end gap-2 mt-4 pt-3 border-top border-gray-200">
+          <button type="button" class="btn btn-light rounded-3 px-3 py-2 font-size-xs font-weight-bold" (click)="closeAddCategoryModal()">Cancel</button>
+          <button type="submit" class="btn btn-maroon-primary rounded-3 px-4 py-2 font-size-xs font-weight-bold text-white shadow-xs">
+            Create Category
+          </button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+
+  <!-- REUSABLE DELETE CONFIRMATION MODAL -->
+  <app-confirm-modal
+    [isOpen]="showDeleteModal()"
+    [title]="deleteType() === 'video' ? 'Delete Walkthrough Video?' : 'Delete Photo?'"
+    [message]="deleteType() === 'video' ? 'Are you sure you want to delete walkthrough video' : 'Are you sure you want to delete photo'"
+    [itemName]="deletingItemName()"
+    [confirmText]="deleteType() === 'video' ? 'Delete Video' : 'Delete Photo'"
+    cancelText="Cancel"
+    type="danger"
+    (confirm)="confirmDeleteModal()"
+    (cancel)="closeDeleteModal()">
+  </app-confirm-modal>
 
 </div>

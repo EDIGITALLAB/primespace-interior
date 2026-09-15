@@ -46,7 +46,7 @@
     <a routerLink="/admin/categories" class="quick-action-pill flex-shrink-0">
       <i class="fa-solid fa-layer-group text-primary"></i> Design Catalog
     </a>
-    <a routerLink="/admin/gallery" class="quick-action-pill flex-shrink-0">
+    <a routerLink="/admin/photo-and-gallery" class="quick-action-pill flex-shrink-0">
       <i class="fa-solid fa-images text-danger"></i> VR Gallery ({{ stats.totalPhotos }})
     </a>
     <a routerLink="/admin/leads" class="quick-action-pill flex-shrink-0">
@@ -60,11 +60,11 @@
     </a>
   </div>
 
-  <!-- 3. 4 KEY METRIC CARDS -->
+  <!-- 3. 3 KEY METRIC CARDS -->
   <div class="row g-3 mb-4">
     
     <!-- Stat 1: Total Projects -->
-    <div class="col-12 col-sm-6 col-lg-3">
+    <div class="col-12 col-md-4">
       <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
         <div class="stat-top-bar stat-top-maroon"></div>
         <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
@@ -86,7 +86,7 @@
     </div>
 
     <!-- Stat 2: Ongoing Sites -->
-    <div class="col-12 col-sm-6 col-lg-3">
+    <div class="col-12 col-md-4">
       <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
         <div class="stat-top-bar stat-top-danger"></div>
         <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
@@ -107,30 +107,8 @@
       </div>
     </div>
 
-    <!-- Stat 3: Appointments -->
-    <div class="col-12 col-sm-6 col-lg-3">
-      <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
-        <div class="stat-top-bar stat-top-amber"></div>
-        <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
-          <div class="min-w-0 flex-grow-1">
-            <span class="font-size-micro text-uppercase font-weight-bold text-muted d-block mb-1 text-truncate" title="Site Appointments">Site Appointments</span>
-            <h2 class="fw-black text-dark mb-0 font-size-xl">{{ stats.totalAppointments }}</h2>
-          </div>
-          <div class="stat-icon-wrapper bg-amber-soft flex-shrink-0">
-            <i class="fa-solid fa-calendar-check"></i>
-          </div>
-        </div>
-        <div class="d-flex align-items-center justify-content-between pt-2 border-top border-gray-100 font-size-micro">
-          <span class="text-amber-dark font-weight-bold text-truncate me-1">
-            <i class="fa-solid fa-clock me-1"></i>{{ stats.pendingAppointments }} Pending
-          </span>
-          <a routerLink="/admin/leads" class="text-muted text-decoration-none font-weight-semibold flex-shrink-0">View Inquiries →</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Stat 4: Client Inquiries -->
-    <div class="col-12 col-sm-6 col-lg-3">
+    <!-- Stat 3: Client Inquiries -->
+    <div class="col-12 col-md-4">
       <div class="stat-card-premium bg-white p-3 rounded-4 border border-gray-200 shadow-xs h-100 d-flex flex-column justify-content-between">
         <div class="stat-top-bar stat-top-primary"></div>
         <div class="d-flex align-items-center justify-content-between mb-2.5 pt-1 gap-2">
@@ -154,7 +132,7 @@
   </div>
 
 
-  <!-- 5. RECENT APPOINTMENTS & LEADS TABLES ROW -->
+  <!-- 5. RECENT LEADS TABLE ROW -->
   <div class="row g-4">
     
     <!-- Table 2: Recent Client Leads -->

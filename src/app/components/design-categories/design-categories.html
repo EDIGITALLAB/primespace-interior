@@ -29,7 +29,7 @@
 
           <!-- Mobile See All Pill at Right End -->
           <a class="sidebar-item sidebar-item-see-all d-lg-none d-flex align-items-center text-decoration-none" routerLink="/categories">
-            <span class="item-name text-uppercase fw-bold me-1">SEE ALL</span>
+            <span class="item-name text-uppercase fw-bold me-1">MORE</span>
             <i class="fa-solid fa-arrow-right sidebar-arrow"></i>
           </a>
 
@@ -38,7 +38,7 @@
         <!-- Small See All Button below list (Desktop only) -->
         <div class="sidebar-footer-action mt-4 pt-2 d-none d-lg-block">
           <a class="btn-see-all-sidebar text-uppercase d-inline-flex align-items-center" routerLink="/categories">
-            <span>SEE ALL</span>
+            <span>MORE</span>
             <i class="fa-solid fa-arrow-right ms-2 btn-icon"></i>
           </a>
         </div>
@@ -56,13 +56,14 @@
           </div>
 
           <!-- Image layers for smooth cross-fading transition -->
-          <div class="preview-images-container w-100 h-100 position-absolute top-0 start-0">
+          <a [routerLink]="['/categories']" [queryParams]="{ type: categories[activeIndex()].id }"
+            class="preview-images-container w-100 h-100 position-absolute top-0 start-0 d-block text-decoration-none">
             <img *ngFor="let cat of categories; let i = index" [src]="cat.image" [alt]="cat.name"
               class="preview-img-layer w-100 h-100 position-absolute start-0 top-0" [class.active]="activeIndex() === i"
               [ngClass]="'anim-style-' + i">
             <div class="image-gradient-overlay top-gradient"></div>
             <div class="image-gradient-overlay bottom-gradient"></div>
-          </div>
+          </a>
 
           <!-- Bottom Glass Card Panel (Floating inside image container) -->
           <div *ngFor="let cat of categories; let i = index" [class.d-none]="activeIndex() !== i"
@@ -72,16 +73,18 @@
               <div class="details-content-wrapper">
                 <span class="details-badge text-uppercase mb-1 d-inline-block">Bespoke Design</span>
                 <h3 class="details-title text-uppercase mb-2">
-                  {{ cat.name }} Inspiration
+                  <a [routerLink]="['/categories']" [queryParams]="{ type: cat.id }" class="text-white text-decoration-none">
+                    {{ cat.name }} Inspiration
+                  </a>
                 </h3>
                 <p class="details-desc text-muted mb-2">
                   {{ cat.desc }}
                 </p>
                 <div class="details-cta-wrapper pt-1">
-                  <button class="btn-explore-cat d-inline-flex align-items-center">
-                    <span>EXPLORE COLLECTION</span>
+                  <a [routerLink]="['/categories']" [queryParams]="{ type: cat.id }" class="btn-explore-cat d-inline-flex align-items-center text-decoration-none">
+                    <span>EXPLORE</span>
                     <i class="fa-solid fa-arrow-right ms-2 btn-arrow"></i>
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

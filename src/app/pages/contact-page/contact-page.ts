@@ -1,8 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
+import { FormspreeService } from '../../services/formspree.service';
 import { MapContact } from '../../components/map-contact/map-contact';
 
 @Component({
@@ -13,6 +14,7 @@ import { MapContact } from '../../components/map-contact/map-contact';
   styleUrl: './contact-page.css',
 })
 export class ContactPage {
+  private formspreeService = inject(FormspreeService);
   // Form Signals
   readonly fullName = signal<string>('');
   readonly phone = signal<string>('');
@@ -70,36 +72,35 @@ export class ContactPage {
       return;
     }
 
-    if (this.phone().length !== 10) {
+    const cleanPhone = (this.phone() || '').replace(/\D/g, '').slice(0, 10);
+    if (cleanPhone.length !== 10) {
       this.errorMessage.set('Please enter a valid 10-digit phone number.');
       return;
     }
 
+    const userEmail = (this.email() && this.email().includes('@')) ? this.email().trim() : `${cleanPhone}@primespaceinterior.com`;
+    const userMsg = (this.message() && this.message().trim().length >= 10) ? this.message().trim() : `Contact Inquiry for ${this.selectedCity() || 'Bangalore'} studio consultation.`;
+
     this.isSubmitting.set(true);
 
-    try {
-      const response = await fetch('https://formspree.io/f/moeabqjp', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          name: this.fullName(),
-          email: this.email(),
-          phone: this.phone(),
-          location: this.selectedCity(),
-          formSource: 'Contact Page Form'
-        })
-      });
+    const payload = {
+      fullName: this.fullName().trim(),
+      email: userEmail,
+      phone: cleanPhone,
+      location: this.selectedCity() || 'Bangalore',
+      message: userMsg,
+      source: 'Contact Page Form'
+    };
 
-      if (response.ok) {
+    try {
+      const result = await this.formspreeService.submitLeadForm(payload);
+      if (result.dbSuccess || result.formspreeSuccess) {
         this.isSubmitted.set(true);
       } else {
-        this.errorMessage.set('Oops! There was an issue submitting your message. Please try again.');
+        this.errorMessage.set(result.errorMessage || 'Oops! There was an issue submitting your message. Please try again.');
       }
     } catch (error) {
-      this.errorMessage.set('Network error. Please check your connection and try again.');
+      this.errorMessage.set('Network error. Please check your internet connection.');
     } finally {
       this.isSubmitting.set(false);
     }

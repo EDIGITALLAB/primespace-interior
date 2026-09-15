@@ -189,4 +189,17 @@
     </div>
   </div>
 
+  <!-- REUSABLE DELETE CONFIRMATION MODAL -->
+  <app-confirm-modal
+    [isOpen]="showDeleteModal()"
+    title="Delete Lead Inquiry?"
+    message="Are you sure you want to delete the lead inquiry from"
+    [itemName]="deletingItemName()"
+    confirmText="Delete Lead"
+    cancelText="Cancel"
+    type="danger"
+    (confirm)="confirmDelete()"
+    (cancel)="closeDeleteModal()">
+  </app-confirm-modal>
+
 </div>

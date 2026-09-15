@@ -48,7 +48,7 @@
             <button type="button" class="btn btn-sm btn-outline-primary px-2.5 py-1 font-size-micro rounded-2" (click)="openEditModal(cat)">
               <i class="fa-solid fa-pen me-1"></i>Edit
             </button>
-            <button type="button" class="btn btn-sm btn-outline-danger px-2.5 py-1 font-size-micro rounded-2" (click)="deleteCategory(cat.id)">
+            <button type="button" class="btn btn-sm btn-outline-danger px-2.5 py-1 font-size-micro rounded-2" (click)="openDeleteModal(cat)">
               <i class="fa-solid fa-trash me-1"></i>Delete
             </button>
           </div>
@@ -70,57 +70,57 @@
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
 
-      <form (submit)="saveCategory($event)" class="p-4 overflow-y-auto" style="max-height: 80vh;">
+      <form ngNativeValidate (submit)="saveCategory($event)" class="p-4 overflow-y-auto" style="max-height: 80vh;">
         <div class="row g-3">
 
           <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Name</label>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Name <span class="text-danger">*</span></label>
             <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Kitchen Units" [ngModel]="name()" (ngModelChange)="name.set($event)" name="name" required>
           </div>
 
           <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Type</label>
-            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="type()" (ngModelChange)="type.set($event)" name="type">
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Type <span class="text-danger">*</span></label>
+            <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="type()" (ngModelChange)="type.set($event)" name="type" required>
               <option value="Kitchen">Kitchen</option>
               <option value="Living Room">Living Room</option>
               <option value="Bedroom">Bedroom</option>
               <option value="Dining">Dining</option>
-              <option value="Wardrobes">Modular Wardrobes</option>
-              <option value="Kids Room">Kids Bedroom</option>
-              <option value="Bathroom">Luxury Bathrooms</option>
-              <option value="Balcony">Balcony Decks</option>
+              <option value="Modular Wardrobes">Modular Wardrobes</option>
+              <option value="Kids Bedroom">Kids Bedroom</option>
+              <option value="Luxury Bathrooms">Luxury Bathrooms</option>
+              <option value="Balcony Decks">Balcony Decks</option>
             </select>
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Tagline</label>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Subtitle / Tagline <span class="text-danger">*</span></label>
             <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Culinary Excellence & Modular Utility" [ngModel]="subtitle()" (ngModelChange)="subtitle.set($event)" name="subtitle" required>
           </div>
 
           <div class="col-12 col-md-7">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Cover Image</label>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Cover Image <span class="text-danger">*</span></label>
             <div class="d-flex gap-2 align-items-center">
               <div class="thumb-box position-relative rounded-3 border overflow-hidden flex-shrink-0" style="width: 38px; height: 38px;" *ngIf="image()">
                 <img [src]="image()" (error)="$any($event.target).src = '/hero_kitchen.png'" class="w-100 h-100 object-fit-cover">
               </div>
-              <input type="text" class="form-control font-size-xs rounded-3 border shadow-none bg-light text-muted cursor-not-allowed" style="height: 38px;" placeholder="No cover image selected" [value]="image()" readonly name="image">
+              <input type="text" class="form-control font-size-xs rounded-3 border shadow-none bg-light text-muted cursor-not-allowed" style="height: 38px;" placeholder="No cover image selected" [value]="image()" readonly name="image" required>
             </div>
           </div>
 
           <div class="col-12 col-md-5">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Delivery Time</label>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Delivery Time <span class="text-danger">*</span></label>
             <div class="input-group shadow-none" style="height: 38px;">
               <span class="input-group-text bg-light border-end-0 rounded-start-3 font-size-xs text-muted">
                 <i class="fa-solid fa-clock text-maroon"></i>
               </span>
-              <input type="text" class="form-control font-size-xs rounded-end-3 border border-start-0 shadow-none h-100" placeholder="e.g. 45 Days" [ngModel]="deliveryTime()" (ngModelChange)="deliveryTime.set($event)" name="deliveryTime">
+              <input type="text" class="form-control font-size-xs rounded-end-3 border border-start-0 shadow-none h-100" placeholder="e.g. 45 Days" [ngModel]="deliveryTime()" (ngModelChange)="deliveryTime.set($event)" name="deliveryTime" required>
             </div>
           </div>
 
           <div class="col-12">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1 d-flex align-items-center justify-content-between gap-2">
               <span class="text-nowrap">
-                <i class="fa-solid fa-images text-maroon me-1"></i>Gallery Images
+                <i class="fa-solid fa-images text-maroon me-1"></i>Gallery Images <span class="text-danger">*</span>
               </span>
               <span class="font-size-micro font-weight-bold text-nowrap" [class.text-danger]="galleryImagesList().length >= 5" [class.text-muted]="galleryImagesList().length < 5">
                 {{ galleryImagesList().length }}/5 Images {{ galleryImagesList().length >= 5 ? '(Max Reached)' : '' }}
@@ -172,14 +172,19 @@
 
             <!-- Action Toolbar: Upload New Image File & Custom URL Input -->
             <div class="d-flex flex-column flex-sm-row gap-2 align-items-center mb-3">
-              <label class="btn btn-outline-maroon font-size-xs rounded-3 px-3 font-weight-bold d-inline-flex align-items-center justify-content-center gap-2 shadow-xs border-maroon-subtle text-nowrap m-0 flex-shrink-0"
+              <label class="btn btn-outline-maroon font-size-xs rounded-3 px-3 font-weight-bold d-inline-flex align-items-center justify-content-center gap-2 shadow-xs border-maroon-subtle text-nowrap m-0 flex-shrink-0 transition-all"
+                     [class.bg-purple-tint]="isDragging()"
+                     [class.border-maroon]="isDragging()"
                      [class.disabled]="galleryImagesList().length >= 5"
                      [class.opacity-50]="galleryImagesList().length >= 5"
                      [class.cursor-not-allowed]="galleryImagesList().length >= 5"
                      [class.cursor-pointer]="galleryImagesList().length < 5"
+                     (dragover)="onDragOver($event)"
+                     (dragleave)="onDragLeave($event)"
+                     (drop)="onFileDrop($event)"
                      style="height: 38px;">
                 <i class="fa-solid fa-cloud-arrow-up text-maroon font-size-xs"></i>
-                <span class="text-maroon">Upload Image</span>
+                <span class="text-maroon">{{ isDragging() ? 'Drop Image Here' : 'Click or Drag & Drop Image' }}</span>
                 <input type="file" accept="image/*" multiple (change)="onFileUpload($event)" [disabled]="galleryImagesList().length >= 5" class="d-none">
               </label>
 
@@ -198,13 +203,13 @@
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Description</label>
-            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="3" placeholder="Bespoke modular kitchens designed for culinary excellence..." [ngModel]="description()" (ngModelChange)="description.set($event)" name="description"></textarea>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Category Description <span class="text-danger">*</span></label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="3" placeholder="Bespoke modular kitchens designed for culinary excellence..." [ngModel]="description()" (ngModelChange)="description.set($event)" name="description" required></textarea>
           </div>
 
           <div class="col-12">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Key Highlights (Enter one per line)</label>
-            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="6" placeholder="Modular Kitchen Solutions&#10;Custom-Size Cabinets & Units&#10;Premium Plywood & Durable Materials&#10;Tall Units & Utility Storage..." [ngModel]="featuresStr()" (ngModelChange)="featuresStr.set($event)" name="featuresStr"></textarea>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Key Highlights (Enter one per line) <span class="text-danger">*</span></label>
+            <textarea class="form-control font-size-xs rounded-3 border shadow-none" rows="6" placeholder="Modular Kitchen Solutions&#10;Custom-Size Cabinets & Units&#10;Premium Plywood & Durable Materials&#10;Tall Units & Utility Storage..." [ngModel]="featuresStr()" (ngModelChange)="featuresStr.set($event)" name="featuresStr" required></textarea>
           </div>
 
         </div>
@@ -219,5 +224,18 @@
 
     </div>
   </div>
+
+  <!-- REUSABLE DELETE CONFIRMATION MODAL -->
+  <app-confirm-modal
+    [isOpen]="showDeleteModal()"
+    title="Delete Design Category?"
+    message="Are you sure you want to delete the category"
+    [itemName]="deletingItemName()"
+    confirmText="Delete Category"
+    cancelText="Cancel"
+    type="danger"
+    (confirm)="confirmDelete()"
+    (cancel)="closeDeleteModal()">
+  </app-confirm-modal>
 
 </div>

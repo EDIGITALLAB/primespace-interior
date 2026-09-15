@@ -1,7 +1,36 @@
-<div class="project-details-page bg-white min-vh-100 overflow-hidden" *ngIf="project() as p">
+<div class="project-details-page bg-white min-vh-100 overflow-hidden">
   
-  <!-- TOP HERO HEADER SECTION (MATCHING EXACT SCREENSHOT DEMO LAYOUT) -->
-  <div class="project-details-top-hero position-relative">
+  <!-- SKELETON SHIMMER LOADER (Shown while fetching project details from backend) -->
+  <div *ngIf="isLoading()" class="project-details-skeleton">
+    <div class="skeleton-hero-banner bg-dark position-relative p-4 p-md-5 d-flex flex-column align-items-center justify-content-center text-center overflow-hidden" style="min-height: 380px;">
+      <div class="skeleton-shimmer"></div>
+      <div class="skeleton-line rounded-pill mb-3" style="width: 200px; height: 32px; background-color: rgba(255,255,255,0.15);"></div>
+      <div class="skeleton-line rounded-pill mb-3" style="width: 45%; height: 36px; background-color: rgba(255,255,255,0.2);"></div>
+      <div class="skeleton-line rounded-pill mb-3" style="width: 30%; height: 18px; background-color: rgba(255,255,255,0.12);"></div>
+      <div class="skeleton-line rounded-3 mb-4" style="width: 65%; height: 14px; background-color: rgba(255,255,255,0.1);"></div>
+      <div class="skeleton-line rounded-pill" style="width: 220px; height: 44px; background-color: rgba(255,255,255,0.25);"></div>
+    </div>
+
+    <div class="container py-5">
+      <div class="row g-4 mb-4">
+        <div *ngFor="let b of [1, 2, 3]" class="col-12 col-md-4">
+          <div class="skeleton-card rounded-4 p-4 border bg-white shadow-sm d-flex flex-column gap-3">
+            <div class="skeleton-img-box rounded-3" style="height: 180px;"></div>
+            <div class="skeleton-line skeleton-title rounded-pill" style="width: 65%;"></div>
+            <div class="skeleton-line skeleton-text rounded-3" style="width: 85%;"></div>
+            <div class="skeleton-line skeleton-btn rounded-pill mt-2"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REAL CONTENT SECTION (Shown after project data finishes loading) -->
+  <ng-container *ngIf="!isLoading()">
+    <div *ngIf="project() as p" class="card-fade-in">
+      
+      <!-- TOP HERO HEADER SECTION (MATCHING EXACT SCREENSHOT DEMO LAYOUT) -->
+      <div class="project-details-top-hero position-relative">
     <!-- FULL-BLEED HERO IMAGE BACKGROUND OVERLAY -->
     <div class="proj-hero-bg-overlay" [style.background-image]="'url(' + p.heroImage + ')'"></div>
     <div class="proj-hero-gradient-mask"></div>
@@ -90,14 +119,18 @@
           <div>
             <div class="d-flex align-items-center gap-2 mb-0.5">
               <h5 class="gallery-main-title fw-black text-purple text-uppercase letter-spacing-1 m-0">Project Gallery</h5>
-              <span class="badge rounded-pill bg-purple text-white font-size-micro px-2.5 py-1 text-uppercase fw-extrabold shadow-xs gallery-head-badge">All Blocks</span>
+              <span class="badge rounded-pill bg-purple text-white font-size-micro px-2.5 py-1 text-uppercase fw-extrabold shadow-xs gallery-head-badge">
+                {{ blocks().length > 0 ? 'All Blocks' : '0 Blocks' }}
+              </span>
             </div>
-            <span class="text-muted font-size-xs fw-medium gallery-head-desc">Explore premium residences & interior suites across all blocks</span>
+            <span class="text-muted font-size-xs fw-medium gallery-head-desc">
+              {{ blocks().length > 0 ? 'Explore premium residences & interior suites across all blocks' : 'No blocks or interior suites added to this project yet.' }}
+            </span>
           </div>
         </div>
 
         <!-- Clean Filter Tabs -->
-        <div class="minimal-filter-tabs d-inline-flex align-items-center bg-white rounded-pill border border-purple-subtle shadow-sm">
+        <div *ngIf="blocks().length > 0" class="minimal-filter-tabs d-inline-flex align-items-center bg-white rounded-pill border border-purple-subtle shadow-sm">
           <button type="button" 
             class="btn minimal-tab-btn rounded-pill transition-all"
             [class.active]="activeBlockFilter() === 'all'"
@@ -106,63 +139,69 @@
           </button>
 
           <button type="button" 
+            *ngFor="let b of blocks()"
             class="btn minimal-tab-btn rounded-pill transition-all"
-            [class.active]="activeBlockFilter() === 'block-a'"
-            (click)="setBlockFilter('block-a', $event)">
-            Block A
-          </button>
-
-          <button type="button" 
-            class="btn minimal-tab-btn rounded-pill transition-all"
-            [class.active]="activeBlockFilter() === 'block-b'"
-            (click)="setBlockFilter('block-b', $event)">
-            Block B
-          </button>
-
-          <button type="button" 
-            class="btn minimal-tab-btn rounded-pill transition-all"
-            [class.active]="activeBlockFilter() === 'block-c'"
-            (click)="setBlockFilter('block-c', $event)">
-            Block C
+            [class.active]="activeBlockFilter() === b.id"
+            (click)="setBlockFilter(b.id, $event)">
+            {{ b.name }}
           </button>
         </div>
       </div>
 
       <!-- Minimal Block Cards Grid -->
-      <div class="row g-4">
+      <div class="row g-4" *ngIf="blocks().length > 0; else noBlocksTemplate">
         <div *ngFor="let block of filteredBlocks" class="col-12 col-md-6 col-lg-4">
           <div class="minimal-gallery-card bg-white rounded-4 border overflow-hidden h-100 d-flex flex-column justify-content-between shadow-xs">
             
             <!-- Main Showcase Image (Full Card Width Edge-to-Edge at Top) -->
-            <div class="minimal-img-stage position-relative overflow-hidden cursor-pointer" (click)="openBlockGalleryModal(block)">
-              <img [src]="block.mainImages[block.selectedImageIndex]" [alt]="block.name" (error)="onImgError($event)" class="w-100 object-fit-cover minimal-stage-img" style="height: 220px;">
+            <div class="minimal-img-stage position-relative overflow-hidden cursor-pointer" (click)="block.mainImages.length > 0 ? openBlockGalleryModal(block) : null">
+              <ng-container *ngIf="block.mainImages.length > 0; else noImgPlaceholder">
+                <img [src]="block.mainImages[block.selectedImageIndex]" [alt]="block.name" (error)="onImgError($event)" class="w-100 object-fit-cover minimal-stage-img" style="height: 220px;">
+              </ng-container>
+              <ng-template #noImgPlaceholder>
+                <div class="no-image-placeholder-stage w-100 d-flex flex-column align-items-center justify-content-center text-center p-3" style="height: 220px;">
+                  <div class="no-img-icon-box rounded-circle d-flex align-items-center justify-content-center mb-2">
+                    <i class="fa-solid fa-image-slash font-size-lg text-slate-400"></i>
+                  </div>
+                  <span class="fw-black font-size-xs text-slate-700 text-uppercase letter-spacing-05">No Image Available</span>
+                  <span class="font-size-micro text-muted mt-1">Photos not uploaded for {{ block.name }}</span>
+                </div>
+              </ng-template>
             </div>
 
             <!-- Card Body Content with Padding -->
             <div class="p-3 p-md-3.5 d-flex flex-column flex-grow-1 justify-content-between">
               
-              <!-- Card Header: Title -->
+              <!-- Card Header: Title & Badge -->
               <div class="d-flex align-items-center justify-content-between gap-2 mb-3">
                 <h6 class="fw-black text-purple text-uppercase m-0 font-size-base letter-spacing-05 text-truncate" [title]="block.name">{{ block.name }}</h6>
+                <span class="badge rounded-pill font-size-micro px-2.5 py-1 text-uppercase fw-extrabold" [ngClass]="block.mainImages.length > 0 ? 'bg-purple-tint text-purple border border-purple-subtle' : 'badge-no-image'">
+                  {{ block.mainImages.length > 0 ? block.tag : 'No Image Available' }}
+                </span>
               </div>
 
-              <!-- 3 Thumbnail Images -->
-              <div class="row g-2">
-                <div *ngFor="let thumb of block.mainImages.slice(1, 4); let i = index" class="col-4">
+              <!-- Thumbnail Images (Rendered ONLY if uploaded images exist) -->
+              <div class="row g-2" *ngIf="block.mainImages.length > 0">
+                <div *ngFor="let thumb of block.mainImages.slice(0, 3); let i = index" class="col-4">
                   <div class="minimal-thumb-box rounded-2 overflow-hidden position-relative" 
-                    [class.active-thumb]="block.selectedImageIndex === (i + 1)"
-                    (click)="i === 2 ? openBlockGalleryModal(block) : setBlockMainImage(block.id, i + 1)">
+                    [class.active-thumb]="block.selectedImageIndex === i"
+                    (click)="i === 2 && block.mainImages.length > 3 ? openBlockGalleryModal(block) : setBlockMainImage(block.id, i)">
                     
                     <img [src]="thumb" [alt]="'Room thumbnail ' + (i + 1)" (error)="onImgError($event)" class="w-100 object-fit-cover minimal-thumb-img">
                     
-                    <!-- OVERLAY FOR THE 3RD (RIGHT-MOST) THUMBNAIL -->
-                    <div *ngIf="i === 2" class="view-more-thumb-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white cursor-pointer z-2 text-center p-1">
-                      <span class="view-more-count fw-black line-height-1 mb-1">+{{ modalPhotosList.length - 3 }}</span>
+                    <!-- OVERLAY FOR THE 3RD (RIGHT-MOST) THUMBNAIL IF MORE THAN 3 PHOTOS -->
+                    <div *ngIf="i === 2 && block.mainImages.length > 3" class="view-more-thumb-overlay position-absolute top-0 start-0 w-100 h-100 d-flex flex-column align-items-center justify-content-center text-white cursor-pointer z-2 text-center p-1">
+                      <span class="view-more-count fw-black line-height-1 mb-1">+{{ block.mainImages.length - 3 }}</span>
                       <span class="view-more-text text-uppercase fw-extrabold">View More</span>
                     </div>
 
                   </div>
                 </div>
+              </div>
+
+              <!-- Clean Empty State if no images uploaded for this block -->
+              <div *ngIf="block.mainImages.length === 0" class="empty-block-notice p-2.5 rounded-3 text-center font-size-xs fw-semibold">
+                <i class="fa-solid fa-camera-retro me-1.5 opacity-75"></i> No photos uploaded for {{ block.name }} yet
               </div>
 
             </div>
@@ -171,8 +210,21 @@
         </div>
       </div>
 
-    </div>
+      <!-- No Blocks Empty State Template -->
+      <ng-template #noBlocksTemplate>
+        <div class="col-12 text-center py-5 bg-white rounded-4 border border-dashed my-3 shadow-xs">
+          <div class="no-blocks-icon-box bg-purple-tint text-purple rounded-circle d-inline-flex align-items-center justify-content-center mb-3 border border-purple-subtle" style="width: 64px; height: 64px;">
+            <i class="fa-solid fa-building-circle-xmark font-size-xl"></i>
+          </div>
+          <h5 class="fw-black text-purple text-uppercase letter-spacing-05 mb-2">No Blocks Configured Yet</h5>
+          <p class="text-muted font-size-sm mb-0 max-w-500 mx-auto">
+            This project does not have any blocks or suites configured yet. Add blocks from the admin panel to display project suites here.
+          </p>
+        </div>
+      </ng-template>
 
+    </div>
+  </div>
   </div>
 
   <!-- INTERACTIVE RESIDENCE GALLERY POPUP MODAL (LIGHT THEME MATCHING BRAND DESIGN) -->
@@ -188,8 +240,12 @@
               <i class="fa-solid fa-building-user"></i>
             </div>
             <div class="min-w-0">
-              <h6 class="m-0 fw-black text-dark font-size-base letter-spacing-tight text-truncate">{{ selectedModalBlock()?.name || 'Block A' }}</h6>
-              <span class="text-muted font-size-micro fw-bold d-block">3 BHK Apartment</span>
+              <h5 class="m-0 fw-black text-purple font-size-md letter-spacing-tight text-truncate">
+                {{ project()?.title || selectedModalBlock()?.name || 'Block A' }}
+              </h5>
+              <span *ngIf="project()?.title" class="text-muted font-size-micro fw-bold d-block mt-0.5 opacity-85">
+                {{ selectedModalBlock()?.name || 'Block A' }}
+              </span>
             </div>
           </div>
 
@@ -251,8 +307,8 @@
       <div class="modal-main-body d-flex flex-column flex-md-row flex-grow-1 overflow-hidden">
         
         <!-- Left Sidebar: Room Categories Filter -->
-        <div class="popup-sidebar border-end border-gray-200 p-3 overflow-y-auto">
-          <div class="d-flex flex-column gap-2.5">
+        <div class="popup-sidebar border-end border-gray-200 p-3.5 overflow-y-auto">
+          <div class="d-flex flex-column gap-3.5">
             <button type="button" 
               *ngFor="let cat of roomCategories"
               class="sidebar-cat-btn text-start d-flex align-items-center justify-content-between transition-all"
@@ -386,21 +442,36 @@
   </div>
 
   <!-- FULLSCREEN LIGHTBOX MODAL -->
-  <div class="lightbox-overlay position-fixed top-0 start-0 w-100 h-100 z-9999 d-flex align-items-center justify-content-center bg-dark-85 p-3" *ngIf="showLightbox()">
-    <div class="lightbox-content position-relative max-w-900 w-100">
-      <button type="button" class="btn-close-lightbox position-absolute top-0 end-0 m-3 rounded-circle border-0 text-white bg-dark-50 p-2 z-10" (click)="closeLightbox()">
-        <i class="fa-solid fa-xmark font-size-lg"></i>
-      </button>
+  <ng-container *ngIf="project() as p">
+    <div class="lightbox-overlay position-fixed top-0 start-0 w-100 h-100 z-9999 d-flex align-items-center justify-content-center bg-dark-85 p-3" *ngIf="showLightbox()">
+      <div class="lightbox-content position-relative max-w-900 w-100">
+        <button type="button" class="btn-close-lightbox position-absolute top-0 end-0 m-3 rounded-circle border-0 text-white bg-dark-50 p-2 z-10" (click)="closeLightbox()">
+          <i class="fa-solid fa-xmark font-size-lg"></i>
+        </button>
 
-      <img [src]="p.gallery[activeImageIndex()] || p.heroImage" [alt]="p.title" class="w-100 rounded-4 max-h-80vh object-fit-contain shadow-2xl">
+        <img [src]="p.gallery[activeImageIndex()] || p.heroImage" [alt]="p.title" class="w-100 rounded-4 max-h-80vh object-fit-contain shadow-2xl">
 
-      <!-- Navigation Arrows -->
-      <button type="button" class="lightbox-arrow nav-prev position-absolute top-50 start-0 translate-middle-y ms-2 rounded-circle border-0 text-white bg-dark-50 p-3" (click)="prevImage()">
-        <i class="fa-solid fa-chevron-left"></i>
-      </button>
-      <button type="button" class="lightbox-arrow nav-next position-absolute top-50 end-0 translate-middle-y me-2 rounded-circle border-0 text-white bg-dark-50 p-3" (click)="nextImage()">
-        <i class="fa-solid fa-chevron-right"></i>
-      </button>
+        <!-- Navigation Arrows -->
+        <button type="button" class="lightbox-arrow nav-prev position-absolute top-50 start-0 translate-middle-y ms-2 rounded-circle border-0 text-white bg-dark-50 p-3" (click)="prevImage()">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button type="button" class="lightbox-arrow nav-next position-absolute top-50 end-0 translate-middle-y me-2 rounded-circle border-0 text-white bg-dark-50 p-3" (click)="nextImage()">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!-- NOT FOUND FALLBACK (Shown if project ID is invalid or not in DB) -->
+  <div *ngIf="!project()" class="project-not-found-wrapper container text-center card-fade-in">
+    <div class="project-not-found-card">
+      <i class="fa-solid fa-building-circle-exclamation text-purple display-3 mb-3"></i>
+      <h3 class="fw-black text-dark mb-2">Project Details Unavailable</h3>
+      <p class="text-muted font-size-sm mb-4">We couldn't find details for this project. It may have been renamed or updated.</p>
+      <a routerLink="/projects" class="btn btn-purple rounded-pill px-4 py-2.5 font-size-xs fw-extrabold text-uppercase">
+        Back to All Projects
+      </a>
     </div>
   </div>
+</ng-container>
 </div>
