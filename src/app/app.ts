@@ -6,6 +6,8 @@ import { Navbar } from './components/navbar/navbar';
 import { Footer } from './components/footer/footer';
 import { ConsultationModal } from './components/consultation-modal/consultation-modal';
 
+import { ThemeFaviconService } from './services/theme-favicon.service';
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -16,6 +18,7 @@ import { ConsultationModal } from './components/consultation-modal/consultation-
 export class App implements OnInit {
   protected readonly title = signal('prime_space_interior');
   private router = inject(Router);
+  private faviconService = inject(ThemeFaviconService);
 
   readonly isAdminRoute = signal(false);
 
@@ -36,7 +39,7 @@ export class App implements OnInit {
 
   private loadSavedTheme() {
     if (typeof window !== 'undefined' && window.localStorage) {
-      const savedColor = localStorage.getItem('selectedThemeColor');
+      const savedColor = localStorage.getItem('selectedThemeColor') || '#96053E';
       const savedRgb = localStorage.getItem('selectedThemeColorRgb');
       const savedGradientEnd = localStorage.getItem('selectedThemeGradientEnd') || '#ff007a';
       if (savedColor && savedRgb) {
@@ -46,6 +49,7 @@ export class App implements OnInit {
         document.documentElement.style.setProperty('--primary-purple-rgb', savedRgb);
         document.documentElement.style.setProperty('--theme-gradient-end', savedGradientEnd);
       }
+      this.faviconService.updateFaviconColor(savedColor);
     }
   }
 }

@@ -789,6 +789,7 @@
   font-size: 14px;
   font-weight: 700;
   color: inherit;
+  text-transform: capitalize;
 }
 
 .sidebar-cat-btn:hover {

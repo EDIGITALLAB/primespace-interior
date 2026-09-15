@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { ThemeFaviconService } from '../../services/theme-favicon.service';
 
 @Component({
   selector: 'app-hero-section',
@@ -24,7 +25,10 @@ export class HeroSection implements OnInit, OnDestroy {
     { name: "Architectural Bronze", hex: "#8D5B4C", gradientEnd: "#ff7733" }
   ];
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private faviconService: ThemeFaviconService
+  ) { }
 
   ngOnInit() {
     this.startSlideshow();
@@ -36,9 +40,10 @@ export class HeroSection implements OnInit, OnDestroy {
   }
 
   startSlideshow() {
+    this.stopSlideshow();
     this.slideInterval = setInterval(() => {
       this.nextSlide();
-    }, 9000);
+    }, 5000);
   }
 
   stopSlideshow() {
@@ -49,7 +54,18 @@ export class HeroSection implements OnInit, OnDestroy {
 
   nextSlide() {
     this.currentSlideIndex = (this.currentSlideIndex + 1) % 3;
-    this.cdr.detectChanges(); // Force Angular to run change detection
+    this.cdr.detectChanges();
+  }
+
+  prevSlide() {
+    this.currentSlideIndex = (this.currentSlideIndex - 1 + 3) % 3;
+    this.cdr.detectChanges();
+  }
+
+  goToSlide(index: number) {
+    this.currentSlideIndex = index;
+    this.startSlideshow();
+    this.cdr.detectChanges();
   }
 
   setSlide(index: number) {
@@ -77,6 +93,7 @@ export class HeroSection implements OnInit, OnDestroy {
         document.documentElement.style.setProperty('--primary-purple-rgb', savedRgb);
         document.documentElement.style.setProperty('--theme-gradient-end', savedGradientEnd);
         this.currentThemeColor = savedColor;
+        this.faviconService.updateFaviconColor(savedColor);
         this.cdr.detectChanges();
       }
     }
@@ -101,6 +118,7 @@ export class HeroSection implements OnInit, OnDestroy {
         localStorage.setItem('selectedThemeGradientEnd', gradientEnd);
       }
       this.currentThemeColor = hex;
+      this.faviconService.updateFaviconColor(hex);
       this.cdr.detectChanges();
     }
   }

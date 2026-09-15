@@ -2,6 +2,7 @@ import { Injectable, signal, computed, effect, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, catchError, map, of, tap } from 'rxjs';
 import { getApiBaseUrl, API_CONFIG } from '../config/api.config';
+import { toTitleCase } from '../utils/string.utils';
 
 export interface BlockPhoto {
   id: string;
@@ -593,10 +594,11 @@ export class AdminDataService {
     }
     const finalVideoUrl = finalVideoUrls[0] || project.videoUrl || '';
 
+    const titleFormatted = toTitleCase(project.title);
     const payload = {
-      name: project.title,
-      slug: project.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
-      subtitle: project.subtitle,
+      name: titleFormatted,
+      slug: titleFormatted.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
+      subtitle: toTitleCase(project.subtitle || ''),
       propertyType: (project.projectType || 'APARTMENT').toUpperCase(),
       description: project.description,
       location: project.location,
