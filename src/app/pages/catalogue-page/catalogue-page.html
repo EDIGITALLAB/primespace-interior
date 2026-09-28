@@ -1,0 +1,380 @@
+<div class="catalogue-page-wrapper position-relative">
+
+  <!-- HERO BANNER SECTION WITH LIGHT WATERMARK BACKGROUND -->
+  <section class="catalogue-hero-section position-relative overflow-hidden text-dark">
+    <div class="hero-bg-watermark"></div>
+    <div class="container-fluid px-3 px-md-5 position-relative z-2">
+      <div class="row align-items-center">
+        <div class="col-lg-10 col-xl-9">
+          <div class="d-inline-flex align-items-center gap-2 px-3 py-1.5 rounded-pill hero-badge mb-2">
+            <i class="fa-solid fa-sparkles text-maroon"></i>
+            <span class="text-uppercase tracking-wider font-size-xs fw-bold">PRIME SPACE DESIGN CATALOGUE</span>
+          </div>
+          <h1 class="hero-title display-5 fw-extrabold mb-2 text-dark-heading">
+            Interior Design & <span class="text-maroon">Material Catalogue</span>
+          </h1>
+          <p class="hero-subtitle text-muted mb-3 font-size-sm max-w-700">
+            Explore curated room layouts, color schemes, and authentic material specs. Click any image below to dynamically update the 3-part specifications box.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Hero Bottom Floating White Breadcrumb Box -->
+    <div class="position-absolute bottom-0 start-0 z-3 ms-3 ms-md-5">
+      <div class="hero-bottom-breadcrumb-box">
+        <ol class="breadcrumb mb-0 align-items-center">
+          <li class="breadcrumb-item d-flex align-items-center">
+            <a routerLink="/" class="breadcrumb-link d-flex align-items-center">
+              <i class="fa-solid fa-house breadcrumb-home-icon"></i>Home
+            </a>
+          </li>
+          <li class="breadcrumb-item d-flex align-items-center">
+            <span class="separator">/</span>
+          </li>
+          <li class="breadcrumb-item active d-flex align-items-center" aria-current="page">
+            <span class="breadcrumb-active-title">Design Gallery Catalogue</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CATALOGUE CONTAINER SECTION -->
+  <section class="catalogue-main-section py-5 py-lg-6 bg-light-section text-dark position-relative">
+    <div class="container-fluid px-3 px-md-5">
+
+      <!-- SECTION TOP: Design Gallery Header & Category Filter Pills -->
+      <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4 pb-3 border-bottom border-light-grey">
+        <div>
+          <h2 class="section-heading display-6 fw-bold mb-1 text-dark-heading">
+            Design Gallery
+          </h2>
+          <p class="section-subtext text-muted mb-0 font-size-sm">
+            Explore curated room layouts & authentic material specs. <span class="fw-semibold text-maroon">• Click any image to view specs.</span>
+          </p>
+        </div>
+
+        <!-- Space Category Filter Buttons (Single Line Row) -->
+        <div class="category-filter-pills d-flex align-items-center flex-nowrap gap-1.5 overflow-x-auto py-1">
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'all'"
+            (click)="setCategory('all')">
+            All
+          </button>
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'living'"
+            (click)="setCategory('living')">
+            Living Room
+          </button>
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'bedroom'"
+            (click)="setCategory('bedroom')">
+            Bedroom
+          </button>
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'kitchen'"
+            (click)="setCategory('kitchen')">
+            Kitchen
+          </button>
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'dining'"
+            (click)="setCategory('dining')">
+            Dining
+          </button>
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'tv-unit'"
+            (click)="setCategory('tv-unit')">
+            TV Unit
+          </button>
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'wardrobe'"
+            (click)="setCategory('wardrobe')">
+            Wardrobe
+          </button>
+          <button
+            type="button"
+            class="filter-pill-btn text-nowrap"
+            [class.active]="activeCategory() === 'office'"
+            (click)="setCategory('office')">
+            Office
+          </button>
+        </div>
+      </div>
+
+      <!-- DESIGN GALLERY CARDS GRID (5 Cards per Row) -->
+      <div class="gallery-cards-grid-5 mb-5">
+        @for (item of filteredGallery(); track item.id) {
+          <div
+            class="gallery-card-item rounded-4 overflow-hidden bg-white border shadow-sm transition-all position-relative"
+            [class.active-selection-card]="selectedGalleryItemId() === item.id"
+            (click)="selectGalleryItem(item, true)">
+            
+            <!-- Card Image Container -->
+            <div class="card-img-wrapper position-relative overflow-hidden aspect-ratio-16-9">
+              <img
+                [src]="item.image"
+                [alt]="item.title"
+                class="w-100 h-100 object-cover gallery-img transition-transform"
+                loading="lazy">
+              
+              <!-- Title Badge (Top Left) -->
+              <div class="position-absolute top-0 start-0 m-2 z-2">
+                <span class="badge bg-dark-glass text-white rounded-pill px-2.5 py-1 font-size-xxs fw-semibold backdrop-blur">
+                  {{ item.title }}
+                </span>
+              </div>
+
+              <!-- Active Selection Badge (Top Right) -->
+              @if (selectedGalleryItemId() === item.id) {
+                <div class="position-absolute top-0 end-0 m-2 z-3">
+                  <span class="badge bg-maroon text-white rounded-pill px-2.5 py-1 font-size-xxs fw-bold shadow-sm d-flex align-items-center gap-1">
+                    <i class="fa-solid fa-circle-check text-white"></i> Active Spec
+                  </span>
+                </div>
+              }
+
+              <!-- Hover Overlay with Actions -->
+              <div class="card-overlay-hover d-flex align-items-center justify-content-center p-2.5">
+                <button
+                  type="button"
+                  class="btn btn-maroon-primary rounded-pill px-3 py-1.5 font-size-xxs fw-bold shadow-md d-flex align-items-center gap-1.5"
+                  (click)="$event.stopPropagation(); selectGalleryItem(item, true)">
+                  <i class="fa-solid fa-sliders"></i> Select Specs
+                </button>
+              </div>
+            </div>
+
+          </div>
+        } @empty {
+          <div class="text-center py-5 w-100">
+            <i class="fa-solid fa-folder-open display-4 text-muted mb-3 d-block"></i>
+            <h4 class="h5 fw-bold text-dark mb-1">No designs found for this category</h4>
+            <p class="text-muted font-size-sm">Try selecting "All" or switching category above.</p>
+            <button class="btn btn-outline-dark rounded-pill btn-sm px-4 mt-2" (click)="setCategory('all')">
+              Reset Filter
+            </button>
+          </div>
+        }
+      </div>
+
+
+      <!-- BOTTOM 3-COLUMN DETAILED SECTION (Key Features | Color Palette | Materials Used) -->
+      <div class="catalogue-details-grid-box p-4 p-md-5 rounded-4 bg-white border border-light-subtle shadow-sm specs-fade-anim" id="catalogue-specs-section">
+        
+        <!-- Active Selected Design Header Bar -->
+        <div class="active-item-spec-header d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mb-4 pb-3 border-bottom border-light-grey">
+          <div class="d-flex align-items-center gap-3">
+            <div class="active-item-thumb rounded-3 overflow-hidden shadow-sm flex-shrink-0" style="width: 56px; height: 56px;">
+              <img [src]="selectedGalleryItem().image" [alt]="selectedGalleryItem().title" class="w-100 h-100 object-cover">
+            </div>
+            <div>
+              <div class="d-flex align-items-center gap-2">
+                <span class="badge bg-maroon-light text-maroon font-size-xxs fw-extrabold text-uppercase px-2.5 py-1 rounded-pill">
+                  ACTIVE SPECIFICATION
+                </span>
+                <span class="text-muted font-size-xs fw-semibold">• {{ activeTheme().name }}</span>
+              </div>
+              <h3 class="h4 fw-extrabold text-dark-heading mb-0 mt-0.5">
+                {{ selectedGalleryItem().title }} Specifications
+              </h3>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row g-4 g-xl-5">
+
+          <!-- COLUMN 1: Key Features -->
+          <div class="col-12 col-lg-4 col-xl-4 col-features border-end-lg border-light-grey">
+            <h3 class="column-title display-7 fw-bold mb-1 text-dark-heading">
+              Key Features
+            </h3>
+            <p class="column-subtitle text-muted font-size-sm mb-4">
+              Architectural features specified for {{ selectedGalleryItem().title }}.
+            </p>
+            <div class="key-features-list d-flex flex-column gap-3.5">
+              @for (feature of activeKeyFeatures(); track feature.title) {
+                <div class="feature-item-row d-flex align-items-center gap-3">
+                  <div class="feature-icon-circle flex-shrink-0 d-flex align-items-center justify-content-center">
+                    <i [class]="feature.icon"></i>
+                  </div>
+                  <div class="feature-text-content">
+                    <span class="feature-title d-block fw-semibold text-dark font-size-sm mb-0.5">
+                      {{ feature.title }}
+                    </span>
+                    <span class="feature-desc d-block text-muted font-size-xs">
+                      {{ feature.desc }}
+                    </span>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- COLUMN 2: Color Palette -->
+          <div class="col-12 col-lg-4 col-xl-4 col-colors border-end-lg border-light-grey">
+            <h3 class="column-title display-7 fw-bold mb-1 text-dark-heading">
+              Color Palette
+            </h3>
+            <p class="column-subtitle text-muted font-size-sm mb-4">
+              Popular colors specified for {{ selectedGalleryItem().title }}.
+            </p>
+
+            <div class="color-palette-swatch-grid">
+              @for (color of activeColorPalette(); track color.name) {
+                <div class="color-swatch-item text-center">
+                  <div
+                    class="color-circle-chip mx-auto mb-2 shadow-xs border"
+                    [style.background-color]="color.hex"
+                    [title]="color.name + ' (' + color.usage + ')'">
+                  </div>
+                  <span class="color-name d-block font-size-xs fw-semibold text-dark text-truncate">
+                    {{ color.name }}
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+
+          <!-- COLUMN 3: Materials Used -->
+          <div class="col-12 col-lg-4 col-xl-4 col-materials">
+            <h3 class="column-title display-7 fw-bold mb-1 text-dark-heading">
+              Materials Used
+            </h3>
+            <p class="column-subtitle text-muted font-size-sm mb-4">
+              High-quality materials specified for {{ selectedGalleryItem().title }}.
+            </p>
+
+            <div class="materials-sample-grid row g-3">
+              @for (mat of activeMaterials(); track mat.id) {
+                <div class="col-6 col-sm-4 col-lg-4">
+                  <div class="material-sample-card rounded-3 overflow-hidden border border-light-subtle bg-light text-center h-100">
+                    <div class="material-thumb-wrap overflow-hidden">
+                      <img [src]="mat.image" [alt]="mat.title" class="w-100 h-100 object-cover material-img">
+                    </div>
+                    <div class="material-caption p-2">
+                      <span class="material-title d-block fw-bold font-size-xs text-dark text-truncate">
+                        {{ mat.title }}
+                      </span>
+                      <span class="material-sub d-block text-muted font-size-xxs text-truncate">
+                        {{ mat.subtitle }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- BOTTOM CTA BANNER: Consult with Designers -->
+      <div class="cta-catalogue-banner rounded-4 mt-5 p-4 p-md-5 text-white d-flex flex-column flex-md-row align-items-center justify-content-between gap-4 position-relative overflow-hidden">
+        <div class="cta-bg-glow"></div>
+        <div class="cta-content position-relative z-2 max-w-700">
+          <span class="badge bg-white text-maroon font-size-xs fw-extrabold rounded-pill px-3 py-1 mb-3 text-uppercase">
+            Customization Guaranteed
+          </span>
+          <h3 class="h2 fw-bold text-white mb-2">
+            Want to customize {{ selectedGalleryItem().title }} for your home layout?
+          </h3>
+          <p class="text-white-50 font-size-sm mb-0">
+            Our interior architects calculate exact dimensions, custom material samples, 3D VR renders, and zero-compromise cost estimates.
+          </p>
+        </div>
+        <div class="cta-actions position-relative z-2 flex-shrink-0">
+          <button type="button" class="btn btn-light rounded-pill px-4 py-3 fw-bold text-maroon shadow-lg hover-lift d-flex align-items-center gap-2" (click)="openConsultation()">
+            <i class="fa-solid fa-calendar-check text-maroon"></i> Book Free Consultation
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- LIGHTBOX DESIGN DETAILS MODAL -->
+  @if (isModalOpen() && selectedItem()) {
+    <div class="design-modal-overlay d-flex align-items-center justify-content-center p-3 z-9999" (click)="closeModal()">
+      <div class="design-modal-card rounded-4 bg-white text-dark overflow-hidden shadow-2xl max-w-900 w-100" (click)="$event.stopPropagation()">
+        
+        <div class="row g-0">
+          <!-- Left: High Res Image -->
+          <div class="col-lg-6 position-relative bg-dark d-flex align-items-center justify-content-center">
+            <img [src]="selectedItem()!.image" [alt]="selectedItem()!.title" class="w-100 h-100 object-cover max-h-500">
+            <span class="badge bg-dark-glass position-absolute top-0 start-0 m-3 text-white font-size-xs rounded-pill px-3 py-1.5 backdrop-blur">
+              {{ selectedItem()!.categoryLabel }}
+            </span>
+          </div>
+
+          <!-- Right: Detailed Spec Breakdown -->
+          <div class="col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-between">
+            <div>
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <span class="badge bg-maroon-light text-maroon font-size-xs font-weight-700 rounded-pill px-3 py-1">
+                  {{ activeTheme().name }}
+                </span>
+                <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+              </div>
+
+              <h3 class="h3 fw-bold text-dark mb-2">{{ selectedItem()!.title }}</h3>
+              <p class="text-muted font-size-sm mb-4">{{ selectedItem()!.shortDesc }}</p>
+
+              <!-- Spec Details Grid -->
+              <div class="spec-grid bg-light p-3 rounded-3 mb-4">
+                <div class="row g-2 font-size-xs">
+                  <div class="col-6">
+                    <span class="text-muted d-block">Dimensions:</span>
+                    <strong class="text-dark">{{ selectedItem()!.dimensions }}</strong>
+                  </div>
+                  <div class="col-6">
+                    <span class="text-muted d-block">Estimated Timeline:</span>
+                    <strong class="text-dark">{{ selectedItem()!.completionDays }}</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Materials Used List -->
+              <h4 class="h6 fw-bold text-dark mb-2">Key Materials Included:</h4>
+              <ul class="list-unstyled mb-4">
+                @for (matName of selectedItem()!.materialsUsed; track matName) {
+                  <li class="d-flex align-items-center gap-2 font-size-xs text-dark mb-1.5">
+                    <i class="fa-solid fa-circle-check text-maroon font-size-xxs"></i>
+                    <span>{{ matName }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <div class="pt-3 border-top d-flex gap-2">
+              <button type="button" class="btn btn-maroon-primary rounded-pill px-4 py-2.5 font-size-xs fw-bold flex-grow-1" (click)="openConsultation()">
+                Get Quote for this Design
+              </button>
+              <button type="button" class="btn btn-outline-secondary rounded-pill px-3 py-2.5 font-size-xs" (click)="closeModal()">
+                Close
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  }
+
+</div>

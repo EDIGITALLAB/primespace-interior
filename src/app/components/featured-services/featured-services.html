@@ -25,7 +25,7 @@
       </p>
     </div>
 
-    <!-- 3 Modern Premium Service Cards Grid (Mobile Touch Slider) -->
+    <!-- 3 Modern Premium Service Cards Grid (Mobile/Tablet Touch Slider) -->
     <div class="fs-carousel-wrapper position-relative">
 
       <div class="row row-cols-1 row-cols-lg-3 g-4 align-items-stretch fs-cards-row" #fsCardsRow
@@ -71,11 +71,11 @@
               <!-- Simple Clean Feature Checklist (All Details Shown) -->
               <div class="fs-simple-grid mb-2">
                 @for (item of s.items; track item.name) {
-                <div class="fs-simple-item d-flex align-items-center gap-2 py-1">
+                <div class="fs-simple-item d-flex align-items-center gap-2 py-1 min-w-0 w-100">
                   <span class="fs-check-badge flex-shrink-0 d-inline-flex align-items-center justify-content-center">
                     <i [class]="item.icon + ' fs-check-icon'"></i>
                   </span>
-                  <span class="fs-simple-text text-dark fw-medium text-truncate" [title]="item.name">{{ item.name }}</span>
+                  <span class="fs-simple-text text-dark fw-medium text-truncate min-w-0 flex-grow-1" [title]="item.name">{{ item.name }}</span>
                 </div>
                 }
               </div>
@@ -89,10 +89,10 @@
         }
       </div>
 
-      <!-- Mobile Pagination Dots -->
+      <!-- Mobile & Tablet Pagination Dots -->
       <div class="slider-dots-wrapper d-flex justify-content-center align-items-center gap-2 mt-3 d-lg-none">
         <button *ngFor="let s of servicesList; let i = index" class="slider-dot-btn"
-          [class.active]="currentSlide() === i" (click)="slideTo(i)"
+          [class.active]="isDotActive(i)" (click)="slideTo(i)"
           [attr.aria-label]="'Go to service slide ' + (i + 1)">
         </button>
       </div>

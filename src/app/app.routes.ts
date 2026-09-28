@@ -6,6 +6,7 @@ import { ContactPage } from './pages/contact-page/contact-page';
 import { LocationsPage } from './pages/locations-page/locations-page';
 import { ProjectsPage } from './pages/projects-page/projects-page';
 import { GalleryPage } from './pages/gallery-page/gallery-page';
+import { CataloguePage } from './pages/catalogue-page/catalogue-page';
 import { ProjectDetails } from './pages/project-details/project-details';
 import { PrivacyPolicyPage } from './pages/privacy-policy-page/privacy-policy-page';
 import { TermsConditionsPage } from './pages/terms-conditions-page/terms-conditions-page';
@@ -27,6 +28,7 @@ export const routes: Routes = [
   { path: 'categories', component: CategoriesPage },
   { path: 'projects', component: ProjectsPage },
   { path: 'gallery', component: GalleryPage },
+  { path: 'catalogue', component: CataloguePage },
   { path: 'projects/:id', component: ProjectDetails },
   // { path: 'project-details', component: ProjectDetails },
   { path: 'project-details/:id', component: ProjectDetails },

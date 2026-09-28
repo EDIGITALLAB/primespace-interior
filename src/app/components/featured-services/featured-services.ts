@@ -49,6 +49,11 @@ export class FeaturedServices implements OnInit, OnDestroy {
 
   startAutoSlide() {
     if (!isPlatformBrowser(this.platformId)) return;
+    // Disable auto scroll on tablet view (768px - 991px)
+    if (window.innerWidth >= 768 && window.innerWidth <= 991) {
+      this.stopAutoSlide();
+      return;
+    }
     this.stopAutoSlide();
     this.timer = setInterval(() => {
       this.slideNext();
@@ -126,18 +131,37 @@ export class FeaturedServices implements OnInit, OnDestroy {
     return this.servicesList.length;
   }
 
+  isDotActive(index: number): boolean {
+    const current = this.currentSlide();
+    if (isPlatformBrowser(this.platformId) && window.innerWidth >= 768 && window.innerWidth <= 991) {
+      if (current >= 1 && index === 1) return true;
+      if (current === 0 && index === 0) return true;
+    }
+    return current === index;
+  }
+
   slideTo(index: number) {
-    const targetIndex = (index + this.totalCards) % this.totalCards;
-    this.currentSlide.set(targetIndex);
-    if (!isPlatformBrowser(this.platformId)) return;
+    if (!isPlatformBrowser(this.platformId)) {
+      this.currentSlide.set(index);
+      return;
+    }
+
     const row = this.fsCardsRow?.nativeElement;
     if (!row) return;
+
+    const isTablet = window.innerWidth >= 768 && window.innerWidth <= 991;
+    const maxIndex = isTablet ? 1 : this.totalCards - 1;
+
+    let targetIndex = index;
+    if (targetIndex > maxIndex) targetIndex = 0;
+    if (targetIndex < 0) targetIndex = maxIndex;
+
+    this.currentSlide.set(targetIndex);
+
     const cards = Array.from(row.children) as HTMLElement[];
     const card = cards[targetIndex];
     if (card) {
-      const rowWidth = row.clientWidth;
-      const targetScrollLeft = card.offsetLeft - (rowWidth - card.clientWidth) / 2;
-      row.scrollTo({ left: Math.max(0, targetScrollLeft), behavior: 'smooth' });
+      row.scrollTo({ left: card.offsetLeft, behavior: 'smooth' });
     }
   }
 
@@ -159,21 +183,30 @@ export class FeaturedServices implements OnInit, OnDestroy {
       const cards = Array.from(target.children) as HTMLElement[];
 
       if (cards.length > 0) {
-        let closestIndex = 0;
-        let minDistance = Infinity;
-        const centerPos = scrollPos + target.clientWidth / 2;
-
-        cards.forEach((card, idx) => {
-          const cardCenter = card.offsetLeft + card.clientWidth / 2;
-          const distance = Math.abs(centerPos - cardCenter);
-          if (distance < minDistance) {
-            minDistance = distance;
-            closestIndex = idx;
+        const isTablet = window.innerWidth >= 768 && window.innerWidth <= 991;
+        if (isTablet) {
+          const threshold = cards[1] ? cards[1].offsetLeft / 2 : 100;
+          const activeIndex = scrollPos >= threshold ? 1 : 0;
+          if (activeIndex !== this.currentSlide()) {
+            this.currentSlide.set(activeIndex);
           }
-        });
+        } else {
+          let closestIndex = 0;
+          let minDistance = Infinity;
+          const centerPos = scrollPos + target.clientWidth / 2;
 
-        if (closestIndex !== this.currentSlide()) {
-          this.currentSlide.set(closestIndex);
+          cards.forEach((card, idx) => {
+            const cardCenter = card.offsetLeft + card.clientWidth / 2;
+            const distance = Math.abs(centerPos - cardCenter);
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestIndex = idx;
+            }
+          });
+
+          if (closestIndex !== this.currentSlide()) {
+            this.currentSlide.set(closestIndex);
+          }
         }
       }
     }
