@@ -12,7 +12,8 @@
           </span>
           <h1 class="hero-title text-uppercase mb-3">Get In Touch</h1>
           <p class="hero-subtitle mb-0">
-            Have a project in mind, need a 3D floor plan layout, or want to experience our premium modular hardware in person? Reach out to our senior architects today.
+            Have a project in mind, need a 3D floor plan layout, or want to experience our premium modular hardware in
+            person? Reach out to our senior architects today.
           </p>
         </div>
       </div>
@@ -38,12 +39,14 @@
                   <div class="plant-bg-overlay position-absolute inset-0"></div>
                 </div>
 
-                <div class="contact-mockup-left p-4 p-md-5 d-flex flex-column justify-content-center position-relative z-2 h-100">
-                  
+                <div
+                  class="contact-mockup-left p-4 p-md-5 d-flex flex-column justify-content-center position-relative z-2 h-100">
+
                   <!-- Top Soft Badge -->
                   <div class="mb-3">
-                    <span class="badge bg-gold-tan text-dark-brown font-size-micro fw-bold text-uppercase px-3 py-2 rounded-2 tracking-wider">
-                      FREE 3D DESIGN CONSULTATION
+                    <span
+                      class="badge bg-gold-tan text-dark-brown font-size-micro fw-bold text-uppercase px-3 py-2 rounded-2 tracking-wider">
+                      3D DESIGN CONSULTATION
                     </span>
                   </div>
 
@@ -60,14 +63,14 @@
 
                   <!-- 4 Feature Highlights -->
                   <div class="d-flex flex-column gap-3.5 pt-1">
-                    
+
                     <!-- Item 1 -->
                     <div class="d-flex align-items-start gap-3">
                       <div class="mockup-icon-box text-maroon-theme font-size-md flex-shrink-0 mt-0.5">
                         <i class="fa-solid fa-pen-ruler"></i>
                       </div>
                       <div>
-                        <h6 class="fw-bold text-dark m-0 font-size-sm">Free 3D Concept</h6>
+                        <h6 class="fw-bold text-dark m-0 font-size-sm">3D Concept on Demand</h6>
                         <p class="text-muted font-size-xs m-0">Visualize your space before it's built.</p>
                       </div>
                     </div>
@@ -112,16 +115,20 @@
 
               <!-- RIGHT SIDE: DARK MAROON FORM CARD -->
               <div class="col-lg-6 p-3 p-md-4">
-                <div class="contact-mockup-form-card p-4 p-md-5 rounded-4 text-white shadow-lg position-relative overflow-hidden h-100 d-flex flex-column justify-content-center">
-                  
+                <div
+                  class="contact-mockup-form-card p-4 p-md-5 rounded-4 text-white shadow-lg position-relative overflow-hidden h-100 d-flex flex-column justify-content-center">
+
                   <div *ngIf="!isSubmitted(); else successState">
                     <form (submit)="submitContactForm($event)">
 
                       <!-- Bootstrap Alert Banner -->
-                      <div *ngIf="errorMessage()" class="alert alert-danger alert-dismissible fade show mb-3 p-3 rounded-3 shadow-xs d-flex align-items-center gap-2 font-size-xs text-dark" role="alert">
+                      <div *ngIf="errorMessage()"
+                        class="alert alert-danger alert-dismissible fade show mb-3 p-3 rounded-3 shadow-xs d-flex align-items-center gap-2 font-size-xs text-dark"
+                        role="alert">
                         <i class="fa-solid fa-circle-exclamation text-danger font-size-sm"></i>
                         <span class="flex-grow-1 fw-bold">{{ errorMessage() }}</span>
-                        <button type="button" class="btn-close p-2 font-size-micro ms-auto" (click)="errorMessage.set(null)" aria-label="Close"></button>
+                        <button type="button" class="btn-close p-2 font-size-micro ms-auto"
+                          (click)="errorMessage.set(null)" aria-label="Close"></button>
                       </div>
 
                       <div class="d-flex flex-column gap-3.5">
@@ -131,8 +138,10 @@
                           <span class="input-group-text bg-cream-input border-0 pe-1 text-muted-brown font-size-sm">
                             <i class="fa-regular fa-user"></i>
                           </span>
-                          <input type="text" class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
-                            placeholder="Full Name *" [ngModel]="fullName()" (ngModelChange)="fullName.set($event)" name="fullName" required />
+                          <input type="text"
+                            class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
+                            placeholder="Full Name *" [ngModel]="fullName()" (ngModelChange)="fullName.set($event)"
+                            name="fullName" required />
                         </div>
 
                         <!-- Email Address * -->
@@ -140,22 +149,28 @@
                           <span class="input-group-text bg-cream-input border-0 pe-1 text-muted-brown font-size-sm">
                             <i class="fa-regular fa-envelope"></i>
                           </span>
-                          <input type="email" class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
-                            placeholder="Email Address *" [ngModel]="email()" (ngModelChange)="email.set($event)" name="email" required />
+                          <input type="email"
+                            class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
+                            placeholder="Email Address *" [ngModel]="email()" (ngModelChange)="email.set($event)"
+                            name="email" required />
                         </div>
 
                         <!-- +91 v | Phone Number * -->
                         <div class="input-group rounded-3 overflow-hidden bg-cream-input">
-                          <span class="input-group-text bg-cream-input border-0 pe-2 text-dark font-size-sm d-flex align-items-center gap-1">
+                          <span
+                            class="input-group-text bg-cream-input border-0 pe-2 text-dark font-size-sm d-flex align-items-center gap-1">
                             <span class="fw-semibold font-size-xs">+91</span>
                             <i class="fa-solid fa-chevron-down font-size-micro text-muted"></i>
                           </span>
-                          <span class="input-group-text bg-cream-input border-0 px-1 text-muted-brown font-size-sm border-start">
+                          <span
+                            class="input-group-text bg-cream-input border-0 px-1 text-muted-brown font-size-sm border-start">
                             <i class="fa-solid fa-phone font-size-xs"></i>
                           </span>
-                          <input type="tel" class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
+                          <input type="tel"
+                            class="form-control border-0 shadow-none px-2 font-size-sm text-dark bg-cream-input"
                             placeholder="Phone Number *" [ngModel]="phone()" (ngModelChange)="onPhoneInput($event)"
-                            maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" name="phone" required />
+                            maxlength="10" minlength="10" pattern="[0-9]{10}" inputmode="numeric" name="phone"
+                            required />
                         </div>
 
 
@@ -164,7 +179,8 @@
                           <span class="input-group-text bg-cream-input border-0 pe-1 text-maroon-theme font-size-sm">
                             <i class="fa-solid fa-location-dot"></i>
                           </span>
-                          <select class="form-select border-0 shadow-none ps-1 pe-4 font-size-sm text-dark cursor-pointer fw-bold bg-cream-input"
+                          <select
+                            class="form-select border-0 shadow-none ps-1 pe-4 font-size-sm text-dark cursor-pointer fw-bold bg-cream-input"
                             [ngModel]="selectedCity()" (ngModelChange)="selectedCity.set($event)" name="citySelect">
                             <option value="Bangalore">Bangalore</option>
                             <option value="Bhubaneswar">Bhubaneswar</option>
@@ -173,8 +189,9 @@
 
                         <!-- Action CTA Button -->
                         <div class="pt-2">
-                          <button type="submit" class="btn btn-mockup-cta w-100 rounded-3 py-2.5 px-2 fw-bold text-uppercase d-flex align-items-center justify-content-center gap-2 shadow-sm text-nowrap">
-                            <span class="text-nowrap">GET FREE ESTIMATE & LAYOUT</span>
+                          <button type="submit"
+                            class="btn btn-mockup-cta w-100 rounded-3 py-2.5 px-2 fw-bold text-uppercase d-flex align-items-center justify-content-center gap-2 shadow-sm text-nowrap">
+                            <span class="text-nowrap">GET ESTIMATE & LAYOUT</span>
                             <i class="fa-solid fa-arrow-right font-size-xs flex-shrink-0"></i>
                           </button>
                         </div>
@@ -183,8 +200,10 @@
                         <div class="text-center pt-2">
                           <p class="font-size-micro text-white-50 mb-0 opacity-80">
                             By submitting this form, you agree to our<br>
-                            <a routerLink="/privacy-policy" class="text-white text-decoration-underline fw-semibold">Privacy Policy</a> &amp;
-                            <a routerLink="/terms-conditions" class="text-white text-decoration-underline fw-semibold">Terms &amp; Conditions</a>.
+                            <a routerLink="/privacy-policy"
+                              class="text-white text-decoration-underline fw-semibold">Privacy Policy</a> &amp;
+                            <a routerLink="/terms-conditions"
+                              class="text-white text-decoration-underline fw-semibold">Terms &amp; Conditions</a>.
                           </p>
                         </div>
 
@@ -199,7 +218,8 @@
                         <i class="fa-solid fa-circle-check display-4"></i>
                       </div>
                       <h3 class="fw-bold text-white mb-2">Thank You!</h3>
-                      <p class="text-white-50 small mb-4">Your enquiry has been submitted. Our designer will reach out to you shortly.</p>
+                      <p class="text-white-50 small mb-4">Your enquiry has been submitted. Our designer will reach out
+                        to you shortly.</p>
                       <button type="button" class="btn btn-outline-light rounded-pill px-4" (click)="resetForm()">
                         Send Another Message
                       </button>
@@ -239,15 +259,20 @@
       <div class="row justify-content-center">
         <div class="col-lg-9">
           <div class="faq-accordion-stack d-flex flex-column gap-2 gap-md-3">
-            <div *ngFor="let item of faqs; let idx = index" class="faq-item-card rounded-4 border bg-white overflow-hidden shadow-sm transition-all" [class.active]="activeFaqIndex() === idx">
-              <div class="faq-header-bar p-3 p-md-4 d-flex align-items-center justify-content-between cursor-pointer" (click)="toggleFaq(idx)">
+            <div *ngFor="let item of faqs; let idx = index"
+              class="faq-item-card rounded-4 border bg-white overflow-hidden shadow-sm transition-all"
+              [class.active]="activeFaqIndex() === idx">
+              <div class="faq-header-bar p-3 p-md-4 d-flex align-items-center justify-content-between cursor-pointer"
+                (click)="toggleFaq(idx)">
                 <h5 class="fw-extrabold text-dark m-0 d-flex align-items-center">
                   <i class="fa-solid fa-circle-question text-purple me-2 me-md-3 flex-shrink-0"></i>
                   <span>{{ item.q }}</span>
                 </h5>
-                <i class="fa-solid fa-chevron-down faq-chevron ms-2 ms-md-3 text-purple flex-shrink-0" [class.rotate-180]="activeFaqIndex() === idx"></i>
+                <i class="fa-solid fa-chevron-down faq-chevron ms-2 ms-md-3 text-purple flex-shrink-0"
+                  [class.rotate-180]="activeFaqIndex() === idx"></i>
               </div>
-              <div *ngIf="activeFaqIndex() === idx" class="faq-body-content px-3 px-md-4 pb-3 pb-md-4 border-top pt-3 text-muted line-height-relaxed animate-fade-in">
+              <div *ngIf="activeFaqIndex() === idx"
+                class="faq-body-content px-3 px-md-4 pb-3 pb-md-4 border-top pt-3 text-muted line-height-relaxed animate-fade-in">
                 <p class="m-0">{{ item.a }}</p>
               </div>
             </div>

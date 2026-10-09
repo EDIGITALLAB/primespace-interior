@@ -6,6 +6,12 @@ import { ContactPage } from './pages/contact-page/contact-page';
 import { LocationsPage } from './pages/locations-page/locations-page';
 import { ProjectsPage } from './pages/projects-page/projects-page';
 import { GalleryPage } from './pages/gallery-page/gallery-page';
+import { WardrobePage } from './pages/wardrobe-page/wardrobe-page';
+import { ModularKitchenPage } from './pages/modular-kitchen-page/modular-kitchen-page';
+import { MasterBedroomPage } from './pages/master-bedroom-page/master-bedroom-page';
+import { KidsBedroomPage } from './pages/kids-bedroom-page/kids-bedroom-page';
+import { PoojaRoomPage } from './pages/pooja-room-page/pooja-room-page';
+import { ExploreDesignIdeas } from './pages/explore-design-ideas/explore-design-ideas';
 import { CataloguePage } from './pages/catalogue-page/catalogue-page';
 import { ProjectDetails } from './pages/project-details/project-details';
 import { PrivacyPolicyPage } from './pages/privacy-policy-page/privacy-policy-page';
@@ -26,9 +32,43 @@ import { NotFoundPage } from './pages/not-found-page/not-found-page';
 export const routes: Routes = [
   { path: '', component: Landing },
   { path: 'categories', component: CategoriesPage },
+  { path: 'explore-design-ideas', component: ExploreDesignIdeas },
+  { path: 'explore-design-ideas/wardrobe-designs', component: WardrobePage },
+  { path: 'explore-design-ideas/wardrobes', component: WardrobePage },
+  { path: 'explore-design-ideas/wardrobe', component: WardrobePage },
+  { path: 'explore-design-ideas/modular-kitchen', component: ModularKitchenPage },
+  { path: 'explore-design-ideas/kitchen-designs', component: ModularKitchenPage },
+  { path: 'explore-design-ideas/kitchen', component: ModularKitchenPage },
+  { path: 'explore-design-ideas/kitchens', component: ModularKitchenPage },
+  { path: 'explore-design-ideas/master-bedroom', component: MasterBedroomPage },
+  { path: 'explore-design-ideas/bedroom-designs', component: MasterBedroomPage },
+  { path: 'explore-design-ideas/bedroom', component: MasterBedroomPage },
+  { path: 'explore-design-ideas/bedrooms', component: MasterBedroomPage },
+  { path: 'explore-design-ideas/kids-bedroom', component: KidsBedroomPage },
+  { path: 'explore-design-ideas/kids-room', component: KidsBedroomPage },
+  { path: 'explore-design-ideas/kids', component: KidsBedroomPage },
+  { path: 'explore-design-ideas/pooja-room', component: PoojaRoomPage },
+  { path: 'explore-design-ideas/pooja-room-designs', component: PoojaRoomPage },
+  { path: 'explore-design-ideas/mandir', component: PoojaRoomPage },
+  { path: 'explore-design-ideas/pooja', component: PoojaRoomPage },
+  { path: 'design-ideas', component: ExploreDesignIdeas },
   { path: 'projects', component: ProjectsPage },
   { path: 'gallery', component: GalleryPage },
-  { path: 'catalogue', component: CataloguePage },
+  { path: 'wardrobe', component: WardrobePage },
+  { path: 'wardrobes', component: WardrobePage },
+  { path: 'modular-kitchen', component: ModularKitchenPage },
+  { path: 'kitchen', component: ModularKitchenPage },
+  { path: 'kitchens', component: ModularKitchenPage },
+  { path: 'master-bedroom', component: MasterBedroomPage },
+  { path: 'bedroom', component: MasterBedroomPage },
+  { path: 'bedrooms', component: MasterBedroomPage },
+  { path: 'kids-bedroom', component: KidsBedroomPage },
+  { path: 'kids-room', component: KidsBedroomPage },
+  { path: 'kids', component: KidsBedroomPage },
+  { path: 'pooja-room', component: PoojaRoomPage },
+  { path: 'mandir', component: PoojaRoomPage },
+  { path: 'pooja', component: PoojaRoomPage },
+  // { path: 'catalogue', component: CataloguePage },
   { path: 'projects/:id', component: ProjectDetails },
   // { path: 'project-details', component: ProjectDetails },
   { path: 'project-details/:id', component: ProjectDetails },

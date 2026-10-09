@@ -63,6 +63,8 @@
 
             <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/" [routerLinkActiveOptions]="{exact: true}"
                 routerLinkActive="active"><span class="nav-link-text">HOME</span></a></li>
+            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/explore-design-ideas" routerLinkActive="active"><span
+                  class="nav-link-text">DESIGN IDEAS</span></a></li>
             <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/categories" routerLinkActive="active"><span
                   class="nav-link-text">CATEGORIES</span></a></li>
 
@@ -74,9 +76,9 @@
                   class="nav-link-text">GALLERY</span></a>
             </li>
 
-            <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/catalogue" routerLinkActive="active"><span
+            <!-- <li class="nav-item px-lg-1.5"><a class="nav-link" routerLink="/catalogue" routerLinkActive="active"><span
                   class="nav-link-text">CATALOGUE</span></a>
-            </li>
+            </li> -->
 
             <li class="nav-item dropdown px-lg-1.5" [class.show]="isLocationsDropdownOpen">
               <a class="nav-link dropdown-toggle d-flex align-items-center" routerLink="/locations"
@@ -162,6 +164,12 @@
             (click)="toggleSideMenu()" class="drawer-link">HOME</a>
         </li>
 
+        <!-- DESIGN IDEAS -->
+        <li class="drawer-menu-item">
+          <a routerLink="/explore-design-ideas" routerLinkActive="active" (click)="toggleSideMenu()"
+            class="drawer-link">DESIGN IDEAS</a>
+        </li>
+
         <!-- CATEGORIES -->
         <li class="drawer-menu-item">
           <a routerLink="/categories" routerLinkActive="active" (click)="toggleSideMenu()"
@@ -179,10 +187,10 @@
           <a routerLink="/gallery" routerLinkActive="active" (click)="toggleSideMenu()" class="drawer-link">GALLERY</a>
         </li>
 
-        <!-- CATALOGUE -->
-        <li class="drawer-menu-item">
+        <!-- CATALOGUE (Hidden for now) -->
+        <!-- <li class="drawer-menu-item">
           <a routerLink="/catalogue" routerLinkActive="active" (click)="toggleSideMenu()" class="drawer-link">CATALOGUE</a>
-        </li>
+        </li> -->
 
         <!-- LOCATIONS (Collapsible) -->
         <li class="drawer-menu-item" [class.active]="openDrawerSubmenu['locations']">
