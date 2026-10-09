@@ -1,0 +1,155 @@
+<section class="brands-section py-4 py-md-5 px-3 px-md-5">
+  <div class="container-fluid max-w-1400">
+
+    <!-- Header Section -->
+    <div class="brands-header-wrapper mb-3 mb-md-4">
+      <div class="brands-header-flex d-flex justify-content-between align-items-start gap-2">
+        <div class="brands-title-block min-w-0">
+          <h2 class="brands-title text-dark fw-bold mb-1 mb-md-2">Our trusted partners</h2>
+          <p class="brands-subtitle text-secondary mb-0">Winning collaborations that produce winning designs.</p>
+        </div>
+
+        <!-- Carousel Navigation Buttons -->
+        <div class="brands-nav-buttons d-flex align-items-center gap-2 flex-shrink-0">
+          <button class="nav-arrow-btn prev-btn" (click)="scrollLeft()" aria-label="Previous partners">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <button class="nav-arrow-btn next-btn" (click)="scrollRight()" aria-label="Next partners">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Brands Scroll Container -->
+    <div class="brands-scroll-wrapper" #scrollContainer (touchstart)="onTouchStart($event)"
+      (touchend)="onTouchEnd($event)">
+      <div class="brands-grid-row">
+
+        <!-- Card 1: Jaquar -->
+        <div class="brand-card" title="Jaquar - Bath & Lighting Fittings">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 160 48" class="brand-logo-svg">
+              <path d="M 40 10 C 45 18, 43 28, 32 36 C 39 30, 43 23, 40 10 Z" fill="#007a53" />
+              <path d="M 36 14 C 39 19, 38 26, 29 32 C 34 28, 37 21, 36 14 Z" fill="#00a86b" />
+              <text x="48" y="32" font-family="'Georgia', serif" font-size="24" font-style="italic" font-weight="bold"
+                fill="#007a53" letter-spacing="-0.5">jaquar</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 2: Saint-Gobain -->
+        <div class="brand-card" title="Saint-Gobain - Premium Glass Solutions">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 170 48" class="brand-logo-svg">
+              <defs>
+                <linearGradient id="sgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#ff6b00" />
+                  <stop offset="30%" stop-color="#e6003b" />
+                  <stop offset="70%" stop-color="#8e24aa" />
+                  <stop offset="100%" stop-color="#0066cc" />
+                </linearGradient>
+              </defs>
+              <path d="M 35 28 L 40 22 L 45 26 L 50 16 L 55 24 L 60 20 L 65 28" fill="none" stroke="url(#sgGrad)"
+                stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+              <text x="25" y="42" font-family="'Arial', sans-serif" font-size="11" font-weight="700" fill="#0c2340"
+                letter-spacing="1">SAINT-GOBAIN</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 3: CenturyPly -->
+        <div class="brand-card" title="CenturyPly - Plywood & Decorative Veneers">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 170 48" class="brand-logo-svg">
+              <g transform="translate(32, 24)">
+                <polygon points="0,-11 3,-3 11,-3 5,3 7,11 0,6 -7,11 -5,3 -11,-3 -3,-3" fill="#e31e24" />
+                <circle cx="0" cy="0" r="3" fill="#ffffff" />
+              </g>
+              <text x="48" y="29" font-family="'Arial Black', 'Helvetica', sans-serif" font-size="15" font-weight="900"
+                fill="#000000" letter-spacing="0.5">CENTURY<tspan fill="#e31e24">PLY</tspan></text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 4: Bosch -->
+        <div class="brand-card" title="Bosch - Smart Home Appliances">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 160 48" class="brand-logo-svg">
+              <circle cx="32" cy="24" r="11" fill="none" stroke="#e20015" stroke-width="2.5" />
+              <rect x="26" y="22" width="12" height="4" fill="#e20015" rx="1" />
+              <line x1="32" y1="13" x2="32" y2="35" stroke="#e20015" stroke-width="2" />
+              <text x="52" y="32" font-family="'Helvetica Neue', Arial, sans-serif" font-size="21" font-weight="900"
+                fill="#e20015" letter-spacing="1">BOSCH</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 5: Siemens -->
+        <div class="brand-card" title="Siemens - Built-in Kitchen Appliances">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 160 48" class="brand-logo-svg">
+              <text x="20" y="32" font-family="'Arial', sans-serif" font-size="23" font-weight="800" fill="#009999"
+                letter-spacing="2.5">SIEMENS</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 6: Hettich -->
+        <div class="brand-card" title="Hettich - German Hardware Systems">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 160 48" class="brand-logo-svg">
+              <g transform="translate(18, 12)">
+                <rect x="0" y="0" width="3.5" height="24" fill="#0055a5" transform="skewX(-20)" />
+                <rect x="4" y="0" width="3.5" height="24" fill="#00a3e0" transform="skewX(-20)" />
+                <rect x="8" y="0" width="3.5" height="24" fill="#78be20" transform="skewX(-20)" />
+                <rect x="12" y="0" width="3.5" height="24" fill="#ffc72c" transform="skewX(-20)" />
+                <rect x="16" y="0" width="3.5" height="24" fill="#ff8200" transform="skewX(-20)" />
+                <rect x="20" y="0" width="3.5" height="24" fill="#e4002b" transform="skewX(-20)" />
+              </g>
+              <text x="50" y="32" font-family="'Trebuchet MS', sans-serif" font-size="24" font-weight="bold"
+                fill="#000000" letter-spacing="-0.5">Hettich</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 7: Greenlam Laminates -->
+        <div class="brand-card" title="Greenlam Laminates - Decorative Surfaces">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 170 48" class="brand-logo-svg">
+              <text x="14" y="24" font-family="'Arial', sans-serif" font-size="15" font-weight="bold"
+                fill="#006633">Greenlam</text>
+              <text x="14" y="36" font-family="'Arial', sans-serif" font-size="8" font-weight="600" fill="#333333"
+                letter-spacing="1.5">LAMINATES</text>
+              <g transform="translate(122, 10)">
+                <rect x="0" y="0" width="28" height="28" rx="4" fill="none" stroke="#e0e0e0" stroke-width="1" />
+                <circle cx="9" cy="11" r="5" fill="#f57c00" />
+                <circle cx="19" cy="11" r="5" fill="#e91e63" />
+                <circle cx="9" cy="19" r="5" fill="#00bcd4" />
+                <circle cx="19" cy="19" r="5" fill="#8bc34a" />
+              </g>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Card 8: Samsung -->
+        <div class="brand-card" title="Samsung - Consumer Electronics & Smart Living">
+          <div class="brand-logo-wrap">
+            <svg viewBox="0 0 160 48" class="brand-logo-svg">
+              <text x="18" y="32" font-family="'Arial', sans-serif" font-size="22" font-weight="900" fill="#034ea2"
+                letter-spacing="2">SAMSUNG</text>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
