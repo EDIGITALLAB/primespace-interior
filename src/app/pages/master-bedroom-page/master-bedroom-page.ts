@@ -242,6 +242,46 @@ export class MasterBedroomPage implements OnInit, OnDestroy {
         { icon: 'fa-solid fa-book-open', title: 'Open Display Column', desc: 'Vertical open shelving perfect for indoor planters and bedside essentials.' },
         { icon: 'fa-solid fa-arrows-up-to-line', title: 'Full Ceiling Lofts', desc: 'Overhead cabinets offer dust-proof space for extra duvets and suitcases.' }
       ]
+    },
+    {
+      id: 'dual-tone-teak-cream-bedroom-suite',
+      title: 'Dual-Tone Teak & Cream Wardrobe Bedroom Suite',
+      category: 'suite-dressing',
+      categoryLabel: 'Suite with Dual-Tone Wardrobe & Vanity',
+      shortDesc: 'Solid wood bed with floral wallpaper accent wall, dual-tone matte cream & teak wardrobe, and vanity dressing nook.',
+      tag: 'Popular Choice',
+      image: '/bedrooms/dual-tone-teak-cream-bedroom-suite.jpg',
+      galleryImages: [
+        '/bedrooms/dual-tone-teak-cream-bedroom-suite.jpg'
+      ],
+      startingPrice: '₹2,35,000',
+      dimensions: '16ft x 13ft Master Bedroom (Customizable)',
+      finishType: 'Dual-Tone Cream Matte & Warm Teak Woodgrain + Floral Accent Wallpaper + Sleek Black Bar Pulls',
+      features: [
+        'Floor-to-ceiling 6-door modular wardrobe featuring modern two-tone matte cream and warm teak woodgrain laminate',
+        'Overhead dust-free storage lofts maximizing vertical room height for suitcases and seasonal quilts',
+        'Traditional solid teak finish king-size bed with curved wooden arched headboard and matching nightstands',
+        'Recessed vanity dressing station with full-length mirror, drawer unit, and ambient warm spotlighting',
+        'Botanical floral leaf accent wallpaper creating a serene, inviting bed backdrop'
+      ],
+      materials: [
+        'Century Club IS 710 Marine Grade BWP Plywood',
+        'Soft Matte Anti-Fingerprint Laminate in Cream',
+        'Warm Natural Teak Woodgrain Textured Laminate',
+        'Non-Woven Textured Botanical Accent Wallpaper',
+        'Hafele Soft-Close European Hinges & Undermount Drawer Runners'
+      ],
+      internalLayout: {
+        headboardWall: 'Floral Botanical Wallpaper Accent + Solid Teak Arched Headboard + Twin Bedside Lamps',
+        bedStorage: 'King Size 78"x72" Solid Wood Frame with Hydraulic Lift-Up Storage Box',
+        vanityTvUnit: 'Floor-to-Ceiling Dual-Tone Wardrobe + Niche Dressing Vanity with Mirror & Drawer',
+        accessories: ['Contemporary Vertical Bar Pulls', 'Twin Table Lamps with Linen Shades', 'Integrated Vanity Mirror & Planter Shelf']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-door-closed', title: 'Dual-Tone Modular Wardrobe', desc: 'Contrasting cream matte and warm teak laminate creates a stylish contemporary aesthetic.' },
+        { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Recessed Dressing Nook', desc: 'Space-saving vanity corner with mirror and storage tucked neatly beside the wardrobe.' },
+        { icon: 'fa-solid fa-spa', title: 'Botanical Floral Wallpaper', desc: 'Delicate leaf motif wallpaper adds a tranquil, natural touch to the master suite.' }
+      ]
     }
   ];
 

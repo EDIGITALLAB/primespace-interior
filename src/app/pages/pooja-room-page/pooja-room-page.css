@@ -157,10 +157,19 @@
 
 /* ROOM NAVIGATION QUICK SWITCHER */
 .room-nav-pills-wrapper {
+  display: flex;
+  justify-content: flex-start;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 4px 2px;
+  padding: 4px 6px;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .room-nav-pills-wrapper {
+    justify-content: center;
+  }
 }
 
 .room-nav-pills-wrapper::-webkit-scrollbar {
@@ -173,21 +182,23 @@
   padding: 4px;
   flex-wrap: nowrap;
   white-space: nowrap;
+  margin-inline: auto;
 }
 
 .room-nav-pill-btn {
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: #475569;
-  padding: 7px 16px;
+  padding: 6px 13px;
   border-radius: 50rem;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
+  gap: 7px;
 }
 
 .room-nav-pill-btn i {
-  font-size: 13px;
+  font-size: 12.5px;
   color: #64748b;
   transition: color 0.25s ease;
 }
@@ -213,12 +224,10 @@
 }
 
 @media (max-width: 767.98px) {
-  .room-nav-pills-wrapper {
-    justify-content: flex-start !important;
-  }
   .room-nav-pill-btn {
     font-size: 11.5px;
-    padding: 5px 12px;
+    padding: 5px 11px;
+    gap: 6px;
   }
 }
 
