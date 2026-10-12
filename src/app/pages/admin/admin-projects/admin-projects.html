@@ -4,7 +4,7 @@
   <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3 mb-4">
     <div>
       <h3 class="fw-black text-dark mb-1">Projects Manager</h3>
-      <p class="text-muted mb-0 font-size-xs">Add, edit and organize Apartment Projects, Blocks, and Photo Galleries</p>
+      <p class="text-muted mb-0 font-size-xs">Add, edit and organize Projects, Blocks / Floors, and Photo Galleries</p>
     </div>
 
     <button type="button" class="btn btn-maroon-primary rounded-3 px-3.5 py-2 font-size-xs font-weight-bold text-white shadow-xs d-inline-flex align-items-center gap-2" (click)="openAddModal()">
@@ -49,7 +49,7 @@
           <tr>
             <th class="ps-4 text-nowrap" style="min-width: 200px;">Project Preview</th>
             <th class="text-nowrap" style="min-width: 140px;">Type & Location</th>
-            <th class="text-nowrap" style="min-width: 120px;">Blocks</th>
+            <th class="text-nowrap" style="min-width: 120px;">Blocks / Floors</th>
             <th class="text-nowrap" style="min-width: 150px;">Status</th>
             <th class="pe-4 text-end text-nowrap" style="min-width: 160px;">Actions</th>
           </tr>
@@ -58,7 +58,7 @@
           <tr *ngFor="let p of filteredProjects">
             <!-- Cover & Title (Clickable to Gallery) -->
             <td class="ps-4">
-              <a [routerLink]="['/admin/photo-and-gallery']" [queryParams]="{ projectId: p.id }" class="d-flex align-items-center gap-3 text-decoration-none text-dark group" title="Click to view apartment gallery">
+              <a [routerLink]="['/admin/photo-and-gallery']" [queryParams]="{ projectId: p.id }" class="d-flex align-items-center gap-3 text-decoration-none text-dark group" title="Click to view project gallery">
                 <ng-container *ngIf="p.coverImage; else tableNoImg">
                   <img [src]="p.coverImage" [alt]="p.title" class="rounded-3 object-fit-cover proj-thumb shadow-xs cursor-pointer" style="width: 56px; height: 42px;">
                 </ng-container>
@@ -84,9 +84,9 @@
               </div>
             </td>
 
-            <!-- Blocks -->
+            <!-- Blocks / Floors -->
             <td class="text-nowrap">
-              <div class="fw-bold text-dark">{{ p.blocks.length }} Blocks</div>
+              <div class="fw-bold" [ngClass]="p.blocks.length > 0 ? 'text-dark' : 'text-muted'">{{ getProjectUnitsLabel(p) }}</div>
             </td>
 
             <!-- Status -->
@@ -132,7 +132,7 @@
       <div class="modal-header p-3 px-4 bg-light border-bottom border-gray-200 d-flex align-items-center justify-content-between">
         <h6 class="m-0 fw-black text-dark font-size-base">
           <i class="fa-solid fa-building-user text-maroon me-2"></i>
-          {{ isEditing() ? 'Edit Apartment Project' : 'Add New Apartment Project' }}
+          {{ isEditing() ? 'Edit Project' : 'Add New Project' }}
         </h6>
         <button type="button" class="btn-close" (click)="closeModal()"></button>
       </div>
@@ -148,10 +148,16 @@
           <div class="col-12 col-md-6">
             <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Type <span class="text-danger">*</span></label>
             <select class="form-select font-size-xs rounded-3 border shadow-none" [ngModel]="projectType()" (ngModelChange)="projectType.set($event)" name="projectType" required>
-              <option value="Villa">Villa</option>
-              <option value="Penthouse">Penthouse</option>
-              <option value="Duplex">Duplex</option>
-              <option value="Apartment">Apartment</option>
+              <option value="" disabled [selected]="!projectType()">Select Project Type</option>
+              <optgroup label="── Residential ──">
+                <option *ngFor="let t of residentialProjectTypes" [value]="t.displayName">{{ t.displayName }}</option>
+              </optgroup>
+              <optgroup label="── Commercial & Retail ──">
+                <option *ngFor="let t of commercialProjectTypes" [value]="t.displayName">{{ t.displayName }}</option>
+              </optgroup>
+              <optgroup label="── Other ──">
+                <option *ngFor="let t of otherProjectTypes" [value]="t.displayName">{{ t.displayName }}</option>
+              </optgroup>
             </select>
           </div>
 

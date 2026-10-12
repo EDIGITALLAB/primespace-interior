@@ -1,6 +1,6 @@
 import { Injectable, signal, computed, effect, inject } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable, catchError, map, of, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap, switchMap } from 'rxjs';
 import { getApiBaseUrl, API_CONFIG } from '../config/api.config';
 import { toTitleCase } from '../utils/string.utils';
 
@@ -38,6 +38,51 @@ export interface AdminProject {
   videoUrls?: string[];
   description: string;
   blocks: AdminBlock[];
+}
+
+export interface ProjectTypeOption {
+  name: string;        // e.g. 'INDEPENDENT_HOUSE'
+  displayName: string; // e.g. 'Independent House'
+  category: string;    // 'Residential' | 'Commercial' | 'General'
+}
+
+export const DEFAULT_PROJECT_TYPES: ProjectTypeOption[] = [
+  // Residential Types
+  { name: 'APARTMENT', displayName: 'Apartment', category: 'Residential' },
+  { name: 'VILLA', displayName: 'Villa', category: 'Residential' },
+  { name: 'INDEPENDENT_HOUSE', displayName: 'Independent House', category: 'Residential' },
+  { name: 'DUPLEX', displayName: 'Duplex', category: 'Residential' },
+  { name: 'PENTHOUSE', displayName: 'Penthouse', category: 'Residential' },
+  { name: 'ROW_HOUSE', displayName: 'Row House', category: 'Residential' },
+  { name: 'STUDIO_APARTMENT', displayName: 'Studio Apartment', category: 'Residential' },
+  { name: 'FARMHOUSE', displayName: 'Farmhouse', category: 'Residential' },
+  { name: 'RENOVATION', displayName: 'Full Home Renovation', category: 'Residential' },
+
+  // Commercial & Retail Types
+  { name: 'COMMERCIAL', displayName: 'Commercial', category: 'Commercial' },
+  { name: 'OFFICE', displayName: 'Office & Workspace', category: 'Commercial' },
+  { name: 'RETAIL_SHOWROOM', displayName: 'Retail & Showroom', category: 'Commercial' },
+  { name: 'CAFE_RESTAURANT', displayName: 'Cafe & Restaurant', category: 'Commercial' },
+  { name: 'HOSPITALITY', displayName: 'Hospitality & Hotel', category: 'Commercial' },
+  { name: 'CLINIC_WELLNESS', displayName: 'Clinic & Wellness', category: 'Commercial' },
+
+  // General / Other
+  { name: 'OTHER', displayName: 'Other', category: 'General' }
+];
+
+export function formatProjectType(type: string | undefined | null): string {
+  if (!type) return 'Apartment';
+  const clean = type.trim().toUpperCase().replace(/[\s\-&/]+/g, '_');
+  const found = DEFAULT_PROJECT_TYPES.find(t => t.name === clean || t.displayName.toUpperCase() === type.trim().toUpperCase());
+  if (found) return found.displayName;
+  return type.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+export function toBackendPropertyType(type: string | undefined | null): string {
+  if (!type) return 'APARTMENT';
+  const found = DEFAULT_PROJECT_TYPES.find(t => t.displayName.toLowerCase() === type.trim().toLowerCase() || t.name === type.trim().toUpperCase());
+  if (found) return found.name;
+  return type.trim().toUpperCase().replace(/[\s\-&/]+/g, '_');
 }
 
 export interface AdminCategory {
@@ -156,6 +201,9 @@ export class AdminDataService {
   // Projects State with Apartment -> Block -> Room Photos Hierarchy
   readonly projects = signal<AdminProject[]>([]);
 
+  // Project Types State (Residential, Commercial, etc.)
+  readonly projectTypes = signal<ProjectTypeOption[]>(DEFAULT_PROJECT_TYPES);
+
   // Categories State
   readonly categories = signal<AdminCategory[]>([]);
 
@@ -196,7 +244,8 @@ export class AdminDataService {
   }
 
   constructor() {
-    // Fetch projects, categories, locations, leads & testimonials from backend on service init
+    // Fetch projects, project types, categories, locations, leads & testimonials from backend on service init
+    this.loadProjectTypesFromBackend().subscribe();
     this.loadProjectsFromBackend().subscribe();
     this.loadCategoriesFromBackend().subscribe();
     this.loadOfficeLocationsFromBackend().subscribe();
@@ -408,7 +457,7 @@ export class AdminDataService {
       apartmentName: bp.name || '',
       status: status,
       statusLabel: statusLabel,
-      projectType: bp.propertyType ? (bp.propertyType.charAt(0).toUpperCase() + bp.propertyType.slice(1).toLowerCase()) : 'Apartment',
+      projectType: formatProjectType(bp.propertyType),
       homeCount: bp.totalBlocks || blocks.length || 0,
       coverImage: bp.coverImage ? this.formatImageUrl(bp.coverImage) : '',
       videoUrl: bp.videoUrl ? this.formatImageUrl(bp.videoUrl) : (parsedVideoUrls[0] || ''),
@@ -416,6 +465,27 @@ export class AdminDataService {
       description: bp.description || '',
       blocks: blocks
     };
+  }
+
+  loadProjectTypesFromBackend(): Observable<ProjectTypeOption[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/projects/types`).pipe(
+      map(types => {
+        if (types && Array.isArray(types) && types.length > 0) {
+          const mapped: ProjectTypeOption[] = types.map(t => ({
+            name: t.name || t.key,
+            displayName: t.displayName || t.label || t.name,
+            category: t.category || 'General'
+          }));
+          this.projectTypes.set(mapped);
+          return mapped;
+        }
+        return DEFAULT_PROJECT_TYPES;
+      }),
+      catchError(err => {
+        console.warn('Could not fetch project types from backend:', err);
+        return of(DEFAULT_PROJECT_TYPES);
+      })
+    );
   }
 
   loadProjectsFromBackend(): Observable<AdminProject[]> {
@@ -599,7 +669,7 @@ export class AdminDataService {
       name: titleFormatted,
       slug: titleFormatted.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''),
       subtitle: toTitleCase(project.subtitle || ''),
-      propertyType: (project.projectType || 'APARTMENT').toUpperCase(),
+      propertyType: toBackendPropertyType(project.projectType),
       description: project.description,
       location: project.location,
       city: project.city,
@@ -694,7 +764,7 @@ export class AdminDataService {
         name: updatedProj.title,
         slug: updatedProj.title ? updatedProj.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') : undefined,
         subtitle: updatedProj.subtitle,
-        propertyType: updatedProj.projectType ? updatedProj.projectType.toUpperCase() : undefined,
+        propertyType: updatedProj.projectType ? toBackendPropertyType(updatedProj.projectType) : undefined,
         description: updatedProj.description,
         location: updatedProj.location,
         city: updatedProj.city,
@@ -919,6 +989,20 @@ export class AdminDataService {
   }
 
   deletePhotoFromBlock(projectId: string, blockId: string, photoId: string) {
+    // Optimistically update local project state immediately
+    this.projects.update(list => list.map(p => {
+      if (String(p.id) === String(projectId)) {
+        const updatedBlocks = (p.blocks || []).map(b => {
+          if (String(b.id) === String(blockId)) {
+            return { ...b, photos: (b.photos || []).filter(ph => String(ph.id) !== String(photoId)) };
+          }
+          return b;
+        });
+        return { ...p, blocks: updatedBlocks };
+      }
+      return p;
+    }));
+
     const numericPhotoId = parseInt(photoId, 10);
     if (!isNaN(numericPhotoId)) {
       this.http.delete<any>(`${this.apiUrl}/images/${numericPhotoId}`, { headers: this.getAuthHeaders() }).pipe(
@@ -929,37 +1013,36 @@ export class AdminDataService {
       ).subscribe(() => {
         this.loadProjectsFromBackend().subscribe();
       });
-    } else {
-      this.projects.update(list => list.map(p => {
-        if (p.id === projectId) {
-          const updatedBlocks = p.blocks.map(b => {
-            if (b.id === blockId) {
-              return { ...b, photos: (b.photos || []).filter(ph => ph.id !== photoId) };
-            }
-            return b;
-          });
-          return { ...p, blocks: updatedBlocks };
-        }
-        return p;
-      }));
     }
   }
 
-  addBlockToProject(projectId: string, blockName: string, homeCount?: number) {
+  addBlockToProject(projectId: string, blockName: string, homeCount?: number): Observable<AdminBlock | null> {
     const numericProjectId = parseInt(projectId, 10);
     if (!isNaN(numericProjectId)) {
       const payload = {
         name: blockName,
         displayOrder: 1
       };
-      this.http.post<any>(`${this.apiUrl}/projects/${numericProjectId}/blocks`, payload, { headers: this.getAuthHeaders() }).pipe(
+      return this.http.post<any>(`${this.apiUrl}/projects/${numericProjectId}/blocks`, payload, { headers: this.getAuthHeaders() }).pipe(
+        switchMap(res => {
+          return this.loadProjectsFromBackend().pipe(
+            map(() => {
+              const proj = this.projects().find(p => p.id.toString() === projectId.toString());
+              if (proj && proj.blocks && proj.blocks.length > 0) {
+                const found = res?.blockId 
+                  ? proj.blocks.find(b => b.id.toString() === res.blockId.toString())
+                  : proj.blocks.find(b => b.name === blockName);
+                return found || proj.blocks[proj.blocks.length - 1];
+              }
+              return null;
+            })
+          );
+        }),
         catchError(err => {
           console.error('Error adding block to backend:', err);
           return of(null);
         })
-      ).subscribe(res => {
-        this.loadProjectsFromBackend().subscribe();
-      });
+      );
     } else {
       const newBlock: AdminBlock = {
         id: 'blk_' + Date.now(),
@@ -976,6 +1059,7 @@ export class AdminDataService {
         }
         return p;
       }));
+      return of(newBlock);
     }
   }
 
@@ -994,24 +1078,45 @@ export class AdminDataService {
     }
   }
 
-  deleteBlockFromProject(projectId: string, blockId: string) {
+  deleteBlockFromProject(projectId: string, blockId: string): Observable<boolean> {
     const numericBlockId = parseInt(blockId, 10);
+    const numericProjectId = parseInt(projectId, 10);
+
+    // Optimistically update local signals immediately so UI updates without lag
+    this.projects.update(list => list.map(p => {
+      if (p.id === projectId) {
+        return { ...p, blocks: p.blocks.filter(b => b.id !== blockId) };
+      }
+      return p;
+    }));
+
     if (!isNaN(numericBlockId)) {
-      this.http.delete<any>(`${this.apiUrl}/blocks/${numericBlockId}`, { headers: this.getAuthHeaders() }).pipe(
+      return this.http.delete<any>(`${this.apiUrl}/blocks/${numericBlockId}`, { headers: this.getAuthHeaders() }).pipe(
+        map(() => {
+          this.loadProjectsFromBackend().subscribe();
+          return true;
+        }),
         catchError(err => {
-          console.error('Error deleting block from backend:', err);
-          return of(null);
+          console.warn('DELETE /api/blocks/:id failed, attempting project block fallback endpoint:', err);
+          if (!isNaN(numericProjectId)) {
+            return this.http.delete<any>(`${this.apiUrl}/projects/${numericProjectId}/blocks/${numericBlockId}`, { headers: this.getAuthHeaders() }).pipe(
+              map(() => {
+                this.loadProjectsFromBackend().subscribe();
+                return true;
+              }),
+              catchError(err2 => {
+                console.error('All backend delete attempts failed for block:', err2);
+                this.loadProjectsFromBackend().subscribe();
+                return of(false);
+              })
+            );
+          }
+          this.loadProjectsFromBackend().subscribe();
+          return of(false);
         })
-      ).subscribe(() => {
-        this.loadProjectsFromBackend().subscribe();
-      });
+      );
     } else {
-      this.projects.update(list => list.map(p => {
-        if (p.id === projectId) {
-          return { ...p, blocks: p.blocks.filter(b => b.id !== blockId) };
-        }
-        return p;
-      }));
+      return of(true);
     }
   }
 

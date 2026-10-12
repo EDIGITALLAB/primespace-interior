@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
-import { ProjectsDataService, ProjectItem as ServiceProjectItem } from '../../services/projects-data.service';
+import { ProjectsDataService, ProjectItem as ServiceProjectItem, isFloorBasedProject, formatUnitCount } from '../../services/projects-data.service';
+import { formatProjectType, DEFAULT_PROJECT_TYPES, ProjectTypeOption } from '../../services/admin-data.service';
 
 export interface Milestone {
   name: string;
@@ -68,6 +69,18 @@ export class ProjectsPage implements OnInit {
   readonly selectedStatus = signal<string>('all');
   readonly selectedProjectType = signal<string>('all');
 
+  get residentialProjectTypes(): ProjectTypeOption[] {
+    return DEFAULT_PROJECT_TYPES.filter(t => t.category === 'Residential');
+  }
+
+  get commercialProjectTypes(): ProjectTypeOption[] {
+    return DEFAULT_PROJECT_TYPES.filter(t => t.category === 'Commercial');
+  }
+
+  get otherProjectTypes(): ProjectTypeOption[] {
+    return DEFAULT_PROJECT_TYPES.filter(t => t.category !== 'Residential' && t.category !== 'Commercial');
+  }
+
   readonly selectedProjectModal = signal<CompletedProject | LiveSiteProject | null>(null);
   readonly activeModalImageIndex = signal<number>(0);
   readonly activeModalTab = signal<'gallery' | 'materials' | 'milestones'>('gallery');
@@ -103,9 +116,9 @@ export class ProjectsPage implements OnInit {
               subtitle: item.subtitle,
               location: item.location,
               city: item.city,
-              blocksCount: item.blocksCount || (item.totalBlocks ? `${item.totalBlocks} Blocks` : '1 Block'),
+              blocksCount: item.blocksCount || formatUnitCount(item.totalBlocks ?? (item.blocks?.length ?? 0), item.propertyType || item.category, item.title, item.blocks),
               homesCount: item.totalRooms || '1 Home',
-              projectType: item.propertyType || item.category || 'Apartment',
+              projectType: formatProjectType(item.propertyType || item.category),
               buttonStyle: 'solid',
               heroImage: item.heroImage,
               gallery: item.gallery && item.gallery.length > 0 ? item.gallery : (item.heroImage ? [item.heroImage] : []),
@@ -121,12 +134,12 @@ export class ProjectsPage implements OnInit {
               id: item.id || item.slug || String(item.projectId),
               title: item.title,
               subtitle: item.subtitle,
-              blockName: item.blocksCount || 'Block A',
+              blockName: item.blocksCount || (isFloorBasedProject(item.propertyType || item.category, item.title, item.blocks) ? 'Floor 1' : 'Block A'),
               location: item.location,
               city: item.city,
               heroImage: item.heroImage,
               progressPercentage: item.progressPercentage || 50,
-              projectType: item.propertyType || item.category || 'Apartment',
+              projectType: formatProjectType(item.propertyType || item.category),
               currentPhase: item.currentPhase || 'Active Execution',
               expectedHandover: item.expectedHandover || '2026',
               gallery: item.gallery && item.gallery.length > 0 ? item.gallery : (item.heroImage ? [item.heroImage] : []),
@@ -158,7 +171,7 @@ export class ProjectsPage implements OnInit {
     const list1 = this.completedProjectsList().map(p => p.title);
     const list2 = this.liveSiteProjectsList().map(p => p.title);
     const set = new Set([...list1, ...list2]);
-    return ['All Apartments', ...Array.from(set)];
+    return ['All Projects', ...Array.from(set)];
   });
 
   readonly filteredCompletedProjects = computed(() => {

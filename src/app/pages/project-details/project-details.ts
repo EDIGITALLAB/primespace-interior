@@ -1,7 +1,7 @@
 import { Component, OnInit, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProjectsDataService, ProjectItem } from '../../services/projects-data.service';
+import { ProjectsDataService, ProjectItem, isFloorBasedProject } from '../../services/projects-data.service';
 import { ConsultationModalService } from '../../services/consultation-modal.service';
 
 import { toTitleCase } from '../../utils/string.utils';
@@ -60,6 +60,12 @@ export class ProjectDetails implements OnInit {
   activeModalPhotoIndex = signal<number>(-1);
 
   blocks = signal<ProjectBlockItem[]>([]);
+
+  isFloorBased(): boolean {
+    const p = this.project();
+    if (!p) return false;
+    return isFloorBasedProject(p.propertyType || p.category, p.title, p.blocks);
+  }
 
   roomCategories: PopupRoomCategory[] = [
     { id: 'all', name: 'All Photos', count: 12, iconClass: 'fa-regular fa-images' },
@@ -186,13 +192,14 @@ export class ProjectDetails implements OnInit {
           }
         });
 
+        const isFloor = this.isFloorBased();
         dynamicBlocks.push({
           id: `block-${b.blockId || bIdx}`,
-          name: b.name ? (b.name.toLowerCase().includes('block') ? b.name : `Block ${b.name}`) : `Block ${String.fromCharCode(65 + bIdx)}`,
+          name: b.name || (isFloor ? `Floor ${bIdx + 1}` : `Block ${String.fromCharCode(65 + bIdx)}`),
           tag: blockImages.length > 0 ? `${blockImages.length} Photo${blockImages.length > 1 ? 's' : ''} Uploaded` : 'No Photos Uploaded',
           specs: `Categories: ${b.categories?.length || 0}`,
           homeCount: 1,
-          iconClass: bIdx % 2 === 0 ? 'fa-solid fa-building-user' : 'fa-solid fa-utensils',
+          iconClass: isFloor ? 'fa-solid fa-layer-group' : (bIdx % 2 === 0 ? 'fa-solid fa-building-user' : 'fa-solid fa-utensils'),
           selectedImageIndex: 0,
           mainImages: blockImages,
           blockPhotos: blockPhotos,
