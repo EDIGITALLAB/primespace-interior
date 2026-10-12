@@ -108,6 +108,60 @@ export interface ProjectItem {
   blocks?: BackendBlock[];
 }
 
+export function isFloorBasedProject(
+  propertyType?: string | null,
+  title?: string | null,
+  blocks?: Array<{ name?: string }> | null
+): boolean {
+  const pType = (propertyType || '').trim().toUpperCase();
+  const pTitle = (title || '').trim().toUpperCase();
+
+  const floorKeywords = [
+    'INDEPENDENT_HOUSE',
+    'INDEPENDENT HOUSE',
+    'HOUSE',
+    'VILLA',
+    'DUPLEX',
+    'FARMHOUSE',
+    'RENOVATION',
+    'BUNGALOW',
+    'FLOOR',
+    'ROW_HOUSE',
+    'ROW HOUSE',
+    'PENTHOUSE'
+  ];
+
+  if (floorKeywords.some(kw => pType.includes(kw))) {
+    return true;
+  }
+
+  if (floorKeywords.some(kw => pTitle.includes(kw))) {
+    return true;
+  }
+
+  if (blocks && blocks.length > 0) {
+    if (blocks.some(b => (b.name || '').toLowerCase().includes('floor'))) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+export function formatUnitCount(
+  count: number,
+  propertyType?: string | null,
+  title?: string | null,
+  blocks?: Array<{ name?: string }> | null
+): string {
+  if (!count || count <= 0) {
+    return '';
+  }
+  const isFloor = isFloorBasedProject(propertyType, title, blocks);
+  const unit = isFloor ? 'Floor' : 'Block';
+  return `${count} ${unit}${count !== 1 ? 's' : ''}`;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -133,8 +187,8 @@ export class ProjectsDataService {
 
   mapBackendToProjectItem(bp: BackendProject): ProjectItem {
     const isCompleted = (bp.status || '').toUpperCase() === 'COMPLETED';
-    const totalBlocks = bp.totalBlocks ?? bp.blocks?.length ?? 0;
-    const blocksCountText = `${totalBlocks} Block${totalBlocks !== 1 ? 's' : ''}`;
+    const totalBlocks = (bp.blocks && bp.blocks.length > 0) ? bp.blocks.length : (bp.totalBlocks || 0);
+    const blocksCountText = formatUnitCount(totalBlocks, bp.propertyType, bp.name, bp.blocks);
 
     const gallery: string[] = [];
     if (bp.coverImage) {

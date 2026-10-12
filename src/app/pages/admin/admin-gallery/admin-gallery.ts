@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
@@ -108,9 +108,10 @@ export class AdminGallery {
 
   // Delete Confirmation Modal State
   showDeleteModal = signal(false);
-  deleteType = signal<'photo' | 'video'>('photo');
+  deleteType = signal<'photo' | 'video' | 'block'>('photo');
   deletingPhotoId = signal('');
   deletingVideoIndex = signal<number | null>(null);
+  deletingBlockId = signal('');
   deletingItemName = signal('');
 
   constructor() {
@@ -158,8 +159,21 @@ export class AdminGallery {
 
   get selectedBlock(): AdminBlock | undefined {
     const proj = this.selectedProject;
-    if (!proj) return undefined;
-    return proj.blocks.find(b => b.id === this.selectedBlockId());
+    if (!proj || !proj.blocks || proj.blocks.length === 0) return undefined;
+
+    const curId = this.selectedBlockId();
+    if (curId) {
+      const found = proj.blocks.find(b => b.id.toString() === curId.toString());
+      if (found) return found;
+    }
+
+    // Auto-heal: If selectedBlockId is empty or doesn't match, select first block immediately
+    const firstBlock = proj.blocks[0];
+    if (firstBlock) {
+      setTimeout(() => this.selectedBlockId.set(firstBlock.id.toString()), 0);
+      return firstBlock;
+    }
+    return undefined;
   }
 
   get availableCategories(): string[] {
@@ -348,6 +362,7 @@ export class AdminGallery {
     this.deleteType.set('photo');
     this.deletingPhotoId.set(photo.id);
     this.deletingVideoIndex.set(null);
+    this.deletingBlockId.set('');
     this.deletingItemName.set(photo.caption || 'this photo');
     this.showDeleteModal.set(true);
   }
@@ -356,7 +371,21 @@ export class AdminGallery {
     this.deleteType.set('video');
     this.deletingVideoIndex.set(index);
     this.deletingPhotoId.set('');
+    this.deletingBlockId.set('');
     this.deletingItemName.set(`${this.selectedProject?.title || 'Project'} Walkthrough Video #${index + 1}`);
+    this.showDeleteModal.set(true);
+  }
+
+  openDeleteBlockModal(block?: AdminBlock) {
+    const targetBlock = block || this.selectedBlock;
+    if (!targetBlock) return;
+    this.showAddBlockModal.set(false);
+    this.deleteType.set('block');
+    this.deletingBlockId.set(targetBlock.id);
+    this.deletingPhotoId.set('');
+    this.deletingVideoIndex.set(null);
+    const photoCount = targetBlock.photos?.length || 0;
+    this.deletingItemName.set(`${targetBlock.name}${photoCount > 0 ? ` (${photoCount} photo${photoCount > 1 ? 's' : ''})` : ''}`);
     this.showDeleteModal.set(true);
   }
 
@@ -364,6 +393,7 @@ export class AdminGallery {
     this.showDeleteModal.set(false);
     this.deletingPhotoId.set('');
     this.deletingVideoIndex.set(null);
+    this.deletingBlockId.set('');
     this.deletingItemName.set('');
   }
 
@@ -381,13 +411,61 @@ export class AdminGallery {
         });
         this.adminData.showToast('Walkthrough video deleted successfully!', 'danger');
       }
+    } else if (this.deleteType() === 'block' && this.deletingBlockId()) {
+      const pId = this.selectedProjectId();
+      const bId = this.deletingBlockId();
+
+      // Immediately switch selectedBlockId to the next available block
+      const proj = this.selectedProject;
+      if (proj) {
+        const remaining = proj.blocks.filter(b => b.id !== bId);
+        if (remaining.length > 0) {
+          this.selectedBlockId.set(remaining[0].id);
+        } else {
+          this.selectedBlockId.set('');
+        }
+      }
+
+      this.adminData.deleteBlockFromProject(pId, bId).subscribe({
+        next: (success) => {
+          if (success) {
+            this.adminData.showToast('Block deleted successfully!', 'danger');
+          } else {
+            this.adminData.showToast('Failed to delete block from database. Please verify backend connection.', 'danger');
+          }
+        },
+        error: (err) => {
+          console.error('Error deleting block:', err);
+          this.adminData.showToast('Error deleting block from backend.', 'danger');
+        }
+      });
     } else if (this.deletingPhotoId()) {
       const pId = this.selectedProjectId();
       const bId = this.selectedBlockId();
-      this.adminData.deletePhotoFromBlock(pId, bId, this.deletingPhotoId());
+      const photoId = this.deletingPhotoId();
+      this.adminData.deletePhotoFromBlock(pId, bId, photoId);
       this.adminData.showToast('Photo deleted successfully!', 'danger');
+
+      // Adjust lightbox preview if currently open
+      if (this.showPhotoPreviewModal()) {
+        const remaining = this.filteredPhotos.filter(p => String(p.id) !== String(photoId));
+        if (remaining.length === 0) {
+          this.closePhotoPreview();
+        } else {
+          const currentIdx = this.previewPhotoIndex();
+          if (currentIdx >= remaining.length) {
+            this.previewPhotoIndex.set(remaining.length - 1);
+          }
+        }
+      }
     }
     this.closeDeleteModal();
+  }
+
+  deleteCurrentPreviewPhoto(photo: BlockPhoto) {
+    if (photo) {
+      this.openDeletePhotoModal(photo);
+    }
   }
 
   deletePhoto(photoId: string) {
@@ -409,10 +487,25 @@ export class AdminGallery {
   saveBlock(e: Event) {
     e.preventDefault();
     const pId = this.selectedProjectId();
-    if (!pId || !this.newBlockName().trim()) return;
+    const name = this.newBlockName().trim();
+    if (!pId || !name) return;
 
-    this.adminData.addBlockToProject(pId, this.newBlockName().trim());
-    this.adminData.showToast('New block added to project!', 'success');
+    this.adminData.addBlockToProject(pId, name).subscribe({
+      next: (createdBlock) => {
+        if (createdBlock) {
+          this.selectedBlockId.set(createdBlock.id.toString());
+        } else {
+          const proj = this.selectedProject;
+          if (proj && proj.blocks && proj.blocks.length > 0) {
+            this.selectedBlockId.set(proj.blocks[proj.blocks.length - 1].id.toString());
+          }
+        }
+        this.adminData.showToast(`Block / Floor "${name}" added to project!`, 'success');
+      },
+      error: () => {
+        this.adminData.showToast('Failed to add block / floor.', 'danger');
+      }
+    });
     this.closeAddBlockModal();
   }
 
@@ -437,16 +530,65 @@ export class AdminGallery {
   }
 
   deleteBlock(blockId: string) {
-    const pId = this.selectedProjectId();
-    if (confirm('Delete this block and all its photos?')) {
-      this.adminData.deleteBlockFromProject(pId, blockId);
-      this.adminData.showToast('Block deleted successfully!', 'danger');
-      const proj = this.selectedProject;
-      if (proj && proj.blocks.length > 0) {
-        this.selectedBlockId.set(proj.blocks[0].id);
-      } else {
-        this.selectedBlockId.set('');
-      }
+    const proj = this.selectedProject;
+    const blk = proj?.blocks.find(b => b.id === blockId);
+    if (blk) {
+      this.openDeleteBlockModal(blk);
+    }
+  }
+
+  // Photo Lightbox / Preview Modal State
+  showPhotoPreviewModal = signal(false);
+  previewPhotoIndex = signal<number>(0);
+
+  get currentPreviewPhoto(): BlockPhoto | null {
+    const list = this.filteredPhotos;
+    const idx = this.previewPhotoIndex();
+    if (list && list.length > 0 && idx >= 0 && idx < list.length) {
+      return list[idx];
+    }
+    return null;
+  }
+
+  openPhotoPreview(photo: BlockPhoto, index?: number) {
+    if (typeof index === 'number' && index >= 0) {
+      this.previewPhotoIndex.set(index);
+    } else {
+      const idx = this.filteredPhotos.findIndex(p => p.id === photo.id);
+      this.previewPhotoIndex.set(idx >= 0 ? idx : 0);
+    }
+    this.showPhotoPreviewModal.set(true);
+  }
+
+  closePhotoPreview() {
+    this.showPhotoPreviewModal.set(false);
+  }
+
+  nextPhotoPreview(e?: Event) {
+    if (e) e.stopPropagation();
+    const list = this.filteredPhotos;
+    if (!list || list.length === 0) return;
+    const nextIdx = (this.previewPhotoIndex() + 1) % list.length;
+    this.previewPhotoIndex.set(nextIdx);
+  }
+
+  prevPhotoPreview(e?: Event) {
+    if (e) e.stopPropagation();
+    const list = this.filteredPhotos;
+    if (!list || list.length === 0) return;
+    const prevIdx = (this.previewPhotoIndex() - 1 + list.length) % list.length;
+    this.previewPhotoIndex.set(prevIdx);
+  }
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+    if (!this.showPhotoPreviewModal()) return;
+    if (event.key === 'Escape') {
+      this.closePhotoPreview();
+    } else if (event.key === 'ArrowRight') {
+      this.nextPhotoPreview();
+    } else if (event.key === 'ArrowLeft') {
+      this.prevPhotoPreview();
     }
   }
 }

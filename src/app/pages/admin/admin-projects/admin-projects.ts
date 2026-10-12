@@ -2,8 +2,9 @@ import { Component, signal, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { AdminDataService, AdminProject } from '../../../services/admin-data.service';
+import { AdminDataService, AdminProject, ProjectTypeOption } from '../../../services/admin-data.service';
 import { ConfirmModal } from '../../../components/confirm-modal/confirm-modal';
+import { isFloorBasedProject } from '../../../services/projects-data.service';
 
 @Component({
   selector: 'app-admin-projects',
@@ -17,6 +18,19 @@ export class AdminProjects implements OnInit {
 
   ngOnInit() {
     this.adminData.loadProjectsFromBackend().subscribe();
+    this.adminData.loadProjectTypesFromBackend().subscribe();
+  }
+
+  get residentialProjectTypes(): ProjectTypeOption[] {
+    return this.adminData.projectTypes().filter(t => t.category === 'Residential');
+  }
+
+  get commercialProjectTypes(): ProjectTypeOption[] {
+    return this.adminData.projectTypes().filter(t => t.category === 'Commercial');
+  }
+
+  get otherProjectTypes(): ProjectTypeOption[] {
+    return this.adminData.projectTypes().filter(t => t.category !== 'Residential' && t.category !== 'Commercial');
   }
 
   searchQuery = signal('');
@@ -39,7 +53,7 @@ export class AdminProjects implements OnInit {
   location = signal('');
   city = signal('Bangalore');
   status = signal<'completed' | 'ongoing'>('completed');
-  projectType = signal('Villa');
+  projectType = signal('');
   homeCount = signal(0);
   coverImage = signal('');
   // Video Fields & Drag-Drop State
@@ -62,6 +76,17 @@ export class AdminProjects implements OnInit {
     });
   }
 
+  isFloorBased(p: AdminProject): boolean {
+    return isFloorBasedProject(p.projectType, p.title, p.blocks);
+  }
+
+  getProjectUnitsLabel(p: AdminProject): string {
+    const count = p.blocks ? p.blocks.length : (p.homeCount || 0);
+    const isFloor = this.isFloorBased(p);
+    const unit = isFloor ? 'Floor' : 'Block';
+    return `${count} ${unit}${count !== 1 ? 's' : ''}`;
+  }
+
   openAddModal() {
     this.isEditing.set(false);
     this.editingProjectId.set('');
@@ -70,7 +95,7 @@ export class AdminProjects implements OnInit {
     this.location.set('');
     this.city.set('Bangalore');
     this.status.set('completed');
-    this.projectType.set('Villa');
+    this.projectType.set('');
     this.homeCount.set(0);
     this.coverImage.set('');
     this.videoUrl.set('');
@@ -88,7 +113,7 @@ export class AdminProjects implements OnInit {
     this.location.set(p.location || '');
     this.city.set(p.city || 'Bangalore');
     this.status.set(p.status || 'completed');
-    this.projectType.set(p.projectType || 'Villa');
+    this.projectType.set(p.projectType || '');
     this.homeCount.set(p.homeCount || 0);
     this.coverImage.set(p.coverImage || '');
     this.videoUrl.set(p.videoUrl || '');
@@ -137,8 +162,15 @@ export class AdminProjects implements OnInit {
     const coverVal = (this.coverImage() || '').trim();
     const descVal = (this.description() || '').trim();
 
+    const projectTypeVal = (this.projectType() || '').trim();
+
     if (!titleVal || !subtitleVal || !locationVal || !coverVal || !descVal) {
       alert('Please fill in all mandatory fields (Title, Subtitle, Location, Cover Image, and Description).');
+      return;
+    }
+
+    if (!projectTypeVal) {
+      alert('Please select a Project Type.');
       return;
     }
 
