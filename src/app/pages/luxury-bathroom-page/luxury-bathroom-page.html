@@ -1,0 +1,243 @@
+<div class="bathroom-page-wrapper bg-white position-relative">
+
+  <!-- HERO SECTION -->
+  <section class="bathroom-hero-section position-relative py-5 py-lg-6 overflow-hidden">
+    <div class="hero-bg-watermark"></div>
+
+    <div class="container position-relative z-2">
+      <div class="row justify-content-center text-center">
+        <div class="col-12 col-lg-11 col-xl-10">
+          
+          <!-- Tag / Sub-badge -->
+          <span class="hero-curated-tag text-uppercase mb-3 d-inline-block">
+            CURATED STYLES & LAYOUTS
+          </span>
+
+          <!-- Hero Headline -->
+          <h1 class="hero-collection-title font-serif text-dark mb-3">
+            Explore Our Luxury Bathroom Collections
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="hero-subtitle mb-0 max-w-750 mx-auto">
+            Select by vanity craftsmanship, natural stone textures, or spa shower layouts. Every unit is engineered with waterproof materials and anti-skid surfaces.
+          </p>
+
+        </div>
+
+        <!-- Quick Room Navigation Filter Bar (col-12 for full width) -->
+        <div class="col-12">
+          <div class="room-nav-pills-wrapper mt-4">
+            <div class="room-nav-pills d-inline-flex align-items-center gap-1.5 p-1.5 rounded-pill shadow-sm">
+              <a routerLink="/explore-design-ideas" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-border-all"></i>
+                <span>All Spaces</span>
+              </a>
+              <a routerLink="/explore-design-ideas/living-room" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-couch"></i>
+                <span>Living Room</span>
+              </a>
+              <a routerLink="/explore-design-ideas/modular-kitchen" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-kitchen-set"></i>
+                <span>Modular Kitchen</span>
+              </a>
+              <a routerLink="/explore-design-ideas/wardrobe-designs" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-door-closed"></i>
+                <span>Wardrobes</span>
+              </a>
+              <a routerLink="/explore-design-ideas/master-bedroom" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-bed"></i>
+                <span>Master Bedroom</span>
+              </a>
+              <a routerLink="/explore-design-ideas/dining-room" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-utensils"></i>
+                <span>Dining Room</span>
+              </a>
+              <a routerLink="/explore-design-ideas/luxury-bathroom" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-bath"></i>
+                <span>Luxury Bathroom</span>
+              </a>
+              <a routerLink="/explore-design-ideas/kids-bedroom" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-shapes"></i>
+                <span>Kids Bedroom</span>
+              </a>
+              <a routerLink="/explore-design-ideas/pooja-room" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-om"></i>
+                <span>Pooja Room</span>
+              </a>
+              <a routerLink="/explore-design-ideas/false-ceiling" routerLinkActive="active" class="room-nav-pill-btn d-inline-flex align-items-center gap-2 text-decoration-none">
+                <i class="fa-solid fa-lightbulb"></i>
+                <span>False Ceiling</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- BATHROOM COLLECTION GRID SECTION -->
+  <section class="py-4 py-lg-5 position-relative" id="bathroom-collections">
+    <div class="container">
+
+      <!-- Bathroom Grid -->
+      <div class="row g-4">
+        @for (item of filteredBathrooms(); track item.id) {
+          <div class="col-md-6 col-lg-4">
+            <div class="bathroom-card bg-white rounded-4 overflow-hidden border border-light-subtle shadow-sm h-100 d-flex flex-column transition-hover">
+              
+              <!-- Card Top Image Container -->
+              <div class="card-img-wrapper position-relative overflow-hidden">
+                <img [src]="item.image" [alt]="item.title" class="bathroom-card-img w-100" loading="lazy" />
+
+                <!-- Quick Action Floating Overlay -->
+                <div class="card-img-overlay-action d-flex align-items-center justify-content-center gap-2">
+                  <button (click)="openDetailModal(item)" class="btn btn-light-glass btn-sm rounded-pill fw-semibold px-3 py-2 shadow">
+                    <i class="fa-solid fa-expand me-1 text-maroon"></i> View Specs & Layout
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card Content Body -->
+              <div class="card-body p-4 d-flex flex-column justify-content-between flex-grow-1">
+                <div>
+                  
+                  <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h3 class="h5 fw-bold text-dark font-serif mb-0 bathroom-card-title">{{ item.title }}</h3>
+                  </div>
+
+                  <p class="font-size-xs text-muted mb-0 line-clamp-2">
+                    {{ item.shortDesc }}
+                  </p>
+
+                </div>
+
+                <!-- Card Bottom Action Buttons -->
+                <div class="card-footer-box pt-3 border-top border-light-subtle d-flex align-items-center gap-2">
+                  <button (click)="openDetailModal(item)" class="btn btn-sm btn-outline-dark rounded-pill px-3 py-2 fw-semibold font-size-xs flex-grow-1">
+                    <i class="fa-solid fa-layer-group me-1"></i> View Specs
+                  </button>
+                  <button (click)="openConsultationModal($event)" class="btn btn-sm btn-maroon rounded-pill px-3 py-2 fw-semibold font-size-xs shadow-sm flex-grow-1">
+                    <i class="fa-solid fa-calendar-check me-1"></i> Get Quote
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        } @empty {
+          <div class="col-12 py-5 text-center">
+            <div class="empty-box p-5 bg-white rounded-4 border border-light-subtle max-w-500 mx-auto">
+              <i class="fa-solid fa-bath font-size-3xl text-muted mb-3"></i>
+              <h4 class="h5 fw-bold text-dark mb-2">No Bathroom Designs Found</h4>
+              <p class="text-muted font-size-xs mb-3">No bathroom designs match your current search query or filter.</p>
+              <button (click)="setCategory('all'); searchQuery.set('')" class="btn btn-sm btn-outline-dark rounded-pill px-4">
+                Reset All Filters
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DETAIL MODAL (Single Image matching all other pages) -->
+  @if (isDetailModalOpen() && selectedBathroom(); as bath) {
+    <div class="modal-backdrop-custom d-flex align-items-center justify-content-center p-3" (click)="closeDetailModal()">
+      <div class="modal-dialog-custom bg-white rounded-4 shadow-2xl overflow-hidden max-w-950 w-100 position-relative animate-modal" (click)="$event.stopPropagation()">
+        
+        <!-- Modal Close Button -->
+        <button (click)="closeDetailModal()" class="btn-modal-close position-absolute end-0 top-0 m-3 z-3" aria-label="Close modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <div class="row g-0">
+          
+          <!-- Left: Modal Media Image (Single image full-height) -->
+          <div class="col-lg-6 bg-dark position-relative p-0 overflow-hidden d-flex align-items-center justify-content-center">
+            <div class="modal-main-img-box w-100 h-100 position-relative">
+              <img [src]="bath.image" [alt]="bath.title" class="w-100 h-100 object-fit-cover cursor-zoom" (click)="openLightbox(bath.image, $event)" />
+              <button (click)="openLightbox(bath.image, $event)" class="btn-zoom-overlay position-absolute bottom-0 end-0 m-3 btn btn-sm btn-dark-glass text-white rounded-pill font-size-2xs">
+                <i class="fa-solid fa-magnifying-glass-plus me-1"></i> Zoom
+              </button>
+            </div>
+          </div>
+
+          <!-- Right: Modal Specs & Features -->
+          <div class="col-lg-6 p-3.5 p-md-4 overflow-y-auto max-vh-80 custom-scrollbar">
+            
+            <div class="d-flex align-items-center gap-2 mb-2">
+              <span class="badge-tag-maroon font-size-2xs text-uppercase fw-bold px-2 py-0.5 rounded">{{ bath.categoryLabel }}</span>
+            </div>
+
+            <h3 class="h4 fw-bold font-serif text-dark mb-2">{{ bath.title }}</h3>
+            <p class="font-size-xs text-muted mb-3 leading-relaxed">{{ bath.shortDesc }}</p>
+
+            <!-- Price & Dimension Banner -->
+            <div class="p-3 modal-price-card rounded-3 mb-4 d-flex justify-content-between align-items-center">
+              <div>
+                <span class="font-size-2xs text-muted text-uppercase d-block fw-bold tracking-wider mb-0.5">Estimated Price</span>
+                <span class="h4 fw-bold text-maroon font-serif mb-0">{{ bath.startingPrice }}</span>
+              </div>
+              <div class="text-end">
+                <span class="font-size-2xs text-muted text-uppercase d-block fw-bold tracking-wider mb-0.5">Room Coverage</span>
+                <span class="font-size-xs fw-semibold text-dark">{{ bath.dimensions }}</span>
+              </div>
+            </div>
+
+            <!-- Materials Used -->
+            <h4 class="specs-section-heading mb-2.5">
+              <i class="fa-solid fa-shield-halved text-maroon me-1.5"></i> Premium Materials & Hardware
+            </h4>
+            <div class="d-flex flex-wrap gap-2 mb-4">
+              @for (mat of bath.materials; track mat) {
+                <span class="badge-material-pill d-inline-flex align-items-center gap-1.5 px-2.5 py-1 rounded bg-light border text-dark font-size-2xs">
+                  <i class="fa-solid fa-check text-maroon"></i> {{ mat }}
+                </span>
+              }
+            </div>
+
+            <!-- Architectural Features List -->
+            <div class="mb-4">
+              <h4 class="specs-section-heading mb-2">Design Features</h4>
+              <ul class="list-unstyled mb-0 font-size-xs text-secondary ps-1">
+                @for (f of bath.features; track f) {
+                  <li class="mb-1.5 d-flex align-items-start">
+                    <i class="fa-solid fa-circle-check text-success me-2 mt-1 font-size-2xs"></i>
+                    <span>{{ f }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <!-- Modal Action Buttons -->
+            <div class="d-flex gap-2 pt-2 border-top">
+              <button (click)="openConsultationModal($event); closeDetailModal()" class="btn btn-maroon w-100 py-2.5 rounded-pill fw-bold font-size-xs shadow-sm">
+                <i class="fa-solid fa-calendar-check me-1.5"></i> Book Site Measurement & Bathroom Quote
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  }
+
+  <!-- LIGHTBOX MODAL (Image Zoom) -->
+  @if (lightboxImage()) {
+    <div class="lightbox-backdrop position-fixed inset-0 z-999999 d-flex align-items-center justify-content-center p-3 p-md-5" (click)="closeLightbox()">
+      <button class="btn btn-dark rounded-circle position-absolute top-0 end-0 m-4 text-white z-2 p-2 w-44-h-44 d-flex align-items-center justify-content-center" (click)="closeLightbox()">
+        <i class="fa-solid fa-xmark font-size-lg"></i>
+      </button>
+      <div class="lightbox-img-wrapper position-relative max-w-1000 max-h-85vh text-center" (click)="$event.stopPropagation()">
+        <img [src]="lightboxImage()!" class="img-fluid rounded-3 shadow-2xl max-h-85vh object-fit-contain" alt="Luxury Bathroom Design Preview" />
+      </div>
+    </div>
+  }
+
+</div>

@@ -1,5 +1,5 @@
 /* ========================================================
-   PRIME SPACE - BESPOKE KIDS BEDROOM PAGE STYLES
+   PRIME SPACE - BESPOKE KIDS & TEEN BEDROOM PAGE STYLES
    ======================================================== */
 
 :host {
@@ -17,37 +17,6 @@
   background-color: var(--primary-maroon, #800433) !important;
 }
 
-.text-gold {
-  color: #D4AF37 !important;
-}
-
-.text-gold-accent {
-  color: #F3E5AB !important;
-}
-
-.bg-light-neutral {
-  background-color: #FDFBF7;
-}
-
-.bg-light-card {
-  background-color: #F8F6F0;
-}
-
-.bg-cream-gradient {
-  background: linear-gradient(180deg, #FBF8F2 0%, #F5EFEB 100%);
-}
-
-.bg-maroon-gradient {
-  background: linear-gradient(135deg, #4A0505 0%, #7D0A0A 60%, #991B1B 100%);
-}
-
-.text-gradient-gold {
-  background: linear-gradient(135deg, #FFF1C5 0%, #E2C068 50%, #C99700 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Typography */
 .font-serif {
   font-family: 'Playfair Display', Georgia, serif;
 }
@@ -57,44 +26,52 @@
 .font-size-sm { font-size: 0.95rem; }
 .font-size-md { font-size: 1.05rem; }
 .font-size-lg { font-size: 1.2rem; }
-.font-size-2xl { font-size: 1.75rem; }
 .font-size-3xl { font-size: 2.5rem; }
 
 .tracking-wider { letter-spacing: 0.12em; }
-.leading-tight { line-height: 1.15; }
 .leading-relaxed { line-height: 1.65; }
 
 .max-w-500 { max-width: 500px; }
-.max-w-650 { max-width: 650px; }
 .max-w-750 { max-width: 750px; }
-.max-w-850 { max-width: 850px; }
 .max-w-950 { max-width: 950px; }
-.max-w-250 { max-width: 250px; }
+.max-w-1000 { max-width: 1000px; }
 .max-vh-80 { max-height: 80vh; }
+.max-h-85vh { max-height: 85vh; }
 
-.backdrop-blur {
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+.w-44-h-44 {
+  width: 44px;
+  height: 44px;
+}
+
+.z-999999 {
+  z-index: 100000001 !important;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* ----------------------------------------------------
    HERO SECTION (Matching Categories Page exactly)
    ---------------------------------------------------- */
-.wardrobe-page-wrapper .wardrobe-hero-section {
+.kids-page-wrapper .kids-hero-section {
   background-color: var(--page-top-background, #FBF8F3) !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   padding-top: 140px !important;
 }
 
 @media (max-width: 991.98px) {
-  .wardrobe-page-wrapper .wardrobe-hero-section {
+  .kids-page-wrapper .kids-hero-section {
     padding-top: 75px !important;
     padding-bottom: 1.25rem !important;
   }
 }
 
 @media (max-width: 767.98px) {
-  .wardrobe-page-wrapper .wardrobe-hero-section {
+  .kids-page-wrapper .kids-hero-section {
     padding-top: 88px !important;
     padding-bottom: 0.75rem !important;
   }
@@ -157,10 +134,19 @@
 
 /* ROOM NAVIGATION QUICK SWITCHER */
 .room-nav-pills-wrapper {
+  display: flex;
+  justify-content: flex-start;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding: 4px 2px;
+  padding: 4px 6px;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  .room-nav-pills-wrapper {
+    justify-content: center;
+  }
 }
 
 .room-nav-pills-wrapper::-webkit-scrollbar {
@@ -173,21 +159,23 @@
   padding: 4px;
   flex-wrap: nowrap;
   white-space: nowrap;
+  margin-inline: auto;
 }
 
 .room-nav-pill-btn {
   font-family: var(--font-body, 'Inter', sans-serif);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 600;
   color: #475569;
-  padding: 7px 16px;
+  padding: 6px 13px;
   border-radius: 50rem;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
+  gap: 7px;
 }
 
 .room-nav-pill-btn i {
-  font-size: 13px;
+  font-size: 12.5px;
   color: #64748b;
   transition: color 0.25s ease;
 }
@@ -213,23 +201,21 @@
 }
 
 @media (max-width: 767.98px) {
-  .room-nav-pills-wrapper {
-    justify-content: flex-start !important;
-  }
   .room-nav-pill-btn {
     font-size: 11.5px;
-    padding: 5px 12px;
+    padding: 5px 11px;
+    gap: 6px;
   }
 }
 
 /* ----------------------------------------------------
    KIDS BEDROOM CARDS
    ---------------------------------------------------- */
-.wardrobe-card {
+.kids-card {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
 }
 
-.wardrobe-card:hover {
+.kids-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08) !important;
 }
@@ -238,51 +224,14 @@
   height: 240px;
 }
 
-.wardrobe-card-img {
+.kids-card-img {
   height: 100%;
   object-fit: cover;
   transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.wardrobe-card:hover .wardrobe-card-img {
+.kids-card:hover .kids-card-img {
   transform: scale(1.08);
-}
-
-.card-badge-top-left {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  z-index: 2;
-}
-
-.badge-tag-pill {
-  background: var(--primary-maroon, #800433);
-  color: #FFF;
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 50px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-}
-
-.card-badge-top-right {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 2;
-}
-
-.category-pill-glass {
-  background: #FFFFFF;
-  color: #1A1A1A;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 4px 11px;
-  border-radius: 50px;
 }
 
 .card-img-overlay-action {
@@ -293,7 +242,7 @@
   transition: opacity 0.3s ease;
 }
 
-.wardrobe-card:hover .card-img-overlay-action {
+.kids-card:hover .card-img-overlay-action {
   opacity: 1;
 }
 
@@ -311,7 +260,7 @@
   transform: scale(1.05);
 }
 
-.wardrobe-card-title {
+.kids-card-title {
   font-size: 1.15rem;
 }
 
@@ -330,14 +279,14 @@
   box-shadow: 0 6px 18px rgba(var(--primary-maroon-rgb, 128, 4, 51), 0.3);
 }
 
-.wardrobe-card .btn-outline-dark {
+.kids-card .btn-outline-dark {
   border: 1px solid rgba(0, 0, 0, 0.2) !important;
   color: #1A1A1A !important;
   background: transparent !important;
   transition: all 0.25s ease;
 }
 
-.wardrobe-card .btn-outline-dark:hover {
+.kids-card .btn-outline-dark:hover {
   background: #1A1A1A !important;
   color: #FFFFFF !important;
   border-color: #1A1A1A !important;
@@ -403,8 +352,8 @@
 }
 
 .spec-label-col {
-  width: 120px;
-  min-width: 110px;
+  width: 125px;
+  min-width: 115px;
 }
 
 .spec-item {
@@ -417,55 +366,19 @@
   font-weight: 700;
 }
 
-.badge-material-pill {
-  background: #FFFFFF;
-  color: #333333;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  font-size: 0.78rem;
-  font-weight: 600;
-  padding: 5px 12px;
-  border-radius: 50px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
-}
-
 .cursor-zoom {
   cursor: zoom-in;
 }
 
-.lightbox-overlay {
-  position: fixed;
-  inset: 0;
+.btn-zoom-overlay {
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.lightbox-backdrop {
   background: rgba(0, 0, 0, 0.92);
-  z-index: 100000001 !important;
-  padding: 20px;
-}
-
-.lightbox-img {
-  max-width: 90vw;
-  max-height: 85vh;
-  object-fit: contain;
-}
-
-.lightbox-close-btn {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: rgba(255, 255, 255, 0.15);
-  border: none;
-  color: #FFF;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-}
-
-.lightbox-close-btn:hover {
-  background: var(--primary-maroon, #800433);
+  backdrop-filter: blur(8px);
 }
 
 /* Animations */
@@ -476,4 +389,13 @@
 
 .animate-modal {
   animation: fadeInScale 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
 }
