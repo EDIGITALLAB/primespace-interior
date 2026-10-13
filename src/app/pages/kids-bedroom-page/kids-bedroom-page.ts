@@ -48,28 +48,28 @@ export class KidsBedroomPage implements OnInit, OnDestroy {
   // Kids Room Database
   readonly kidsRooms: KidsRoomItem[] = [
     {
-      id: 'pastel-modular-bunk-study-suite',
-      title: 'Pastel Modular Loft Bunk & Study Suite',
-      category: 'bunk-loft',
-      categoryLabel: 'Bunk & Loft Suite',
-      shortDesc: 'Dual-tier space-saving loft bunk with integrated storage staircase, ergonomic study desk, and playful pastel anti-scratch shutters.',
-      tag: 'Best Seller',
-      image: '/kids/pastel-scandi-loft-kids.jpg',
-      galleryImages: ['/kids/pastel-scandi-loft-kids.jpg'],
-      startingPrice: '₹1,85,000',
-      dimensions: '12ft x 11ft Kids Bedroom (Customizable)',
-      finishType: 'Zero-VOC Waterborne Matte PU + Anti-Scratch Pastel Laminate',
+      id: 'botanical-safari-kids-suite',
+      title: 'Botanical Safari & Study Bedroom Suite',
+      category: 'theme-rooms',
+      categoryLabel: 'Botanical & Study Suite',
+      shortDesc: 'Nature-inspired children bedroom with sage green scalloped headboard, tropical palm mural, ergonomic study station, and illuminated oak wardrobe.',
+      tag: 'Featured Design',
+      image: '/kids/botanical-safari-kids-suite.jpg',
+      galleryImages: ['/kids/botanical-safari-kids-suite.jpg'],
+      startingPrice: '₹1,75,000',
+      dimensions: '13ft x 11ft Kids Bedroom (Customizable)',
+      finishType: 'Natural Teak & Sage Green Laminate + Custom Jungle Wall Mural',
       features: [
-        'Solid safety guardrails with rounded child-safe bevels',
-        'Staircase with 4 hidden pull-out storage drawers for toys',
-        'Under-loft study desk with integrated LED task lighting',
-        'Certified non-toxic, lead-free and odorless finishes'
+        'Upholstered velvet scalloped headboard in calming muted sage green',
+        'Custom bespoke tropical palm and wildlife botanical wallpaper mural',
+        'Full-height fitted wardrobe with fluted panels and warm LED display alcoves',
+        'Ergonomic study desk with floating illuminated bookshelf and storage drawers'
       ],
-      materials: ['Century Marine Grade BWP 18mm', 'Non-Toxic Italian Sayerlack PU', 'Blum Soft-Close Dampers', 'High-Density Birch Rungs'],
+      materials: ['Century Pro BWP Marine Core Plywood', 'Soft-Touch Matte Sage Green Laminate', 'Non-Toxic Child-Safe Waterborne Lacquer', 'Blum Soft-Close Drawer Runners'],
       highlights: [
-        { icon: 'fa-solid fa-shield-halved', title: 'Child Safe Architecture', desc: '100% rounded corners and safety rails to protect growing kids.' },
-        { icon: 'fa-solid fa-shapes', title: 'Dual Sleeping Capacity', desc: 'Accommodates two siblings or sleepovers without crowding the floor.' },
-        { icon: 'fa-solid fa-leaf', title: 'Zero VOC Eco-Friendly', desc: 'Odor-free, child-friendly non-toxic Italian waterborne paints.' }
+        { icon: 'fa-solid fa-seedling', title: 'Nature Inspired Theme', desc: 'Calming botanical tones stimulate focus, creativity, and peaceful sleep.' },
+        { icon: 'fa-solid fa-graduation-cap', title: 'Dedicated Study Zone', desc: 'Integrated desk with task lighting and book display shelves.' },
+        { icon: 'fa-solid fa-shirt', title: 'Abundant Wardrobe Storage', desc: 'Full-length closets and open display niches keep the room clutter-free.' }
       ]
     },
     {
@@ -97,31 +97,7 @@ export class KidsBedroomPage implements OnInit, OnDestroy {
         { icon: 'fa-solid fa-brush', title: 'Wipe-Clean Surfaces', desc: 'Resists crayon, water paint, and marker stains effortlessly.' }
       ]
     },
-    {
-      id: 'modern-teen-ergonomic-study-suite',
-      title: 'Modern Teen Ergonomic Study & Gamer Suite',
-      category: 'teen-study',
-      categoryLabel: 'Teen Study & Gaming',
-      shortDesc: 'Designed for teenagers with 6ft dual-monitor study setup, acoustic slate grey wall slats, RGB ambient halo lights, and hydraulic storage bed.',
-      tag: 'Modern Teen Luxury',
-      image: '/kids/modern-teen-ergonomic-study.jpg',
-      galleryImages: ['/kids/modern-teen-ergonomic-study.jpg'],
-      startingPrice: '₹2,20,000',
-      dimensions: '14ft x 12ft Teen Room (Customizable)',
-      finishType: 'Thermal Matte Graphite + Natural Walnut & Metal Trims',
-      features: [
-        'Heavy-duty 6ft study and dual-screen workspace with power trunking',
-        'Acoustic felt wall slats for noise isolation and sound focus',
-        'Hydraulic queen-size storage bed frame with tufted headboard',
-        'Smart app-controlled RGB ambient backlighting'
-      ],
-      materials: ['IS 710 Marine BWP Core', 'PET Acoustic Sound Slats', 'Fenix Matte Anti-Scratch Laminate', 'Blum Soft Glides'],
-      highlights: [
-        { icon: 'fa-solid fa-laptop-code', title: 'Focus Study Hub', desc: 'Engineered for high school studies, online classes, and PC gaming.' },
-        { icon: 'fa-solid fa-headphones', title: 'Acoustic Wall Slatting', desc: 'Dampens room echo for study focus and online conversations.' },
-        { icon: 'fa-solid fa-bolt', title: 'Built-in Power & Ports', desc: 'Integrated cable management and USB-C fast charging stations.' }
-      ]
-    },
+    
     {
       id: 'montessori-toddler-play-suite',
       title: 'Montessori Toddler House Bed & Play Suite',
@@ -148,53 +124,253 @@ export class KidsBedroomPage implements OnInit, OnDestroy {
       ]
     },
     {
-      id: 'celestial-space-explorer-suite',
-      title: 'Celestial Space Explorer Themed Bedroom',
-      category: 'theme-rooms',
-      categoryLabel: 'Thematic Explorer Suite',
-      shortDesc: 'Captivating cosmic midnight navy bedroom with fiber-optic starlight ceiling, rocket capsule headboard, and hidden treasure drawer chest.',
-      tag: 'Architect Choice',
-      image: '/kids/space-explorer-celestial-suite.jpg',
-      galleryImages: ['/kids/space-explorer-celestial-suite.jpg'],
-      startingPrice: '₹2,40,000',
-      dimensions: '13ft x 12ft Room Layout (Customizable)',
-      finishType: 'Midnight Indigo PU Satin + Glow-in-the-Dark Accents',
+      id: 'sunny-yellow-teen-study-suite',
+      title: 'Sunny Yellow & Grey Teen Study Suite',
+      category: 'teen-study',
+      categoryLabel: 'Teen Study & Storage',
+      shortDesc: 'Vibrant yellow and warm grey teen bedroom with corner wardrobe, illuminated L-shaped study desk, and floating display shelves.',
+      tag: 'Trending Design',
+      image: '/kids/sunny-yellow-teen-study-suite.jpg',
+      galleryImages: ['/kids/sunny-yellow-teen-study-suite.jpg'],
+      startingPrice: '₹1,95,000',
+      dimensions: '14ft x 12ft Teen Bedroom (Customizable)',
+      finishType: 'Matte Mustard Yellow & Light Oak Laminate + Warm LED Cove',
       features: [
-        'Acoustic false ceiling with sparkling fiber-optic constellation stars',
-        'Custom spacecraft pod shaped headboard with ambient backlit halo',
-        'Modular wardrobe with planet-themed CNC handle cutouts',
-        'Integrated telescope viewing alcove and wall bookshelf'
+        'Floor-to-ceiling corner wardrobe with fluted yellow feature panel',
+        'Upholstered grey channeled headboard with warm backlit ambient glow',
+        'Extended L-shaped study workstation with integrated storage drawers and ergonomic desk chair',
+        'Illuminated open shelving unit displaying books, planters, and collectibles'
       ],
-      materials: ['Century BWP Marine Plywood', 'Fiber Optic Lighting Kit', 'Italian Indigo PU Paint', 'Blum Motion Hinges'],
+      materials: ['Century Pro Marine BWP Core Plywood', 'Anti-Fingerprint Matte Yellow Laminate', 'Natural Oak Finish Shelving', 'Blum Soft-Close Runners'],
       highlights: [
-        { icon: 'fa-solid fa-star', title: 'Fiber-Optic Constellations', desc: 'Twinkling starry night ceiling for magical bedtime stories.' },
-        { icon: 'fa-solid fa-rocket', title: 'Custom Themed Millwork', desc: 'Sparks boundless imagination and scientific curiosity.' },
-        { icon: 'fa-solid fa-shield-halved', title: 'Long-Lasting Durability', desc: 'Built to transition gracefully as the child grows into teens.' }
+        { icon: 'fa-solid fa-sun', title: 'Energizing Color Palette', desc: 'Sunny yellow and neutral grey combination inspires creativity and study focus.' },
+        { icon: 'fa-solid fa-laptop-code', title: 'L-Shaped Study Hub', desc: 'Spacious corner desk accommodates laptop, textbooks, and art supplies.' },
+        { icon: 'fa-solid fa-shirt', title: 'Smart Corner Storage', desc: 'Full-height wardrobe with loft modules maximizes room storage.' }
       ]
     },
     {
-      id: 'twin-sibling-bunk-wardrobe-ensemble',
-      title: 'Twin Sibling Dual Bunk & Wardrobe Ensemble',
+      id: 'sky-blue-loft-bunk-study-suite',
+      title: 'Sky Blue Multi-Level Loft Bunk & Study Suite',
       category: 'bunk-loft',
-      categoryLabel: 'Twin Bunk & Wardrobe',
-      shortDesc: 'Compact twin sibling configuration with reinforced solid bunk system, side study nook, and multi-compartment wardrobe storage.',
-      tag: 'New Launch',
-      image: '/kids/modular-bunk-study-suite.png',
-      galleryImages: ['/kids/modular-bunk-study-suite.png'],
-      startingPrice: '₹2,05,000',
-      dimensions: '13ft x 11ft Sibling Room (Customizable)',
-      finishType: 'Warm White & Soft Olive High-Pressure Laminate',
+      categoryLabel: 'Loft Bunk & Study',
+      shortDesc: 'Architectural dual-tier loft bunk bed with built-in storage staircase, lower daybed, under-bed drawers, and window study station.',
+      tag: 'Best Seller',
+      image: '/kids/sky-blue-loft-bunk-study-suite.jpg',
+      galleryImages: ['/kids/sky-blue-loft-bunk-study-suite.jpg'],
+      startingPrice: '₹2,35,000',
+      dimensions: '14ft x 12ft Sibling Room (Customizable)',
+      finishType: 'Sky Blue & Arctic White High-Pressure Laminate + Solid Wood Rungs',
       features: [
-        'Dual individual reading lights and USB points for both bunks',
-        'Reinforced heavy-duty metal core internal ladder brackets',
-        'Modular under-bed storage drawers with heavy-duty soft slides',
-        'Twin study desks with magnetic memo and task boards'
+        'Dual-level sleeping capacity with sturdy safety guardrails on top bunk',
+        'Integrated side staircase where every step doubles as a deep pull-out toy drawer',
+        'Under-bed smooth roll-out storage drawers for seasonal bedding',
+        'Long study desk positioned by window for natural daylight with overhead book cubbies'
       ],
-      materials: ['Boiling Water Resistant Plywood', 'High-Pressure Anti-Fingerprint Laminate', 'Heavy Duty Steel Corner Connectors', 'Low-Noise Ball Bearing Drawers'],
+      materials: ['IS 710 Marine Grade BWP Plywood', 'Anti-Scratch Matte Sky Blue Laminate', 'Heavy-Duty Steel Corner Brackets', 'Child-Safe Non-Toxic Edge Banding'],
       highlights: [
-        { icon: 'fa-solid fa-people-roof', title: 'Twin Sibling Comfort', desc: 'Independent sleeping zones with personalized reading lights.' },
-        { icon: 'fa-solid fa-boxes-stacked', title: 'Huge Under-Bed Storage', desc: 'Tucks extra blankets, school bags, and seasonal items neatly.' },
-        { icon: 'fa-solid fa-wrench', title: 'Modular Convertible', desc: 'Can be detached into two independent single beds in the future.' }
+        { icon: 'fa-solid fa-stairs', title: 'Staircase Storage Drawers', desc: 'Safe climbing steps with hidden pull-out storage for toys and clothes.' },
+        { icon: 'fa-solid fa-bed', title: 'Dual Sleeping Capacity', desc: 'Ideal for siblings or sleepovers without sacrificing floor play area.' },
+        { icon: 'fa-solid fa-book-open', title: 'Integrated Study Nook', desc: 'Full-length window study desk with overhead illuminated library shelves.' }
+      ]
+    },
+    {
+      id: 'cosmic-astronaut-space-explorer-suite',
+      title: 'Cosmic Astronaut Space Explorer Suite',
+      category: 'theme-rooms',
+      categoryLabel: 'Space Explorer Theme',
+      shortDesc: 'Immersive space adventure bedroom with custom astronaut mural, channel headboard, display library, and planet study zone.',
+      tag: 'Kids Favorite',
+      image: '/kids/cosmic-astronaut-space-explorer-suite.jpg',
+      galleryImages: ['/kids/cosmic-astronaut-space-explorer-suite.jpg'],
+      startingPrice: '₹2,10,000',
+      dimensions: '13ft x 12ft Explorer Suite (Customizable)',
+      finishType: 'Cosmic Navy Blue & Clean White Laminate + Custom Space Wall Mural',
+      features: [
+        'Large bespoke space explorer wallpaper mural featuring astronauts and orbiting planets',
+        'Upholstered plush blue channeled headboard with under-bed hydraulic storage',
+        'Floor-to-ceiling tall open toy display bookcase with integrated warm spotlighting',
+        'Ergonomic study desk with pegboard organizer and spacious stationery drawers'
+      ],
+      materials: ['Century BWP Marine Plywood Core', 'Scratch-Proof Matte Navy Laminate', 'Digital High-Def Fabric Wallpaper', 'Soft-Close European Dampers'],
+      highlights: [
+        { icon: 'fa-solid fa-rocket', title: 'Thematic Space Adventure', desc: 'Sparks curiosity in science, astronomy, and imaginative exploration.' },
+        { icon: 'fa-solid fa-globe', title: 'Showcase Display Tower', desc: 'Open display shelves for model rockets, globes, and science books.' },
+        { icon: 'fa-solid fa-graduation-cap', title: 'Pegboard Study Desk', desc: 'Customizable pegboard and wide desk surface for school projects.' }
+      ]
+    },
+    {
+      id: 'pastel-rainbow-cloud-daybed-suite',
+      title: 'Pastel Cloud & Arched Halo Daybed Suite',
+      category: 'theme-rooms',
+      categoryLabel: 'Pastel Fantasy Suite',
+      shortDesc: 'Dreamy pastel bedroom featuring illuminated double-arch halo headboard, cloud wall lights, fluted accents, and bay window bench.',
+      tag: 'Luxury Signature',
+      image: '/kids/pastel-rainbow-cloud-daybed-suite.jpg',
+      galleryImages: ['/kids/pastel-rainbow-cloud-daybed-suite.jpg'],
+      startingPrice: '₹2,25,000',
+      dimensions: '14ft x 13ft Fantasy Suite (Customizable)',
+      finishType: 'Dusty Rose, Terracotta & Soft Sky Blue Acoustic Panelling + Concealed Halo LED',
+      features: [
+        'Sculptural scalloped velvet headboard set against illuminated dual-tone concentric arches',
+        'Ambient glowing cloud wall sconces and decorative golden stars',
+        'Cozy bay window storage bench with plush seating cushion and throw pillows',
+        'Full-height arched wardrobe and matching study desk with ergonomic peach office chair'
+      ],
+      materials: ['Acoustic Foam Padded Wall Panelling', 'Stain-Resistant Dusty Rose Velvet', 'IS 710 Marine Grade Plywood', 'Warm 3000K Diffused LED Strips'],
+      highlights: [
+        { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Illuminated Arch Halo', desc: 'Concealed warm halo cove creates a magical, gentle bedtime nightlight.' },
+        { icon: 'fa-solid fa-couch', title: 'Bay Window Daybed Bench', desc: 'Perfect sunlit reading nook with built-in toy storage compartments below.' },
+        { icon: 'fa-solid fa-cloud', title: 'Cloud Motif Millwork', desc: 'Whimsical cloud appliques and soft fluted louvers bring fairytale charm.' }
+      ]
+    },
+    {
+      id: 'nordic-oak-sage-triple-bunk-suite',
+      title: 'Nordic Oak & Sage Green 3-in-1 Trundle Bunk Suite',
+      category: 'bunk-loft',
+      categoryLabel: 'Triple Bunk & Trundle',
+      shortDesc: 'Space-maximizing solid oak bunk bed with smooth roll-out guest trundle, overhead cabinetry, forest mural, and corner study desk.',
+      tag: 'Top Innovation',
+      image: '/kids/nordic-oak-sage-triple-bunk-suite.jpg',
+      galleryImages: ['/kids/nordic-oak-sage-triple-bunk-suite.jpg'],
+      startingPrice: '₹2,50,000',
+      dimensions: '14ft x 13ft Sibling Room (Customizable)',
+      finishType: 'Natural Teak & Sage Green Laminate + Seamless Overhead Storage Lofts',
+      features: [
+        '3-sleeper configuration: Upper bunk, lower bed, and smooth pull-out bottom trundle bed',
+        'Solid hardwood ladder with rounded hand-grips and anti-slip rungs',
+        'Full overhead wall bridge cabinets maximizing vertical ceiling storage',
+        'Corner study desk with integrated vertical bookshelf and paper lantern pendant lamp'
+      ],
+      materials: ['European Birch & Seasoned Teak Plywood', 'Anti-Bacterial Sage Green Matte Laminate', 'Heavy-Duty Rubberized Trundle Wheels', 'Hafele Heavy Load Bed Fittings'],
+      highlights: [
+        { icon: 'fa-solid fa-people-roof', title: 'Accommodates 3 Sleepers', desc: 'Two bunks plus pull-out trundle bed provide ultimate sleepover versatility.' },
+        { icon: 'fa-solid fa-boxes-stacked', title: 'Wall-Bridge Overhead Lofts', desc: 'Over-bed cabinets utilize full ceiling height for bulky storage.' },
+        { icon: 'fa-solid fa-tree', title: 'Forest Mountain Mural', desc: 'Calming woodland landscape encourages connection with nature.' }
+      ]
+    },
+    {
+      id: 'blossom-pink-arch-princess-suite',
+      title: 'Blossom Pink & Arch Wardrobe Princess Suite',
+      category: 'theme-rooms',
+      categoryLabel: 'Princess & Floral Suite',
+      shortDesc: 'Charming pastel pink bedroom with dual-tone arched wardrobe, scalloped halo headboard, cherry blossom mural, and corner study workstation.',
+      tag: 'Trending Design',
+      image: '/kids/blossom-pink-arch-princess-suite.jpg',
+      galleryImages: ['/kids/blossom-pink-arch-princess-suite.jpg'],
+      startingPrice: '₹2,20,000',
+      dimensions: '13ft x 12ft Bedroom (Customizable)',
+      finishType: 'Blush Pink & Milk White Matte Laminate + Cherry Blossom Accent Wall',
+      features: [
+        'Dual-tone floor-to-ceiling wardrobe with elegant white Roman arch inset',
+        'Scalloped pink velvet headboard with backlit warm LED halo illumination',
+        'Integrated corner study table with illuminated overhead display cabinets and drawers',
+        'Hand-painted style cherry blossom wallpaper mural and matching floral upholstery'
+      ],
+      materials: ['IS 710 Marine Grade BWP Plywood Core', 'Matte Anti-Fingerprint Blush Laminate', 'Stain-Resistant Flocked Velvet Fabric', 'Blum Soft-Close Runners & Hinges'],
+      highlights: [
+        { icon: 'fa-solid fa-archway', title: 'Roman Arch Wardrobe', desc: 'Bespoke two-tone wardrobe doors create an elegant architectural statement.' },
+        { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Halo Scalloped Headboard', desc: 'Backlit curved velvet headboard provides gentle evening reading ambience.' },
+        { icon: 'fa-solid fa-pen-ruler', title: 'Window Study Station', desc: 'L-shaped desk positioned beside the window for natural study lighting.' }
+      ]
+    },
+    {
+      id: 'blush-sage-floating-desk-suite',
+      title: 'Blush Pink & Sage Pastel Study Suite',
+      category: 'teen-study',
+      categoryLabel: 'Pastel Study & Wall Art',
+      shortDesc: 'Modern aesthetic bedroom with wall color-block geometry, floating drawer desk, butterfly halo wall sconces, and fluted sage panelling.',
+      tag: 'Modern Aesthetic',
+      image: '/kids/blush-sage-floating-desk-suite.jpg',
+      galleryImages: ['/kids/blush-sage-floating-desk-suite.jpg'],
+      startingPrice: '₹1,85,000',
+      dimensions: '12ft x 11ft Bedroom (Customizable)',
+      finishType: 'Dusty Rose & Sage Green Acoustic Louvers + Matte Laminates',
+      features: [
+        'Minimalist wall-mounted cantilever study desk with rose quartz tabletop',
+        'Overhead floating closed cabinets and warm-lit open display shelving',
+        'Fluted vertical sage wall panelling adorned with glowing butterfly sconces',
+        'Cozy channel-stitched pink headboard with side halo illumination'
+      ],
+      materials: ['Century BWP Plywood Construction', 'Scratch-Proof Matte Pastel Laminates', 'Warm 3000K Diffused LED Accent Lights', 'Heavy-Duty Wall Cantilever Brackets'],
+      highlights: [
+        { icon: 'fa-solid fa-shapes', title: 'Geometric Color Blocking', desc: 'Concentric circle and arch wall murals add playful modern sophistication.' },
+        { icon: 'fa-solid fa-desktop', title: 'Floating Ergonomic Desk', desc: 'Leg-free cantilever study desk ensures effortless cleaning and airy feel.' },
+        { icon: 'fa-solid fa-lightbulb', title: 'Glowing Butterfly Sconces', desc: 'Whimsical backlit wall accents provide a comforting nighttime nightlight.' }
+      ]
+    },
+    {
+      id: 'sibling-harmony-pink-teal-twin-suite',
+      title: 'Sibling Harmony Pink & Teal Twin Bedroom',
+      category: 'bunk-loft',
+      categoryLabel: 'Sibling Twin Suite',
+      shortDesc: 'Symmetrical twin bedroom suite with shared central multi-door wardrobe, individual pink & teal scalloped beds, and classic wall panel moldings.',
+      tag: 'Perfect for Siblings',
+      image: '/kids/sibling-harmony-pink-teal-twin-suite.jpg',
+      galleryImages: ['/kids/sibling-harmony-pink-teal-twin-suite.jpg'],
+      startingPrice: '₹2,60,000',
+      dimensions: '16ft x 13ft Sibling Suite (Customizable)',
+      finishType: 'Dual Rose & Ocean Teal Accent Walls + Off-White Classic Panelled Wardrobe',
+      features: [
+        'Dual twin-size beds with customized velvet shell-scallop headboards in rose and teal',
+        'Central floor-to-ceiling wardrobe with dedicated color-coded bottom drawer units',
+        'Dual symmetrical side windows dressed in Roman blinds for balanced daylight',
+        'Classic neoclassical wall molding panels with framed inspirational nursery art'
+      ],
+      materials: ['Greenply Marine Grade BWP Plywood', 'Durable Polyurethane Deco Paint Finish', 'Premium Flocked Velvet Bed Linings', 'Hettich German Drawer Systems'],
+      highlights: [
+        { icon: 'fa-solid fa-people-arrows', title: 'Balanced Sibling Living', desc: 'Offers personalized color individuality while maintaining cohesive room symmetry.' },
+        { icon: 'fa-solid fa-door-closed', title: 'High-Capacity Shared Closet', desc: 'Full-height center wardrobe splits storage equally for both kids.' },
+        { icon: 'fa-solid fa-certificate', title: 'Neoclassical Wall Trim', desc: 'Timeless architectural wall mouldings that seamlessly grow with children.' }
+      ]
+    },
+    {
+      id: 'botanical-palm-sage-teen-suite',
+      title: 'Botanical Palm & Olive Green Teen Suite',
+      category: 'teen-study',
+      categoryLabel: 'Eco Teen Study Suite',
+      shortDesc: 'Nature-inspired teen bedroom featuring botanical banana leaf wall mural, vertical fluted oak accent wall, green velvet bed, and window study desk.',
+      tag: 'Biophilic Design',
+      image: '/kids/botanical-palm-sage-teen-suite.jpg',
+      galleryImages: ['/kids/botanical-palm-sage-teen-suite.jpg'],
+      startingPrice: '₹2,15,000',
+      dimensions: '14ft x 12ft Teen Suite (Customizable)',
+      finishType: 'Olive Green & Natural Teak Fluted Wood + Hand-Painted Leaf Mural',
+      features: [
+        'Channel-tufted upholstered bed in earthy olive green velvet',
+        'Vertical natural oak slatted wall panels paired with biophilic leaf art',
+        'Floor-to-ceiling multi-shelf library with warm LED under-shelf strip lighting',
+        'Extended ergonomic study desk overlooking the window with matching olive swivel chair'
+      ],
+      materials: ['Century Ply BWP Core Plywood', 'Natural Oak Wood Veneer Slats', 'Anti-Bacterial Matte Olive Laminate', 'Eco-Friendly Zero-VOC Wall Paint'],
+      highlights: [
+        { icon: 'fa-solid fa-leaf', title: 'Biophilic Plant Integration', desc: 'Dedicated warm-lit display shelves for indoor air-purifying plants and books.' },
+        { icon: 'fa-solid fa-lines-leaning', title: 'Acoustic Wood Slats', desc: 'Natural fluted wood panelling absorbs noise for undisturbed focus and study.' },
+        { icon: 'fa-solid fa-laptop', title: 'Sunlit Window Workstation', desc: 'Dual-drawer desk positioned for maximum daylight productivity.' }
+      ]
+    },
+    {
+      id: 'warm-oak-vanilla-teen-study-suite',
+      title: 'Warm Oak & Vanilla Minimalist Teen Suite',
+      category: 'teen-study',
+      categoryLabel: 'Nordic Teen Suite',
+      shortDesc: 'Japandi-inspired minimalist teen suite with expansive wall-bridge wardrobes, integrated corner bookshelf library, and long study workstation.',
+      tag: 'Space Maximizer',
+      image: '/kids/warm-oak-vanilla-teen-study-suite.jpg',
+      galleryImages: ['/kids/warm-oak-vanilla-teen-study-suite.jpg'],
+      startingPrice: '₹2,40,000',
+      dimensions: '15ft x 13ft Teen Suite (Customizable)',
+      finishType: 'Warm Amber Oak Veneer & Cashmere Vanilla Matte Laminate',
+      features: [
+        'Full-perimeter bridge wardrobe and overhead lofts optimizing vertical storage',
+        'Extensive L-shaped study desk accommodating laptop, secondary monitor, and book organizers',
+        'Floor-to-ceiling corner display shelving with ambient warm 3000K LED illumination',
+        'Padded upholstered linen bed frame with soft neutral floral bedding'
+      ],
+      materials: ['IS 710 Boiling Water Proof Hardwood Marine Plywood', 'Synchronized Textured Oak Laminates', 'Blum Soft-Close Dampers', 'Brushed Brass Slim Bar Handles'],
+      highlights: [
+        { icon: 'fa-solid fa-cubes-stacked', title: 'Full Wall Bridge Storage', desc: 'Seamless floor-to-ceiling cabinetry stores wardrobe, winter wear, and study material.' },
+        { icon: 'fa-solid fa-book', title: 'Illuminated Corner Library', desc: 'Corner vertical shelves maximize dead space for books and decorative mementos.' },
+        { icon: 'fa-solid fa-spa', title: 'Timeless Japandi Palette', desc: 'Warm oak and cashmere vanilla finish creates a serene study and sleep sanctuary.' }
       ]
     }
   ];

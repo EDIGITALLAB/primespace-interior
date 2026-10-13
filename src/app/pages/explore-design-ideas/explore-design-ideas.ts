@@ -59,103 +59,134 @@ export class ExploreDesignIdeas implements OnInit, OnDestroy {
       id: 'modular-kitchen',
       name: 'Modular Kitchen',
       category: 'kitchen',
-      designCount: '20 Designs',
+      designCount: '8 Designs',
       routeLink: '/explore-design-ideas/modular-kitchen',
       heroImage: '/kitchens/magenta-gloss-l-shaped-kitchen.jpg',
       galleryImages: [
         '/kitchens/magenta-gloss-l-shaped-kitchen.jpg',
-        '/kitchens/gloss-charcoal-marble-l-shaped-kitchen.jpg',
-        '/kitchens/champagne-mink-acrylic-parallel-kitchen.jpg'
+        '/kitchens/charcoal-champagne-parallel-galley-kitchen.jpg',
+        '/kitchens/moroccan-teal-mediterranean-kitchen.jpg',
+        '/kitchens/slate-grey-walnut-l-kitchen.jpg',
+        '/kitchens/dusty-rose-glass-l-kitchen.jpg',
+        '/kitchens/charcoal-cream-gloss-balcony-kitchen.jpg',
+        '/kitchens/matte-cappuccino-walnut-l-shaped-kitchen.jpg',
+        '/kitchens/sage-green-butcher-block-kitchen.jpg'
       ],
       tag: 'Most Popular',
-      shortDescription: 'Ergonomically engineered modular kitchens with waterproof BWP plywood, anti-scratch acrylic finishes, and German soft-close fittings.',
-      keyHighlights: ['Island & Parallel Layouts', 'Tandembox Drawers', 'Corner Carousel Pullouts', 'Granite & Quartz Countertops'],
-      popularStyles: ['Island Kitchen', 'Parallel Kitchen', 'L-Shaped', 'U-Shaped', 'Minimalist Acrylic'],
-      estimatedRange: '₹1.5 Lakhs - ₹6.5 Lakhs'
+      shortDescription: 'Ergonomically engineered modular kitchens with waterproof BWP plywood, high-gloss acrylic finishes, Moroccan tile accents, and German soft-close fittings.',
+      keyHighlights: ['Parallel & L-Shaped Layouts', 'Tandembox Soft-Close Drawers', 'Moroccan Tile & Quartz Backsplashes', 'Built-in Appliance Columns'],
+      popularStyles: ['Magenta Gloss L-Kitchen', 'Parallel Galley Kitchen', 'Moroccan Teal Mediterranean', 'Slate Grey & Walnut', 'Dusty Rose Glass Showcase'],
+      estimatedRange: '₹2.1 Lakhs - ₹6.5 Lakhs'
     },
     {
       id: 'master-bedroom',
       name: 'Master Bedroom',
       category: 'bedroom',
-      designCount: '5 Designs',
+      designCount: '9 Designs',
       routeLink: '/explore-design-ideas/master-bedroom',
-      heroImage: '/bedroom_cat.png',
+      heroImage: '/bedrooms/modern-fluted-beige-master-suite.jpg',
       galleryImages: [
-        '/bedroom_cat.png'
+        '/bedrooms/modern-fluted-beige-master-suite.jpg',
+        '/bedrooms/calacatta-gold-marble-fluted-master-suite.jpg',
+        '/bedrooms/arched-halo-emerald-velvet-master-suite.jpg',
+        '/bedrooms/smoked-glass-wardrobe-acoustic-master-suite.jpg',
+        '/bedrooms/royal-navy-velvet-fluted-master-suite.jpg',
+        '/bedrooms/heritage-walnut-floral-suite.jpg',
+        '/bedrooms/dual-tone-teak-cream-bedroom-suite.jpg'
       ],
       tag: 'Sanctuary Suite',
-      shortDescription: 'Serene master bedrooms featuring architectural gold inlay headboard panels, ambient cove lighting, and solid teak platform beds.',
-      keyHighlights: ['Gold Brass Inlay Panelling', 'Concealed LED Warm Strips', 'Teak Bedside Consoles', 'Integrated False Ceiling Coves'],
-      popularStyles: ['Warm Contemporary Luxury', 'Minimalist Scandinavian', 'Japandi Harmony', 'Modern Classical'],
-      estimatedRange: '₹1.8 Lakhs - ₹5.5 Lakhs'
+      shortDescription: 'Serene master bedrooms featuring bookmatched Italian marble walls, architectural fluted teak louvers, boutique smoked glass wardrobes, and arched halo velvet headboards.',
+      keyHighlights: ['Calacatta Gold Marble Slab Walls', 'Boutique Smoked Glass Wardrobes', 'Arched Halo Velvet Headboards', 'Vertical Fluted Teak Louvers'],
+      popularStyles: ['Calacatta Gold & Fluted Teak', 'Arched Halo Olive Velvet', 'Smoked Glass Boutique Dressing', 'Royal Navy Velvet Suite', 'Heritage Walnut Classical'],
+      estimatedRange: '₹1.8 Lakhs - ₹6.5 Lakhs'
     },
     {
       id: 'living-room',
       name: 'Living Room',
       category: 'living',
-      designCount: '6 Designs',
+      designCount: '9 Designs',
       routeLink: '/explore-design-ideas/living-room',
-      heroImage: '/living/fluted-marble-tv-unit-living.jpg',
+      heroImage: '/living/arched-alcove-fluted-oak-living.jpg',
       galleryImages: [
-        '/living/fluted-marble-tv-unit-living.jpg',
-        '/living/contemporary-minimalist-living.jpg'
+        '/living/arched-alcove-fluted-oak-living.jpg',
+        '/living/biophilic-botanical-oak-living.jpg',
+        '/living/duplex-double-height-grand-lounge.jpg',
+        '/living/traditional-heritage-teak-living.jpg',
+        '/living/blush-botanical-chandelier-luxury-living.jpg',
+        '/living/olive-arch-rust-velvet-living.jpg',
+        '/living/terracotta-fluted-marble-lounge.jpg',
+        '/living/mustard-emerald-color-block-living.jpg'
       ],
       tag: 'Family Centerpiece',
-      shortDescription: 'Statement living rooms with custom marble-accent TV entertainment walls, acoustic louver panelling, and customized sectional seating.',
-      keyHighlights: ['Marble Backlit TV Wall', 'Fluted Louvers & CNC Trims', 'Custom False Ceiling Profile', 'Ergonomic Open Floor Plan'],
-      popularStyles: ['High-End Luxury', 'Warm Bohemian Chic', 'Mid-Century Modern', 'Open-Concept Studio'],
-      estimatedRange: '₹2.2 Lakhs - ₹7.0 Lakhs'
+      shortDescription: 'Signature living rooms featuring double-height duplex lounges, biophilic palm murals, Roman arch wall niches, handcrafted Burma teak, and marble TV walls.',
+      keyHighlights: ['Double-Height Duplex Lounges', 'Biophilic Palm Living Walls', 'Sculptured Triple Wall Arches', 'Handcrafted Solid Teak & Jaali'],
+      popularStyles: ['Double-Height Duplex Suite', 'Biophilic Botanical Living', 'Mediterranean Arched Boho', 'Royal Teak Heritage & Jaali', 'Terracotta Fluted Marble'],
+      estimatedRange: '₹1.95 Lakhs - ₹7.5 Lakhs'
     },
     {
       id: 'designer-wardrobes',
       name: 'Wardrobes & Closets',
       category: 'wardrobe',
-      designCount: '18 Designs',
+      designCount: '11 Designs',
       routeLink: '/explore-design-ideas/wardrobe-designs',
-      heroImage: '/wardrobe_cat.png',
+      heroImage: '/wardrobes/sage-green-glass-boutique-wardrobe.jpg',
       galleryImages: [
-        '/wardrobe_cat.png',
-        'https://images.unsplash.com/photo-1558882224-dda166733046?q=80&w=1000&auto=format&fit=crop',
-        'https://images.unsplash.com/photo-1558997519-83ea9252edf8?q=80&w=1000&auto=format&fit=crop'
+        '/wardrobes/sage-green-glass-boutique-wardrobe.jpg',
+        '/wardrobes/cashmere-vanity-alcove-wardrobe.jpg',
+        '/wardrobes/corner-l-shaped-walkin-glass-vanity-wardrobe.jpg',
+        '/wardrobes/prussian-blue-gold-loft-wardrobe.jpg',
+        '/wardrobes/cashmere-smoked-glass-hybrid-wardrobe.jpg',
+        '/wardrobes/dusty-rose-mirror-center-wardrobe.jpg',
+        '/wardrobes/smoked-glass-boutique-wardrobe.jpg'
       ],
       tag: 'Bespoke Storage',
-      shortDescription: 'Floor-to-ceiling sliding, tinted fluted glass profile, and walk-in dressing wardrobes customized to your wardrobe inventory.',
-      keyHighlights: ['German Soft Dampers', 'Velvet Jewellery Trays', 'Sensor LED Light Bars', 'Anti-Fingerprint Thermal Matte'],
-      popularStyles: ['Fluted Tinted Glass', 'Sliding Door Wardrobes', 'Walk-In Dressing Rooms', 'L-Shaped Corner'],
-      estimatedRange: '₹95,000 - ₹3.5 Lakhs'
+      shortDescription: 'Floor-to-ceiling glass boutique wardrobes, full-height lofts, and central vanity dressing suites customized with velvet matrix drawers and sensor lighting.',
+      keyHighlights: ['Clear & Smoked Glass Boutique Doors', 'Central Oak Vanity Alcoves', 'Full-Height Overhead Lofts', 'Velvet Jewellery Matrix Drawers'],
+      popularStyles: ['Glass Boutique Suite', 'Cashmere Vanity Alcove', 'Corner Walk-in Vanity', 'Prussian Blue Loft Wardrobe', 'Cashmere Hybrid Glass'],
+      estimatedRange: '₹1.1 Lakhs - ₹3.8 Lakhs'
     },
     {
       id: 'false-ceiling',
       name: 'False Ceiling & Lighting',
       category: 'ceiling',
-      designCount: '6 Designs',
+      designCount: '12 Designs',
       routeLink: '/explore-design-ideas/false-ceiling',
-      heroImage: '/ceilings/magnetic-track-minimalist-ceiling.jpg',
+      heroImage: '/ceilings/floral-petal-chandelier-ceiling.jpg',
       galleryImages: [
-        '/ceilings/magnetic-track-minimalist-ceiling.jpg',
-        '/ceilings/step-tray-cove-ceiling.jpg'
+        '/ceilings/floral-petal-chandelier-ceiling.jpg',
+        '/ceilings/curved-wood-rafter-wave-ceiling.jpg',
+        '/ceilings/honeycomb-hexagon-cove-ceiling.jpg',
+        '/ceilings/overlapping-rings-pendant-ceiling.jpg',
+        '/ceilings/geometric-nested-squares-ceiling.jpg',
+        '/ceilings/nested-pyramid-tray-cove-ceiling.jpg'
       ],
       tag: 'Illuminated Ambience',
-      shortDescription: 'Architectural gypsum false ceilings featuring magnetic track lights, recessed ambient cove channels, and natural wooden rafters.',
-      keyHighlights: ['Zero Crack Gypsum Boards', 'Magnetic Track Spots', 'Warm 3000K Diffused Cove', 'Smart Automation Compatible'],
-      popularStyles: ['Minimalist Peripheral', 'Magnetic Track Modern', 'Wooden Rafter Ceiling', 'Coffered Chandelier Niche'],
-      estimatedRange: '₹60,000 - ₹2.2 Lakhs'
+      shortDescription: 'Architectural gypsum false ceilings featuring sculptural floral petals, curved wood rafters, honeycomb hexagons, crystal chandeliers, and warm cove lighting.',
+      keyHighlights: ['Zero Crack Gypsum Boards', 'Bespoke S-Curve & Honeycomb Profiles', 'Warm 3000K Diffused Cove', 'Smart Automation Compatible'],
+      popularStyles: ['Floral Petal Chandelier', 'S-Curve Wood Rafters', 'Honeycomb Backlit', 'Concentric Halo Rings', 'Magnetic Track Modern'],
+      estimatedRange: '₹60,000 - ₹2.5 Lakhs'
     },
     {
       id: 'luxury-bathroom',
       name: 'Luxury Bathroom',
       category: 'bathroom',
-      designCount: '6 Designs',
+      designCount: '8 Designs',
       routeLink: '/explore-design-ideas/luxury-bathroom',
-      heroImage: '/bathrooms/floating-quartz-vanity-bathroom.jpg',
+      heroImage: '/bathrooms/modern-walnut-marble-ensuite-bathroom.jpg',
       galleryImages: [
-        '/bathrooms/floating-quartz-vanity-bathroom.jpg',
-        '/bathrooms/italian-marble-spa-bathroom.jpg'
+        '/bathrooms/modern-walnut-marble-ensuite-bathroom.jpg',
+        '/bathrooms/ocean-blue-marble-fluted-bathroom.jpg',
+        '/bathrooms/statuario-marble-soaking-tub-bathroom.jpg',
+        '/bathrooms/biophilic-courtyard-patterned-bathroom.jpg',
+        '/bathrooms/charcoal-quartz-walnut-bathroom.jpg',
+        '/bathrooms/brushed-gold-terrazzo-beige-bathroom.jpg',
+        '/bathrooms/sage-green-fluted-spa-bathroom.jpg',
+        '/bathrooms/terracotta-terrazzo-designer-bathroom.jpg'
       ],
       tag: 'Spa Experience',
-      shortDescription: 'Hotel-inspired spa bathrooms with floating quartz vanities, LED smart touch mirrors, and walk-in rain showers.',
+      shortDescription: 'Hotel-inspired spa bathrooms with floating timber and marble vanities, freestanding soaking tubs, open atrium biophilic lightwells, and artisan terrazzo feature walls.',
       keyHighlights: ['Waterproof Solid Wood Vanity', 'Touch Sensor Smart Mirror', 'Toughened Glass Cubicles', 'Anti-Skid Matte Flooring'],
-      popularStyles: ['Scandinavian White & Oak', 'Dark Anthracite Luxury', 'Monochrome Terrazzo', 'Gold Brass Accents'],
+      popularStyles: ['Ocean Blue Marble', 'Statuario Spa Bathtub', 'Biophilic Atrium', 'Charcoal & Walnut', 'Brushed Gold Terrazzo'],
       estimatedRange: '₹80,000 - ₹3.0 Lakhs'
     },
     {
@@ -178,35 +209,48 @@ export class ExploreDesignIdeas implements OnInit, OnDestroy {
       id: 'dining-room',
       name: 'Dining Room & Bar',
       category: 'dining',
-      designCount: '6 Designs',
+      designCount: '9 Designs',
       routeLink: '/explore-design-ideas/dining-room',
-      heroImage: '/dining/italian-marble-dining-suite.jpg',
+      heroImage: '/dining/emerald-velvet-brass-statuario-dining.jpg',
       galleryImages: [
-        '/dining/italian-marble-dining-suite.jpg',
-        '/dining/teak-wood-warm-dining-suite.jpg'
+        '/dining/emerald-velvet-brass-statuario-dining.jpg',
+        '/dining/calacatta-marble-dual-halo-dining.jpg',
+        '/dining/walnut-linear-chandelier-dining.jpg',
+        '/dining/garden-patio-live-edge-dining.jpg',
+        '/dining/architectural-staircase-teak-dining.jpg',
+        '/dining/japandi-natural-oak-bench-dining.jpg',
+        '/dining/solid-teak-arched-mirror-dining.jpg',
+        '/dining/architectural-fluted-partition-dining.jpg',
+        '/dining/heritage-oak-round-table-dining.jpg'
       ],
       tag: 'Entertaining Hub',
-      shortDescription: 'Elegant dining arrangements paired with bespoke fluted bar units, ambient wine display racks, and chandelier focal points.',
-      keyHighlights: ['Italian Marble Dining Table', 'Integrated Glass Bar Cabinet', 'Modern Pendant Lighting', 'Cushioned Ergonomic Chairs'],
-      popularStyles: ['Contemporary Marble', 'Boutique Lounge Bar', 'Warm Wooden Dining', 'Minimalist Scandinavian'],
+      shortDescription: 'Grand dining suites featuring Italian Statuario marble, brushed brass Sputnik chandeliers, architectural staircase integration, and live-edge patio layouts.',
+      keyHighlights: ['Italian Marble & Brass Bases', 'Architectural Fluted Partitions', 'Designer Halo & Sputnik Chandeliers', 'Seasoned Solid Hardwood'],
+      popularStyles: ['Italian Marble & Emerald Velvet', 'Calacatta Dual-Halo Suite', 'Live-Edge Garden Dining', 'Walnut Linear Chandelier', 'Duplex Staircase Suite'],
       estimatedRange: '₹1.2 Lakhs - ₹4.5 Lakhs'
     },
     {
       id: 'kids-bedroom',
       name: 'Kids & Teen Bedroom',
       category: 'kids',
-      designCount: '6 Designs',
+      designCount: '13 Designs',
       routeLink: '/explore-design-ideas/kids-bedroom',
-      heroImage: '/kids/pastel-scandi-loft-kids.jpg',
+      heroImage: '/kids/sky-blue-loft-bunk-study-suite.jpg',
       galleryImages: [
-        '/kids/pastel-scandi-loft-kids.jpg',
-        '/kids/modern-teen-ergonomic-study.jpg'
+        '/kids/sky-blue-loft-bunk-study-suite.jpg',
+        '/kids/blossom-pink-arch-princess-suite.jpg',
+        '/kids/sibling-harmony-pink-teal-twin-suite.jpg',
+        '/kids/botanical-palm-sage-teen-suite.jpg',
+        '/kids/warm-oak-vanilla-teen-study-suite.jpg',
+        '/kids/sunny-yellow-teen-study-suite.jpg',
+        '/kids/cosmic-astronaut-space-explorer-suite.jpg',
+        '/kids/pastel-rainbow-cloud-daybed-suite.jpg'
       ],
       tag: 'Playful & Functional',
-      shortDescription: 'Vibrant and modular children bedrooms featuring space-saving study stations, integrated storage beds, and durable wipe-clean surfaces.',
-      keyHighlights: ['Modular Study Table & Shelf', 'Space-Saving Trundle Beds', 'Rounded Child-Safe Corners', 'Chalkboard Accent Walls'],
-      popularStyles: ['Playful Pastel Theme', 'Space Explorer Boy Room', 'Boho Dream Girl Room', 'Teen Minimalist Study'],
-      estimatedRange: '₹1.2 Lakhs - ₹3.8 Lakhs'
+      shortDescription: 'Dynamic kids and teen bedrooms featuring architectural loft bunk beds, sunlit corner study suites, princess arch wardrobes, and sibling twin suites.',
+      keyHighlights: ['Multi-Level Loft Bunk Beds', 'Integrated Corner Study Desks', 'Princess Arched Wardrobes & Twin Suites', 'Child-Safe Rounded Edges'],
+      popularStyles: ['Loft Bunk & Study Suite', 'Princess Arch Wardrobe', 'Sibling Harmony Twin Suite', 'Sunny Teen Study', 'Biophilic Palm Teen Suite'],
+      estimatedRange: '₹1.4 Lakhs - ₹4.5 Lakhs'
     }
   ];
 

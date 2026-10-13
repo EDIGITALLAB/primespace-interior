@@ -78,7 +78,7 @@ export class WardrobePage implements OnInit, OnDestroy {
       image: '/wardrobes/hydraulic-loft-storage.jpg',
       galleryImages: [
         '/wardrobes/hydraulic-loft-storage.jpg',
-        '/wardrobes/teal-geometric-wardrobe.jpg',
+        '/wardrobes/prussian-blue-gold-loft-wardrobe.jpg',
         '/wardrobes/walnut-internal-anatomy.jpg'
       ],
       startingPrice: '₹1,40,000',
@@ -101,41 +101,6 @@ export class WardrobePage implements OnInit, OnDestroy {
         { icon: 'fa-solid fa-arrows-up-down', title: 'Effortless Gas-Lift Access', desc: 'Pneumatic gas shock absorbers lift heavy wooden loft flaps with zero effort.' },
         { icon: 'fa-solid fa-lightbulb', title: 'Automatic Loft Illumination', desc: 'Integrated LED light bar eliminates dark corners when accessing top storage.' },
         { icon: 'fa-solid fa-box-archive', title: 'Deep Blanket Storage', desc: 'Optimized internal depth stores heavy winter quilts, duvets, and luggage safely.' }
-      ]
-    },
-    {
-      id: 'nordic-teal-geometric-wardrobe',
-      title: 'Nordic Teal & Oak Wardrobe',
-      category: 'hinged',
-      categoryLabel: 'Geometric Shutter & Oak Niche',
-      shortDesc: 'Matte ocean teal geometric shutters with warm illuminated oak display niche.',
-      tag: 'Best Seller',
-      image: '/wardrobes/teal-geometric-wardrobe.jpg',
-      galleryImages: [
-        '/wardrobes/teal-geometric-wardrobe.jpg',
-        '/wardrobes/hydraulic-loft-storage.jpg',
-        '/wardrobes/walnut-internal-anatomy.jpg'
-      ],
-      startingPrice: '₹1,35,000',
-      dimensions: '10ft W x 9.5ft H x 2ft D (Customizable)',
-      finishType: 'Super Matte Ocean Teal + Natural Oak Veneer Niche + Gold Pulls',
-      features: [
-        '6-door floor-to-ceiling geometric grooved shutters with seamless loft integration',
-        'Open oak display shelving with warm vertical 3000K LED light strip',
-        '3 soft-close samagri & accessory drawers with brushed brass handles',
-        'Durable BWP marine plywood carcass with anti-scratch matte coat'
-      ],
-      materials: ['Century Club BWP Plywood Carcass', 'High-Density MR Geometric Routed Panels', 'Natural European Oak Veneer', 'Hafele Soft-Close European Hinges'],
-      internalLayout: {
-        shelves: '10 Modular Storage Cubbies + Illuminated Oak Open Shelves',
-        hangingRails: '3 Full-Length Gold Hanging Rods for Formals and Dresses',
-        drawers: '3 External Oak Drawers + 2 Concealed Inner Velvet Trays',
-        accessories: ['Integrated LED Niche Strip', 'Brushed Gold T-Bar Handles', 'Soft-Close Concealed Hinges']
-      },
-      highlights: [
-        { icon: 'fa-solid fa-shapes', title: 'Geometric CNC Grooving', desc: 'Precision CNC routed angular lines create a modern designer statement.' },
-        { icon: 'fa-solid fa-lightbulb', title: 'Illuminated Open Niche', desc: 'Warm LED backlit oak shelves perfect for plants, decor, and daily essentials.' },
-        { icon: 'fa-solid fa-gem', title: 'Brushed Gold Accents', desc: 'Premium metallic long T-bar handles with scratch-resistant anodized finish.' }
       ]
     },
     {
@@ -384,6 +349,41 @@ export class WardrobePage implements OnInit, OnDestroy {
       ]
     },
     {
+      id: 'cashmere-vanity-alcove-wardrobe',
+      title: 'Cashmere Matte & Integrated Vanity Alcove Wardrobe',
+      category: 'hinged',
+      categoryLabel: 'Integrated Vanity Alcove & Loft Suite',
+      shortDesc: 'Floor-to-ceiling cashmere matte wardrobe with overhead lofts, central oak vanity alcove, round mirror, and bouclé pouf.',
+      tag: 'Trending Suite',
+      image: '/wardrobes/cashmere-vanity-alcove-wardrobe.jpg',
+      galleryImages: [
+        '/wardrobes/cashmere-vanity-alcove-wardrobe.jpg',
+        '/wardrobes/hydraulic-loft-storage.jpg',
+        '/wardrobes/jewellery-organizer-drawer.jpg'
+      ],
+      startingPrice: '₹1,70,000',
+      dimensions: '13ft W x 10ft H x 2ft D (Customizable)',
+      finishType: 'Cashmere Vanilla Thermal Matte + Natural Oak Veneer Dressing Nook + Brushed Brass Hardware',
+      features: [
+        'Recessed central dressing alcove in warm oak with circular reflection mirror and drawer unit',
+        'Floor-to-ceiling modular wardrobe bays flanking both sides with double overhead storage lofts',
+        'Includes luxury upholstered circular bouclé vanity stool with gold brass base ring',
+        'Continuous vertical brushed brass designer pull bars for effortless opening'
+      ],
+      materials: ['IS 710 Marine Grade BWP Hardwood Plywood Core', 'Anti-Fingerprint Cashmere Matte Laminate', 'Natural European Oak Veneer', 'Blum Soft-Close Concealed Hinges'],
+      internalLayout: {
+        shelves: '6 Deep Heavy-Load Overhead Loft Bays + 12 Modular Clothes Cubbies',
+        hangingRails: '3 Full-Length Stainless Steel Formals Hanging Rails',
+        drawers: '1 Wide Vanity Table Drawer + 4 Concealed Inner Velvet Trays',
+        accessories: ['Circular Beveled Vanity Mirror', 'Brushed Brass Pull Handles', 'Soft-Close German Dampers']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Central Vanity Alcove', desc: 'Seamlessly embeds a luxury grooming station between full-height wardrobe closets.' },
+        { icon: 'fa-solid fa-arrows-up-to-line', title: 'Full Ceiling Lofts', desc: 'Double overhead lofts maximize 10ft room height for dust-free luggage storage.' },
+        { icon: 'fa-solid fa-spa', title: 'Serene Cashmere Aesthetic', desc: 'Warm vanilla matte and natural oak finishes create a calm, luxurious bedroom sanctuary.' }
+      ]
+    },
+    {
       id: 'master-craft-precision-wardrobe',
       title: 'Master Carpenter Installation',
       category: 'hinged',
@@ -417,6 +417,160 @@ export class WardrobePage implements OnInit, OnDestroy {
         { icon: 'fa-solid fa-crosshairs', title: 'Laser-Level Alignment', desc: 'Optical laser measurement prevents shutter sagging and uneven gaps permanently.' },
         { icon: 'fa-solid fa-certificate', title: '10-Year Quality Signoff', desc: 'Full carcass inspection and load testing before handing over keys.' }
       ]
+    },
+    {
+      id: 'sage-green-glass-boutique-wardrobe',
+      title: 'Sage Green & Glass Boutique Wardrobe',
+      category: 'glass',
+      categoryLabel: 'Glass Boutique & Chest Drawers',
+      shortDesc: 'Luxury 6-door clear glass wardrobe with illuminated hanging rods and 8 soft-close sage green bottom drawers.',
+      tag: 'Boutique Luxury',
+      image: '/wardrobes/sage-green-glass-boutique-wardrobe.jpg',
+      galleryImages: ['/wardrobes/sage-green-glass-boutique-wardrobe.jpg'],
+      startingPrice: '₹1,85,000',
+      dimensions: '14ft W x 9.5ft H x 2ft D (Customizable)',
+      finishType: 'Black Slim Aluminum Fluted Frames + Clear Glass + Matte Sage Green Bottom Drawers + Gold Pulls',
+      features: [
+        'Full-height black aluminum framed glass shutters providing crystal-clear wardrobe visibility',
+        'Integrated warm 3000K LED lighting embedded inside horizontal aluminum clothes hanger rods',
+        '8 deep bottom soft-close chest drawers in calming matte sage green with brushed gold handles',
+        'Natural European oak interior carcass with heavy-duty structural corner brackets'
+      ],
+      materials: ['Century Club IS 710 BWP Marine Core Plywood', '5mm Toughened Architectural Glass', 'Matte Black Aluminum Profiles', 'Blum Movento Undermount Drawer Runners'],
+      internalLayout: {
+        shelves: '6 High-Capacity Upper Storage Bays + Deep Sweater Shelves',
+        hangingRails: '4 Full-Width Gold Hanging Rails with Integrated Sensor LED',
+        drawers: '8 External Matte Sage Green Chest Drawers + Velvet Accessories Trays',
+        accessories: ['Warm LED Sensor Rods', 'Brushed Gold Finger Pulls', 'Whisper-Soft Magnetic Catches']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-glasses', title: 'Clear Glass Showroom Display', desc: 'Boutique-grade transparent doors keep apparel visible and dust-free.' },
+        { icon: 'fa-solid fa-boxes-stacked', title: '8 Deep Base Drawers', desc: 'Abundant organized drawer storage for foldables, linens, and accessories.' },
+        { icon: 'fa-solid fa-lightbulb', title: 'Illuminated Wardrobe Rails', desc: 'LED lit hanger rods illuminate blazers and formals automatically when opened.' }
+      ]
+    },
+    {
+      id: 'dusty-rose-mirror-center-wardrobe',
+      title: 'Dusty Rose & Center Mirror Wardrobe',
+      category: 'hinged',
+      categoryLabel: 'Reflective Mirror & Matte Rose',
+      shortDesc: 'Matte dusty rose 4-door wardrobe with dual full-length dressing mirrors, long gold handles, and natural oak frame.',
+      tag: 'Trending Design',
+      image: '/wardrobes/dusty-rose-mirror-center-wardrobe.jpg',
+      galleryImages: ['/wardrobes/dusty-rose-mirror-center-wardrobe.jpg'],
+      startingPrice: '₹1,45,000',
+      dimensions: '10ft W x 9.5ft H x 2ft D (Customizable)',
+      finishType: 'Anti-Fingerprint Matte Dusty Rose + Dual Full-Length Reflection Mirrors + Natural Oak Trim',
+      features: [
+        'Dual center full-height dressing mirrors eliminating the need for a separate vanity mirror',
+        'Soft-touch anti-fingerprint dusty rose matte shutters on outer flanks',
+        'Continuous vertical brushed brass pull bars extending the full height of the doors',
+        'Exposed natural warm oak carcass perimeter framing adding organic sophistication'
+      ],
+      materials: ['IS 710 Marine Grade Hardwood Plywood', 'Fenix-Grade Thermal Matte Rose Laminate', '5mm Distortion-Free Float Glass Mirrors', 'Hafele Soft-Close European Hinges'],
+      internalLayout: {
+        shelves: '10 Modular Clothes Shelves + Dedicated Saree Stacks',
+        hangingRails: '3 Full-Length Stainless Steel Formals Hanging Rods',
+        drawers: '4 Soft-Close Inner Chest Drawers with Velvet Lining',
+        accessories: ['Dual Full-Length Dressing Mirrors', 'Long Brushed Gold Pull Bars', 'Soft-Close Concealed Hinges']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-mirror', title: 'Full-Length Mirrors', desc: 'Head-to-toe reflective mirrors maximize room light and expand bedroom sense of space.' },
+        { icon: 'fa-solid fa-fingerprint', title: 'Anti-Smudge Matte', desc: 'Silky smooth matte rose finish resists makeup smudges and fingerprints.' },
+        { icon: 'fa-solid fa-gem', title: 'Gold Architectural Pulls', desc: 'Floor-to-ceiling brass handles provide effortless grip and luxury flair.' }
+      ]
+    },
+    {
+      id: 'prussian-blue-gold-loft-wardrobe',
+      title: 'Prussian Blue & Gold Full-Height Loft Wardrobe',
+      category: 'hinged',
+      categoryLabel: 'Full-Height Loft & Prussian Blue',
+      shortDesc: 'Grand 6-door floor-to-ceiling wardrobe in royal Prussian blue with overhead lofts, bottom chest drawers, and gold handles.',
+      tag: 'Statement Suite',
+      image: '/wardrobes/prussian-blue-gold-loft-wardrobe.jpg',
+      galleryImages: ['/wardrobes/prussian-blue-gold-loft-wardrobe.jpg'],
+      startingPrice: '₹1,75,000',
+      dimensions: '14ft W x 10ft H x 2ft D (Customizable)',
+      finishType: 'Matte Prussian Blue Acrylic + Natural Teak Border Frame + PVD Gold Handles',
+      features: [
+        'Floor-to-ceiling 6-door configuration utilizing full 10ft room height with double overhead lofts',
+        'Dedicated bottom pull-out chest drawers for daily clothing and knitwear',
+        'Regal deep Prussian blue matte shutters accented by warm natural teak carcass borders',
+        'Vertical brushed gold designer bar handles with matching loft knobs'
+      ],
+      materials: ['Century Club BWP Marine Grade Core', 'Anti-Scratch Matte Prussian Blue Acrylic', 'Solid Teak Perimeter Edge Trims', 'Hettich Soft-Close Drawer Systems'],
+      internalLayout: {
+        shelves: '6 Deep Heavy-Load Top Loft Bays + 12 Internal Cubbies',
+        hangingRails: '4 Full-Height Hanging Rods for Gowns, Suits & Coats',
+        drawers: '2 External Bottom Drawers + 4 Concealed Inner Drawers',
+        accessories: ['PVD Brass Hardware', 'Overhead Loft Hinges', 'Concealed Dampers']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-arrows-up-to-line', title: 'Full Ceiling Lofts', desc: 'Upper cabinets store large travel suitcases, duvets, and seasonal blankets cleanly.' },
+        { icon: 'fa-solid fa-crown', title: 'Prussian Blue Opulence', desc: 'Deep royal blue tone creates an executive, presidential suite master bedroom vibe.' },
+        { icon: 'fa-solid fa-boxes-packing', title: 'Bottom Chest Drawers', desc: 'Easy-access external bottom drawers keep everyday socks and essentials within reach.' }
+      ]
+    },
+    {
+      id: 'cashmere-smoked-glass-hybrid-wardrobe',
+      title: 'Cashmere Champagne & Smoked Glass Hybrid Wardrobe',
+      category: 'glass',
+      categoryLabel: 'Hybrid Smoked Glass & Solid Matte',
+      shortDesc: '5-door hybrid wardrobe with cashmere champagne matte outer doors, central smoked glass display bays, and internal oak drawers.',
+      tag: 'Designer Hybrid',
+      image: '/wardrobes/cashmere-smoked-glass-hybrid-wardrobe.jpg',
+      galleryImages: ['/wardrobes/cashmere-smoked-glass-hybrid-wardrobe.jpg'],
+      startingPrice: '₹1,95,000',
+      dimensions: '13ft W x 9.5ft H x 2ft D (Customizable)',
+      finishType: 'Matte Cashmere Champagne + Smoked Black Glass in Aluminum Frames + Natural Oak Carcass',
+      features: [
+        'Hybrid design: Solid matte champagne doors on ends for private storage, smoked glass in center for display',
+        'Three central smoked black glass doors with internal warm vertical LED strip lighting',
+        'Integrated oak drawer stack with open display shelves for handbags and accessories',
+        'Heavy-duty matte black aluminum profile door frames with brass pull accents'
+      ],
+      materials: ['IS 710 Marine Grade BWP Plywood', '5mm Toughened Smoked Glass', 'Anti-Fingerprint Cashmere Matte Laminate', 'Hafele Loox Profile Lighting System'],
+      internalLayout: {
+        shelves: '8 Smoked Glass Display Shelves + 8 Private Solid Shelves',
+        hangingRails: '3 Full-Length Illuminated Clothes Rails',
+        drawers: '4 Exposed Natural Oak Soft-Close Drawers + Velvet Jewellery Insert',
+        accessories: ['Vertical LED Channel Profiles', 'Solid & Glass Hybrid Doors', 'German Soft Dampers']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-layer-group', title: 'Best of Both Worlds', desc: 'Solid doors hide daily clutter while glass bays showcase designer clothing and bags.' },
+        { icon: 'fa-solid fa-lightbulb', title: 'Vertical Light Strips', desc: 'Integrated warm lighting turns the central showcase into a stunning bedroom accent.' }
+      ]
+    },
+    {
+      id: 'corner-l-shaped-walkin-glass-vanity-wardrobe',
+      title: 'Corner L-Shaped Walk-in Glass Wardrobe & Vanity',
+      category: 'walk-in',
+      categoryLabel: 'Corner Walk-In & Integrated Vanity',
+      shortDesc: 'Floor-to-ceiling corner L-shaped glass wardrobe with smoked glass doors and adjoining floating vanity table with backlit mirror.',
+      tag: 'Ultimate Luxury',
+      image: '/wardrobes/corner-l-shaped-walkin-glass-vanity-wardrobe.jpg',
+      galleryImages: ['/wardrobes/corner-l-shaped-walkin-glass-vanity-wardrobe.jpg'],
+      startingPrice: '₹2,65,000',
+      dimensions: '12ft x 10ft Corner Layout (Customizable)',
+      finishType: 'Natural Teak Veneer + Black Aluminum Smoked Glass + Backlit Oval Mirror Vanity Table',
+      features: [
+        'L-shaped corner walk-in layout maximizing master bedroom corner space with 90-degree corner transition',
+        'Smoked glass doors in matte black aluminum frames with internal drawer chests and double hanging rails',
+        'Adjoining floating wooden dressing table with integrated soft-close makeup drawers and oval LED mirror',
+        'Includes luxury upholstered bouclé circular dressing pouf with brushed brass base ring'
+      ],
+      materials: ['Century Club BWP Hardwood Marine Core', '5mm Smoked Glass Shutters', 'Natural Burma Teak Wood Veneer', 'High-CRI Backlit Vanity Mirror'],
+      internalLayout: {
+        shelves: 'Corner Carousel & Deep Modular Shelves',
+        hangingRails: 'Double-Deck Hanging Rods for Suits, Coats, and Dresses',
+        drawers: '6 Internal Chest Drawers + 2 Floating Vanity Table Drawers',
+        accessories: ['Oval Backlit Vanity Mirror', 'Corner Walk-in Mechanism', 'Bouclé Dressing Stool']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-maximize', title: 'Zero Wasted Corner Space', desc: 'Custom 90-degree corner design turns awkward bedroom corners into high-capacity walk-in storage.' },
+        { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Seamless Integrated Vanity', desc: 'Dressing table with glowing oval mirror forms an all-in-one grooming sanctuary.' },
+        { icon: 'fa-solid fa-moon', title: 'Smoked Glass Sophistication', desc: 'Dark tinted glass with interior illumination creates ultra-luxurious hotel penthouse aesthetic.' }
+      ]
     }
   ];
 
@@ -441,7 +595,7 @@ export class WardrobePage implements OnInit, OnDestroy {
     {
       name: 'Super Matte Anti-Fingerprint',
       type: 'Shutter Option',
-      image: '/wardrobes/teal-geometric-wardrobe.jpg',
+      image: '/wardrobes/prussian-blue-gold-loft-wardrobe.jpg',
       description: 'Soft-touch thermal surface with low light reflectivity, ultra-smooth texture, and zero fingerprint smudging technology.',
       durability: 'Thermal Healing Tech',
       badge: 'Low Maintenance'
