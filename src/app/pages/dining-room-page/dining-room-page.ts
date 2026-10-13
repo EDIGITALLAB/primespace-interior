@@ -47,154 +47,230 @@ export class DiningRoomPage implements OnInit, OnDestroy {
 
   // Dining Room Database
   readonly diningRooms: DiningRoomItem[] = [
+   
     {
-      id: 'italian-marble-dining-suite',
-      title: 'Italian Marble 6-Seater Dining Suite',
-      category: 'marble-luxury',
-      categoryLabel: 'Italian Luxury',
-      shortDesc: 'Statuario marble tabletop with brushed brass fluted base and ergonomically contoured velvet chairs.',
-      tag: 'Best Seller',
-      image: '/dining/italian-marble-dining-suite.jpg',
-      galleryImages: ['/dining/italian-marble-dining-suite.jpg'],
-      startingPrice: '₹2,10,000',
-      dimensions: '14ft x 12ft Dining Hall (Customizable)',
-      finishType: 'Polished Italian Statuario Marble + PVD Brushed Brass Base + Velvet Upholstery',
+      id: 'walnut-linear-chandelier-suite',
+      title: 'Contemporary Walnut & Linear Chandelier Dining Suite',
+      category: 'contemporary',
+      categoryLabel: 'Contemporary Walnut',
+      shortDesc: 'Solid American walnut dining table with black steel U-trestles, cream linen chairs, linear dome chandelier, and fluted credenza sideboard.',
+      tag: 'Featured Suite',
+      image: '/dining/walnut-linear-chandelier-dining.jpg',
+      galleryImages: ['/dining/walnut-linear-chandelier-dining.jpg'],
+      startingPrice: '₹1,95,000',
+      dimensions: '15ft x 13ft Dining Hall (Customizable)',
+      finishType: 'Solid American Walnut + Matte Black Powder Coated Steel + Brushed Brass Pendant',
       features: [
-        'Sealed non-porous stain-resistant Italian marble surface coating',
-        'Heavy-duty titanium PVD coated brass pedestal base',
-        'Ergonomically contoured chairs with high-density molded foam',
-        'Concealed floor edge protection for marble and hardwood floors'
+        'Solid kiln-dried American walnut tabletop with beveled organic chamfer edges',
+        'Heavy-duty industrial matte black steel U-trestle leg support',
+        'Curved ergonomic cream linen upholstered chairs with tapered timber legs',
+        'Matching fluted walnut buffet sideboard credenza with push-to-open doors'
       ],
-      materials: ['Statuario Italian Marble', 'PVD Brass Coated Stainless Steel', 'Premium Stain-Resistant Velvet', 'Teak Wood Internal Frame'],
+      materials: ['Grade-A American Walnut Wood', 'Powder-Coated Structural Steel', 'High-Resilience Linen Upholstery', 'Brushed Brass Chandelier'],
       highlights: [
-        { icon: 'fa-solid fa-gem', title: 'Statuario Marble Slab', desc: 'Hand-selected Italian marble with rich natural grey veining.' },
-        { icon: 'fa-solid fa-shield-halved', title: 'Nano-Sealed Surface', desc: 'Resistant to food stains, heat, and daily household spills.' },
-        { icon: 'fa-solid fa-chair', title: 'Ergonomic Velvet Seating', desc: 'Supreme lumbar support designed for relaxed dinner conversations.' }
+        { icon: 'fa-solid fa-tree', title: 'Solid American Walnut', desc: 'Hand-selected rich continuous wood grain with natural satin protective finish.' },
+        { icon: 'fa-solid fa-lightbulb', title: 'Linear Dome Chandelier', desc: 'Suspended 4-dome brass pendant distributes soft glare-free dining light.' },
+        { icon: 'fa-solid fa-chair', title: 'Ergonomic Linen Seating', desc: 'High-density molded cushions designed for lingering dinner conversations.' }
       ]
     },
     {
-      id: 'teak-wood-warm-dining-suite',
-      title: 'Solid Burma Teak 8-Seater Dining Suite',
-      category: 'wooden-classic',
-      categoryLabel: 'Heritage Wood',
-      shortDesc: 'Solid seasoned Burma teak wood dining table with hand-carved edge details and matching cushioned dining chairs.',
-      tag: 'Heritage Craft',
-      image: '/dining/teak-wood-warm-dining-suite.jpg',
-      galleryImages: ['/dining/teak-wood-warm-dining-suite.jpg'],
-      startingPrice: '₹1,85,000',
-      dimensions: '16ft x 13ft Dining Hall (Customizable)',
-      finishType: 'Natural Honey Teak Grain + Stain-Resistant Bouclé Cushions + Low-VOC Matte Polish',
-      features: [
-        '100% seasoned solid Burma teak timber with natural grain pattern',
-        'Mortise and tenon joinery for multi-generational durability',
-        'Stain-resistant textured bouclé upholstered seat cushions',
-        'Protective clear polyurethane matte lacquer finish'
-      ],
-      materials: ['Grade-A Burma Teak Wood', 'Water-Repellent Bouclé Fabric', 'High-Resilience HR Foam', 'Eco Matte PU Finish'],
-      highlights: [
-        { icon: 'fa-solid fa-tree', title: '100% Solid Burma Teak', desc: 'Seasoned natural timber that ages gracefully over decades.' },
-        { icon: 'fa-solid fa-users', title: 'Grand 8-Seater Layout', desc: 'Comfortable family hosting with ample elbow and leg space.' },
-        { icon: 'fa-solid fa-shield', title: 'Stain-Resistant Fabric', desc: 'Upholstered seats designed for quick wipe-down cleanups.' }
-      ]
-    },
-    {
-      id: 'japandi-natural-oak-dining',
-      title: 'Japandi Natural Oak Dining & Bench Set',
+      id: 'japandi-natural-oak-bench-suite',
+      title: 'Japandi Natural Oak Dining & Bench Suite',
       category: 'japandi-minimal',
       categoryLabel: 'Japandi Minimal',
-      shortDesc: 'Clean minimalist European white oak table with floating bench seating and sculptural pendant light fixture.',
+      shortDesc: 'Clean European white oak dining table with integrated matching bench seating, woven rattan pendant, and organic minimalist finish.',
       tag: 'Trending Style',
-      image: '/dining/japandi-natural-oak-dining.jpg',
-      galleryImages: ['/dining/japandi-natural-oak-dining.jpg'],
-      startingPrice: '₹1,45,000',
+      image: '/dining/japandi-natural-oak-bench-dining.jpg',
+      galleryImages: ['/dining/japandi-natural-oak-bench-dining.jpg'],
+      startingPrice: '₹1,55,000',
       dimensions: '13ft x 11ft Dining Area (Customizable)',
-      finishType: 'European White Oak Veneer + Matte Hardwax Oil + Organic Linen Fabric',
+      finishType: 'European White Oak Hardwood + Natural Hardwax Oil + Organic Woven Rattan',
       features: [
-        'Space-optimizing matching dining bench for casual and family seating',
-        'Soft rounded corners safe for toddlers and pets',
-        'Organic natural wood grain with anti-yellowing UV protection',
-        'Minimalist seamless aesthetic that blends into modern open layouts'
+        'Space-efficient matching dining bench tucks neatly under table',
+        'Child-friendly rounded tabletop corners and mortise-tenon joints',
+        'Artisan hand-woven natural rattan dome pendant light fixture',
+        'Non-toxic eco-friendly plant-based matte hardwax oil finish'
       ],
-      materials: ['European White Oak Hardwood', 'Natural Hardwax Oil Finish', 'Organic Belgian Linen Fabric', 'Solid Beechwood Joinery'],
+      materials: ['European White Oak Timber', 'Organic Woven Rattan', 'Water-Repellent Textured Bouclé', 'Food-Safe Matte Oil Seal'],
       highlights: [
-        { icon: 'fa-solid fa-spa', title: 'Zen Minimalist Geometry', desc: 'Uncluttered organic lines inspire a calm and grounded dining space.' },
-        { icon: 'fa-solid fa-couch', title: 'Versatile Dining Bench', desc: 'Tucks neatly under table to maximize walkway space in compact apartments.' },
-        { icon: 'fa-solid fa-leaf', title: 'Non-Toxic Eco Finishes', desc: 'Zero VOC food-safe oils and plant-based wax coatings.' }
+        { icon: 'fa-solid fa-couch', title: 'Flexible Dining Bench', desc: 'Versatile seating option that opens up room walkways in modern apartments.' },
+        { icon: 'fa-solid fa-sun', title: 'Artisan Rattan Shade', desc: 'Warm natural fiber pendant casts soothing textured ambient light.' },
+        { icon: 'fa-solid fa-leaf', title: 'Zero-VOC Eco Polish', desc: 'Food-safe organic oils preserve the authentic velvety wood texture.' }
       ]
     },
     {
-      id: 'round-marble-family-dining',
-      title: 'Round Calacatta Marble Dining with Lazy Susan',
-      category: 'marble-luxury',
-      categoryLabel: 'Modern Grandeur',
-      shortDesc: 'Circular Italian marble dining centerpiece with integrated rotating turntable and curved tub chairs.',
-      tag: 'Architect Choice',
-      image: '/dining/round-marble-family-dining.jpg',
-      galleryImages: ['/dining/round-marble-family-dining.jpg'],
-      startingPrice: '₹2,35,000',
-      dimensions: '15ft x 15ft Square Dining Area (Customizable)',
-      finishType: 'Bookmatched Calacatta Gold Marble + Fluted Wooden Pedestal + High-Resilience Foam',
+      id: 'solid-teak-arched-mirror-suite',
+      title: 'Solid Burma Teak & Arched Mirror Dining Suite',
+      category: 'wooden-classic',
+      categoryLabel: 'Heritage Wood Craft',
+      shortDesc: 'Seasoned Burma teak dining set with curved tub chairs, full-height white fluted paneling, arched mirror, and trio pendant luminaires.',
+      tag: 'Heritage Craft',
+      image: '/dining/solid-teak-arched-mirror-dining.jpg',
+      galleryImages: ['/dining/solid-teak-arched-mirror-dining.jpg'],
+      startingPrice: '₹1,85,000',
+      dimensions: '14ft x 12ft Dining Room (Customizable)',
+      finishType: 'Seasoned Burma Teak + Fluted Accent Wall + Low-VOC Honey Matte Polish',
       features: [
-        'Integrated ultra-smooth rotating marble Lazy Susan turntable',
-        'Solid fluted cylindrical pedestal base ensuring zero leg obstruction',
-        'Wrap-around curved tub chairs for supreme comfort during long feasts',
-        'Beveled chamfered edge profile preventing accidental bumps'
+        '100% seasoned solid Burma teak timber with traditional mortise & tenon joinery',
+        'Fluted vertical wall panel backdrop with decorative brass arched hanging mirror',
+        'Graduated trio of black and clear fluted glass bell pendant lights',
+        'Matching teak sideboard cabinet with spacious cutlery and dishware storage'
       ],
-      materials: ['Calacatta Gold Italian Marble', 'Fluted Marine Plywood Column', 'Smooth Ball-Bearing Turntable', 'Premium Nubuck Leatherette'],
+      materials: ['Grade-A Burma Teak Wood', 'Water-Resistant Fluted Wall Panels', 'Clear & Tinted Bell Glass', 'Stain-Resistant Seat Fabric'],
       highlights: [
-        { icon: 'fa-solid fa-rotate', title: 'Integrated Lazy Susan', desc: 'Effortlessly share dishes across all seats with smooth silent rotation.' },
-        { icon: 'fa-solid fa-circle-dot', title: 'Zero Leg Obstruction', desc: 'Center pedestal column provides complete 360-degree leg freedom.' },
-        { icon: 'fa-solid fa-comments', title: 'Face-to-Face Dining', desc: 'Round layout fosters intimate conversation with all guests.' }
+        { icon: 'fa-solid fa-archway', title: 'Arched Vanity Mirror', desc: 'Brass-rimmed arched mirror reflects daylight and expands room depth.' },
+        { icon: 'fa-solid fa-tree', title: 'Burma Teak Longevity', desc: 'Generational durability that develops a warm golden patina over time.' },
+        { icon: 'fa-solid fa-gem', title: 'Trio Pendant Cluster', desc: 'Staggered drop pendants illuminate center table arrangements beautifully.' }
       ]
     },
     {
-      id: 'luxury-crockery-bar-dining',
-      title: 'Bespoke Glass Crockery & Bar Console Suite',
+      id: 'architectural-fluted-partition-suite',
+      title: 'Architectural Fluted Partition & Dining Suite',
       category: 'crockery-bar',
-      categoryLabel: 'Bar & Crockery',
-      shortDesc: 'Full-height fluted glass crockery cabinet with integrated wine rack, quartz counter, and ambient warm LED backlighting.',
-      tag: 'Entertaining Hub',
-      image: '/dining/luxury-crockery-bar-dining.jpg',
-      galleryImages: ['/dining/luxury-crockery-bar-dining.jpg'],
-      startingPrice: '₹1,95,000',
-      dimensions: '14ft x 12ft Open Dining & Bar (Customizable)',
-      finishType: 'Anodized Black Aluminum Profiles + Fluted Tempered Glass + 3000K Diffused LED',
+      categoryLabel: 'Partition & Dining Hub',
+      shortDesc: 'Solid wood 6-seater dining table with floor-to-ceiling fluted room divider, warm illuminated display niches, and matte black dome pendants.',
+      tag: 'Architect Choice',
+      image: '/dining/architectural-fluted-partition-dining.jpg',
+      galleryImages: ['/dining/architectural-fluted-partition-dining.jpg'],
+      startingPrice: '₹2,15,000',
+      dimensions: '16ft x 14ft Open Living & Dining (Customizable)',
+      finishType: 'Warm Walnut Veneer + Architectural Fluted Slats + 3000K Diffused LED Niches',
       features: [
-        'Full-height fluted glass shutter bar with integrated stemware hanging rails',
-        'Solid quartz serving counter for hot dishes and cocktail preparation',
-        'Touch-sensor concealed LED cove lighting with step dimming',
-        'Soft-close German Blum hinges with integrated dampening'
+        'Floor-to-ceiling slatted room divider defining dining zone from living space',
+        'Concealed warm LED cove-lit display niches for sculptures and glassware',
+        'Substantial solid walnut 6-seater table with matching cushioned high-back chairs',
+        'Trio of matte black and gold-interior pendant lamps centered over table'
       ],
-      materials: ['Toughened Fluted Glass', 'Anodized Aluminum Framing', 'Engineered Quartz Slab', 'Blum Clip-Top BLUMOTION Hinges'],
+      materials: ['Seasoned American Walnut', 'IS 710 Marine BWP Plywood', 'Aluminum Anodized Channels', 'Matte Black Spun Aluminum'],
       highlights: [
-        { icon: 'fa-solid fa-wine-glass', title: 'Integrated Wine & Bar Unit', desc: 'Dedicated stemware hangers and horizontal bottle storage shelves.' },
-        { icon: 'fa-solid fa-lightbulb', title: 'Illuminated Glass Display', desc: 'Warm 3000K lighting showcases fine china and glassware dramatically.' },
-        { icon: 'fa-solid fa-kitchen-set', title: 'Quartz Serving Counter', desc: 'Heat-resistant buffet counter for hot serving dishes during dinner parties.' }
+        { icon: 'fa-solid fa-bars', title: 'Fluted Divider Screen', desc: 'Creates subtle zone separation while maintaining airy open-plan sightlines.' },
+        { icon: 'fa-solid fa-lightbulb', title: 'Illuminated Niches', desc: 'Warm 3000K concealed LED shelves dramatically showcase decor & plants.' },
+        { icon: 'fa-solid fa-users', title: 'Spacious 6-Seater Setup', desc: 'Generous table proportions designed for comfortable everyday family dining.' }
       ]
     },
     {
-      id: 'modern-pendant-dining-area',
-      title: 'Contemporary Linear Pendant Dining Area',
-      category: 'contemporary',
-      categoryLabel: 'Contemporary',
-      shortDesc: 'Sleek architectural dining ensemble with linear brass chandelier, fluted wood panel accent, and designer seating.',
-      tag: 'New Launch',
-      image: '/dining/modern-pendant-dining-area.png',
-      galleryImages: ['/dining/modern-pendant-dining-area.png'],
-      startingPrice: '₹1,65,000',
-      dimensions: '14ft x 12ft Open Concept (Customizable)',
-      finishType: 'Engineered Quartz Stone Tabletop + Matte Charcoal Louver Wall + Designer Brass Chandelier',
+      id: 'emerald-velvet-brass-statuario-suite',
+      title: 'Italian Statuario Marble & Emerald Velvet Suite',
+      category: 'marble-luxury',
+      categoryLabel: 'Italian Marble Grandeur',
+      shortDesc: 'Imported Statuario marble tabletop on brushed brass pedestal, emerald velvet bucket chairs, giant circular backlit halo mirror, and Sputnik brass chandelier.',
+      tag: 'Best Seller',
+      image: '/dining/emerald-velvet-brass-statuario-dining.jpg',
+      galleryImages: ['/dining/emerald-velvet-brass-statuario-dining.jpg'],
+      startingPrice: '₹2,65,000',
+      dimensions: '16ft x 14ft Luxury Dining Suite (Customizable)',
+      finishType: 'Italian Statuario Marble + Titanium PVD Brushed Brass + Velvet Upholstery',
       features: [
-        'Scratch-resistant engineered quartz tabletop with matte stone texture',
-        'Acoustic fluted charcoal wall paneling behind dining sideboard',
-        'Modern sculptural linear brass pendant lighting fixture included',
-        'High-density comfortable upholstered chairs with sleek tapered black legs'
+        'Nano-sealed imported Italian Statuario marble tabletop with chamfered edge',
+        'Dual architectural cylindrical pedestal columns with titanium PVD brass coating',
+        'Custom 8-light Sputnik brass chandelier paired with ambient 3000K lighting',
+        'Large circular vanity mirror with integrated warm LED halo grazing marble wall'
       ],
-      materials: ['Engineered Quartz Surface', 'Acoustic Charcoal Louvers', 'Brushed Brass Light Fixture', 'High-Density Sponge Foam'],
+      materials: ['Imported Italian Statuario Marble', 'Titanium PVD Coated Brass', 'Stain-Resistant Emerald Velvet', 'Saint-Gobain Mirror'],
       highlights: [
-        { icon: 'fa-solid fa-sun', title: 'Linear Statement Lighting', desc: 'Spreads evenly diffused warm illumination along the entire table length.' },
-        { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Scratch-Proof Quartz', desc: 'Stands up to everyday hot pots, cutlery, and family dining activities.' },
-        { icon: 'fa-solid fa-border-all', title: 'Acoustic Feature Wall', desc: 'Minimizes dinner clatter echo while adding rich contemporary texture.' }
+        { icon: 'fa-solid fa-gem', title: 'Statuario Marble Slab', desc: 'Hand-selected Italian marble with rich natural grey and gold veining.' },
+        { icon: 'fa-solid fa-circle', title: 'Halo Circle Mirror', desc: 'Oversized backlit mirror expands visual volume and creates a hotel ambiance.' },
+        { icon: 'fa-solid fa-chair', title: 'Emerald Velvet Seating', desc: 'Contoured lumbar support chairs upholstered in water-repellent luxury velvet.' }
+      ]
+    },
+    {
+      id: 'calacatta-marble-dual-halo-suite',
+      title: 'Calacatta Marble & Dual-Halo Chandelier Suite',
+      category: 'marble-luxury',
+      categoryLabel: 'Modern Calacatta Luxury',
+      shortDesc: 'Calacatta marble dining table on twin marble pedestal pillars, suspended dual-ring halo LED chandelier, and illuminated crockery display wall.',
+      tag: 'Ultra Luxury',
+      image: '/dining/calacatta-marble-dual-halo-dining.jpg',
+      galleryImages: ['/dining/calacatta-marble-dual-halo-dining.jpg'],
+      startingPrice: '₹2,45,000',
+      dimensions: '15ft x 13ft Open Dining & Kitchen (Customizable)',
+      finishType: 'Bookmatched Calacatta Marble + Warm Oak Display Shelving + Brushed Gold Halo Rings',
+      features: [
+        'Full-slab Calacatta marble dining table with solid marble monolithic legs',
+        'Sculptural overlapping circular LED ring chandelier suspended in brushed brass',
+        'Full-height integrated crockery display unit with warm diffused backlighting',
+        'Ergonomic grey tailored upholstered chairs with solid walnut wood legs'
+      ],
+      materials: ['Calacatta Gold Marble Slab', 'IS 710 Marine Plywood Display', 'Integrated 3000K LED Strips', 'High-Resilience Fabric Cushions'],
+      highlights: [
+        { icon: 'fa-solid fa-ring', title: 'Dual-Ring Halo Chandelier', desc: 'Concentric warm glowing LED rings cast a modern architectural presence.' },
+        { icon: 'fa-solid fa-gem', title: 'Monolithic Marble Legs', desc: 'Sculpted marble pillar legs provide rock-solid stability and clean lines.' },
+        { icon: 'fa-solid fa-wine-glass', title: 'Illuminated Crockery Wall', desc: 'Backlit glass shelves showcase crystal stemware and collectible pottery.' }
+      ]
+    },
+    {
+      id: 'architectural-staircase-teak-suite',
+      title: 'Architectural Duplex Staircase & Teak Suite',
+      category: 'contemporary',
+      categoryLabel: 'Duplex Architectural Dining',
+      shortDesc: 'Solid teakwood dining table beside a floating glass-railing staircase, linear black bar pendant, and cream high-back upholstered dining chairs.',
+      tag: 'Duplex Special',
+      image: '/dining/architectural-staircase-teak-dining.jpg',
+      galleryImages: ['/dining/architectural-staircase-teak-dining.jpg'],
+      startingPrice: '₹2,20,000',
+      dimensions: '16ft x 14ft Duplex Dining Zone (Customizable)',
+      finishType: 'Solid Teakwood Timber + Saint-Gobain Glass Railings + Matte Black Bar Luminaire',
+      features: [
+        'Positioned seamlessly beside architectural floating open-riser staircase',
+        'Substantial solid teak dining tabletop supported by twin structural teak pedestals',
+        'Minimalist matte black linear LED pendant offering continuous shadowless light',
+        'Six tailored high-back dining chairs with stain-resistant oatmeal upholstery'
+      ],
+      materials: ['Grade-A Natural Teakwood', '12mm Toughened Glass Balustrades', 'Structural Architectural Steel', 'Oatmeal Linen Fabric'],
+      highlights: [
+        { icon: 'fa-solid fa-stairs', title: 'Duplex Staircase Harmony', desc: 'Crafted to align with double-height villa staircases and open layouts.' },
+        { icon: 'fa-solid fa-grip-lines', title: 'Minimalist Light Bar', desc: 'Slim architectural luminaire illuminates without obstructing line-of-sight.' },
+        { icon: 'fa-solid fa-shield-halved', title: 'Heavy Teak Pedestal', desc: 'Solid wood twin-pedestal design maximizes comfortable chair placement.' }
+      ]
+    },
+    {
+      id: 'garden-patio-live-edge-suite',
+      title: 'Garden Patio Live-Edge Timber & Bench Suite',
+      category: 'japandi-minimal',
+      categoryLabel: 'Indoor-Outdoor Dining',
+      shortDesc: 'Substantial live-edge timber dining table with matching cushioned bench and leather bucket chairs facing garden patio sliding doors.',
+      tag: 'Patio Living',
+      image: '/dining/garden-patio-live-edge-dining.jpg',
+      galleryImages: ['/dining/garden-patio-live-edge-dining.jpg'],
+      startingPrice: '₹1,95,000',
+      dimensions: '16ft x 12ft Patio View Dining (Customizable)',
+      finishType: 'Natural Live-Edge Hardwood + Black Steel Trestles + Leather & Linen Seating',
+      features: [
+        'Expansive live-edge solid hardwood table with natural bark contours preserved',
+        'Full-length matching dining bench with upholstered seat cushion for family seating',
+        'Floor-to-ceiling glass sliding door integration capturing garden sunshine',
+        'Twin matte black spun aluminum dome pendant lights with gold inner lining'
+      ],
+      materials: ['Seasoned Live-Edge Hardwood', 'Powder-Coated Steel Trestles', 'Premium Saddle Brown Leatherette', 'Toughened Patio Glass'],
+      highlights: [
+        { icon: 'fa-solid fa-tree', title: 'Authentic Live-Edge Slab', desc: 'Celebrates raw organic wood grain edges with a silky food-safe polyurethane seal.' },
+        { icon: 'fa-solid fa-sun', title: 'Garden Sunlight Access', desc: 'Optimized orientation maximizes scenic green views and fresh airflow.' },
+        { icon: 'fa-solid fa-users', title: 'Versatile Bench Seating', desc: 'Cushioned long bench easily seats 3-4 children or guests comfortably.' }
+      ]
+    },
+    {
+      id: 'heritage-oak-round-table-suite',
+      title: 'Heritage Oak Round Table & Breakfast Bar Suite',
+      category: 'wooden-classic',
+      categoryLabel: 'Classic Oak Dining',
+      shortDesc: 'Round oak dining table with sage leatherette spindle chairs, integrated kitchen bar counter with wine rack storage, and country cottage charm.',
+      tag: 'Cozy Family',
+      image: '/dining/heritage-oak-round-table-dining.jpg',
+      galleryImages: ['/dining/heritage-oak-round-table-dining.jpg'],
+      startingPrice: '₹1,60,000',
+      dimensions: '13ft x 12ft Kitchen Dining (Customizable)',
+      finishType: 'Solid Natural Oak + Sage Green Upholstery + Built-in Wine Grid Counter',
+      features: [
+        'Space-saving 4-6 seater circular oak dining table with central turned pedestal',
+        'Matching solid wood chairs with wipe-clean sage green leatherette seat cushions',
+        'Connected kitchen serving counter with integrated 24-bottle horizontal wine grid',
+        'Warm recessed ceiling downlights and ambient kitchen cove illumination'
+      ],
+      materials: ['Solid Seasoned Oak Wood', 'Sage Green Wipe-Clean Leatherette', 'Granite Serving Countertop', 'IS 710 Plywood Base'],
+      highlights: [
+        { icon: 'fa-solid fa-circle-dot', title: 'Intimate Round Table', desc: 'Facilitates comfortable eye contact and flowing conversations for all diners.' },
+        { icon: 'fa-solid fa-wine-bottle', title: 'Integrated Wine Rack', desc: 'Counter-front wine grid keeps vintage bottles properly angled and close at hand.' },
+        { icon: 'fa-solid fa-utensils', title: 'Breakfast Bar Transition', desc: 'Direct access between kitchen prep island and dining table for effortless serving.' }
       ]
     }
   ];

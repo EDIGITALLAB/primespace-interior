@@ -102,105 +102,6 @@ export class ModularKitchenPage implements OnInit, OnDestroy {
       ]
     },
     {
-      id: 'gloss-charcoal-champagne-straight-suite',
-      title: 'Gloss Charcoal & Champagne Kitchen',
-      category: 'acrylic-pu',
-      categoryLabel: 'Acrylic & PU Gloss',
-      shortDesc: 'Linear kitchen with high-gloss finish, LED lighting, and loft storage.',
-      tag: 'Popular Choice',
-      image: '/kitchens/gloss-charcoal-champagne-straight-kitchen.jpg',
-      galleryImages: [
-        '/kitchens/gloss-charcoal-champagne-straight-kitchen.jpg'
-      ],
-      startingPrice: '₹2,10,000',
-      dimensions: '12ft Linear Counter (Customizable)',
-      finishType: 'High-Gloss Acrylic + White Quartz Counter',
-      features: [
-        'Dual-tone acrylic shutters with high-gloss reflective finish',
-        'Handleless Gola profile channels for seamless look',
-        'Warm LED under-cabinet task lighting',
-        'Undermount black quartz sink with gooseneck faucet'
-      ],
-      materials: ['BWP Marine Grade Plywood', '2mm High-Gloss Acrylic', 'White Nano-Quartz', 'Soft-Close Hardware'],
-      internalLayout: {
-        baseCabinets: '8 Soft-Close Tandem Drawers + Sink Unit',
-        wallCabinets: '6 Lift-Up Overhead Gloss Cabinets',
-        tallUnits: 'Compact Microwave & Oven Cabinet Tower',
-        accessories: ['Cutlery Trays', 'Spice Pullout', 'Detergent Rack']
-      },
-      highlights: [
-        { icon: 'fa-solid fa-sparkles', title: 'High-Gloss Mirror Finish', desc: 'Ultra-reflective scratch-resistant acrylic surface.' },
-        { icon: 'fa-solid fa-lightbulb', title: 'Warm Task Lighting', desc: 'Under-cabinet illumination for effortless prep.' },
-        { icon: 'fa-solid fa-sink', title: 'Black Quartz Sink', desc: 'Deep stain-resistant undermount sink.' }
-      ]
-    },
-    {
-      id: 'gloss-charcoal-marble-l-shaped-suite',
-      title: 'Charcoal & Marble L-Shaped Kitchen',
-      category: 'l-shaped',
-      categoryLabel: 'L-Shaped Kitchen',
-      shortDesc: 'Modern L-shaped layout with glossy cabinets and marble backsplash.',
-      tag: 'Best Seller',
-      image: '/kitchens/gloss-charcoal-marble-l-shaped-kitchen.jpg',
-      galleryImages: [
-        '/kitchens/gloss-charcoal-marble-l-shaped-kitchen.jpg'
-      ],
-      startingPrice: '₹2,55,000',
-      dimensions: '11ft x 9ft L-Layout (Customizable)',
-      finishType: 'Gloss Charcoal Acrylic + Calacatta Quartz',
-      features: [
-        'Ergonomic L-shaped workflow between hob, sink, and fridge',
-        'Open wooden spice niche with warm recessed lighting',
-        'Seamless Calacatta marble slab backsplash',
-        'Integrated refrigerator housing with overhead lofts'
-      ],
-      materials: ['BWP Marine Plywood Core', 'Anti-Yellowing Gloss Acrylic', 'Calacatta Quartz Stone', 'Soft-Close Tandem Runners'],
-      internalLayout: {
-        baseCabinets: '7 Deep Pot & Pan Drawers + Corner Pullout',
-        wallCabinets: '5 Upper Hydraulic Cabinets + Spice Shelf',
-        tallUnits: 'Full Refrigerator Enclosure with Top Lofts',
-        accessories: ['Corner Carousel', 'Bottle Pullout', 'Cutlery Organizer']
-      },
-      highlights: [
-        { icon: 'fa-solid fa-shapes', title: 'Efficient Work Triangle', desc: 'Smooth movement between cooking zones.' },
-        { icon: 'fa-solid fa-box-open', title: 'Illuminated Spice Niche', desc: 'Keeps everyday spices easily accessible.' },
-        { icon: 'fa-solid fa-shield-halved', title: 'Quartz Backsplash', desc: 'Stain-proof and easy to clean with a wipe.' }
-      ]
-    },
-    {
-      id: 'champagne-mink-acrylic-parallel-suite',
-      title: 'Champagne & Mink Parallel Kitchen',
-      category: 'parallel',
-      categoryLabel: 'Parallel Kitchen',
-      shortDesc: 'Dual-counter parallel layout with window view and ample storage.',
-      tag: 'Trending Design',
-      image: '/kitchens/champagne-mink-acrylic-parallel-kitchen.jpg',
-      galleryImages: [
-        '/kitchens/champagne-mink-acrylic-parallel-kitchen.jpg'
-      ],
-      startingPrice: '₹2,40,000',
-      dimensions: '13ft x 8ft Dual Corridor (Customizable)',
-      finishType: 'Gloss Champagne & Mink Acrylic + Walnut Accents',
-      features: [
-        'Dual workstation layout separating wet and dry zones',
-        'Layout planned around large window for natural daylight',
-        'Open wooden accent niches for jars and planters',
-        'Built-in refrigerator cabinet with top storage lofts'
-      ],
-      materials: ['IS 710 Marine Grade Plywood', '2mm High-Gloss Acrylic', 'American Walnut Veneer', 'Blum Soft-Close Runners'],
-      internalLayout: {
-        baseCabinets: '12 Soft-Damped Modular Base Drawers',
-        wallCabinets: '8 Overhead Cabinets + 2 Walnut Display Shelves',
-        tallUnits: 'Dedicated Refrigerator Cabinet with Lofts',
-        accessories: ['Thali Basket', 'Spice Partition Trays', 'Wicker Baskets']
-      },
-      highlights: [
-        { icon: 'fa-solid fa-arrows-left-right', title: 'Parallel Corridor', desc: 'Wide 4ft walkway allows two people to cook easily.' },
-        { icon: 'fa-solid fa-sun', title: 'Natural Daylighting', desc: 'Bright window placement keeps kitchen airy.' },
-        { icon: 'fa-solid fa-arrows-up-to-line', title: 'Ceiling Lofts', desc: 'Full-height cabinets maximize vertical space.' }
-      ]
-    },
-    {
       id: 'matte-cappuccino-walnut-l-shaped-suite',
       title: 'Matte Cappuccino Kitchen',
       category: 'l-shaped',
@@ -233,39 +134,7 @@ export class ModularKitchenPage implements OnInit, OnDestroy {
         { icon: 'fa-solid fa-fire-burner', title: 'High-Heat Cooking Zone', desc: 'Heat-resistant quartz backsplash and top.' }
       ]
     },
-    {
-      id: 'slate-grey-moroccan-tile-l-shaped-suite',
-      title: 'Slate Grey Moroccan Kitchen',
-      category: 'l-shaped',
-      categoryLabel: 'L-Shaped Kitchen',
-      shortDesc: 'L-shaped kitchen with Moroccan tile backsplash and built-in oven tower.',
-      tag: 'Architectural Style',
-      image: '/kitchens/slate-grey-moroccan-tile-l-shaped-kitchen.jpg',
-      galleryImages: [
-        '/kitchens/slate-grey-moroccan-tile-l-shaped-kitchen.jpg'
-      ],
-      startingPrice: '₹3,20,000',
-      dimensions: '13ft x 11ft L-Layout (Customizable)',
-      finishType: 'Matte Slate Grey + Moroccan Ceramic Backsplash',
-      features: [
-        'Handcrafted Moroccan geometric tile backsplash with warm LED',
-        'Full-height appliance tower for built-in oven and microwave',
-        'Open walnut niche for everyday spices with spotlight',
-        'Dual-cooktop setup for both gas hob and induction'
-      ],
-      materials: ['IS 710 Marine Hardwood Core', 'Matte Anti-Scratch Laminate', 'Glazed Moroccan Ceramic Tiles', 'Soft-Close Tandem Drawers'],
-      internalLayout: {
-        baseCabinets: '10 Soft-Close Base Drawers + Sink Cabinet',
-        wallCabinets: '6 Matte Slate Overhead Units + 2 Spice Boxes',
-        tallUnits: 'Full Appliance Tower with Built-in Oven & Microwave',
-        accessories: ['Appliance Drawers', 'Dual Hob Setup', 'Corner LeMans Shelf']
-      },
-      highlights: [
-        { icon: 'fa-solid fa-kitchen-set', title: 'Built-in Appliance Tower', desc: 'Eye-level oven and microwave setup.' },
-        { icon: 'fa-solid fa-border-all', title: 'Moroccan Tile Wall', desc: 'Artisanal geometric pattern focal point.' },
-        { icon: 'fa-solid fa-fire', title: 'Dual Cooking Surface', desc: 'Accommodates gas hob and induction together.' }
-      ]
-    },
+   
     {
       id: 'sage-green-butcher-block-suite',
       title: 'Sage Green Scandinavian Kitchen',
@@ -300,36 +169,168 @@ export class ModularKitchenPage implements OnInit, OnDestroy {
       ]
     },
     {
-      id: 'glossy-cappuccino-l-shaped-suite',
-      title: 'Glossy Cappuccino L-Shaped Kitchen',
-      category: 'l-shaped',
-      categoryLabel: 'L-Shaped Kitchen',
-      shortDesc: 'L-shaped kitchen with glossy cappuccino cabinets and marble wall.',
-      tag: 'Popular Choice',
-      image: '/kitchens/glossy-cappuccino-l-shaped-kitchen.jpg',
+      id: 'charcoal-champagne-parallel-galley-suite',
+      title: 'Charcoal & Champagne Parallel Galley Kitchen',
+      category: 'parallel',
+      categoryLabel: 'Parallel Kitchen',
+      shortDesc: 'Dual-countertop parallel kitchen in gloss charcoal grey & champagne cream with integrated tall refrigerator and central picture window.',
+      tag: "Chef's Choice",
+      image: '/kitchens/charcoal-champagne-parallel-galley-kitchen.jpg',
       galleryImages: [
-        '/kitchens/glossy-cappuccino-l-shaped-kitchen.jpg'
+        '/kitchens/charcoal-champagne-parallel-galley-kitchen.jpg'
       ],
-      startingPrice: '₹2,65,000',
-      dimensions: '11ft x 9ft L-Layout (Customizable)',
-      finishType: 'High-Gloss Cappuccino Acrylic + Marble Quartz Backsplash',
+      startingPrice: '₹3,15,000',
+      dimensions: '14ft x 8ft Parallel Layout (Customizable)',
+      finishType: 'High-Gloss Charcoal & Champagne Acrylic + Italian Marble Quartz',
       features: [
-        'Warm high-gloss cappuccino acrylic shutters reflecting soft ambient light',
-        'Continuous warm 3000K LED task strip under wall cabinets',
-        'Integrated refrigerator cabinet with contrasting warm walnut lofts',
-        'Black angled filterless chimney hood with touch control over 4-burner hob'
+        'Two parallel running countertops optimizing the golden cooking work triangle',
+        'Floor-to-ceiling tall appliance pantry with built-in multi-door stainless steel refrigerator',
+        'Black slanted high-suction chimney paired with a 4-burner flush gas hob',
+        'Large central picture window flooding the kitchen with natural daylight'
       ],
-      materials: ['Century Club IS 710 BWP Plywood', '2mm High-Gloss Senosan Acrylic', 'Polished Quartz Marble Slab', 'Soft-Close Tandem Glides'],
+      materials: ['IS 710 Boiling Water Proof Marine Ply Core', '2mm High-Gloss Senosan Acrylic Shutters', 'Calacatta White Quartz Countertop', 'Blum Tandembox Soft-Close Drawers'],
       internalLayout: {
-        baseCabinets: '8 Soft-Close Base Drawers + Corner Pullout Mechanism',
-        wallCabinets: '6 Lift-Up Overhead Gloss Units + Chimney Enclosure',
-        tallUnits: 'Full Refrigerator Enclosure with Walnut Lofts',
-        accessories: ['Cutlery Organizers', 'Pullout Oil & Sauce Rack', 'Waste Bin Holder']
+        baseCabinets: '10 Deep Pots & Pan Pull-Out Tandem Drawers + Bottle Pullout',
+        wallCabinets: '8 Lift-Up High-Gloss Overhead Cabinets with Warm Under-Glow',
+        tallUnits: 'Integrated Double-Door Refrigerator Housing & Pantry Tower',
+        accessories: ['Stainless Steel Cutlery Trays', 'Twin Dustbin Sorter', 'Under-Sink Detergent Pullout']
       },
       highlights: [
-        { icon: 'fa-solid fa-sparkles', title: 'High-Gloss Acrylic', desc: 'Reflective mirror finish makes the kitchen feel bright and spacious.' },
-        { icon: 'fa-solid fa-lightbulb', title: 'Warm Task LED', desc: 'Diffused counter lighting for comfortable cooking.' },
-        { icon: 'fa-solid fa-snowflake', title: 'Integrated Fridge Loft', desc: 'Matching cabinet housing for seamless modern appliance integration.' }
+        { icon: 'fa-solid fa-arrows-left-right', title: 'Ergonomic Parallel Counters', desc: 'Maximum counter space on both sides for seamless multi-chef meal prep.' },
+        { icon: 'fa-solid fa-gem', title: 'Mirror Gloss Acrylic', desc: 'Reflective surfaces enhance room brightness and wipe clean effortlessly.' },
+        { icon: 'fa-solid fa-snowflake', title: 'Built-in Refrigerator Alcove', desc: 'Flush integration eliminates appliance protrusion for clean sightlines.' }
+      ]
+    },
+    {
+      id: 'moroccan-teal-mediterranean-suite',
+      title: 'Mediterranean Moroccan Teal L-Kitchen',
+      category: 'l-shaped',
+      categoryLabel: 'L-Shaped Kitchen',
+      shortDesc: 'Vibrant Mediterranean L-kitchen with deep teal cabinetry, artisanal blue & white Moroccan backsplash tiles, and open natural wood spice ledges.',
+      tag: 'Artisanal Charm',
+      image: '/kitchens/moroccan-teal-mediterranean-kitchen.jpg',
+      galleryImages: [
+        '/kitchens/moroccan-teal-mediterranean-kitchen.jpg'
+      ],
+      startingPrice: '₹2,85,000',
+      dimensions: '12ft x 10ft L-Layout (Customizable)',
+      finishType: 'Matte Ocean Teal Anti-Scratch PU + Handcrafted Moroccan Ceramic Tiles',
+      features: [
+        'Hand-glazed Portuguese & Moroccan floral geometric pattern backsplash tiles',
+        'Open solid oak floating display ledges for spices, herb planters, and jars',
+        'Concealed undermount high-velocity chimney hood with integrated warm LED task lights',
+        'Seamless white composite quartz countertop with matte black sink and swan-neck faucet'
+      ],
+      materials: ['Century Club Prime BWP Marine Core Plywood', 'Anti-Fingerprint Matte Teal PU Coating', 'Glazed Handcrafted Ceramic Tiles', 'Hafele Soft-Close Silent Motion Hinges'],
+      internalLayout: {
+        baseCabinets: '8 Heavy-Duty Tandem Drawers + LeMans Corner Pullout Unit',
+        wallCabinets: '4 Matte Teal Overhead Cabinets + Dual Oak Display Shelves',
+        tallUnits: 'Pantry Larder with Wire Baskets',
+        accessories: ['Wicker Vegetable Baskets', 'Corner Carousel', 'Hanging Herb Rail']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-palette', title: 'Artisanal Moroccan Tiles', desc: 'Intricate blue-and-white motifs create a vibrant, Mediterranean focal point.' },
+        { icon: 'fa-solid fa-seedling', title: 'Open Herb & Spice Ledges', desc: 'Accessible natural oak open shelves for fresh herbs and everyday seasoning.' },
+        { icon: 'fa-solid fa-droplet', title: 'Water-Immune Marine Core', desc: 'IS 710 marine plywood carcass completely impervious to water exposure.' }
+      ]
+    },
+    {
+      id: 'slate-grey-walnut-l-kitchen-suite',
+      title: 'Slate Grey Gloss & Walnut Niche Kitchen',
+      category: 'acrylic-pu',
+      categoryLabel: 'Acrylic & PU Gloss',
+      shortDesc: 'Contemporary L-shaped kitchen featuring slate grey high-gloss shutters, an integrated warm walnut spice niche, and white veined marble backsplash.',
+      tag: 'Modern Luxury',
+      image: '/kitchens/slate-grey-walnut-l-kitchen.jpg',
+      galleryImages: [
+        '/kitchens/slate-grey-walnut-l-kitchen.jpg'
+      ],
+      startingPrice: '₹2,95,000',
+      dimensions: '13ft x 11ft L-Layout (Customizable)',
+      finishType: 'High-Gloss Slate Grey Acrylic + Natural Walnut Wood Veneer Accent Box',
+      features: [
+        'Seamless Gola profile handleless slate grey cabinets with mirror-like shine',
+        'Built-in open warm walnut display niche breaking the monochrome cabinetry',
+        'Bookmatched Calacatta white marble backsplash slab running up to upper cabinets',
+        'Flush-mount 4-burner gas hob and angled black glass designer chimney'
+      ],
+      materials: ['IS 710 Marine Grade BWP Plywood', '2mm UV-Treated Scratch-Resistant Acrylic', 'Engineered Quartz Countertop', 'Blum Aventos Bi-Fold Lift-Up Systems'],
+      internalLayout: {
+        baseCabinets: '9 Handleless Gola Profile Drawers + Blind Corner Optimizer',
+        wallCabinets: '6 Overhead Gloss Cabinets + Integrated Walnut Spice Box',
+        tallUnits: 'Appliance Garage & Refrigerator Housing Module',
+        accessories: ['Magnetic Knife Strip', 'Cutlery Organizers', 'Pull-Out Waste Sorter']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-gem', title: 'Mirror Acrylic Reflection', desc: 'Ultra-glossy slate grey shutters reflect light, expanding the sense of space.' },
+        { icon: 'fa-solid fa-box-open', title: 'Integrated Walnut Niche', desc: 'Warm wood accent box provides quick access to frequently used condiments.' },
+        { icon: 'fa-solid fa-wind', title: 'Angled Glass Extraction', desc: 'Slanted black glass chimney provides powerful 1400 m³/hr smoke extraction.' }
+      ]
+    },
+    {
+      id: 'dusty-rose-glass-l-kitchen-suite',
+      title: 'Dusty Rose & Glass Showcase L-Kitchen',
+      category: 'l-shaped',
+      categoryLabel: 'L-Shaped Kitchen',
+      shortDesc: 'Stunning dusty rose & champagne kitchen with fluted glass crockery displays, black granite countertop, angled chimney, and window sink.',
+      tag: 'Bespoke Glamour',
+      image: '/kitchens/dusty-rose-glass-l-kitchen.jpg',
+      galleryImages: [
+        '/kitchens/dusty-rose-glass-l-kitchen.jpg'
+      ],
+      startingPrice: '₹3,10,000',
+      dimensions: '13ft x 12ft L-Layout (Customizable)',
+      finishType: 'Glossy Dusty Rose & Cashmere Vanilla Acrylic + Jet Black Granite Counter',
+      features: [
+        'Illuminated glass-front upper crockery cabinets with warm interior mood lighting',
+        'Durable stain-proof jet black granite countertop with beveled anti-drip edge',
+        'Dual-bowl stainless steel undermount sink placed under large sunlit window',
+        'Modern black glass angled hood, 4-burner hob, and tall refrigerator housing'
+      ],
+      materials: ['Century BWP Marine Plywood Core', 'High-Gloss Acrylic Shutter Panelling', 'Treated Black Pearl Granite', 'Blum Soft-Close Dampers & Hinges'],
+      internalLayout: {
+        baseCabinets: '8 Base Drawers with Two-Tone Accent Insets + Corner Carousel',
+        wallCabinets: '4 Fluted Glass Display Cabinets + 4 Gloss Overhead Storage Boxes',
+        tallUnits: 'Side Tall Refrigerator Cabinet Unit',
+        accessories: ['Plate & Crockery Stackers', 'Dual Sink Wire Basket', 'Spice Carousel']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-wine-glass', title: 'Backlit Glass Cabinets', desc: 'Internal LED lights showcase fine dining crockery and glassware beautifully.' },
+        { icon: 'fa-solid fa-shield-halved', title: 'Granite Countertop', desc: 'Extreme heat resistance against hot Indian cookware and heavy cooking.' },
+        { icon: 'fa-solid fa-sun', title: 'Window-Framed Sink', desc: 'Natural sunlight and fresh ventilation while washing dishes.' }
+      ]
+    },
+    {
+      id: 'charcoal-cream-gloss-balcony-suite',
+      title: 'Charcoal & Cream Balcony Galley Kitchen',
+      category: 'parallel',
+      categoryLabel: 'Straight & Galley Layout',
+      shortDesc: 'Modern straight/galley kitchen with high-gloss charcoal base units, champagne overhead storage, white quartz counter, and balcony glass doors.',
+      tag: 'Urban Chic',
+      image: '/kitchens/charcoal-cream-gloss-balcony-kitchen.jpg',
+      galleryImages: [
+        '/kitchens/charcoal-cream-gloss-balcony-kitchen.jpg'
+      ],
+      startingPrice: '₹2,50,000',
+      dimensions: '12ft x 7ft Straight Layout (Customizable)',
+      finishType: 'High-Gloss Charcoal Grey & Champagne Cream Laminate + Marble Backsplash',
+      features: [
+        'Long continuous cooking and prep counter running toward balcony glass doors',
+        'Dual-tone color blocking: Dark charcoal base units with light cream top cabinets',
+        'Matte black gooseneck faucet and deep quartz composite sink',
+        'Slanted high-efficiency chimney hood centered between high-capacity upper cabinets'
+      ],
+      materials: ['BWP Marine Grade Plywood Carcass', 'High-Gloss Scratch-Resistant Laminates', 'Pure White Engineered Quartz Top', 'Hafele Full-Extension Runners'],
+      internalLayout: {
+        baseCabinets: '7 Wide Base Drawers + Gas Cylinder & Detergent Unit',
+        wallCabinets: '8 Deep Overhead Storage Cabinets Reaching Ceiling',
+        tallUnits: 'Side Pantry Module',
+        accessories: ['Bottle Pullout Tray', 'Cutlery Divider Tray', 'Overhead Spice Rack']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-door-open', title: 'Seamless Balcony Access', desc: 'Direct access to utility balcony for effortless ventilation and laundry tasks.' },
+        { icon: 'fa-solid fa-maximize', title: 'Vertical Space Optimization', desc: 'Double-row overhead cabinets make use of the full ceiling height.' },
+        { icon: 'fa-solid fa-broom', title: 'Easy-Wipe Quartz & Glass', desc: 'Non-porous quartz top and gloss surfaces clean up with a single damp microfiber wipe.' }
       ]
     }
   ];

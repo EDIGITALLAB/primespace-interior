@@ -69,73 +69,37 @@ export class MasterBedroomPage implements OnInit, OnDestroy {
   // Bedroom Items Database
   readonly bedrooms: BedroomItem[] = [
     {
-      id: 'warm-oak-gold-panelling-suite',
-      title: 'Warm Teak & Textured Gold Panelling Suite',
+      id: 'modern-fluted-beige-master-suite',
+      title: 'Modern Fluted Wood & Gloss Wardrobe Master Suite',
       category: 'contemporary',
       categoryLabel: 'Contemporary Luxury Suite',
-      shortDesc: 'Solid teakwood bed with textured headboard paneling, gold brass inlays, bench, and warm pendant lights.',
+      shortDesc: 'King platform teak bed with channeled upholstered headboard, vertical fluted wood slat wall, and full-height gloss wardrobes.',
       tag: 'Best Seller',
-      image: '/bedrooms/warm-teak-gold-panelling-suite.jpg',
+      image: '/bedrooms/modern-fluted-beige-master-suite.jpg',
       galleryImages: [
-        '/bedrooms/warm-teak-gold-panelling-suite.jpg',
-        '/bedrooms/fluted-beige-upholstered-suite.jpg',
-        '/bedrooms/travertine-marble-tv-console.jpg'
+        '/bedrooms/modern-fluted-beige-master-suite.jpg',
+        '/bedrooms/heritage-walnut-floral-suite.jpg'
       ],
-      startingPrice: '₹2,65,000',
+      startingPrice: '₹2,75,000',
       dimensions: '16ft x 14ft Master Suite (Customizable)',
-      finishType: 'Textured Fabric Panelling + Brushed Gold Inlays + Natural Teak Wood & Warm Cove Lights',
+      finishType: 'Channeled Upholstered Headboard + Vertical Teak Slats + High-Gloss Ivory Wardrobe with Walnut Lofts',
       features: [
-        'Floor-to-ceiling 10ft bespoke textured headboard wall with vertical brushed brass T-profiles',
-        'Solid seasoned teak king-size bed frame with cushioned leatherette backrest',
-        'Twin bedside wooden nightstands with amber glass hanging pendant lamps',
-        'Multi-level false ceiling cove with warm 3000K diffused indirect LED perimeter lighting'
+        'Floor-to-ceiling accent headboard wall with architectural fluted teak louvers and botanical artwork',
+        'Custom king platform bed frame in seasoned teak with soft-padded channel tufting',
+        'Built-in 6-door high-gloss reflective acrylic wardrobe with top walnut lofts and sleek brass handles',
+        'Perimeter gypsum false ceiling with warm indirect 3000K LED cove wash and ceiling fan'
       ],
-      materials: ['Century Club IS 710 Marine Grade BWP Core', 'Natural Seasoned Burma Teak Wood', 'Brushed Anodized Gold Brass Inlays', 'Textured Acoustic Wall Fabric'],
+      materials: ['IS 710 Marine Grade BWP Core Plywood', 'Natural Seasoned Burma Teak Wood', '2mm High-Gloss Senosan Acrylic', 'Stain-Resistant Channeled Velvet Fabric'],
       internalLayout: {
-        headboardWall: '10ft CNC Panelled Wall + Metallic Brass Strips + Concealed Ambient LED Cove',
-        bedStorage: 'King Size 78"x72" Solid Teak Frame with Under-Bed Storage Drawers',
-        vanityTvUnit: 'Matching Teak Dressing Console + Floor-to-Ceiling Sheer & Blackout Drapes',
-        accessories: ['Dual Amber Glass Pendant Lights', 'Upholstered Bedside Bench', 'Solid Teak Nightstands']
+        headboardWall: 'Warm Beige Suede Wall + Vertical Fluted Teak Slats + Double Art Frames',
+        bedStorage: 'King Size 78"x72" Solid Teak Platform with Hydraulic Gas-Lift Box',
+        vanityTvUnit: 'Floor-to-Ceiling High-Gloss Wardrobe Suite with Overhead Walnut Lofts',
+        accessories: ['Matching Teak Bedside Nightstand', 'Textured Area Rug', 'Warm Cove LED Strip']
       },
       highlights: [
-        { icon: 'fa-solid fa-gem', title: 'Brushed Brass Inlays', desc: 'Precision metallic gold vertical trims elevate modern bedroom warmth.' },
-        { icon: 'fa-solid fa-tree', title: 'Solid Seasoned Teak', desc: 'Durable teakwood bed frame and matching bench crafted for longevity.' },
-        { icon: 'fa-solid fa-lightbulb', title: 'Layered Ambient Lighting', desc: 'Ceiling coves and pendant lamps create a cozy 5-star hotel retreat.' }
-      ]
-    },
-    {
-      id: 'fluted-beige-upholstered-suite',
-      title: 'Plush Vertical Fluted Headboard Suite',
-      category: 'contemporary',
-      categoryLabel: 'Plush Upholstered Suite',
-      shortDesc: 'Full-height beige vertical upholstered headboard wall with gold trim, wooden nightstands, and cove lighting.',
-      tag: 'Luxury Signature',
-      image: '/bedrooms/fluted-beige-upholstered-suite.jpg',
-      galleryImages: [
-        '/bedrooms/fluted-beige-upholstered-suite.jpg',
-        '/bedrooms/warm-teak-gold-panelling-suite.jpg',
-        '/bedrooms/travertine-marble-tv-console.jpg'
-      ],
-      startingPrice: '₹2,45,000',
-      dimensions: '15ft x 13ft Room Layout (Customizable)',
-      finishType: 'Plush Beige Velvet Upholstery + Brushed Gold Brass Trim + Natural Teak Nightstands',
-      features: [
-        'Floor-to-ceiling 10ft high-back upholstered velvet headboard panels with acoustic foam core',
-        'Minimalist king size platform bed upholstered in stain-proof textured cream linen',
-        'Drop hanging cone pendant lights paired with bedside table lamps',
-        'Warm indirect false ceiling cove wash highlighting wall texture'
-      ],
-      materials: ['High-Density Acoustic Foam Cushioning', 'Italian Stain-Resistant Velvet Fabric', 'Anodized Gold Brass Framing', 'Solid Teak Nightstand Units'],
-      internalLayout: {
-        headboardWall: 'Full-Height 10ft Vertical Padded Velvet Fluted Wall with Gold Border',
-        bedStorage: 'King Size Platform Bed with Hydraulic Gas Lift Box',
-        vanityTvUnit: 'Teakwood Bedside Tables + Built-in Wireless Fast Charging',
-        accessories: ['Twin Cone Pendant Lights', 'Indirect LED Ceiling Cove', 'Floor Sheer Curtains']
-      },
-      highlights: [
-        { icon: 'fa-solid fa-volume-xmark', title: 'Acoustic Sound Absorption', desc: 'Plush foam panels create an ultra-quiet, restful bedroom sanctuary.' },
-        { icon: 'fa-solid fa-bed', title: 'High-Back Comfort', desc: 'Ergonomic cushioned headboard provides ultimate support for late-night reading.' },
-        { icon: 'fa-solid fa-gem', title: 'Gold Brass Framing', desc: 'Gold metallic perimeter trims frame the upholstered wall elegantly.' }
+        { icon: 'fa-solid fa-bed', title: 'Channeled High-Back Bed', desc: 'Ergonomic plush padded headboard for luxurious resting comfort.' },
+        { icon: 'fa-solid fa-tree', title: 'Fluted Teak Louvers', desc: 'Precision vertical wooden slats add organic architectural warmth.' },
+        { icon: 'fa-solid fa-door-closed', title: 'Full-Height Gloss Wardrobe', desc: 'Floor-to-ceiling storage with top lofts keeps the master bedroom clutter-free.' }
       ]
     },
     {
@@ -281,6 +245,138 @@ export class MasterBedroomPage implements OnInit, OnDestroy {
         { icon: 'fa-solid fa-door-closed', title: 'Dual-Tone Modular Wardrobe', desc: 'Contrasting cream matte and warm teak laminate creates a stylish contemporary aesthetic.' },
         { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Recessed Dressing Nook', desc: 'Space-saving vanity corner with mirror and storage tucked neatly beside the wardrobe.' },
         { icon: 'fa-solid fa-spa', title: 'Botanical Floral Wallpaper', desc: 'Delicate leaf motif wallpaper adds a tranquil, natural touch to the master suite.' }
+      ]
+    },
+    {
+      id: 'calacatta-gold-marble-fluted-master-suite',
+      title: 'Calacatta Gold Marble & Fluted Teak Master Suite',
+      category: 'contemporary',
+      categoryLabel: 'Contemporary Luxury Suite',
+      shortDesc: 'Grand master bedroom with bookmatched golden marble slab feature wall, vertical fluted teak louvers, brass inlays, and gloss wardrobe.',
+      tag: 'Luxury Signature',
+      image: '/bedrooms/calacatta-gold-marble-fluted-master-suite.jpg',
+      galleryImages: [
+        '/bedrooms/calacatta-gold-marble-fluted-master-suite.jpg'
+      ],
+      startingPrice: '₹3,45,000',
+      dimensions: '18ft x 15ft Master Suite (Customizable)',
+      finishType: 'Bookmatched Calacatta Gold Marble Slab + Seasoned Teak Fluted Louvers + Brushed Gold Brass Insets',
+      features: [
+        'Centerpiece feature wall featuring bookmatched Italian Calacatta Gold marble slab framed by gold T-profiles',
+        'Architectural vertical fluted teak wood louvers flanking both sides of the bed',
+        'Upholstered channeled velvet king bed with integrated floating dual-drawer nightstands',
+        'Full-height reflective gloss ivory wardrobe with contrasting smoked glass accent band and gold bar handles'
+      ],
+      materials: ['Italian Calacatta Gold Marble Slab', 'IS 710 Marine Grade BWP Plywood Core', 'Burma Teak Hardwood Fluting', 'PVD Gold-Coated Brass Strips', 'Stain-Proof Velvet Fabric'],
+      internalLayout: {
+        headboardWall: 'Bookmatched Marble Centerpiece + Fluted Teak Louvers + Brushed Brass Dividers',
+        bedStorage: 'King Platform Bed with Hydraulic Gas-Lift Storage Box',
+        vanityTvUnit: 'Full-Height Gloss Wardrobe with Smoked Glass Band & Bedside Tables',
+        accessories: ['Dual Floating Nightstands with Brass Pulls', 'Concealed LED Warm Cove Lighting', 'Custom Textured Floor Rug']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-gem', title: 'Calacatta Marble Feature Wall', desc: 'Dramatic gold veined marble slab creates an authentic luxury hotel ambiance.' },
+        { icon: 'fa-solid fa-lines-leaning', title: 'Fluted Teak Woodcraft', desc: 'Precision vertical louvers add organic warmth and acoustic dampening.' },
+        { icon: 'fa-solid fa-door-closed', title: 'Designer Gloss Wardrobe', desc: 'Ivory high-gloss wardrobe with tinted glass band maximizes storage and style.' }
+      ]
+    },
+    {
+      id: 'arched-halo-emerald-velvet-master-suite',
+      title: 'Arched Halo Olive Velvet Master Suite',
+      category: 'contemporary',
+      categoryLabel: 'Contemporary Halo Arch Suite',
+      shortDesc: 'Bespoke bedroom featuring an illuminated arched olive green velvet panel framed in brushed gold, fluted wood accents, and gloss cream wardrobe.',
+      tag: 'Trending Design',
+      image: '/bedrooms/arched-halo-emerald-velvet-master-suite.jpg',
+      galleryImages: [
+        '/bedrooms/arched-halo-emerald-velvet-master-suite.jpg'
+      ],
+      startingPrice: '₹2,95,000',
+      dimensions: '16ft x 14ft Master Suite (Customizable)',
+      finishType: 'Arched Olive Velvet Acoustic Panel + Brushed Gold Trim + Warm Teak Wainscoting + Glossy Cream Wardrobe',
+      features: [
+        'Dramatic Roman arch accent headboard upholstered in channel-tufted olive green velvet',
+        'Concealed halo LED perimeter lighting casting a soft bedtime warm glow around the arch',
+        'Warm teak woodgrain wainscoting with matching floating dual-drawer bedside table',
+        '6-door full-height high-gloss cream wardrobe with long brushed gold bar handles'
+      ],
+      materials: ['IS 710 Marine Grade BWP Plywood', 'Stain-Resistant Olive Green Microfiber Velvet', 'PVD Brass Trim Arc', 'High-Gloss Senosan Acrylic Wardrobe Panels'],
+      internalLayout: {
+        headboardWall: 'Illuminated Roman Arch Velvet Panel + Teak Lower Wainscoting',
+        bedStorage: 'King Platform Hydraulic Bed with Olive Green Bed Runner & Cushions',
+        vanityTvUnit: 'Floor-to-Ceiling High-Gloss Cream Wardrobe with Brass Pulls',
+        accessories: ['Floating Teak & Cream Nightstands', 'Concealed Halo 3000K LED Strip', 'Geometric Area Rug']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-archway', title: 'Illuminated Halo Arch', desc: 'Curved backlit velvet arch creates a soothing, sanctuary-like bed backdrop.' },
+        { icon: 'fa-solid fa-leaf', title: 'Earthy Olive Velvet', desc: 'Rich botanical olive tone brings biophilic calmness to the bedroom.' },
+        { icon: 'fa-solid fa-arrows-up-to-line', title: 'Floor-to-Ceiling Closet', desc: 'Seamless 6-door wardrobe utilizes full ceiling height for clutter-free living.' }
+      ]
+    },
+    {
+      id: 'smoked-glass-wardrobe-acoustic-master-suite',
+      title: 'Smoked Glass Wardrobe & Acoustic Panel Suite',
+      category: 'suite-dressing',
+      categoryLabel: 'Boutique Dressing Suite',
+      shortDesc: 'Ultra-luxurious suite featuring full-height smoked glass wardrobe with profile lighting, fluted teak accents, and acoustic fabric wall.',
+      tag: 'Boutique Luxury',
+      image: '/bedrooms/smoked-glass-wardrobe-acoustic-master-suite.jpg',
+      galleryImages: [
+        '/bedrooms/smoked-glass-wardrobe-acoustic-master-suite.jpg'
+      ],
+      startingPrice: '₹3,60,000',
+      dimensions: '17ft x 14ft Master Suite (Customizable)',
+      finishType: 'Smoked Black Tinted Glass in Bronze Aluminum Frames + Beige Acoustic Fabric Panels + Fluted Teak',
+      features: [
+        'Floor-to-ceiling boutique smoked tinted glass wardrobe with integrated warm LED vertical profile lights',
+        'Acoustic fabric upholstered wall panels paired with architectural fluted teak columns',
+        'Horizontal channel-tufted beige velvet headboard with floating bedside nightstand',
+        'Expansive picture window with sheer curtains inviting soft natural ambient daylight'
+      ],
+      materials: ['Toughened Smoked Black Glass', 'Anodized Bronze Aluminum Extrusions', 'IS 710 Marine Grade BWP Plywood', 'Acoustic Sound-Dampening Felt & Fabric'],
+      internalLayout: {
+        headboardWall: 'Beige Acoustic Fabric Slabs + Vertical Fluted Teak Columns',
+        bedStorage: 'King Platform Bed with Velvet Frame and Under-Bed Gas Lift Storage',
+        vanityTvUnit: 'Walk-in Style Smoked Glass Wardrobe with Internal Wardrobe Sensor Lights',
+        accessories: ['Bronze Profile LED Sensors', 'Floating Bedside Console', 'Curated Art Rug']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-door-open', title: 'Smoked Glass Boutique Wardrobe', desc: 'Translucent glass doors reveal illuminated clothes and accessories like a high-end boutique.' },
+        { icon: 'fa-solid fa-volume-xmark', title: 'Acoustic Wall Panelling', desc: 'Sound-absorbing padded panels ensure quiet, restful, undisturbed sleep.' },
+        { icon: 'fa-solid fa-lightbulb', title: 'Sensor Profile Illumination', desc: 'Internal warm LED strips turn on automatically when wardrobe doors open.' }
+      ]
+    },
+    {
+      id: 'royal-navy-velvet-fluted-master-suite',
+      title: 'Royal Navy Velvet & Teak Master Suite',
+      category: 'contemporary',
+      categoryLabel: 'Royal Statement Suite',
+      shortDesc: 'Stately master bedroom featuring floor-to-ceiling royal navy blue velvet panel headboard, brass trim insets, and fluted teak louvers.',
+      tag: 'Executive Choice',
+      image: '/bedrooms/royal-navy-velvet-fluted-master-suite.jpg',
+      galleryImages: [
+        '/bedrooms/royal-navy-velvet-fluted-master-suite.jpg'
+      ],
+      startingPrice: '₹3,20,000',
+      dimensions: '17ft x 14ft Master Suite (Customizable)',
+      finishType: 'Royal Navy Velvet Wall Panels + Vertical Fluted Teak Louvers + PVD Brass Inlays + Gloss Cream Wardrobe',
+      features: [
+        'Dramatic floor-to-ceiling vertical channel headboard upholstered in rich royal navy blue velvet',
+        'Warm teak wood fluted side louvers providing a balanced natural wood texture',
+        'Gold PVD brass divider strips separating the acoustic fabric and wooden panels',
+        'Solid teak bed platform frame with matching dual-drawer floating bedside nightstands'
+      ],
+      materials: ['High-Density Velvet Fabric in Royal Navy', 'Natural Teak Hardwood Louvers & Bed Frame', 'PVD Coated Gold Brass Profiles', 'Century Club BWP Marine Plywood Core'],
+      internalLayout: {
+        headboardWall: 'Full-Height Royal Navy Velvet Center + Fluted Teak Louvers + Gold Inlays',
+        bedStorage: 'Solid Teak Platform King Bed with Easy-Lift Hydraulic Mechanism',
+        vanityTvUnit: 'Full-Height Glossy Cream Wardrobe with Brass Pulls & Bedside Tables',
+        accessories: ['Dual Floating Teak Nightstands', 'Velvet Accent Runner & Pillows', 'Warm 3000K Cove Lighting']
+      },
+      highlights: [
+        { icon: 'fa-solid fa-crown', title: 'Royal Navy Feature Wall', desc: 'Deep navy velvet panels make a bold, opulent executive design statement.' },
+        { icon: 'fa-solid fa-star', title: 'Brass PVD Inlays', desc: 'Precision gold brass trims elevate the craftsmanship to presidential suite standards.' },
+        { icon: 'fa-solid fa-bed', title: 'Solid Teak Platform', desc: 'Heavy-duty solid teak bed base provides lifelong durability and zero squeaking.' }
       ]
     }
   ];

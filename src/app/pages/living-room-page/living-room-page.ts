@@ -45,156 +45,231 @@ export class LivingRoomPage implements OnInit, OnDestroy {
   // Lightbox for zoom
   readonly lightboxImage = signal<string | null>(null);
 
-  // Living Room Database
   readonly livingRooms: LivingRoomItem[] = [
     {
-      id: 'fluted-marble-tv-console',
-      title: 'Fluted Charcoal & Marble TV Console',
-      category: 'modern-luxury',
-      categoryLabel: 'Modern Luxury',
-      shortDesc: 'Acoustic fluted charcoal wall with floating marble TV console and warm LED cove backlighting.',
-      tag: 'Best Seller',
-      image: '/living/fluted-marble-tv-unit-living.jpg',
-      galleryImages: ['/living/fluted-marble-tv-unit-living.jpg'],
-      startingPrice: '₹1,85,000',
-      dimensions: '18ft x 15ft Living Lounge (Customizable)',
-      finishType: 'Acoustic Fluted Louvers + Bookmatched Italian Marble Console + Warm 3000K LED',
-      features: [
-        'Concealed wire management channel for zero-cable clutter',
-        'Floating marble drawer console with German Blum soft-close runners',
-        'Dual-tone oak and charcoal fluted acoustic paneling',
-        'Smart remote-controlled diffused architectural cove lighting'
-      ],
-      materials: ['Italian Calacatta Marble', 'IS 710 Marine Grade Plywood', 'Blum Soft-Close Hardware', 'High-Density Charcoal Louvers'],
-      highlights: [
-        { icon: 'fa-solid fa-tv', title: 'Floating Marble Console', desc: 'Sleek floor-free design provides seamless robot vacuum cleaning and visual lightness.' },
-        { icon: 'fa-solid fa-lightbulb', title: 'Ambient Cove Backlight', desc: 'Indirect warm LED halo eliminates TV screen glare for movie nights.' },
-        { icon: 'fa-solid fa-volume-high', title: 'Acoustic Wall Panels', desc: 'Fluted surface minimizes room echo while adding rich 3D tactile depth.' }
-      ]
-    },
-    {
-      id: 'contemporary-minimalist-suite',
-      title: 'Contemporary Warm Minimalist Suite',
+      id: 'arched-alcove-fluted-oak-living',
+      title: 'Mediterranean Arched Alcoves & Fluted Oak Living Room',
       category: 'contemporary',
-      categoryLabel: 'Contemporary',
-      shortDesc: 'Clean low-profile linen sofa with travertine slab table, sheer drapes, and warm oak wall unit.',
-      tag: 'Architect Choice',
-      image: '/living/contemporary-minimalist-living.jpg',
-      galleryImages: ['/living/contemporary-minimalist-living.jpg'],
-      startingPrice: '₹1,65,000',
-      dimensions: '20ft x 14ft Open Living Area (Customizable)',
-      finishType: 'Matte Natural Oak + Textured Roman Plaster + Rough-Edge Travertine',
-      features: [
-        'Seamless built-in oak display shelving with concealed dimmable spotlights',
-        'Ultra-deep low profile sectional sofa in high-durability Belgian linen',
-        'Full-height double track sheer drape system for diffused sunlight',
-        'Organic monolithic natural stone travertine coffee table'
-      ],
-      materials: ['European White Oak Veneer', 'Natural Travertine Stone', 'Belgian Stain-Resistant Linen', 'Concealed LED Aluminum Profiles'],
-      highlights: [
-        { icon: 'fa-solid fa-couch', title: 'Ergonomic Deep Seating', desc: 'Feather-down blend cushions designed for ultimate all-day family relaxation.' },
-        { icon: 'fa-solid fa-sun', title: 'Natural Daylight Flow', desc: 'Light neutral tones maximize natural sun illumination across the room.' },
-        { icon: 'fa-solid fa-lines-leaning', title: 'Built-in Oak Niche', desc: 'Integrated architectural shelving stores art books and artifacts gracefully.' }
-      ]
-    },
-    {
-      id: 'japandi-slatted-wood-lounge',
-      title: 'Japandi Slatted Wood Partition Lounge',
-      category: 'japandi',
-      categoryLabel: 'Japandi Harmony',
-      shortDesc: 'Vertical oak divider screen with low platform modular sofa and warm floor wash lighting.',
+      categoryLabel: 'Contemporary Boho Living',
+      shortDesc: 'Sculptural plaster wall arches with fluted wood center niche, cream modular sectional, round fluted table, and marble TV credenza.',
       tag: 'Trending Design',
-      image: '/living/japandi-wood-slat-living.jpg',
-      galleryImages: ['/living/japandi-wood-slat-living.jpg'],
-      startingPrice: '₹1,45,000',
-      dimensions: '16ft x 13ft Living & Foyer (Customizable)',
-      finishType: 'Solid Natural Oak Rafters + Oatmeal Textured Bouclé + Walnut Low Table',
+      image: '/living/arched-alcove-fluted-oak-living.jpg',
+      galleryImages: ['/living/arched-alcove-fluted-oak-living.jpg'],
+      startingPrice: '₹2,45,000',
+      dimensions: '20ft x 16ft Living Lounge (Customizable)',
+      finishType: 'Textured Roman Plaster Arches + Natural Fluted Teak Louvers + Honed Calacatta Marble TV Slab',
       features: [
-        'Semi-private architectural slatted partition dividing entrance and living area',
-        'Low-slung modular Japanese platform sofa on solid oak base',
-        'Organic round solid walnut coffee table with beveled edge profile',
-        'Concealed floor-recessed LED channel washing vertical wooden slats'
+        'Bespoke triple-arch wall installation with botanical bas-relief plaster carvings and fluted wood insert',
+        'Extra-deep modular L-shaped sectional sofa in stain-resistant cream woven linen',
+        'Floating full-width white and warm oak TV media credenza under large wall-mounted screen',
+        'Dual rounded bouclé swivel armchairs and sculptural fluted oak tamboured coffee table'
       ],
-      materials: ['Seasoned American White Oak', 'Textured Oatmeal Bouclé Fabric', 'Solid Walnut Hardwood', 'Low-VOC Matte Eco Lacquer'],
+      materials: ['Natural Seasoned Oak Hardwood', 'Stain-Resistant Performance Linen Fabric', 'Textured Roman Mineral Plaster', 'IS 710 Marine Grade BWP Plywood'],
       highlights: [
-        { icon: 'fa-solid fa-border-none', title: 'Airy Spatial Divider', desc: 'Separates living and foyer spaces without blocking ambient airflow or natural light.' },
-        { icon: 'fa-solid fa-spa', title: 'Zen Living Ambiance', desc: 'Minimalist clean horizontal lines induce immediate calm and tranquility.' },
-        { icon: 'fa-solid fa-tree', title: 'Sustainable Solid Timber', desc: 'Responsibly harvested hardwood finished in chemical-free protective oils.' }
+        { icon: 'fa-solid fa-archway', title: 'Triple Plaster Arches', desc: 'Handcrafted relief botanical wall arches add sculptural depth and artisanal elegance.' },
+        { icon: 'fa-solid fa-couch', title: 'Deep Modular Sectional', desc: 'Plush high-resilience foam seating designed for luxury family lounging and entertaining.' },
+        { icon: 'fa-solid fa-tv', title: 'Floating Media Credenza', desc: 'Floor-clear floating unit makes cleaning effortless while concealing all wire clutter.' }
       ]
     },
     {
-      id: 'royal-italian-marble-grandeur',
-      title: 'Royal Italian Calacatta Marble Grandeur',
-      category: 'modern-luxury',
-      categoryLabel: 'High-End Luxury',
-      shortDesc: 'Bookmatched Calacatta marble wall with brushed brass gold trim and emerald velvet armchairs.',
-      tag: 'Ultra Luxury',
-      image: '/living/royal-italian-marble-living.jpg',
-      galleryImages: ['/living/royal-italian-marble-living.jpg'],
-      startingPrice: '₹2,60,000',
+      id: 'traditional-heritage-teak-living',
+      title: 'Royal Indian Heritage Teak & Jaali Living Room',
+      category: 'classical',
+      categoryLabel: 'Traditional Indian Heritage',
+      shortDesc: 'Majestic Burma teak carved sofa suite with Tanjore gold foil art, CNC jaali divider screens, brass diyas, and matching TV console.',
+      tag: 'Heritage Artistry',
+      image: '/living/traditional-heritage-teak-living.jpg',
+      galleryImages: ['/living/traditional-heritage-teak-living.jpg'],
+      startingPrice: '₹2,95,000',
       dimensions: '22ft x 16ft Grand Living Hall (Customizable)',
-      finishType: 'Full-Slab Calacatta Marble + Brushed PVD Brass Gold + Velvet Upholstery',
+      finishType: 'Handcrafted Seasoned Burma Teak + Intricate Wooden Jaali Screens + Gold Brass Artifacts',
       features: [
-        'Symmetrical bookmatched Italian Calacatta marble feature backdrop',
-        'Brushed titanium gold PVD coated metal border framing',
-        'Curved ivory bouclé statement sofa paired with jewel-toned emerald chairs',
-        'Integrated crown molding with multi-layered perimeter cove lighting'
+        'Authentic hand-carved solid teak wood 3-seater and 2-seater sofas with turned spindles and plush cream cushions',
+        'Double-tier architectural teak jaali partition screens separating living from foyer or pooja area',
+        'Centerpiece Tanjore 24K gold foil framed art piece with dedicated brass picture lighting',
+        'Matching carved teak center table and full-length wooden media wall with open display columns'
       ],
-      materials: ['Imported Calacatta Marble Slabs', 'PVD Gold Stainless Steel Trims', 'High-Resilience Molded Foam', 'Belgian Silk-Touch Velvet'],
+      materials: ['100% Solid Seasoned Burma Teak Hardwood', 'High-Density Moulded PU Foam Cushions', 'Traditional Brass Hardware & Diyas', 'Natural Teak Wood Polish with Polyurethane Seal'],
       highlights: [
-        { icon: 'fa-solid fa-gem', title: 'Bookmatched Marble Art', desc: 'Natural vein symmetry creates a breathtaking one-of-a-kind stone feature wall.' },
-        { icon: 'fa-solid fa-crown', title: 'Titanium Brass Trim', desc: 'Scratch-proof PVD gold edging delivers royal distinction and permanence.' },
-        { icon: 'fa-solid fa-wand-magic-sparkles', title: 'Curved Geometry', desc: 'Flowing sculptural sofa softens angular rooms for effortless hosting.' }
+        { icon: 'fa-solid fa-tree', title: 'Solid Teak Woodcraft', desc: 'Generational heirloom hardwood furniture that only gains value and charm with time.' }
+        ,
+        { icon: 'fa-solid fa-om', title: 'Heritage Jaali Partition', desc: 'Hand-carved wooden latticework provides semi-private spatial separation.' },
+        { icon: 'fa-solid fa-crown', title: '24K Tanjore Artwork Focus', desc: 'Illuminated traditional Indian art piece creates a dignified cultural focal point.' }
       ]
     },
     {
-      id: 'modern-skyline-panoramic-lounge',
-      title: 'Modern Skyline Panoramic Lounge',
+      id: 'blush-botanical-chandelier-luxury-living',
+      title: 'Blush Botanical & Branching Chandelier Luxury Lounge',
+      category: 'modern-luxury',
+      categoryLabel: 'Modern Luxury Suite',
+      shortDesc: 'Opulent living lounge with rose gold botanical paneling, statement brass branching chandelier, dusty rose velvet armchairs, and marble TV wall.',
+      tag: 'Luxury Signature',
+      image: '/living/blush-botanical-chandelier-luxury-living.jpg',
+      galleryImages: ['/living/blush-botanical-chandelier-luxury-living.jpg'],
+      startingPrice: '₹2,80,000',
+      dimensions: '22ft x 15ft Open Living Lounge (Customizable)',
+      finishType: 'Bespoke Botanical Wall Panels + PVD Gold Inlays + Calacatta Gold TV Console + Rose Velvet Accents',
+      features: [
+        'Full-height feature wall with hand-illustrated floral silhouette panels and vertical brass gold T-profiles',
+        'Sculptural multi-bulb brass branch Sputnik chandelier serving as an illuminated ceiling statement',
+        'Generous cream L-shaped sofa complemented by dual scallop-back dusty rose velvet armchairs',
+        'Full-length floating TV entertainment credenza with Calacatta marble wall cladding and open display shelving'
+      ],
+      materials: ['High-Pressure Decorative Textured Laminate', 'PVD Brass Gold Stainless Steel Inlays', 'Imported Calacatta Gold Marble Slab', 'Stain-Resistant Dusty Rose Velvet'],
+      highlights: [
+        { icon: 'fa-solid fa-lightbulb', title: 'Branching Chandelier', desc: 'Organic modern lighting fixture casts multi-directional warm ambient glow.' },
+        { icon: 'fa-solid fa-palette', title: 'Botanical Gold-Inlay Wall', desc: 'Delicate floral motifs framed with gold inlays create a serene designer backdrop.' },
+        { icon: 'fa-solid fa-chair', title: 'Scalloped Velvet Chairs', desc: 'Jewel-toned velvet accent seating adds playful elegance and cozy comfort.' }
+      ]
+    },
+    {
+      id: 'terracotta-warm-earthy-living',
+      title: 'Warm Terracotta & Linen Modular Living Lounge',
       category: 'contemporary',
-      categoryLabel: 'Open Concept',
-      shortDesc: 'Curved modular sofa with full-span walnut media credenza, under-glow lighting, and balcony connection.',
-      tag: 'New Launch',
-      image: '/living/modern-skyline-lounge-living.jpg',
-      galleryImages: ['/living/modern-skyline-lounge-living.jpg'],
-      startingPrice: '₹2,10,000',
-      dimensions: '20ft x 16ft Apartment Living (Customizable)',
-      finishType: 'Rich American Walnut + Charcoal Suede Texture + Integrated Ambient Glow',
+      categoryLabel: 'Warm Earthy Minimalist',
+      shortDesc: 'Inviting earthy living lounge with burnt terracotta feature wall, linen sectional, woven rattan chandelier, and floating low-line TV credenza.',
+      tag: 'Warm & Earthy',
+      image: '/living/terracotta-warm-earthy-living.jpg',
+      galleryImages: ['/living/terracotta-warm-earthy-living.jpg'],
+      startingPrice: '₹1,95,000',
+      dimensions: '18ft x 14ft Living Space (Customizable)',
+      finishType: 'Burnt Terracotta Matte Wall Finish + Natural Woven Rattan + Oiled Teak Coffee Table',
       features: [
-        'Full-span 16ft floating walnut media credenza with push-to-open doors',
-        'Large semicircular curved sofa designed for panoramic city skyline views',
-        'Concealed LED underside illumination creating a floating furniture effect',
-        'Custom geometric wool area rug complementing contemporary lines'
+        'Warm burnt terracotta accent wall providing an inviting, sun-baked earth color palette',
+        'Hand-woven natural organic rattan pendant light and sheer dual-track linen drapery',
+        'Deep modular low-profile cream sofa with rust & burnt amber velvet accent throw pillows',
+        'Floating low-line white and oak TV entertainment credenza with open botanical plant shelves'
       ],
-      materials: ['American Walnut Natural Veneer', 'BWP Marine Plywood Framework', 'Stain-Resistant Performance Fabric', 'New Zealand Wool Rug'],
+      materials: ['Low-VOC Eco-Friendly Mineral Paint', 'Solid Teak Wood Furniture', 'Natural Hand-Woven Rattan Basketry', 'Belgian Natural Linen Upholstery'],
       highlights: [
-        { icon: 'fa-solid fa-building', title: 'Panoramic Layout', desc: 'Curved seating orientation captures exterior balcony views effortlessly.' },
-        { icon: 'fa-solid fa-bolt', title: 'Continuous Media Unit', desc: 'Provides massive concealed storage for consoles, soundbars, and decors.' },
-        { icon: 'fa-solid fa-moon', title: 'Evening Lounge Lighting', desc: 'Under-console glow creates warm, cozy nighttime hotel ambiance.' }
+        { icon: 'fa-solid fa-sun', title: 'Inviting Terracotta Warmth', desc: 'Rich earth tones foster welcoming energy and coziness for family gatherings.' },
+        { icon: 'fa-solid fa-feather', title: 'Organic Rattan Fixture', desc: 'Handcrafted woven pendant light creates beautiful geometric shadows at night.' },
+        { icon: 'fa-solid fa-seedling', title: 'Biophilic Plant Styling', desc: 'Integrated indoor planters and window greenery bring nature into the living room.' }
       ]
     },
     {
-      id: 'scandinavian-cozy-oak-living',
-      title: 'Scandinavian Cozy Oak & Library Living',
-      category: 'japandi',
-      categoryLabel: 'Scandinavian',
-      shortDesc: 'Full-wall illuminated white oak library wall with soft cream bouclé sofa and natural jute rug.',
-      tag: 'Cozy Living',
-      image: '/living/scandinavian-cozy-living.jpg',
-      galleryImages: ['/living/scandinavian-cozy-living.jpg'],
-      startingPrice: '₹1,55,000',
-      dimensions: '16ft x 14ft Family Living (Customizable)',
-      finishType: 'White Oak Natural Grain + Integrated Shelf Warm Glow + Textured Bouclé',
+      id: 'biophilic-botanical-oak-living',
+      title: 'Biophilic Palm Botanical & Oak Panelling Living Room',
+      category: 'contemporary',
+      categoryLabel: 'Biophilic Botanical Living',
+      shortDesc: 'Nature-immersive living room with tropical palm wallpaper, floating oak display ledges with indoor plants, cream sectional, and fluted TV wall.',
+      tag: 'Biophilic Design',
+      image: '/living/biophilic-botanical-oak-living.jpg',
+      galleryImages: ['/living/biophilic-botanical-oak-living.jpg'],
+      startingPrice: '₹2,65,000',
+      dimensions: '20ft x 15ft Living Lounge (Customizable)',
+      finishType: 'Bespoke Tropical Palm Wall Mural + Natural Oak Wall Panelling & Floating Ledges',
       features: [
-        'Floor-to-ceiling custom display bookcase with concealed vertical LED strips',
-        'Comfort-focused cloud-soft bouclé 3-seater sofa with lumbar support pillows',
-        'Hand-woven natural organic jute floor rug for tactile grounded warmth',
-        'Minimalist solid oak central coffee table with smooth rounded child-safe corners'
+        'Full-height custom botanical palm and monstera leaf wallpaper mural with organic earthy tones',
+        'Two-tier solid oak floating display ledges adorned with cascading indoor plants and Buddha statue',
+        'Generous L-shaped cream woven linen sectional sofa with forest green accent cushions',
+        'Full-height vertical natural oak TV wall with integrated long dual-tone white & oak floating console'
       ],
-      materials: ['European White Oak Hardwood', 'High-Density Acoustic Backing', 'Premium Wool-Bouclé Fabric', 'Natural Organic Jute'],
+      materials: ['Natural European White Oak Hardwood', 'High-Def Fabric-Backed Wallpaper', 'Stain-Resistant Performance Fabric', 'IS 710 Marine Grade BWP Plywood Core'],
       highlights: [
-        { icon: 'fa-solid fa-book-open', title: 'Integrated Library Wall', desc: 'Displays family memories, curated books, and artifacts with warm lighting.' },
-        { icon: 'fa-solid fa-heart', title: 'Inviting Family Comfort', desc: 'Soft bouclé fabrics and natural textures create an irresistibly cozy room.' },
-        { icon: 'fa-solid fa-shield-cat', title: 'Pet & Child Friendly', desc: 'Scratch-resistant natural finishes with rounded corner safety.' }
+        { icon: 'fa-solid fa-leaf', title: 'Biophilic Living Wall', desc: 'Lush indoor greenery and botanical murals promote air freshness and relaxation.' },
+        { icon: 'fa-solid fa-tv', title: 'Fluted Oak Media Wall', desc: 'Seamless floor-to-ceiling wood panelling creates a high-end architectural TV hub.' },
+        { icon: 'fa-solid fa-couch', title: 'Deep Lounging Comfort', desc: 'Spacious corner chaise allows comfortable family gatherings and movie nights.' }
+      ]
+    },
+    {
+      id: 'olive-arch-rust-velvet-living',
+      title: 'Olive Arch Niche & Rust Velvet Heritage Lounge',
+      category: 'classical',
+      categoryLabel: 'Arch Niche & Warm Velvet',
+      shortDesc: 'Dramatic olive green Roman arch display niche with warm timber ceiling panelling, burnt rust sofa, solid teak coffee table, and marble TV wall.',
+      tag: 'Trending Signature',
+      image: '/living/olive-arch-rust-velvet-living.jpg',
+      galleryImages: ['/living/olive-arch-rust-velvet-living.jpg'],
+      startingPrice: '₹2,75,000',
+      dimensions: '20ft x 14ft Living Room (Customizable)',
+      finishType: 'Olive Green Roman Arch Wall Niche + Solid Teak Ceiling Louvers + Calacatta Marble TV Cladding',
+      features: [
+        'Recessed Roman arch feature wall in muted olive green with tiered floating wooden display shelves',
+        'Warm acoustic slatted timber false ceiling section with integrated modern ceiling fan',
+        'Plush 3-seater sofa and matching armchair in stain-proof burnt rust/terracotta velvet',
+        'White Calacatta marble slab TV media wall paired with long white and teak floating cabinet'
+      ],
+      materials: ['Imported Italian Calacatta Marble', 'Solid Seasoned Teak Ceiling Rafters', 'High-Resilience Velvet Fabric', 'Natural Jute Woven Area Rug'],
+      highlights: [
+        { icon: 'fa-solid fa-archway', title: 'Recessed Roman Arch', desc: 'Architectural wall niche showcases artisanal terracotta pottery and greenery.' },
+        { icon: 'fa-solid fa-layer-group', title: 'Timber Slatted Ceiling', desc: 'Natural wood false ceiling adds vertical warmth and acoustic sound absorption.' },
+        { icon: 'fa-solid fa-gem', title: 'Marble TV Wall Credenza', desc: 'Luxury marble paneling delivers hotel-grade sophistication to the living space.' }
+      ]
+    },
+    {
+      id: 'duplex-double-height-grand-lounge',
+      title: 'Duplex Double-Height Villa Grand Lounge',
+      category: 'modern-luxury',
+      categoryLabel: 'Double-Height Duplex Suite',
+      shortDesc: 'Spectacular double-height villa living room with glass railing staircase, multi-globe cluster chandelier, fluted wood walls, and integrated dining area.',
+      tag: 'Ultra Luxury',
+      image: '/living/duplex-double-height-grand-lounge.jpg',
+      galleryImages: ['/living/duplex-double-height-grand-lounge.jpg'],
+      startingPrice: '₹4,50,000',
+      dimensions: '26ft x 20ft Double-Height Hall (Customizable)',
+      finishType: 'Double-Height Fluted Teak Acoustic Louvers + Toughened Glass Balustrades + Marble Steps',
+      features: [
+        'Cathedral double-height ceiling anchored by a cascade multi-globe glass sphere chandelier',
+        'Cantilevered floating marble staircase with frameless toughened glass railing and teak handrail',
+        'Architectural fluted teak double-height wall with curved arch niche and integrated indoor ficus tree',
+        'Seamless visual flow into integrated mezzanine dining zone with 8-seater solid wood table'
+      ],
+      materials: ['Toughened Laminated Architectural Glass', 'Imported Botticino Marble Flooring', 'High-Density Acoustic Teak Louvers', 'Stainless Steel Concealed Glass Standoffs'],
+      highlights: [
+        { icon: 'fa-solid fa-building', title: 'Double-Height Grandeur', desc: 'Expansive vertical volume creates an awe-inspiring architectural luxury entrance.' },
+        { icon: 'fa-solid fa-stairs', title: 'Floating Glass Staircase', desc: 'Minimalist cantilevered staircase allows light to flow unimpeded between floors.' },
+        { icon: 'fa-solid fa-champagne-glasses', title: 'Unified Open Plan', desc: 'Effortlessly connects formal lounging, dining, and upper mezzanine living.' }
+      ]
+    },
+    {
+      id: 'mustard-emerald-color-block-living',
+      title: 'Mustard Yellow & Emerald Color-Block Modern Living',
+      category: 'contemporary',
+      categoryLabel: 'Contemporary Color-Block',
+      shortDesc: 'Vibrant living room with sunny mustard yellow chaise sectional, emerald green TV feature wall, vertical plant tower, and tribal kilim rug.',
+      tag: 'Vibrant & Bold',
+      image: '/living/mustard-emerald-color-block-living.jpg',
+      galleryImages: ['/living/mustard-emerald-color-block-living.jpg'],
+      startingPrice: '₹2,20,000',
+      dimensions: '18ft x 14ft Contemporary Lounge (Customizable)',
+      finishType: 'Matte Emerald Green & Warm Mustard Acrylic Wall Panels + Rich Walnut TV Credenza',
+      features: [
+        'High-impact dual-tone color blocking: Warm sunny mustard accent wall paired with rich forest emerald TV wall',
+        'Spacious L-shaped chaise sectional sofa in premium durable mustard velvet upholstery',
+        'Full-length wall-mounted walnut media credenza with multi-tier open vertical plant display tower',
+        'Traditional tribal geometric pattern kilim wool rug grounding the vibrant color scheme'
+      ],
+      materials: ['Century BWP Marine Plywood Framework', 'Anti-Fingerprint Matte Acrylic Wall Cladding', 'Stain-Resistant High-Durability Velvet', 'Authentic Woven Kilim Rug'],
+      highlights: [
+        { icon: 'fa-solid fa-palette', title: 'Vibrant Color Harmony', desc: 'Energizing mustard and forest emerald combination inspires creativity and warmth.' },
+        { icon: 'fa-solid fa-tv', title: 'Full-Span Walnut Credenza', desc: '14ft floating TV unit with ample closed drawers for entertainment accessories.' },
+        { icon: 'fa-solid fa-seedling', title: 'Vertical Plant Tower', desc: 'Integrated wooden display column for air-purifying indoor plants and pottery.' }
+      ]
+    },
+    {
+      id: 'terracotta-fluted-marble-lounge',
+      title: 'Terracotta & Fluted Marble Luxury Lounge',
+      category: 'modern-luxury',
+      categoryLabel: 'Modern Luxury Lounge',
+      shortDesc: 'High-end conversation lounge with dual facing sofas, Calacatta marble TV wall, fluted teak louvers, rattan bell chandeliers, and terracotta accents.',
+      tag: 'Architectural Elegance',
+      image: '/living/terracotta-fluted-marble-lounge.jpg',
+      galleryImages: ['/living/terracotta-fluted-marble-lounge.jpg'],
+      startingPrice: '₹3,10,000',
+      dimensions: '24ft x 16ft Formal Living Lounge (Customizable)',
+      finishType: 'Calacatta Gold Marble Slab + Vertical Fluted Teak Louvers + Rattan Bell Chandelier Cluster',
+      features: [
+        'Dual-sofa conversational layout with L-sectional and facing 3-seater sofa for generous hosting',
+        'Full-height Calacatta Gold marble TV wall flanked by warm architectural fluted teak louvers',
+        'Trio cluster of suspended hand-woven organic rattan bell chandeliers with warm dimmable filament glow',
+        'Round fluted oak coffee table with Italian white marble top and terracotta geometric area rug'
+      ],
+      materials: ['Bookmatched Calacatta Gold Marble Slab', 'Seasoned Teak Acoustic Slats', 'Natural Hand-Woven Rattan', 'IS 710 Marine Grade BWP Plywood Core'],
+      highlights: [
+        { icon: 'fa-solid fa-comments', title: 'Conversation Layout', desc: 'Facing dual sofas foster meaningful connection and comfortable family entertainment.' },
+        { icon: 'fa-solid fa-gem', title: 'Marble & Fluted Wood Wall', desc: 'Timeless combination of Italian stone and natural wood creates rich tactile depth.' },
+        { icon: 'fa-solid fa-lightbulb', title: 'Cluster Rattan Pendants', desc: 'Artisanal woven bell lights cast soft, decorative shadow patterns across the room.' }
       ]
     }
   ];
