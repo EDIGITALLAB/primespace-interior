@@ -271,9 +271,37 @@ export class ProjectsDataService {
     };
   }
 
+  sortProjectsBySavedOrder(list: ProjectItem[]): ProjectItem[] {
+    try {
+      if (typeof localStorage === 'undefined') return list;
+      const raw = localStorage.getItem('primespace_projects_order');
+      if (!raw) return list;
+      const order: string[] = JSON.parse(raw);
+      if (!Array.isArray(order) || order.length === 0) return list;
+
+      return [...list].sort((a, b) => {
+        const idStrA = (a.projectId !== undefined ? a.projectId.toString() : '') || a.id || a.slug || '';
+        const idStrB = (b.projectId !== undefined ? b.projectId.toString() : '') || b.id || b.slug || '';
+
+        const idxA = order.findIndex(o => o === idStrA || o === String(a.projectId) || o === a.id || o === a.slug);
+        const idxB = order.findIndex(o => o === idStrB || o === String(b.projectId) || o === b.id || o === b.slug);
+
+        if (idxA === -1 && idxB === -1) return 0;
+        if (idxA === -1) return 1;
+        if (idxB === -1) return -1;
+        return idxA - idxB;
+      });
+    } catch {
+      return list;
+    }
+  }
+
   getAllProjectsFromApi(): Observable<ProjectItem[]> {
     return this.http.get<BackendProject[]>(this.apiUrl).pipe(
-      map(backendList => backendList.map(bp => this.mapBackendToProjectItem(bp))),
+      map(backendList => {
+        const mapped = backendList.map(bp => this.mapBackendToProjectItem(bp));
+        return this.sortProjectsBySavedOrder(mapped);
+      }),
       catchError(err => {
         console.error('Backend API request failed:', err);
         return throwError(() => err);

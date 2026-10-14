@@ -24,7 +24,7 @@
                   <span>{{ t.name }}</span>
                   <i *ngIf="t.isVerified" class="fa-solid fa-circle-check text-primary font-size-xs" title="Verified Homeowner"></i>
                 </h6>
-                <span class="text-muted font-size-micro">{{ t.role }} • {{ t.project }}</span>
+                <span class="text-muted font-size-micro">{{ t.role }}<ng-container *ngIf="t.project"> • {{ t.project }}</ng-container></span>
               </div>
             </div>
 
@@ -87,8 +87,8 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Name <span class="text-danger">*</span></label>
-            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Royale Villa, Bangalore" [ngModel]="project()" (ngModelChange)="project.set($event)" name="project" required>
+            <label class="form-label font-size-xs font-weight-bold text-dark mb-1">Project Name</label>
+            <input type="text" class="form-control font-size-xs rounded-3 border shadow-none" placeholder="e.g. Royale Villa, Bangalore" [ngModel]="project()" (ngModelChange)="project.set($event)" name="project">
           </div>
 
           <div class="col-12 col-md-6">

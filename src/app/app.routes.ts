@@ -1,7 +1,6 @@
 import { Routes } from '@angular/router';
 import { Landing } from './pages/landing/landing';
 import { ServiceDetails } from './pages/service-details/service-details';
-import { CategoriesPage } from './pages/categories-page/categories-page';
 import { ContactPage } from './pages/contact-page/contact-page';
 import { LocationsPage } from './pages/locations-page/locations-page';
 import { ProjectsPage } from './pages/projects-page/projects-page';
@@ -35,7 +34,6 @@ import { NotFoundPage } from './pages/not-found-page/not-found-page';
 
 export const routes: Routes = [
   { path: '', component: Landing },
-  { path: 'categories', component: CategoriesPage },
   { path: 'explore-design-ideas', component: ExploreDesignIdeas },
   { path: 'explore-design-ideas/wardrobe-designs', component: WardrobePage },
   { path: 'explore-design-ideas/wardrobes', component: WardrobePage },

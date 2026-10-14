@@ -299,7 +299,7 @@ export class ExploreDesignIdeas implements OnInit, OnDestroy {
     if (space.routeLink) {
       this.router.navigateByUrl(space.routeLink);
     } else {
-      this.router.navigate(['/categories'], { queryParams: { category: space.category } });
+      this.router.navigate(['/explore-design-ideas']);
     }
   }
 

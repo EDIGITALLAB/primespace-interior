@@ -87,6 +87,29 @@ export class AdminProjects implements OnInit {
     return `${count} ${unit}${count !== 1 ? 's' : ''}`;
   }
 
+  getProjectRank(p: AdminProject): number {
+    const idx = this.adminData.projects().findIndex(item => item.id === p.id);
+    return idx >= 0 ? idx + 1 : 1;
+  }
+
+  canMoveUp(p: AdminProject): boolean {
+    const idx = this.adminData.projects().findIndex(item => item.id === p.id);
+    return idx > 0;
+  }
+
+  canMoveDown(p: AdminProject): boolean {
+    const idx = this.adminData.projects().findIndex(item => item.id === p.id);
+    return idx >= 0 && idx < this.adminData.projects().length - 1;
+  }
+
+  moveProjectUp(p: AdminProject) {
+    this.adminData.moveProjectOrder(p.id, 'up');
+  }
+
+  moveProjectDown(p: AdminProject) {
+    this.adminData.moveProjectOrder(p.id, 'down');
+  }
+
   openAddModal() {
     this.isEditing.set(false);
     this.editingProjectId.set('');
