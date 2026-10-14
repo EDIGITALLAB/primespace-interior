@@ -120,7 +120,7 @@ export interface AdminTestimonial {
   id: string;
   name: string;
   role: string;
-  project: string;
+  project?: string;
   location: string;
   rating: number;
   comment: string;
@@ -488,13 +488,70 @@ export class AdminDataService {
     );
   }
 
+  private readonly PROJECTS_ORDER_KEY = 'primespace_projects_order';
+
+  getProjectsOrder(): string[] {
+    try {
+      if (typeof localStorage === 'undefined') return [];
+      const raw = localStorage.getItem(this.PROJECTS_ORDER_KEY);
+      return raw ? JSON.parse(raw) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  saveProjectsOrder(orderedIds: string[]): void {
+    try {
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem(this.PROJECTS_ORDER_KEY, JSON.stringify(orderedIds));
+      }
+    } catch (e) {
+      console.warn('Failed to save project display order:', e);
+    }
+  }
+
+  sortProjectsByCustomOrder(list: AdminProject[]): AdminProject[] {
+    const order = this.getProjectsOrder();
+    if (!order || order.length === 0) return list;
+    return [...list].sort((a, b) => {
+      const idxA = order.indexOf(String(a.id));
+      const idxB = order.indexOf(String(b.id));
+      if (idxA === -1 && idxB === -1) return 0;
+      if (idxA === -1) return 1;
+      if (idxB === -1) return -1;
+      return idxA - idxB;
+    });
+  }
+
+  moveProjectOrder(id: string, direction: 'up' | 'down'): boolean {
+    const current = [...this.projects()];
+    const index = current.findIndex(p => p.id === id);
+    if (index === -1) return false;
+
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    if (targetIndex < 0 || targetIndex >= current.length) return false;
+
+    // Swap positions
+    const moving = current[index];
+    current[index] = current[targetIndex];
+    current[targetIndex] = moving;
+
+    this.projects.set(current);
+    const newOrder = current.map(p => p.id);
+    this.saveProjectsOrder(newOrder);
+
+    this.showToast(`"${moving.title}" moved ${direction}! Website display order updated.`, 'success');
+    return true;
+  }
+
   loadProjectsFromBackend(): Observable<AdminProject[]> {
     return this.http.get<any[]>(`${this.apiUrl}/projects`).pipe(
       map(list => {
         if (list && list.length > 0) {
           const mapped = list.map(bp => this.mapBackendToAdminProject(bp));
-          this.projects.set(mapped);
-          return mapped;
+          const sorted = this.sortProjectsByCustomOrder(mapped);
+          this.projects.set(sorted);
+          return sorted;
         }
         return this.projects();
       }),

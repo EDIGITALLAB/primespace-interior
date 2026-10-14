@@ -107,8 +107,8 @@ export class AdminTestimonials implements OnInit {
     const locationVal = (this.location() || '').trim();
     const commentVal = (this.comment() || '').trim();
 
-    if (!nameVal || !roleVal || !projectVal || !locationVal || !commentVal) {
-      alert('Please fill in all mandatory fields (Client Name, Role, Project Name, Location, Review Comment).');
+    if (!nameVal || !roleVal || !locationVal || !commentVal) {
+      alert('Please fill in all mandatory fields (Client Name, Role, Location, Review Comment).');
       return;
     }
 

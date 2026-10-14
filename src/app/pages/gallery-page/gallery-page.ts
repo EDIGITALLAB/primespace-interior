@@ -212,7 +212,7 @@ export class GalleryPage implements OnInit {
 
     this.isLoadingMore.set(true);
     setTimeout(() => {
-      this.visibleCount.update(count => count + 4);
+      this.visibleCount.update(count => count + 8);
       this.isLoadingMore.set(false);
     }, 350);
   }
